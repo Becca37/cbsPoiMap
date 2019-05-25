@@ -206,7 +206,7 @@ function setMarkerCategoryData()
 		{
 			var categoryName = markerDataArray[i].cbsMainCategory;		
 		
-			var mapMarkerIconValue = '/map/icons/flag-export.png';
+			var mapMarkerIconValue = '/map/images/icons/mic/flag-export.png';
 			var furkotPinNameValue = 'stop';
 			
 			// TODO: Ideally, we'll do this mapping in a file or data so that it that can
@@ -214,12 +214,12 @@ function setMarkerCategoryData()
 			switch (categoryName)
 			{
 				case 'Pass':
-					mapMarkerIconValue = '/map/icons/mountain-pass-locator-diagonal-reverse-export.png';
+					mapMarkerIconValue = '/map/images/icons/mic/mountain-pass-locator-diagonal-reverse-export.png';
 					furkotPinNameValue = 'mountains';
 				break;
 				
 				case 'Paved High Point':
-					mapMarkerIconValue = '/map/icons/direction_up.png';
+					mapMarkerIconValue = '/map/images/icons/mic/direction_up.png';
 					furkotPinNameValue = 'one-way';
 				break;
 			}
@@ -487,7 +487,7 @@ function CreditsControl(controlDiv, map)
 		var controlUI = document.createElement('div');
 		controlUI.id = 'credits';
 		controlUI.innerHTML = 
-			'<div><img src="/map/logos/CBS_Logo.png" alt="Logo"/></div>'
+			'<div><img src="/map/images/logos/CBS_Logo.png" alt="Logo"/></div>'
 			+ '<div><b>Oh the Places We Will Go</b> <i>by <a href="/">Chasing Blue Sky</a></i></div>'
 			+ '<div>See website for the numerous <a href="https://chasingbluesky.net/credits/" title="Credits">credits</a>, and for terms of use.</div>';
 		controlUI.title = 'Credits';
