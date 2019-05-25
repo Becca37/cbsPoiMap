@@ -25,7 +25,7 @@ HTML5, javascript (v5), CSS
   </li>
   <li>Adding custom markers from array in js file.</li>
   <li>Showing marker information in a side panel (vs. default popup window).</li>
-  <li>Integration with Furkot.</li>
+  <li>Integration with Furkot Trip Planner (https://github.com/furkot/trip-planner).</li>
  </ul>
  
  <h3>TODOs Include (but are not limited to, and in no particular order)</h3>
@@ -55,7 +55,7 @@ HTML5, javascript (v5), CSS
   <ul>
     <li><a href="https://fontawesome.com/icons?d=gallery&m=free">Font Awesome Free</a></li>
     <li><a href="https://mapicons.mapsmarker.com/">Map Icons Collection</a></li>
-    <li><a href="https://furkot.com/">Furkot</a></li>
+    <li><a href="https://furkot.com/">Furkot</a> https://github.com/furkot/icon-fonts</li>
   </ul>
   </li>
   
@@ -68,3 +68,13 @@ HTML5, javascript (v5), CSS
  </ul>
 <hr> 
 <i>Note: This is my first time using GitHub and making something for potential public consumption, so be patient with me, it's very raw at this point.</i>
+
+<hr>
+<h3>License</h3>
+Copyright (c) 2019
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
