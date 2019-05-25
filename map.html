@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Oh the Places We Will Go!</title>
+		
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+		<link href="css/iziToast.css" rel="stylesheet"></script>
+		<link href="css/furkot.css" rel="stylesheet"></script>				
+		<link href="css/map.css" rel="stylesheet">		
+
+		<script src="https://cdn.furkot.com/scripts/furkot-trip-planner.min.js" defer></script>
+		<script src="js/iziToast.js"></script>
+		<script src="js/map.js"></script>
+		
+		<!-- The all-important Google Maps API -->
+		<!-- Replace the value of the key parameter with your own API key. -->
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYkQt42ziK8vw6E9Z_r6_NK1_B-DCPBXc&callback=initMap&libraries=weather"  defer></script>
+		
+		<!-- Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-79516965-4"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-79516965-4');
+		</script>
+
+	</head>
+	<body>
+		<!-- ****************************************************************** -->
+		<div id="containers">
+			<div id="mapContainer"></div>
+			<div id="markerContainer">
+				<div id="markerInfoContainer">
+					<div id="markerOwnerHeader">
+						<div id="markerOwnerHeaderIcon">
+							<img id="markerOwnerHeaderIconImage" src="https://chasingbluesky.net/map/logos/CBS_Logo.png" alt="Owner Icon"/>
+						</div>
+						<div id="markerOwnerHeaderTitle">Chasing Blue Sky</div>
+					</div>
+					<div id="markerInfoHeader">
+						<div id="markerInfoHeaderIcon">
+							<img id="markerInfoHeaderIconImage" src="https://chasingbluesky.net/map/logos/CBS_Logo.png" alt="Marker Icon"/>
+						</div>
+						<div id="markerInfoHeaderTitle"></div>	
+						<div id="planWithFurkot">
+							<a id="planWithFurkotLink" href="https://trips.furkot.com/trip?stop[name]=Chasing%20Blue%20Sky&stop[coordinates][lat]=39.538187&stop[coordinates][lon]=-105.036304&stop[notes]=This%20is%20only%20a%20test.&stop[url]=https%3A%2F%2FChasingBlueSky.net&stop[pin]=stop" target="furkot" title="Add to a Furkot Trip"><i class="ff-icon-furkot"></i><i class="ff-icon-stop"></i></a>
+						</div>
+					</div>
+					<div id="markerInfoData">
+					</div>
+				</div>
+				<div id="instructionsContainer">
+					<div id="toggleInstructions" onclick="showHideInstructions()"><i class="far fa-question-circle"></i> Show Instructions</div>
+					<div id="instructionsText" style="display: none;">
+						<b>This map</b> contains places we've been and places we might someday want to go. It's mainly meant so that we can look up places when we're out and about, but others might find some interesting places to visit too. Happy browsing. :0)  
+						<br/><br/>
+						<b>To view details of any marker</b> click its icon. The information for any icons added by <i>Chasing Blue Sky</i> will display in this side panel. Information for any normal <i>Google Maps icons</i> will show data in a popup window, with a link to the standard Google Maps.
+						<br/><br/>
+						<b>If a marker we've added interests you</b>, you can grab the GPS coordinates for use in your preferred mapping program. Alternately, the ability to add a marker to a FURKOT trip has been integrated into this website. To state the obvious, we think using Furkot for trip planning is a great option or we would not have integrated it. <a href="https://trips.furkot.com/" title="Click to visit Furkot, then scroll down to learn more.">Visit Furkot Site</a> :0)
+						<br/><br/>
+						<b>To show your current location</b> click the locator control (bottom left area). You will need to allow the browser to use your location. This will then populate your current location data and start tracking your location (location data is not stored). 
+						<br/><br/>
+						<b>Once location tracking has been started</b> you can click it at any time to pan/zoom to your current location.
+						<br/><br/>
+						<b>Compatibility / Requirements</b> This does require an internet connection. Use it on a device with GPS if you're concerned about getting the best location accuracy. It should work on current browsers, both desktop and mobile. However, we make no promises about it being pretty or easy to work with on small screens*, on any given device, or on any given operation system. We have used it ourselves on Chrome (desktop, android Galaxy Note 9, iOS iPad Pro), Firefox (desktop), and Safari (iPad iPad Pro).
+						<br/><br/>
+						* If you are on a small device such as a smartphone, portrait mode and pinch-and-zoom is your friend. That or a magnifying glass.
+					</div>
+				</div>
+				<div class="furkot-widget"></div>
+			</div>
+		</div>
+		<!-- ****************************************************************** -->
+	</body>
+</html>
