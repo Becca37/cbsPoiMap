@@ -3,7 +3,7 @@ html, body {
 	margin: 0;
 	padding: 0;
 	/*https://css-tricks.com/books/volume-i/scale-typography-screen-size/*/
-	font-size: calc(12px + (22 - 12) * ((100vw - 300px) / (1600 - 300)));
+	font-size: calc(10px + (20 - 10) * ((100vw - 300px) / (1600 - 300)));
 	line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(1600 - 300)));
 }
 

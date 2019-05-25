@@ -302,7 +302,29 @@ function addMarkersTo(map)
 					markersArray.push(addThisMarker);
 				}
 			)(i);
-		}		
+		}
+		
+		// Marker Clustering
+		// https://github.com/googlemaps/v3-utility-library/blob/master/markerclustererplus/examples/events_example.htm
+		var markerCluster = new MarkerClusterer
+		(map, markersArray, 
+			{ 
+				  averageCenter: true
+				, imagePath: 'images/icons/clusters/m' 
+			}
+		);
+
+		google.maps.event.addListener
+		(markerCluster, "click", function (c) 
+			{
+				var m = c.getMarkers();
+				var p = [];
+				for (var i = 0; i < m.length; i++ )
+				{
+					p.push(m[i].getPosition());
+				}
+			}
+		);		
 	}
 	catch(e)
 	{

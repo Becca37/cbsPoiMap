@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>MarkerClusterer v3 Example</title>
+    <title>MarkerClustererPlus V3 Example</title>
 
     <style type="text/css">
       body {
@@ -30,7 +30,7 @@
 
     </style>
 
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYkQt42ziK8vw6E9Z_r6_NK1_B-DCPBXc"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYkQt42ziK8vw6E9Z_r6_NK1_B-DCPBXc"></script>
     <script type="text/javascript" src="src/data.json"></script>
     <script type="text/javascript" src="src/markerclusterer.js"></script>
 
@@ -54,13 +54,44 @@
           });
           markers.push(marker);
         }
-        var markerCluster = new MarkerClusterer(map, markers, {imagepath: 'images/clusters/'});
+        var markerCluster = new MarkerClusterer(map, markers, {
+          averageCenter: true, imagePath: 'images/icons/clusters/m'
+        });
+
+        google.maps.event.addListener(markerCluster, "click", function (c) {
+          log("click: ");
+          log("&mdash;Center of cluster: " + c.getCenter());
+          log("&mdash;Number of managed markers in cluster: " + c.getSize());
+          var m = c.getMarkers();
+          var p = [];
+          for (var i = 0; i < m.length; i++ ){
+            p.push(m[i].getPosition());
+          }
+          log("&mdash;Locations of managed markers: " + p.join(", "));
+
+        });
+        google.maps.event.addListener(markerCluster, "mouseover", function (c) {
+          log("mouseover: ");
+          log("&mdash;Center of cluster: " + c.getCenter());
+          log("&mdash;Number of managed markers in cluster: " + c.getSize());
+        });
+        google.maps.event.addListener(markerCluster, "mouseout", function (c) {
+          log("mouseout: ");
+          log("&mdash;Center of cluster: " + c.getCenter());
+          log("&mdash;Number of managed markers in cluster: " + c.getSize());
+        });
       }
+
+     function log(h) {
+       document.getElementById("log").innerHTML += h + "<br />";
+     }
+
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
   </head>
   <body>
-    <h3>A simple example of MarkerClusterer (100 markers)</h3>
+    <h3>Event listening example for MarkerClustererPlus</h3>
     <div id="map-container"><div id="map"></div></div>
+    <div id="log"></div>
   </body>
 </html>
