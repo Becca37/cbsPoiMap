@@ -1,12 +1,12 @@
 # cbsPoiMap
-<h1>Chasing Blue Sky map showing our personal points of interest. </h1>
+<h2>Chasing Blue Sky map showing our personal points of interest. </h2>
 
 Live site at <a href="https://ChasingBlueSky.net/map">Chasing Blue Sky</a>. 
 <br/><br/><i>2019-05-25 -- this is still under development, might not be working when you visit it. However, the code in GitHub is a working version and getting it to this point wins me major happiness points from, well, me!</i>
 
 HTML5, javascript (v5), CSS
 
-<h2>Working Functionality</h2>
+<h3>Working Functionality</h3>
 <ul>
   <li>Generating base map as TERRAIN.</li>
   <li>Making some adjustments to default controls features and positioning.</li>
@@ -28,7 +28,7 @@ HTML5, javascript (v5), CSS
   <li>Integration with Furkot.</li>
  </ul>
  
- <h2>TODOs Include (but are not limited to, and in no particular order)</h2>
+ <h3>TODOs Include (but are not limited to, and in no particular order)</h3>
  <ul>
   <li>Add markers to array from file or database instead of js file.
   <li>Create seperate function to process elevation data for markers in a file or database collection so do not need to pull that at runtime.</li>
@@ -42,7 +42,7 @@ HTML5, javascript (v5), CSS
     </ul>
 </ul>
 
-<h2>References</h2> 
+<h3>References</h3> 
 <ul>
   <li><b>Google Maps APIs</b>:
     <ul>
