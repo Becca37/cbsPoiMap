@@ -395,7 +395,7 @@ function displayInfoPanelFor(thisMarker)
 					
 					// ------------------------------------------------------------------
 					var markerShowWebsite = thisMarker.cbsReferenceUrl 
-						? '<a href="' + thisMarker.cbsReferenceUrl + '" title="Website"><i class="fas fa-globe fa-2x"></i></a>' 
+						? '<a href="' + thisMarker.cbsReferenceUrl + '" title="Website" target="_blank"><i class="fas fa-globe fa-2x"></i></a>' 
 						: '<i class="fas fa-globe fa-2x disabled"></i>';
 						
 					var markerGooglePlaceId = thisMarker.googlePlaceId
