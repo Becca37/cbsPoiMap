@@ -409,7 +409,7 @@ function displayInfoPanelFor(thisMarker)
 						+ markerGooglePlaceId
 						+ '&travelmode=driving'
 						+ '&dir_action=navigate'
-						+ '" target="googleMaps"><i class="far fa-compass fa-2x"></i></a>';
+						+ '" target="googleMaps" title="Navigate"><i class="far fa-compass fa-2x"></i></a>';
 					
 					var markerNotesForFurkot = thisMarker.cbsNotes
 						? '&stop[notes]=' + encodeURIComponent(thisMarker.cbsNotes)
