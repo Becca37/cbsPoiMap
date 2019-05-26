@@ -41,6 +41,7 @@ var markerDataArray = [
 		, cbsTags: '(none)'
 		, latitude: 39.361670
 		, longitude: -106.062663
+		, googlePlaceId: 'ChIJD5OFtffxaocR2B15fvWIUlA'
 		, cbsNotes: "Who's your pass, baby, who's your pass?"
 		, cbsReferenceUrl: 'https://en.wikipedia.org/wiki/Hoosier_Pass'
 	}	
@@ -52,7 +53,8 @@ var markerDataArray = [
 		, cbsTags: ['Scenic Byway', '14er', 'USDA', 'Forest Service', 'Lincoln National Forest']
 		, latitude: 39.587795
 		, longitude: -105.642439
-		, cbsNotes: "Paved scenic byway to the top at 14,130 feet. Note that while it is paved, sometimes the road is still ... rough. "
+		, googlePlaceId: 'ChIJlUj7hcqpa4cRsbHLtlWdpO8'
+		, cbsNotes: "Paved scenic byway to the top at 14,130 feet. Note that while it is paved, sometimes the road is still, er, rough. "
 		, cbsReferenceUrl: 'https://www.fs.usda.gov/wps/portal/fsinternet/cs/recarea?ss=110308&navtype=BROWSEBYSUBJECT&cid=FSE_003738&navid=110240000000000&pnavid=110000000000000&position=generalinfo&recid=28508&ttype=recarea&pname=Mount%20Evans%20Scenic%20Byway'
 	}
 
@@ -395,12 +397,27 @@ function displayInfoPanelFor(thisMarker)
 					var markerShowWebsite = thisMarker.cbsReferenceUrl 
 						? '<a href="' + thisMarker.cbsReferenceUrl + '" title="Website"><i class="fas fa-globe fa-2x"></i></a>' 
 						: '<i class="fas fa-globe fa-2x disabled"></i>';
+						
+					var markerGooglePlaceId = thisMarker.googlePlaceId
+						? '&destination_place_id=' + thisMarker.googlePlaceId
+						: '';
+					
+					//https://developers.google.com/maps/documentation/urls/guide
+					var markerStartNavigation = '<a href="https://www.google.com/maps/dir/?api=1'
+						+ '&destination=' + encodeURIComponent(thisMarker.latitude + ',' + thisMarker.longitude) 
+						+ markerGooglePlaceId
+						+ '&travelmode=driving'
+						+ '&dir_action=navigate'
+						+ '" target="googleMaps"><i class="far fa-compass fa-2x"></i></a>';
+					
 					var markerNotesForFurkot = thisMarker.cbsNotes
 						? '&stop[notes]=' + encodeURIComponent(thisMarker.cbsNotes)
 						: '';
+					
 					var markerUrlForFurkot = thisMarker.cbsReferenceUrl 
 						? '&stop[url]=' + encodeURIComponent(thisMarker.cbsReferenceUrl) 
 						: '';
+					
 					var markerStopNameForFurkot = thisMarkersCategoryData.furkotPinName
 						? '&stop[pin]=' + thisMarkersCategoryData.furkotPinName
 						: '';
@@ -416,7 +433,8 @@ function displayInfoPanelFor(thisMarker)
 							markerVisitedIcon = '<i class="far fa-eye-slash fa-2x" title="We have NOT yet seen this with our own eyes."></i>';
 						break;
 					}						
-												
+											
+					//https://help.furkot.com/widgets/plan-with-furkot-buttons.html	
 					var furkotLinkText = 
 						'https://trips.furkot.com/trip?stop[name]=' 
 								+ encodeURIComponent(thisMarker.cbsTitle)
@@ -432,8 +450,9 @@ function displayInfoPanelFor(thisMarker)
 					
 					var contentString = 
 						  '<div class="markerInfoShelf">'
-							+ '<div class="markerInfoShelfIcon">' + markerVisitedIcon + '</div>' 
-							+ '<div class="markerInfoShelfIcon">' + markerShowWebsite + '</div>'
+							+ '<div class="markerInfoShelfIcon" alt="CBS Visited?">' + markerVisitedIcon + '</div>' 
+							+ '<div class="markerInfoShelfIcon" alt="Website">' + markerShowWebsite + '</div>' 
+							+ '<div class="markerInfoShelfIcon" alt="Navigate">' + markerStartNavigation + '</div>'
 						+ '</div>'
 						+ '<div class="markerInfoQuickFacts">'
 							+ '<div class="markerInfoQuickFact">'
