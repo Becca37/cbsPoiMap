@@ -7,7 +7,7 @@ var trafficLayer = null;
 var currentLocationMarker = null;
 var watchCurrentLocationId = null;
 
-var isATest = true;
+var isATest = false;
 	
 var markersArray = [];
 
