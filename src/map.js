@@ -7,7 +7,7 @@ var trafficLayer = null;
 var currentLocationMarker = null;
 var watchCurrentLocationId = null;
 
-var isATest = false;
+var isATest = true;
 	
 var markersArray = [];
 
@@ -65,7 +65,7 @@ var markerCategoryDataArray = [];
 		
 function handleError(useTitle, e)
 {	
-	if(isATest || isALocationWatchTest)
+	if(isATest)
 	{
 		console.error('TESTING: ERROR ENCOUNTERED: ' + e);
 	}
