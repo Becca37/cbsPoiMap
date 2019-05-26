@@ -360,8 +360,9 @@ function displayInfoPanelFor(thisMarker)
 		}
 		
 		// TODO: Ideally, we'll want to pull the ELEVATION data for every marker data ONE TIME
-		// via another process (i.o.w. not on every map initialization and marker display) and write it
-		// to the file or database to store with the marker data, but for now ...
+		// via another process (i.o.w. not every time we display the marker) and write it
+		// to the file or database to store with the marker data, but Google Maps API terms
+		// explicitly disallows saving of elevation data, so until/unless another source is found ...
 		
 		var elevator = new google.maps.ElevationService;
 		var location = {lat: thisMarker.latitude, lng: thisMarker.longitude};
