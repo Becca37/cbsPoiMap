@@ -465,7 +465,7 @@ function displayInfoPanelFor(thisMarker)
 						console.log('TESTING: Marker Content: ' + contentString);
 					}		
 					
-					markerInfoHeader.style.display = 'block';						
+					markerInfoHeader.style.display = 'table';						
 					
 					markerInfoHeaderIconImage.src = thisMarkersCategoryIcon;
 					markerInfoHeaderTitle.innerHTML = thisMarker.cbsTitle;
