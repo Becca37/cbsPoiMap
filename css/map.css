@@ -128,7 +128,6 @@ input[type='checkbox'] + label {
 	vertical-align: sub;
 }
 
-
 .markerOwnerHeaderTagline
 {
 	font-style: italic;
@@ -162,7 +161,6 @@ input[type='checkbox'] + label {
 
 .markerInfoQuickFactData
 {
-	font-weight: bold;
 	text-align: left;
 }
 
