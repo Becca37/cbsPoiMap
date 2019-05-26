@@ -7,7 +7,7 @@ var trafficLayer = null;
 var currentLocationMarker = null;
 var watchCurrentLocationId = null;
 
-var isATest = true;
+var isATest = false;
 	
 var markersArray = [];
 
@@ -153,23 +153,12 @@ function addCustomControlsTo(map)
 	try
 	{
 		//https://developers.google.com/maps/documentation/javascript/controls#ControlPositioning
-		// Add custom control for CREDITS	
-		var creditsControlDiv = document.createElement('div');
-		var creditsControl = new CreditsControl(creditsControlDiv, map);	
-		creditsControlDiv.index = 1;
-		map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(creditsControlDiv);
 
 		// Add custom control for MARKER INFO	
 		// var markerInfoControlDiv = document.createElement('div');
 		// var markerInfoControl = new MarkerInfoControl(markerInfoControlDiv, map);	
 		// markerInfoControlDiv.index = 1;
 		// map.controls[google.maps.ControlPosition.LEFT_CENTER].push(markerInfoControlDiv);
-
-		// Add custom control for LOCATION INFO	
-		var locationInfoControlDiv = document.createElement('div');
-		var locationInfoControl = new LocationInfoControl(locationInfoControlDiv, map);	
-		locationInfoControlDiv.index = 1;
-		map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(locationInfoControlDiv);
 
 		// Add custom control for FILTERs on CATEGORIES
 		var markerCategoryFilterDiv = document.createElement('div');
@@ -182,6 +171,12 @@ function addCustomControlsTo(map)
 		var isatestControl = new IsATestControl(isatestControlDiv, map);	
 		isatestControlDiv.index = 1;
 		map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(isatestControlDiv);
+
+		// Add custom control for LOCATION INFO	
+		var locationInfoControlDiv = document.createElement('div');
+		var locationInfoControl = new LocationInfoControl(locationInfoControlDiv, map);	
+		locationInfoControlDiv.index = 1;
+		map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(locationInfoControlDiv);
 
 		// Add custom control for TRAFFIC
 		var trafficControlDiv = document.createElement('div');
@@ -499,25 +494,6 @@ function closeInfoPanel()
 	catch(e)
 	{
 		handleError('Add Markers', e);
-	}
-}
-
-function CreditsControl(controlDiv, map)
-{
-	try
-	{
-		var controlUI = document.createElement('div');
-		controlUI.id = 'credits';
-		controlUI.innerHTML = 
-			'<div><img src="/map/images/logos/CBS_Logo.png" alt="Logo"/></div>'
-			+ '<div><b>Oh the Places We Will Go</b> <i>by <a href="/">Chasing Blue Sky</a></i></div>'
-			+ '<div>See website for the numerous <a href="https://chasingbluesky.net/credits/" title="Credits">credits</a>, and for terms of use.</div>';
-		controlUI.title = 'Credits';
-		controlDiv.appendChild(controlUI);			
-	}
-	catch (e)
-	{		
-		handleError('Credits', e);
 	}
 }
 

@@ -47,7 +47,7 @@ input[type='checkbox'] + label {
 	overflow: auto;
 }
 
-#markerOwnerHeader, #markerInfoHeader, #markerInfoData, .markerInfoShelf, .markerInfoQuickFacts, #instructionsContainer
+#markerOwnerHeader, #markerInfoHeader, #markerInfoData, .markerInfoShelf, .markerInfoQuickFacts, #instructionsContainer, .backmatter
 {
 	display: table;
 	width: 100%;
@@ -67,6 +67,8 @@ input[type='checkbox'] + label {
 	vertical-align: middle;
 	text-align: left;
 	padding: 3px;
+	border: 1px solid pink;
+	text-align: center;
 }
 
 #planWithFurkot
@@ -88,27 +90,48 @@ input[type='checkbox'] + label {
 	padding-left: 15px;
 }
 
-#instructionsContainer
+.backmatter
 {
 	padding-top: 15px;
+	border: none;
+	text-align: center;
+	font-size: calc(8px + (13 - 8) * ((100vw - 300px) / (1600 - 300)));
+	line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(1600 - 300)));
+}
+
+#instructionsContainer
+{
 }
 
 #instructionsText
 {
-	font-size: calc(9px + (19 - 9) * ((100vw - 300px) / (1600 - 300)));
+	padding-bottom: 15px;
+	font-size: calc(9px + (14 - 9) * ((100vw - 300px) / (1600 - 300)));
 	line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(1600 - 300)));
 }
 
 #markerOwnerHeader
-{	
+{	display: grid;
+	grid-template-columns: 125px 1fr;
 	border-bottom:  3px double rgba(0,0,0,.3);
 	font-weight: bold;
-	font-style: italic;
 	color: rgba(29,134, 177,.5);
 	font-size: calc(20px + (30 - 20) * ((100vw - 300px) / (1600 - 300)));
-	line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(1600 - 300)));
-	
+	line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(1600 - 300)));	
 }	
+
+#markerOwnerHeader img
+{
+	vertical-align: sub;
+}
+
+
+.markerOwnerHeaderTagline
+{
+	font-style: italic;
+	font-size: calc(11px + (16 - 11) * ((100vw - 300px) / (1600 - 300)));
+	line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(1600 - 300)));
+}
 
 #markerInfoHeader
 {
@@ -131,6 +154,13 @@ input[type='checkbox'] + label {
 .markerInfoQuickFactLabel
 {
 	font-style: italic;
+	text-align: left;
+}
+
+.markerInfoQuickFactData
+{
+	font-weight: bold;
+	text-align: left;
 }
 
 .markerInfoCbsNotes
