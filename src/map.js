@@ -1,67 +1,4 @@
-var funcs = [];
-var map = null;
-var mapCenter = {lat: 39.219422, lng: -105.530727}; // Colorado
-
-var trafficLayer = null;
-
-var currentLocationMarker = null;
-var watchCurrentLocationId = null;
-
 var isATest = false;
-	
-var markersArray = [];
-
-// TODO: Ideally, we'll want to pull the marker data from a file or database, but for now ...
-var markerDataArray = [
-	{ 
-		cbsTitle: 'Title 1'
-		, cbsId: 1
-		, cbsVisited: 'N'
-		, cbsMainCategory: 'Test'
-		, cbsTags: ['Test Tag 1', 'Test Tag 2', 'Test Tag 3']
-		, latitude: 39.33847
-		, longitude: -106.78838
-		, cbsNotes: 'stuffff', website: 'https://anywhere.com' 
-	}
-	, { 
-		cbsTitle: 'Title 2'
-		, cbsId: 2
-		, cbsVisited: 'N'
-		, cbsMainCategory: 'Test'
-		, cbsTags: ['Test Tag 12', 'Test Tag 23', 'Test Tag 33']
-		, latitude: 39.32992
-		, longitude: -106.81623
-		, cbsNotes: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Diam sit amet nisl suscipit adipiscing bibendum est. Tortor id aliquet lectus proin nibh nisl condimentum id venenatis. Dolor purus non enim praesent elementum facilisis leo vel fringilla. Sociis natoque penatibus et magnis. Proin sed libero enim sed faucibus turpis. Ut tristique et egestas quis ipsum suspendisse. Odio ut enim blandit volutpat maecenas volutpat blandit aliquam etiam. At imperdiet dui accumsan sit amet nulla facilisi morbi tempus. Amet risus nullam eget felis eget nunc lobortis mattis aliquam. Ultricies tristique nulla aliquet enim tortor at. In arcu cursus euismod quis viverra nibh cras pulvinar mattis. Risus nullam eget felis eget nunc lobortis mattis. Dictum non consectetur a erat. Sed vulputate mi sit amet mauris commodo. Amet cursus sit amet dictum sit. Porttitor massa id neque aliquam vestibulum. Habitant morbi tristique senectus et. Interdum consectetur libero id faucibus nisl tincidunt.</p><p>Malesuada fames ac turpis egestas integer eget aliquet. Justo donec enim diam vulputate ut pharetra sit amet. Justo laoreet sit amet cursus sit amet dictum. Leo a diam sollicitudin tempor. Nunc lobortis mattis aliquam faucibus purus in massa tempor nec. Ultricies mi quis hendrerit dolor magna eget est lorem ipsum. Feugiat sed lectus vestibulum mattis ullamcorper velit. Imperdiet nulla malesuada pellentesque elit eget gravida. Erat nam at lectus urna. Mauris a diam maecenas sed enim. Facilisi morbi tempus iaculis urna id volutpat. Euismod lacinia at quis risus sed vulputate odio ut enim. Netus et malesuada fames ac turpis egestas sed. Libero justo laoreet sit amet cursus sit amet. Egestas dui id ornare arcu odio ut sem nulla. Justo nec ultrices dui sapien eget mi proin sed. Leo a diam sollicitudin tempor id eu nisl nunc mi. Duis at tellus at urna. Nulla aliquet porttitor lacus luctus accumsan tortor.</p><p>Tempor orci eu lobortis elementum nibh. Euismod lacinia at quis risus sed vulputate. Cras pulvinar mattis nunc sed blandit libero. Mi ipsum faucibus vitae aliquet nec ullamcorper sit amet risus. Donec et odio pellentesque diam volutpat commodo sed. Et ultrices neque ornare aenean. Sit amet commodo nulla facilisi nullam vehicula ipsum a arcu. Rutrum quisque non tellus orci ac auctor augue mauris. Nibh mauris cursus mattis molestie. Duis at tellus at urna condimentum mattis pellentesque. Suspendisse interdum consectetur libero id faucibus nisl tincidunt eget. Non odio euismod lacinia at quis risus sed. Sapien eget mi proin sed libero enim sed faucibus turpis. Vehicula ipsum a arcu cursus vitae congue.</p><p>Elit at imperdiet dui accumsan sit. Adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus urna neque. Nibh ipsum consequat nisl vel pretium lectus quam id leo. Neque laoreet suspendisse interdum consectetur libero id. Lacus vestibulum sed arcu non. Urna et pharetra pharetra massa. Morbi tincidunt augue interdum velit euismod in pellentesque. Lorem ipsum dolor sit amet consectetur adipiscing elit duis. Erat velit scelerisque in dictum non consectetur a erat. Et tortor consequat id porta. Quis enim lobortis scelerisque fermentum dui faucibus in ornare quam. Tellus id interdum velit laoreet id donec ultrices. Magna fringilla urna porttitor rhoncus dolor purus non enim praesent. Iaculis nunc sed augue lacus viverra.<p>Quisque egestas diam in arcu cursus euismod quis viverra nibh. Proin fermentum leo vel orci porta non pulvinar neque laoreet. Tristique nulla aliquet enim tortor at. Massa sapien faucibus et molestie ac feugiat sed lectus vestibulum. Diam maecenas sed enim ut sem viverra aliquet eget. Platea dictumst vestibulum rhoncus est pellentesque. Eu lobortis elementum nibh tellus molestie nunc non. Rutrum quisque non tellus orci ac auctor augue mauris. Commodo sed egestas egestas fringilla phasellus faucibus scelerisque eleifend. Ac tortor dignissim convallis aenean et tortor at risus. In hac habitasse platea dictumst. Adipiscing elit pellentesque habitant morbi tristique senectus et netus. Consectetur libero id faucibus nisl tincidunt eget nullam.</p>" 
-	}
-	, { 
-		cbsTitle: 'Hoosier Pass'
-		, cbsId: 3
-		, cbsVisited: 'Y'
-		, cbsMainCategory: 'Pass'
-		, cbsTags: '(none)'
-		, latitude: 39.361670
-		, longitude: -106.062663
-		, googlePlaceId: 'ChIJD5OFtffxaocR2B15fvWIUlA'
-		, cbsNotes: "Who's your pass, baby, who's your pass?"
-		, cbsReferenceUrl: 'https://en.wikipedia.org/wiki/Hoosier_Pass'
-	}	
-	, { 
-		cbsTitle: 'Mount Evans'
-		, cbsId: 4
-		, cbsVisited: 'Y'
-		, cbsMainCategory: 'Paved High Point'
-		, cbsTags: ['Scenic Byway', '14er', 'USDA', 'Forest Service', 'Lincoln National Forest']
-		, latitude: 39.587795
-		, longitude: -105.642439
-		, googlePlaceId: 'ChIJlUj7hcqpa4cRsbHLtlWdpO8'
-		, cbsNotes: "Paved scenic byway to the top at 14,130 feet. Note that while it is paved, sometimes the road is still, er, rough. "
-		, cbsReferenceUrl: 'https://www.fs.usda.gov/wps/portal/fsinternet/cs/recarea?ss=110308&navtype=BROWSEBYSUBJECT&cid=FSE_003738&navid=110240000000000&pnavid=110000000000000&position=generalinfo&recid=28508&ttype=recarea&pname=Mount%20Evans%20Scenic%20Byway'
-	}
-
-]; 
-
-var markerCategoriesArray = [];
-var markerCategoryDataArray = [];
 		
 function handleError(useTitle, e)
 {	
@@ -79,6 +16,74 @@ function handleError(useTitle, e)
 		}	
 	);
 } 
+
+var map = null;
+var mapCenter = {lat: 39.219422, lng: -105.530727}; // Colorado
+
+var trafficLayer = null;
+
+var currentLocationMarker = null;
+var watchCurrentLocationId = null;
+	
+var markersArray = [];
+var markerDataArray = [];
+var markerCategoriesArray = [];
+var markerCategoryDataArray = [];
+
+var markerDataSource = 'data/markers.json';
+
+function loadJSON(jsonDataFile, callback, asyncPref) 
+{  
+	try
+	{  
+		//https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
+		//https://codepen.io/KryptoniteDove/post/load-json-file-locally-using-pure-javascript
+		var xobj = new XMLHttpRequest();
+		xobj.overrideMimeType("application/json");
+		xobj.open('GET', jsonDataFile, asyncPref);
+		xobj.onreadystatechange = function () 
+		{
+			if (xobj.readyState == 4 && xobj.status == "200") 
+			{
+				callback(xobj.responseText);
+			}
+			else
+			{
+				console.log('JSON File Request State: ' + xobj.readyState + ' and Status: ' + xobj.statusText + ';' + currentTimestamp());
+			}
+		};
+		xobj.send(null);  
+	}
+	catch (e)
+	{
+		handleError('Show/Hide Instructions', e);
+	}
+}
+
+function getMarkerDataFromFile()
+{
+	try
+	{    
+		loadJSON
+		(markerDataSource, function(response) 
+			{
+				markerDataArray = JSON.parse(response);
+			}
+			, false
+		);		
+		if(isATest)
+		{
+			console.warn('TESTING: Marker Array Length: ' + markerDataArray.length);
+			console.log('TESTING: Marker #1: ' + markerDataArray[0].cbsTitle);
+			console.log('TESTING: Marker #1 ID: ' + markerDataArray[0].cbsId);
+			console.log('TESTING: Marker #1 Category: ' + markerDataArray[0].cbsMainCategory);
+		}
+	}
+	catch (e)
+	{
+		handleError('Show/Hide Instructions', e);
+	}
+}
 
 function showHideInstructions()
 {
@@ -140,6 +145,7 @@ function initMap()
 		);		
 		
 		addCustomControlsTo(map);
+		getMarkerDataFromFile();
 		setMarkerCategoryData();
 		addMarkersTo(map);
 		//watchLocation(map); -- control is not available until page fully loads, so defer to user click to start the watch
@@ -241,7 +247,7 @@ function setMarkerCategoryData()
 		
 		if(isATest)
 		{
-			console.error('TESTING: Marker Category count: ' + markerCategoriesArray.length.toString());			
+			console.warn('TESTING: Marker Category count: ' + markerCategoriesArray.length.toString());			
 			markerCategoriesArray.forEach
 			(function(category, i) 
 				{
@@ -249,7 +255,7 @@ function setMarkerCategoryData()
 				}
 			);
 			
-			console.error('TESTING: Marker Category Data count: ' + markerCategoryDataArray.length.toString());					
+			console.warn('TESTING: Marker Category Data count: ' + markerCategoryDataArray.length.toString());					
 			markerCategoryDataArray.forEach
 			(function(categoryData, i) 
 				{
@@ -335,7 +341,7 @@ function displayInfoPanelFor(thisMarker)
 	{	
 		if(isATest)
 		{
-			console.error('Processing marker for display.');
+			console.warn('Processing marker for display.');
 		}
 		var index = markerCategoryDataArray.findIndex(entry => entry.name === thisMarker.cbsMainCategory);
 		var thisMarkersCategoryData = markerCategoryDataArray[index];
@@ -610,14 +616,14 @@ function IsATestControl(controlDiv, map)
 			{ 
 				if(isATest)
 				{
-					console.error(messageToUserGeneralOFF);
+					console.warn(messageToUserGeneralOFF);
 					isATest = false;
 					controlUI.className = 'control-test controlTestInactive';
 					iziToast.info({title: 'Testing Ended', message: messageToUserGeneralOFF,});
 				}
 				else
 				{
-					console.error(messageToUserGeneralON);
+					console.warn(messageToUserGeneralON);
 					isATest = true;
 					controlUI.className = 'control-test controlTestActive';
 					iziToast.warning({title: 'Testing Started', message: messageToUserGeneralON + '<br/><br/>(Click to close this message.)', timeout: false, closeOnClick: true, closeOnEscape: true,});
@@ -839,7 +845,7 @@ function toggleMarkers(map, toggleCategory)
 		
 		if(isATest)
 		{			
-			console.error('TESTING: All Markers count: ' + markersArray.length.toString());
+			console.warn('TESTING: All Markers count: ' + markersArray.length.toString());
 			for (var i = 0; i < 1; i++) 
 			{
 				var markerData = markersArray[i];		
@@ -849,7 +855,7 @@ function toggleMarkers(map, toggleCategory)
 		
 		if(isATest)
 		{
-			console.error('TESTING: Marker count in category "' + toggleCategory + '": ' + markersInThisCategoryArray.length.toString());
+			console.warn('TESTING: Marker count in category "' + toggleCategory + '": ' + markersInThisCategoryArray.length.toString());
 		}
 		
 		for (var i = 0; i < markersInThisCategoryArray.length; i++) 
