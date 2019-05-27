@@ -299,8 +299,6 @@ function addMarkersTo(map)
 					);
 					
 					addThisMarker.addListener('click', function(){ displayInfoPanelFor(thisMarker);});
-					
-					addThisMarker.addListener('closeclick', function() { closeInfoPanel();});
 
 					markersArray.push(addThisMarker);
 				}
@@ -500,6 +498,8 @@ function displayInfoPanelFor(thisMarker)
 					planWithFurkotLink.innerHTML = furkotLinkIcons;
 					planWithFurkotLink.href = furkotLinkText;
 					
+					containers.style.gridTemplateColumns = '2fr 1fr';
+					markerContainer.style.display = 'block';
 					markerInfoContainer.style.display = 'block';
 					// ------------------------------------------------------------------
 				}
@@ -515,6 +515,8 @@ function closeInfoPanel()
 {
 	try
 	{
+		containers.style.gridTemplateColumns = '1fr 0fr';
+		markerContainer.style.display = 'none';
 		markerInfoContainer.style.display = 'none';
 	}
 	catch(e)

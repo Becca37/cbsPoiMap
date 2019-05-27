@@ -41,6 +41,7 @@ input[type='checkbox'] + label {
 
 #markerContainer
 {
+	display: block;
 	background-color: rgba(243,243,243,.3);
 	box-shadow: inset 7px 0 9px -7px rgba(0,0,0,.3);
 	padding: 0px;
@@ -65,12 +66,16 @@ input[type='checkbox'] + label {
 	margin: 3px;
 }
 
-#markerOwnerHeaderIcon, #markerOwnerHeaderTitle, #markerInfoHeaderIcon, #markerInfoHeaderTitle, #planWithFurkot, .markerInfoShelfIcon, .markerInfoQuickFactLabel, .markerInfoQuickFactData, #planWithFurkotMarker
+#markerInfoCloseButton, #markerOwnerHeaderIcon, #markerOwnerHeaderTitle, #markerInfoHeaderIcon, #markerInfoHeaderTitle, #planWithFurkot, .markerInfoShelfIcon, .markerInfoQuickFactLabel, .markerInfoQuickFactData, #planWithFurkotMarker
 {
 	display: table-cell;
-	vertical-align: middle;
-	text-align: left;
 	padding: 3px;
+	align-self: center;
+	justify-self: center;
+}
+
+#markerOwnerHeaderTitle
+{
 	text-align: center;
 }
 
@@ -115,7 +120,7 @@ input[type='checkbox'] + label {
 
 #markerOwnerHeader
 {	display: grid;
-	grid-template-columns: 125px 1fr;
+	grid-template-columns: 125px 1fr 50px;
 	border-bottom:  3px double rgba(0,0,0,.3);
 	font-weight: bold;
 	color: rgba(29,134, 177,.5);
