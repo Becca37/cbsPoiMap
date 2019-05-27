@@ -1,31 +1,48 @@
-html, body {
+:root
+{
+	--cbs-color-accentH: #1d86b1;
+	--cbs-color-accentR: 29,134, 177;
+	
+	--cbs-border-accent: 3px double rgba(0,0,0,.3);
+	
+	/*https://css-tricks.com/books/volume-i/scale-typography-screen-size/*/
+	--cbs-font-size-site-name: calc(29px + (35 - 29) * ((100vw - 300px) / (1600 - 300)));	/*22pt*/
+	--cbs-font-size-marker-title: calc(26px + (32 - 26) * ((100vw - 300px) / (1600 - 300)));	/*20pt*/
+	--cbs-font-size-normal: calc(16px + (22 - 16) * ((100vw - 300px) / (1600 - 300)));	/*12pt*/
+	--cbs-font-size-site-tagline: calc(13px + (19 - 13) * ((100vw - 300px) / (1600 - 300))); /*10pt*/
+	--cbs-font-size-the-fine-print: calc(11px + (17 - 11) * ((100vw - 300px) / (1600 - 300)));	/*8pt*/
+	--cbs-line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(1600 - 300)));
+}
+
+html, body 
+{
 	height: 100%;
 	margin: 0;
 	padding: 0;
-	/*https://css-tricks.com/books/volume-i/scale-typography-screen-size/*/
-	font-size: calc(10px + (20 - 10) * ((100vw - 300px) / (1600 - 300)));
-	line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(1600 - 300)));
+	font-size: var(--cbs-font-size-normal);
+	line-height: var(--cbs-line-height);
 }
 
 a, a:visited, a:hover, a:active
 {
-  color: #1d86b1; /*rgba(29,134, 177,.9)*/
+  color: rgba(var(--cbs-color-accentR),.8);
   font-weight: bold;
   text-decoration: none;
-  cursor: hand;
 }
 
-input[type='checkbox'] {
+input[type='checkbox'] 
+{
   float: left;
   width: 20px;
 }
-input[type='checkbox'] + label {
+input[type='checkbox'] + label 
+{
   display: block;
   white-space: nowrap;
   width: 100px;
 }
 
-#containers
+#panels
 {
 	height: 100%;
 	display: grid;
@@ -34,14 +51,13 @@ input[type='checkbox'] + label {
 
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
-#mapContainer
+#mapPanel
 {
   height: 100%;
 }
 
-#markerContainer
+#sidePanel
 {
-	display: block;
 	background-color: rgba(243,243,243,.3);
 	box-shadow: inset 7px 0 9px -7px rgba(0,0,0,.3);
 	padding: 0px;
@@ -49,24 +65,14 @@ input[type='checkbox'] + label {
 	overflow: auto;
 }
 
-#markerOwnerHeader, #markerInfoHeader, #markerInfoData, .markerInfoShelf, .markerInfoQuickFacts, #instructionsContainer, .backmatter
+.siteInfoContainer, #markerInfoContainer, .backmatterContainer, #instructionsContainer, .markerShelfIcons, .markerQuickFacts
 {
 	display: table;
 	width: 100%;
 	border-bottom:  1px solid rgba(0,0,0,.3);
 }
 
-.markerInfoShelf a
-{
-}
-
-.markerInfoQuickFact
-{
-	display: table-row;
-	margin: 3px;
-}
-
-#markerInfoCloseButton, #markerOwnerHeaderIcon, #markerOwnerHeaderTitle, #markerInfoHeaderIcon, #markerInfoHeaderTitle, #planWithFurkot, .markerInfoShelfIcon, .markerInfoQuickFactLabel, .markerInfoQuickFactData, #planWithFurkotMarker
+.panelCloseButton, .siteIcon, .siteInfo, .sidePanelCloseButton, .markerIcon, .markerTitle, .markerPlanWithFurkot, .markerShelfIcon, .markerQuickFactLabel, .markerQuickFactData
 {
 	display: table-cell;
 	padding: 3px;
@@ -74,105 +80,119 @@ input[type='checkbox'] + label {
 	justify-self: center;
 }
 
-#markerOwnerHeaderTitle
+.siteInfoContainer
+{	
+	display: grid;
+	grid-template-columns: 125px 1fr 50px;
+	padding-top: 3px;
+	border-bottom: var(--cbs-border-accent);
+	color: rgba(var(--cbs-color-accentR),.5);
+	text-align: center;
+}
+
+.siteName
+{
+	font-weight: bold;
+	font-size: var(--cbs-font-size-site-name);
+}
+
+.siteTagline
+{
+	font-style: italic;
+	font-size: var(--cbs-font-size-site-tagline);
+}
+
+.markerHeader
+{
+	display: grid;
+	grid-template-columns: 47px 1fr 100px;
+	padding-top: 5px;
+	border-bottom: var(--cbs-border-accent);
+	font-weight: bold;
+	background-color: rgba(204,204,204,.3);
+}
+
+.markerTitle
+{
+	font-size: var(--cbs-font-size-marker-title);
+}
+
+.markerShelfIcon
 {
 	text-align: center;
 }
 
-#planWithFurkot
+#markerData
+{
+	border-bottom: var(--cbs-border-accent);
+}
+
+.markerQuickFactLabel
+{
+	font-style: italic;
+	text-align: left;
+}
+
+.markerQuickFactData
+{
+	text-align: left;
+}
+
+.markerNotes
+{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#markerInfoContainer
+{
+	display: none;
+}
+
+.markerQuickFact
+{
+	display: table-row;
+	margin: 3px;
+}
+
+.markerPlanWithFurkot
 {
 	text-align: right;
 }
 
-#toggleInstructions
-{
-	margin-left: 15px;
-	margin-bottom: 5px;
-	font-size: smaller;
-	padding: 1px;
-	border: none;
-}
-
-#instructionsText, #markerOwnerHeaderIcon, #markerInfoHeaderIcon, .markerInfoQuickFactLabel, .markerInfoCbsNotes, #planWithFurkotLink
+.instructionsText, .siteIcon, .markerIcon, .markerQuickFactLabel, .markerNotes
 {
 	padding-left: 15px;
 }
 
-.backmatter
+.backmatterContainer
 {
 	padding-top: 15px;
 	border: none;
 	text-align: center;
-	font-size: calc(8px + (13 - 8) * ((100vw - 300px) / (1600 - 300)));
-	line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(1600 - 300)));
+	font-size: var(--cbs-font-size-the-fine-print);
 }
 
-#instructionsContainer
+.toggleInstructionsText
 {
+	cursor: pointer;
 }
 
-#instructionsText
+.isVisible
 {
+	display: block !important;
+}
+
+.isNotVisible
+{
+	display: none !important;
+}
+
+.instructionsText
+{
+	padding-top: 15px;
 	padding-bottom: 15px;
-	font-size: calc(9px + (14 - 9) * ((100vw - 300px) / (1600 - 300)));
-	line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(1600 - 300)));
-}
-
-#markerOwnerHeader
-{	display: grid;
-	grid-template-columns: 125px 1fr 50px;
-	border-bottom:  3px double rgba(0,0,0,.3);
-	font-weight: bold;
-	color: rgba(29,134, 177,.5);
-	font-size: calc(20px + (30 - 20) * ((100vw - 300px) / (1600 - 300)));
-	line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(1600 - 300)));	
-}	
-
-#markerOwnerHeader img
-{
-	vertical-align: sub;
-}
-
-.markerOwnerHeaderTagline
-{
-	font-style: italic;
-	font-size: calc(11px + (16 - 11) * ((100vw - 300px) / (1600 - 300)));
-	line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(1600 - 300)));
-}
-
-#markerInfoHeader
-{
-	border-bottom:  3px double rgba(0,0,0,.3);
-	font-weight: bold;
-	background-color: rgba(204,204,204,.3);
-	font-size: calc(16px + (24 - 16) * ((100vw - 300px) / (1600 - 300)));
-	line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(1600 - 300)));
-}
-
-#markerInfoData
-{
-}
-
-.markerInfoShelfIcon
-{
-	text-align: center;
-}
-
-.markerInfoQuickFactLabel
-{
-	font-style: italic;
-	text-align: left;
-}
-
-.markerInfoQuickFactData
-{
-	text-align: left;
-}
-
-.markerInfoCbsNotes
-{
-	padding-top: 10px;
-	padding-bottom: 10px;
+	font-size: var(--cbs-font-size-the-fine-print);
 }
 
 /* GOOGLE MAP CUSTOM CONTROLS */
@@ -195,25 +215,15 @@ input[type='checkbox'] + label {
 	border: 2px solid #fff;
 	/*border-radius: 3px;*/
 	box-shadow: 0 2px 6px rgba(0,0,0,.3);
-	cursor: hand;
+	cursor: pointer;
 	font-size: large;
-}
-
-#credits
-{
-	text-align: center;
-	grid-template-columns: 50px 1fr 1fr;
-	width: 375px;
-	background: rgba(255,255,255, 0.9);
-	font-size: larger;
-	display: grid;
-	padding: 2px 3px 0px 3px;
 }
 
 #currentLocationInfoContainer
 {
 	display: grid;
 	grid-template-columns: 35px 1fr;
+	cursor: pointer;
 	width: 100%;
 	margin-left: 3px;
 	margin-bottom: 3px;
@@ -305,7 +315,7 @@ input[type='checkbox'] + label {
     display: inline-block;
     color: white;
     background: black;
-    cursor: hand;
+    cursor: pointer;
     padding: .5em;
     border: none;
     font-size: 16px;
@@ -313,7 +323,7 @@ input[type='checkbox'] + label {
 }
 .furkot-widget-done {
     visibility: hidden;
-    cursor: hand;
+    cursor: pointer;
 }
 .furkot-widget-done.furkot-widget-active::before {
     content: 'x';

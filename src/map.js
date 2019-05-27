@@ -89,15 +89,17 @@ function showHideInstructions()
 {
 	try
 	{ 
-		if (instructionsText.style.display === 'none')
+		if (instructionsContainer.classList.contains('isVisible'))
 		{
-			instructionsText.style.display = 'block';
-			toggleInstructions.value = '<i class="far fa-question-circle"> Hide Instructions';
+			instructionsContainer.classList.remove('isVisible');
+			instructionsContainer.classList.add('isNotVisible');
+			toggleInstructions.innerHTML = '<span class="toggleInstructionsText"><i class="far fa-question-circle"></i> Hide Instructions</div></span>';
 		}
 		else
 		{
-			instructionsText.style.display = 'none';
-			toggleInstructions.value = '<i class="far fa-question-circle"> Show Instructions';
+			instructionsContainer.classList.remove('isNotVisible');
+			instructionsContainer.classList.add('isVisible');
+			toggleInstructions.innerHTML = '<span class="toggleInstructionsText"><i class="far fa-question-circle"></i> Show Instructions</div></span>';
 		}
 	}
 	catch (e)
@@ -124,10 +126,9 @@ function initMap()
 {
 	try
 	{	
-		markerInfoHeader.style.display = 'none';
 		map = new google.maps.Map
 		(
-			document.getElementById('mapContainer'), 
+			document.getElementById('mapPanel'), 
 			{
 				center: mapCenter,
 				zoom: 8,
@@ -454,30 +455,30 @@ function displayInfoPanelFor(thisMarker)
 					var furkotLinkIcons = '<i class="ff-icon-furkot"></i><i class="ff-icon-' + thisMarkersCategoryData.furkotPinName + '"></i>';
 					
 					var contentString = 
-						  '<div class="markerInfoShelf">'
-							+ '<div class="markerInfoShelfIcon" alt="CBS Visited?">' + markerVisitedIcon + '</div>' 
-							+ '<div class="markerInfoShelfIcon" alt="Website">' + markerShowWebsite + '</div>' 
-							+ '<div class="markerInfoShelfIcon" alt="Navigate">' + markerStartNavigation + '</div>'
+						  '<div class="markerShelfIcons">'
+							+ '<div class="markerShelfIcon" alt="CBS Visited?">' + markerVisitedIcon + '</div>' 
+							+ '<div class="markerShelfIcon" alt="Website">' + markerShowWebsite + '</div>' 
+							+ '<div class="markerShelfIcon" alt="Navigate">' + markerStartNavigation + '</div>'
 						+ '</div>'
-						+ '<div class="markerInfoQuickFacts">'
-							+ '<div class="markerInfoQuickFact">'
-								+ '<div class="markerInfoQuickFactLabel">Category</div>'
-								+ '<div class="markerInfoQuickFactData">' + thisMarker.cbsMainCategory + '</div>'
+						+ '<div class="markerQuickFacts">'
+							+ '<div class="markerQuickFact">'
+								+ '<div class="markerQuickFactLabel">Category</div>'
+								+ '<div class="markerQuickFactData">' + thisMarker.cbsMainCategory + '</div>'
 							+ '</div>'
-							+ '<div class="markerInfoQuickFact">'
-								+ '<div class="markerInfoQuickFactLabel">Tags</div>'
-								+ '<div class="markerInfoQuickFactData">' + thisMarker.cbsTags.toString().replace(/,/g, ', ') + '</div>'
+							+ '<div class="markerQuickFact">'
+								+ '<div class="markerQuickFactLabel">Tags</div>'
+								+ '<div class="markerQuickFactData">' + thisMarker.cbsTags.toString().replace(/,/g, ', ') + '</div>'
 							+ '</div>'
-							+ '<div class="markerInfoQuickFact">'
-								+ '<div class="markerInfoQuickFactLabel">Coordinates</div>'
-								+ '<div class="markerInfoQuickFactData">' + thisMarker.latitude + ', ' + thisMarker.longitude + '</div>'
+							+ '<div class="markerQuickFact">'
+								+ '<div class="markerQuickFactLabel">Coordinates</div>'
+								+ '<div class="markerQuickFactData">' + thisMarker.latitude + ', ' + thisMarker.longitude + '</div>'
 							+ '</div>'
-							+ '<div class="markerInfoQuickFact">'
-								+ '<div class="markerInfoQuickFactLabel">Elevation</div>'
-								+ '<div class="markerInfoQuickFactData">' + locationElevation + '</div>'
+							+ '<div class="markerQuickFact">'
+								+ '<div class="markerQuickFactLabel">Elevation</div>'
+								+ '<div class="markerQuickFactData">' + locationElevation + '</div>'
 							+ '</div>'
 						+ '</div>'
-						+ '<div class="markerInfoCbsNotes">' 
+						+ '<div class="markerNotes">' 
 							+ thisMarker.cbsNotes 
 						+ '</div>';
 					
@@ -489,18 +490,17 @@ function displayInfoPanelFor(thisMarker)
 						console.log('TESTING: Marker Content: ' + contentString);
 					}		
 					
-					markerInfoHeader.style.display = 'table';						
+					markerInfoContainer.style.display = 'table';					
 					
-					markerInfoHeaderIconImage.src = thisMarkersCategoryIcon;
-					markerInfoHeaderTitle.innerHTML = thisMarker.cbsTitle;
-					markerInfoData.innerHTML = contentString;
+					markerIconImage.src = thisMarkersCategoryIcon;
+					markerTitleText.innerHTML = thisMarker.cbsTitle;
+					markerData.innerHTML = contentString;
 					
-					planWithFurkotLink.innerHTML = furkotLinkIcons;
-					planWithFurkotLink.href = furkotLinkText;
+					markerPlanWithFurkotLink.innerHTML = furkotLinkIcons;
+					markerPlanWithFurkotLink.href = furkotLinkText;
 					
-					containers.style.gridTemplateColumns = '2fr 1fr';
-					markerContainer.style.display = 'block';
-					markerInfoContainer.style.display = 'block';
+					panels.style.gridTemplateColumns = '2fr 1fr';
+					sidePanel.style.display = 'block';
 					// ------------------------------------------------------------------
 				}
 		);
@@ -511,13 +511,12 @@ function displayInfoPanelFor(thisMarker)
 	}
 }
 
-function closeInfoPanel()
+function closeSidePanel()
 {
 	try
 	{
-		containers.style.gridTemplateColumns = '1fr 0fr';
-		markerContainer.style.display = 'none';
-		markerInfoContainer.style.display = 'none';
+		panels.style.gridTemplateColumns = '1fr 0fr';
+		sidePanel.style.display = 'none';
 	}
 	catch(e)
 	{
