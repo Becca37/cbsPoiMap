@@ -195,6 +195,12 @@ input[type='checkbox'] + label
 	font-size: var(--cbs-font-size-the-fine-print);
 }
 
+#svgIcon
+{
+	width: 100%;
+	text-align: center;
+}
+
 /* GOOGLE MAP CUSTOM CONTROLS */
 
 .disabled
