@@ -28,9 +28,11 @@ var watchCurrentLocationId = null;
 var markersArray = [];
 var markerDataArray = [];
 var markerCategoriesArray = [];
-var markerCategoryDataArray = [];
+var markersCategoryDataArray = [];
+var thisMarkerCategoryData = [];
 
 var markerDataSource = 'data/markers.json';
+var markersCategoryDataSource = 'data/markersCategoryData.json';
 
 function loadJSON(jsonDataFile, callback, asyncPref) 
 {  
@@ -60,7 +62,7 @@ function loadJSON(jsonDataFile, callback, asyncPref)
 	}
 }
 
-function getMarkerDataFromFile()
+function getMarkersDataFromFile()
 {
 	try
 	{    
@@ -81,7 +83,64 @@ function getMarkerDataFromFile()
 	}
 	catch (e)
 	{
-		handleError('Show/Hide Instructions', e);
+		handleError('Get Markers Data (json)', e);
+	}
+}
+
+function getMarkersCategoryDataFromFile()
+{
+	try
+	{    
+		loadJSON
+		(markersCategoryDataSource, function(response) 
+			{
+				markersCategoryDataArray = JSON.parse(response);
+			}
+			, false
+		);		
+		if(isATest)
+		{
+			console.warn('TESTING: Marker Category Data Array Length: ' + markersCategoryDataArray.length);
+			console.log('TESTING: Category #1 Category: ' + markersCategoryDataArray[0].cbsMainCategory);
+			console.log('TESTING: Category #1 Map Marker: ' + markersCategoryDataArray[0].mapMarkerIcon);
+			console.log('TESTING: Category #1 Furkot Pin: ' + markersCategoryDataArray[0].furkotPinName);
+		}
+	}
+	catch (e)
+	{
+		handleError('Get Markers Category Data (json)', e);
+	}
+}
+
+function getMarkerCategoryDataFromArray(thisMarkerCategory)
+{	
+	var categoryData = 
+	{ 
+		  cbsMainCategory: thisMarkerCategory
+		, mapMarkerIcon: '/map/images/icons/mic/flag-export.png'
+		, furkotPinName: 'stop' 
+	};	
+	
+	try
+	{ 			
+		var index = markersCategoryDataArray.findIndex(entry => entry.cbsMainCategory === thisMarkerCategory);
+		var thisMarkerCategoryData = markersCategoryDataArray[index];
+		if (thisMarkerCategoryData)
+		{		
+			categoryData = 
+			{ 
+				  cbsMainCategory: thisMarkerCategory
+				, mapMarkerIcon: thisMarkerCategoryData.mapMarkerIcon
+				, furkotPinName: thisMarkerCategoryData.furkotPinName 
+			};
+		}			
+		
+		return categoryData;
+	}
+	catch (e)
+	{
+		handleError('Get Marker Category Data (array)', e);
+		return categoryData;
 	}
 }
 
@@ -146,8 +205,9 @@ function initMap()
 		);		
 		
 		addCustomControlsTo(map);
-		getMarkerDataFromFile();
-		setMarkerCategoryData();
+		getMarkersDataFromFile();
+		getMarkersCategoryDataFromFile();
+		setMarkersCategoryData();
 		addMarkersTo(map);
 		//watchLocation(map); -- control is not available until page fully loads, so defer to user click to start the watch
 	}
@@ -193,41 +253,15 @@ function addCustomControlsTo(map)
 	}	
 }
 
-function setMarkerCategoryData()
+function setMarkersCategoryData()
 {
 	try
-	{		
-		//Get the distinct categories from the marker data array then
-		//populate both the markerCategoryArray and markerCategoryDataArray
+	{				
+		//Get the distinct categories from the marker data array then populate the markerCategoryArray
 		//https://jsperf.com/distinct-values-from-array
 		loop1: for (var i = 0; i < markerDataArray.length; i++) 
-		{
-			var categoryName = markerDataArray[i].cbsMainCategory;		
-		
-			var mapMarkerIconValue = '/map/images/icons/mic/flag-export.png';
-			var furkotPinNameValue = 'stop';
-			
-			// TODO: Ideally, we'll do this mapping in a file or data so that it that can
-			// be updated as needed without having to modify and upload this javascript file
-			switch (categoryName)
-			{
-				case 'Pass':
-					mapMarkerIconValue = '/map/images/icons/mic/mountain-pass-locator-diagonal-reverse-export.png';
-					furkotPinNameValue = 'mountains';
-				break;
-				
-				case 'Paved High Point':
-					mapMarkerIconValue = '/map/images/icons/mic/direction_up.png';
-					furkotPinNameValue = 'one-way';
-				break;
-			}
-			
-			var categoryData = 
-			{ 
-				  name: categoryName
-				, mapMarkerIcon: mapMarkerIconValue
-				, furkotPinName: furkotPinNameValue 
-			};			
+		{				
+			var categoryName = markerDataArray[i].cbsMainCategory;
 
 			for (var i2 = 0; i2 < markerCategoriesArray.length; i2++) 
 			{
@@ -237,7 +271,6 @@ function setMarkerCategoryData()
 				}
 			}
 			markerCategoriesArray.push(categoryName);
-			markerCategoryDataArray.push(categoryData);
 		}
 		
 		if(isATest)
@@ -248,15 +281,7 @@ function setMarkerCategoryData()
 				{
 					console.log('TESTING: Category', i, 'is', category);
 				}
-			);
-			
-			console.warn('TESTING: Marker Category Data count: ' + markerCategoryDataArray.length.toString());					
-			markerCategoryDataArray.forEach
-			(function(categoryData, i) 
-				{
-					console.log('TESTING: Category Data', i, 'is', categoryData);
-				}
-			);			
+			);		
 		}
 	}
 	catch(e)
@@ -278,8 +303,7 @@ function addMarkersTo(map)
 			(function(index)
 				{
 					var thisMarker = markerDataArray[i];
-					var index = markerCategoryDataArray.findIndex(entry => entry.name === thisMarker.cbsMainCategory);
-					var thisMarkersCategoryIcon = markerCategoryDataArray[index].mapMarkerIcon;
+					var thisMarkerCategoryData = getMarkerCategoryDataFromArray(thisMarker.cbsMainCategory);
 					
 					var addThisMarker = new google.maps.Marker
 					(
@@ -287,7 +311,7 @@ function addMarkersTo(map)
 							position: {lat: thisMarker.latitude, lng: thisMarker.longitude},
 							map: map,
 							title:  thisMarker.cbsTitle,
-							icon: thisMarkersCategoryIcon,
+							icon: thisMarkerCategoryData.mapMarkerIcon,
 							cbsCategory: thisMarker.cbsMainCategory,
 							cbsId: thisMarker.cbsId
 						}
@@ -336,9 +360,8 @@ function displayInfoPanelFor(thisMarker)
 		{
 			console.warn('Processing marker for display.');
 		}
-		var index = markerCategoryDataArray.findIndex(entry => entry.name === thisMarker.cbsMainCategory);
-		var thisMarkersCategoryData = markerCategoryDataArray[index];
-		var thisMarkersCategoryIcon = thisMarkersCategoryData.mapMarkerIcon;
+		
+		var thisMarkerCategoryData = getMarkerCategoryDataFromArray(thisMarker.cbsMainCategory);
 		if(isATest)
 		{
 			console.log('TESTING: Marker Title: ' + thisMarker.cbsTitle);
@@ -347,15 +370,6 @@ function displayInfoPanelFor(thisMarker)
 			console.log('TESTING: Marker Tags: ' + thisMarker.cbsTags.toString().replace(/,/g, ', '));
 			console.log('TESTING: Marker Latitude: ' + thisMarker.latitude);
 			console.log('TESTING: Marker Longitude: ' + thisMarker.longitude);
-			//console.log('TESTING: Marker Notes: ' + thisMarker.cbsNotes);
-			if (thisMarker.cbsMainCategory === thisMarkersCategoryData.name)
-			{
-				console.log('TESTING: markerCategoryDataArray match? YES');
-			}
-			else
-			{
-				console.log('TESTING: markerCategoryDataArray match? NO');
-			}
 		}
 		
 		// TODO: Ideally, we'll want to pull the ELEVATION data for every marker data ONE TIME
@@ -418,8 +432,8 @@ function displayInfoPanelFor(thisMarker)
 						? '&stop[url]=' + encodeURIComponent(thisMarker.cbsReferenceUrl) 
 						: '';
 					
-					var markerStopNameForFurkot = thisMarkersCategoryData.furkotPinName
-						? '&stop[pin]=' + thisMarkersCategoryData.furkotPinName
+					var markerStopNameForFurkot = thisMarkerCategoryData.furkotPinName
+						? '&stop[pin]=' + thisMarkerCategoryData.furkotPinName
 						: '';
 					
 					var markerVisitedIcon = '<i class="far fa-question-circle fa-2x" title="We still need to log whether or not we have visited this entry."></i>';
@@ -446,7 +460,7 @@ function displayInfoPanelFor(thisMarker)
 							+ markerUrlForFurkot
 							+ markerStopNameForFurkot
 							+ '&uid=6VjRjO';
-					var furkotLinkIcons = '<i class="ff-icon-furkot"></i><i class="ff-icon-' + thisMarkersCategoryData.furkotPinName + '"></i>';
+					var furkotLinkIcons = '<i class="ff-icon-furkot"></i><i class="ff-icon-' + thisMarkerCategoryData.furkotPinName + '"></i>';
 					
 					var contentString = 
 						  '<div class="markerShelfIcons">'
@@ -478,7 +492,7 @@ function displayInfoPanelFor(thisMarker)
 					
 					if(isATest)
 					{
-						console.log('TESTING: Marker Icon: ' + thisMarkersCategoryIcon);
+						console.log('TESTING: Marker Icon: ' + thisMarkerCategoryData.mapMarkerIcon);
 						console.log('TESTING: Marker Furkot Icons: ' + furkotLinkIcons);
 						console.log('TESTING: Marker Furkot Link: ' + furkotLinkText);
 						console.log('TESTING: Marker Content: ' + contentString);
@@ -486,7 +500,7 @@ function displayInfoPanelFor(thisMarker)
 					
 					markerInfoContainer.style.display = 'table';					
 					
-					markerIconImage.src = thisMarkersCategoryIcon;
+					markerIconImage.src = thisMarkerCategoryData.mapMarkerIcon;
 					markerTitleText.innerHTML = thisMarker.cbsTitle;
 					markerData.innerHTML = contentString;
 					
@@ -544,13 +558,13 @@ function MarkerCategoryFilter(controlDiv, map)
 		{		
 			var filterCategory = markerCategoriesArray[i];
 			var index = markerCategoryDataArray.findIndex(entry => entry.name === filterCategory);
-			var thisMarkersCategoryData = markerCategoryDataArray[index];
+			var thisMarkerCategoryData = markerCategoryDataArray[index];
 			
 			var controlUI = document.createElement('div');
 			controlUI.id = 'ToggleCategory' + filterCategory;
 			controlUI.className = 'control-filter controlInactive';
 			controlUI.innerHTML = 
-				'<div><img src="' + thisMarkersCategoryData.mapMarkerIcon + '" alt="' + filterCategory + ' Filter"/> ' + filterCategory + '</div>';
+				'<div><img src="' + thisMarkerCategoryData.mapMarkerIcon + '" alt="' + filterCategory + ' Filter"/> ' + filterCategory + '</div>';
 			controlUI.title = 'Click to toggle display of all markers in the "' + filterCategory + '" category.';
 			controlDiv.appendChild(controlUI);	
 

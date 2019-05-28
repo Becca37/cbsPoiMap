@@ -1,0 +1,12 @@
+[
+	{ 
+		  "cbsMainCategory": "Pass"
+		, "mapMarkerIcon": "/map/images/icons/mic/mountain-pass-locator-diagonal-reverse-export.png"
+		, "furkotPinName": "mountains"
+	}
+	, {
+		  "cbsMainCategory": "Paved High Point"
+		, "mapMarkerIcon": "/map/images/icons/mic/direction_up.png"
+		, "furkotPinName": "one-way"
+	}
+]
