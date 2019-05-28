@@ -163,12 +163,6 @@ function addCustomControlsTo(map)
 	{
 		//https://developers.google.com/maps/documentation/javascript/controls#ControlPositioning
 
-		// Add custom control for MARKER INFO	
-		// var markerInfoControlDiv = document.createElement('div');
-		// var markerInfoControl = new MarkerInfoControl(markerInfoControlDiv, map);	
-		// markerInfoControlDiv.index = 1;
-		// map.controls[google.maps.ControlPosition.LEFT_CENTER].push(markerInfoControlDiv);
-
 		// Add custom control for FILTERs on CATEGORIES
 		var markerCategoryFilterDiv = document.createElement('div');
 		var markerCategoryFilter = new MarkerCategoryFilter(markerCategoryFilterDiv, map);	
@@ -522,22 +516,6 @@ function closeSidePanel()
 	{
 		handleError('Add Markers', e);
 	}
-}
-
-function MarkerInfoControl(controlDiv, map)
-{
-	// try
-	// {
-		// var controlUI = document.createElement('div');
-		// controlUI.id = 'ToggleMarkerInfo';
-		// controlUI.className = 'markerInfoContainer markerInfoContainerDisplayNone';
-		// controlUI.innerHTML = '';
-		// controlDiv.appendChild(controlUI);			
-	// }
-	// catch (e)
-	// {		
-		// handleError('Locator', e);
-	// }
 }
 
 function LocationInfoControl(controlDiv, map)
