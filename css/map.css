@@ -201,6 +201,37 @@ input[type='checkbox'] + label
 	text-align: center;
 }
 
+.weatherCurrent
+{
+	font-size: 15px;
+	line-height: 17px;
+}
+
+.weatherTemps table
+{
+	width: 100%;
+}
+
+.weatherTemps th, 
+.weatherTemps td
+{
+	text-align: center;
+	font-size: 13px;
+	line-height: 15px;
+	padding: 0px;
+}
+
+.weatherTemps th
+{
+	background-color: #f9f9f9;
+}
+
+.weatherSun
+{
+	font-size: 15px;
+	line-height: 17px;
+}
+
 /* GOOGLE MAP CUSTOM CONTROLS */
 
 .disabled

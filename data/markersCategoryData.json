@@ -9,4 +9,9 @@
 		, "mapMarkerIcon": "/map/images/icons/mic/direction_up.png"
 		, "furkotPinName": "one-way"
 	}
+	, {
+		  "cbsMainCategory": "Family"
+		, "mapMarkerIcon": "/map/images/icons/mic/group-2.png"
+		, "furkotPinName": "users"
+	}
 ]

@@ -44,4 +44,15 @@
 		, "cbsNotes": "Paved scenic byway to the top at 14,130 feet. Note that while it is paved, sometimes the road is still, er, rough. "
 		, "cbsReferenceUrl": "https://www.fs.usda.gov/wps/portal/fsinternet/cs/recarea?ss=110308&navtype=BROWSEBYSUBJECT&cid=FSE_003738&navid=110240000000000&pnavid=110000000000000&position=generalinfo&recid=28508&ttype=recarea&pname=Mount%20Evans%20Scenic%20Byway"
 	}
+	, {
+		"cbsTitle": "Bend, OR"
+		, "cbsId": 5
+		, "cbsVisited": "Y"
+		, "cbsMainCategory": "Family"
+		, "cbsTags": ["It's all relative :0)"]
+		, "latitude": 44.059758 
+		, "longitude": -121.307093
+		, "googlePlaceId": "ChIJUdLTpf_AuFQRtNEgx6zniBA"
+		, "cbsNotes": "This is my note."
+	}
 ]

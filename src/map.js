@@ -33,8 +33,9 @@ var thisMarkerCategoryData = [];
 
 var markerDataSource = 'data/markers.json';
 var markersCategoryDataSource = 'data/markersCategoryData.json';
+var weatherDataSource = 'https://api.openweathermap.org/data/2.5/weather?&appid=11be7e069a8c86553c0daf1eae697cd9&units=imperial';
 
-function loadJSON(jsonDataFile, callback, asyncPref) 
+function loadJSON(jsonDataUrl, callback, asyncPref) 
 {  
 	try
 	{  
@@ -42,7 +43,7 @@ function loadJSON(jsonDataFile, callback, asyncPref)
 		//https://codepen.io/KryptoniteDove/post/load-json-file-locally-using-pure-javascript
 		var xobj = new XMLHttpRequest();
 		xobj.overrideMimeType("application/json");
-		xobj.open('GET', jsonDataFile, asyncPref);
+		xobj.open('GET', jsonDataUrl, asyncPref);
 		xobj.onreadystatechange = function () 
 		{
 			if (xobj.readyState == 4 && xobj.status == "200") 
@@ -109,6 +110,79 @@ function getMarkersCategoryDataFromFile()
 	catch (e)
 	{
 		handleError('Get Markers Category Data (json)', e);
+	}
+}
+
+function getWeatherDataFromApi(markerLatitude, markerLongitude)
+{
+	var weatherDataCurrent = '';
+	var weatherDataTemps = '';
+	var weatherDataLocation = '';
+	var weatherDataSun = '';
+	
+	try
+	{    
+		var weatherDataSourceUrl = weatherDataSource + '&lat=' + markerLatitude + '&lon=' + markerLongitude;
+		
+		loadJSON
+		(weatherDataSourceUrl, function(response) 
+			{
+				weatherDataResult = JSON.parse(response);
+			}
+			, false
+		);
+		
+		weatherDataCurrent = '';		
+		weatherDataCurrentIcons = '';
+		weatherDataCurrentText = '';
+		
+		weatherDataResult.weather.forEach
+			(function(weatherType, i) 
+				{
+					weatherDataCurrentIcons += '<img src="http://openweathermap.org/img/w/' + weatherDataResult.weather[i].icon + '.png" alt=' + weatherDataResult.weather[i].main + '/> ';
+					
+					if (i > 0)
+					{
+						weatherDataCurrentText += '<i>mixed with</i> ';
+					}
+					weatherDataCurrentText += '<b>' + weatherDataResult.weather[i].main + '</b> (' + weatherDataResult.weather[i].description + ') ';
+				}
+			);
+		weatherDataCurrent = weatherDataCurrentIcons + '<div class="weatherCurrent">' + weatherDataCurrentText + '</div>';
+		
+		weatherDataTemps = ''
+			+ '<table><tr style="border: 1px;"><th>Now</th><th>High</th><th>Low</td></tr><tr><td>'
+			+ Math.round(weatherDataResult.main.temp) + ' &deg;F</td><td>' 
+			+ Math.round(weatherDataResult.main.temp_max) + ' &deg;F</td><td>' 
+			+ Math.round(weatherDataResult.main.temp_min) + ' &deg;F</td></tr></table>';
+			
+		weatherDataLocation = weatherDataResult.name + ', ' + weatherDataResult.sys.country;
+		
+		var sunriseTime = (new Date((weatherDataResult.sys.sunrise) * 1000));
+		var sunsetTime = (new Date((weatherDataResult.sys.sunset) * 1000));
+		weatherDataSunrise = sunriseTime;
+		weatherDataSunset = sunsetTime;
+		
+		if(isATest)
+		{
+			console.log('TESTING: Weather: ' + weatherDataCurrent);
+			console.log('TESTING: Temps: ' + weatherDataTemps);
+			console.log('TESTING: Location: ' + weatherDataLocation);
+			console.log('TESTING: Sunrise: ' + weatherDataSunrise);
+			console.log('TESTING: Sunset: ' + weatherDataSunset);
+		}
+		
+		return [weatherDataCurrent, weatherDataTemps, weatherDataLocation, weatherDataSunrise, weatherDataSunset];
+	}
+	catch (e)
+	{
+		handleError('Get Markers Data (json)', e);
+		weatherDataCurrent = 'ERROR: Unable to process weather data: ' + e;
+		weatherDataTemps = 'Unknown';
+		weatherDataLocation = 'Unknown';
+		weatherDataSunrise = 'Unknown';
+		weatherDataSunset = 'Unknown';
+		return [weatherDataCurrent, weatherDataTemps, weatherDataLocation, weatherDataSunrise, weatherDataSunset];
 	}
 }
 
@@ -202,7 +276,7 @@ function initMap()
 				scaleControl: true,
 				streetViewControl: true
 			}
-		);		
+		);
 		
 		addCustomControlsTo(map);
 		getMarkersDataFromFile();
@@ -300,7 +374,7 @@ function addMarkersTo(map)
 		
 		for (var i = 0; i < markerDataArray.length; i++) 
 		{
-			(function(index)
+			(function(index) //an "immediately-invoked function expression"
 				{
 					var thisMarker = markerDataArray[i];
 					var thisMarkerCategoryData = getMarkerCategoryDataFromArray(thisMarker.cbsMainCategory);
@@ -361,17 +435,6 @@ function displayInfoPanelFor(thisMarker)
 			console.warn('Processing marker for display.');
 		}
 		
-		var thisMarkerCategoryData = getMarkerCategoryDataFromArray(thisMarker.cbsMainCategory);
-		if(isATest)
-		{
-			console.log('TESTING: Marker Title: ' + thisMarker.cbsTitle);
-			console.log('TESTING: Marker ID: ' + thisMarker.cbsId);
-			console.log('TESTING: Marker Category: ' + thisMarker.cbsMainCategory);
-			console.log('TESTING: Marker Tags: ' + thisMarker.cbsTags.toString().replace(/,/g, ', '));
-			console.log('TESTING: Marker Latitude: ' + thisMarker.latitude);
-			console.log('TESTING: Marker Longitude: ' + thisMarker.longitude);
-		}
-		
 		// TODO: Ideally, we'll want to pull the ELEVATION data for every marker data ONE TIME
 		// via another process (i.o.w. not every time we display the marker) and write it
 		// to the file or database to store with the marker data, but Google Maps API terms
@@ -390,7 +453,7 @@ function displayInfoPanelFor(thisMarker)
 					{
 						if (results[0]) 
 						{
-							locationElevation =  Math.ceil(results[0].elevation *  3.28084).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' feet (' + Math.ceil(results[0].elevation).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' meters).';
+							locationElevation =  Math.ceil(results[0].elevation *  3.28084).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' feet (' + Math.ceil(results[0].elevation).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' meters)';
 						} 
 						else 
 						{
@@ -408,6 +471,8 @@ function displayInfoPanelFor(thisMarker)
 					}
 					
 					// ------------------------------------------------------------------
+					var thisMarkerCategoryData = getMarkerCategoryDataFromArray(thisMarker.cbsMainCategory);
+					
 					var markerShowWebsite = thisMarker.cbsReferenceUrl 
 						? '<a href="' + thisMarker.cbsReferenceUrl + '" title="Website" target="_blank"><i class="fas fa-globe fa-2x"></i></a>' 
 						: '<i class="fas fa-globe fa-2x disabled"></i>';
@@ -446,7 +511,9 @@ function displayInfoPanelFor(thisMarker)
 						case "N":
 							markerVisitedIcon = '<i class="far fa-eye-slash fa-2x" title="We have NOT yet seen this with our own eyes."></i>';
 						break;
-					}						
+					}			
+
+					var [weatherDataCurrent, weatherDataTemps, weatherDataLocation, weatherDataSunrise, weatherDataSunset] = getWeatherDataFromApi(thisMarker.latitude, thisMarker.longitude);
 											
 					//https://help.furkot.com/widgets/plan-with-furkot-buttons.html	
 					var furkotLinkText = 
@@ -478,12 +545,32 @@ function displayInfoPanelFor(thisMarker)
 								+ '<div class="markerQuickFactData">' + thisMarker.cbsTags.toString().replace(/,/g, ', ') + '</div>'
 							+ '</div>'
 							+ '<div class="markerQuickFact">'
+								+ '<div class="markerQuickFactLabel">Location</div>'
+								+ '<div class="markerQuickFactData">' + weatherDataLocation + '</div>'
+							+ '</div>'
+							+ '<div class="markerQuickFact">'
 								+ '<div class="markerQuickFactLabel">Coordinates</div>'
 								+ '<div class="markerQuickFactData">' + thisMarker.latitude + ', ' + thisMarker.longitude + '</div>'
 							+ '</div>'
 							+ '<div class="markerQuickFact">'
 								+ '<div class="markerQuickFactLabel">Elevation</div>'
 								+ '<div class="markerQuickFactData">' + locationElevation + '</div>'
+							+ '</div>'
+							+ '<div class="markerQuickFact">'
+								+ '<div class="markerQuickFactLabel">Weather</div>'
+								+ '<div class="markerQuickFactData">' + weatherDataCurrent + '</div>'
+							+ '</div>'
+							+ '<div class="markerQuickFact">'
+								+ '<div class="markerQuickFactLabel">Temps</div>'
+								+ '<div class="markerQuickFactData"><div class="weatherTemps">' + weatherDataTemps + '</div></div>'
+							+ '</div>'
+							+ '<div class="markerQuickFact">'
+								+ '<div class="markerQuickFactLabel">Sunrise</div>'
+								+ '<div class="markerQuickFactData"><div class="weatherSun">' + weatherDataSunrise + '</div></div>'
+							+ '</div>'
+							+ '<div class="markerQuickFact">'
+								+ '<div class="markerQuickFactLabel">Sunset</div>'
+								+ '<div class="markerQuickFactData"><div class="weatherSun">' + weatherDataSunset + '</div></div>'
 							+ '</div>'
 						+ '</div>'
 						+ '<div class="markerNotes">' 
@@ -492,9 +579,6 @@ function displayInfoPanelFor(thisMarker)
 					
 					if(isATest)
 					{
-						console.log('TESTING: Marker Icon: ' + thisMarkerCategoryData.mapMarkerIcon);
-						console.log('TESTING: Marker Furkot Icons: ' + furkotLinkIcons);
-						console.log('TESTING: Marker Furkot Link: ' + furkotLinkText);
 						console.log('TESTING: Marker Content: ' + contentString);
 					}		
 					

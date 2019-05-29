@@ -11,13 +11,15 @@ HTML5, javascript (v5), CSS
 		<ul>
 			<li><a href="https://developers.google.com/maps/documentation/javascript/tutorial">Google Maps JavaScript API</a></li>
 			<li><a href="https://developers.google.com/maps/documentation/elevation/start">Google Maps Elevation API</a></li>
-			<li><a href="https://github.com/googlemaps/v3-utility-library/tree/master/markerclustererplus">Google Maps MarkerClustererPlus</a>
+			<li><a href="https://github.com/googlemaps/v3-utility-library/tree/master/markerclustererplus">Google Maps MarkerClustererPlus</a></li>
+			<li><a href="https://developers.google.com/maps/documentation/urls/guide">Google Maps URLs</a></li>
 		</ul>
 	</li>  
 	<li><b>Planning</b>:
 		<ul>
 			<li><a href="https://help.furkot.com/widgets/plan-with-furkot-buttons.html">Furkot Trip Planner</a> (or view on <a href="https://github.com/furkot/trip-planner">GitHub</a>)</li>
 			<li><a href="https://openweathermap.org/">Open Weather Map</a></li>
+			<li><a href="https://inciweb.nwcg.gov/">Inciweb</a> Incident Information System (USA)</li>
 		</ul>
 	</li>    
 	<li><b>Fonts/Icons</b>:
