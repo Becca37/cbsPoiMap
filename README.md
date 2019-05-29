@@ -7,28 +7,32 @@ HTML5, javascript (v5), CSS
 
 <h3>References</h3> 
 <ul>
-  <li><b>Google Maps APIs</b>:
-    <ul>
-      <li><a href="https://developers.google.com/maps/documentation/javascript/tutorial">Maps JavaScript API</a></li>
-      <li><a href="https://developers.google.com/maps/documentation/elevation/start">Maps Elevation API</a></li>
-    </ul>
-  </li>
-    
-<li><b>Fonts/Icons</b>:
-  <ul>
-    <li><a href="https://fontawesome.com/icons?d=gallery&m=free">Font Awesome Free</a></li>
-    <li><a href="https://mapicons.mapsmarker.com/">Map Icons Collection</a></li>
-    <li><a href="https://furkot.com/">Furkot</a> https://github.com/furkot/icon-fonts</li>
-  </ul>
-  </li>
-  
-  <li><b>User Messages</b>:
-  <ul>
-    <li><a href="http://izitoast.marcelodolza.com/">IziToast</a></li>
-  </ul>
-  </li>
-  
- </ul>
+	<li><b>Mapping</b>:
+		<ul>
+			<li><a href="https://developers.google.com/maps/documentation/javascript/tutorial">Google Maps JavaScript API</a></li>
+			<li><a href="https://developers.google.com/maps/documentation/elevation/start">Google Maps Elevation API</a></li>
+			<li><a href="https://github.com/googlemaps/v3-utility-library/tree/master/markerclustererplus">Google Maps MarkerClustererPlus</a>
+		</ul>
+	</li>  
+	<li><b>Planning</b>:
+		<ul>
+			<li><a href="https://help.furkot.com/widgets/plan-with-furkot-buttons.html">Furkot Trip Planner</a> (or view on <a href="https://github.com/furkot/trip-planner">GitHub</a>)</li>
+			<li><a href="https://openweathermap.org/">Open Weather Map</a></li>
+		</ul>
+	</li>    
+	<li><b>Fonts/Icons</b>:
+		<ul>
+			<li><a href="https://fontawesome.com/icons?d=gallery&m=free">Font Awesome Free</a></li>
+			<li><a href="https://mapicons.mapsmarker.com/">Map Icons Collection</a></li>
+			<li><a href="https://furkot.github.io/icon-fonts/build/furkot.html">Furkot Icons</a> (or view on <a href="https://github.com/furkot/icon-fonts">GitHub</a>)</li>
+		</ul>
+	</li>
+	<li><b>Messages</b>:
+		<ul>
+			<li><a href="http://izitoast.marcelodolza.com/">IziToast</a> (or view on <a href="https://github.com/marcelodolza/iziToast">GitHub</a>)</li>
+		</ul>
+	</li>
+</ul>
 
 <hr>
 <h3>License</h3>
