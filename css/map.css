@@ -6,12 +6,18 @@
 	--cbs-border-accent: 3px double rgba(0,0,0,.3);
 	
 	/*https://css-tricks.com/books/volume-i/scale-typography-screen-size/*/
+	/* --- font-size --*/
 	--cbs-font-size-site-name: calc(29px + (35 - 29) * ((100vw - 300px) / (1600 - 300)));	/*22pt*/
 	--cbs-font-size-marker-title: calc(26px + (32 - 26) * ((100vw - 300px) / (1600 - 300)));	/*20pt*/
 	--cbs-font-size-normal: calc(16px + (22 - 16) * ((100vw - 300px) / (1600 - 300)));	/*12pt*/
 	--cbs-font-size-site-tagline: calc(13px + (19 - 13) * ((100vw - 300px) / (1600 - 300))); /*10pt*/
 	--cbs-font-size-the-fine-print: calc(11px + (17 - 11) * ((100vw - 300px) / (1600 - 300)));	/*8pt*/
-	--cbs-line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(1600 - 300)));
+	/* --- line-height --*/
+	--cbs-line-height-site-name: calc(31px + (37 - 31) * ((100vw - 300px)/(1600 - 300)));
+	--cbs-line-height-marker-title: calc(28px + (34 - 28) * ((100vw - 300px) / (1600 - 300)));
+	--cbs-line-height-normal: calc(18px + (24 - 18) * ((100vw - 300px) / (1600 - 300)));
+	--cbs-line-height-site-tagline: calc(15px + (21 - 15) * ((100vw - 300px) / (1600 - 300)));
+	--cbs-line-height-the-fine-print: calc(13px + (19 - 13) * ((100vw - 300px) / (1600 - 300)));
 }
 
 html, body 
@@ -20,7 +26,7 @@ html, body
 	margin: 0;
 	padding: 0;
 	font-size: var(--cbs-font-size-normal);
-	line-height: var(--cbs-line-height);
+	line-height: var(--cbs-line-height-normal);
 }
 
 a, a:visited, a:hover, a:active
@@ -94,12 +100,14 @@ input[type='checkbox'] + label
 {
 	font-weight: bold;
 	font-size: var(--cbs-font-size-site-name);
+	line-height: var(--cbs-line-height-site-name);
 }
 
 .siteTagline
 {
 	font-style: italic;
 	font-size: var(--cbs-font-size-site-tagline);
+	line-height: var(--cbs-line-height-site-tagline);
 }
 
 .markerHeader
@@ -115,6 +123,7 @@ input[type='checkbox'] + label
 .markerTitle
 {
 	font-size: var(--cbs-font-size-marker-title);
+	line-height: var(--cbs-line-height-marker-title);
 }
 
 .markerShelfIcon
@@ -171,6 +180,7 @@ input[type='checkbox'] + label
 	border: none;
 	text-align: center;
 	font-size: var(--cbs-font-size-the-fine-print);
+	line-height: var(--cbs-line-height-the-fine-print);
 }
 
 .toggleInstructionsText
@@ -193,6 +203,7 @@ input[type='checkbox'] + label
 	padding-top: 15px;
 	padding-bottom: 15px;
 	font-size: var(--cbs-font-size-the-fine-print);
+	line-height: var(--cbs-line-height-the-fine-print);
 }
 
 #svgIcon
@@ -230,6 +241,44 @@ input[type='checkbox'] + label
 {
 	font-size: 15px;
 	line-height: 17px;
+}
+
+.quotes
+{	
+	font-size: var(--cbs-font-size-the-fine-print);
+	line-height: var(--cbs-line-height-the-fine-print);
+	padding: 5px;
+	margin-right: 10px;
+}
+
+.quoteText
+{
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+
+.quoteText::before
+{
+    font-family: "Font Awesome 5 Free";
+    content: "\f10d";
+    color: #9A1F32 ;
+    margin-right: .5em;
+	font-weight: 900;
+}
+
+.quoteAttribution
+{
+	font-style: italic;
+}
+
+.quoteAttribution::before
+{
+    font-family: "Font Awesome 5 Free";
+    content: "\f101";
+    color: #CCCCCC ;
+    margin-left: .5em;
+    margin-right: .3em;
+	font-weight: 900;
 }
 
 /* GOOGLE MAP CUSTOM CONTROLS */

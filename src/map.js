@@ -30,9 +30,12 @@ var markerDataArray = [];
 var markerCategoriesArray = [];
 var markersCategoryDataArray = [];
 var thisMarkerCategoryData = [];
+var quotesForFriends = '';
+var quotesForFamily = '';
 
 var markerDataSource = 'data/markers.json';
 var markersCategoryDataSource = 'data/markersCategoryData.json';
+var quotesDataSource = 'data/quotes.json';
 var weatherDataSource = 'https://api.openweathermap.org/data/2.5/weather?&appid=11be7e069a8c86553c0daf1eae697cd9&units=imperial';
 
 function loadJSON(jsonDataUrl, callback, asyncPref) 
@@ -110,6 +113,48 @@ function getMarkersCategoryDataFromFile()
 	catch (e)
 	{
 		handleError('Get Markers Category Data (json)', e);
+	}
+}
+
+function getQuotes()
+{
+	try
+	{    
+		var quotesArray = [];
+		loadJSON
+		(quotesDataSource, function(response) 
+			{
+				quotesArray = JSON.parse(response);
+			}
+			, false
+		);		
+		
+		quotesArray.forEach
+		(function(thisQuote, i) 
+			{
+				if (thisQuote.quoteType === 'Family')
+				{
+					quotesForFamily += '<div class="quoteText">' + thisQuote.quoteText + '<span class="quoteAttribution">' + thisQuote.quoteAttribution + '</span></div>'						
+				}
+				else if (thisQuote.quoteType === 'Friend')
+				{
+					quotesForFriends += '<div class="quoteText">' + thisQuote.quoteText + '<span class="quoteAttribution">' + thisQuote.quoteAttribution + '</span></div>'
+				}
+			}
+		);
+		
+		quotesForFamily = '<div class="quotes">' + quotesForFamily + '</div>';
+		quotesForFriends = '<div class="quotes">' + quotesForFriends + '</div>';
+			
+		if(isATest)
+		{
+			console.warn('TESTING: Quotes for Family: ' + quotesForFamily);
+			console.warn('TESTING: Quotes for Friends: ' + quotesForFriends);
+		}
+	}
+	catch (e)
+	{
+		handleError('Get Markers Data (json)', e);
 	}
 }
 
@@ -291,6 +336,7 @@ function initMap()
 		
 		addCustomControlsTo(map);
 		addMarkersTo(map);
+		getQuotes();
 		//watchLocation(map); -- control is not available until page fully loads, so defer to user click to start the watch
 	}
 	catch (e)
@@ -590,6 +636,17 @@ function displayInfoPanelFor(thisMarker, thisMarkerType, thisMarkerLatitude, thi
 						thisMarkerTags = thisMarker.cbsTags.toString().replace(/,/g, ', ');
 						
 						thisMarkerCbsNotes = thisMarker.cbsNotes;
+						if (thisMarkerCbsNotes === 'useQuotes')
+						{
+							if (thisMarkerCategory === 'Friend(s)')
+							{
+								thisMarkerCbsNotes = quotesForFriends;
+							}
+							else if (thisMarkerCategory === 'Family')
+							{
+								thisMarkerCbsNotes = quotesForFamily;
+							}
+						}
 						
 						thisMarkerLatitude = thisMarker.latitude;
 						thisMarkerLongitude = thisMarker.longitude;
