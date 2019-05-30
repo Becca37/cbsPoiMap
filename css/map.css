@@ -309,9 +309,11 @@ input[type='checkbox'] + label
 {
 	display: grid;
 	grid-template-columns: 35px 1fr;
+	box-shadow: 0 2px 6px rgba(0,0,0,.3);
 	cursor: pointer;
 	width: 100%;
-	margin-left: 3px;
+	min-height: 29px;
+	margin-left: 10px;
 	margin-bottom: 3px;
 	padding: 5px;
 	font-size: larger;
@@ -349,35 +351,29 @@ input[type='checkbox'] + label
 
 .controlActive
 {
-	color: white;
-	background-color: green;
-}
-
-.controlInactive
-{
-	color: black;
-	background-color: #CCCCCC;
-}
-
-.control-test
-{
-	border: none;
-	margin-left: 10px;
-	margin-bottom: 1px;
-	text-align: center;	
-	padding: 6px 8px 5px 8px;
-}
-
-.controlTestActive
-{
 	background: rgba(0,128,0, 0.7);
 	color: rgba(255,255,255, 0.8);
 }
 
-.controlTestInactive
+.controlInactive
 {
 	background: rgba(255,255,255, 0.5);
 	color: #CCCCCC;
+}
+
+.control-test, .control-clustering
+{
+	border: none;
+	margin-left: 10px;
+	margin-bottom: 3px;
+	text-align: center;	
+	padding: 6px 8px 8px 8px;
+	height: 25px;
+}
+
+.control-clustering img
+{
+	width: 22px;
 }
 
 /*FURKOT INTEGRATION */

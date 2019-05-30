@@ -35,6 +35,7 @@ var quotesForFamily = '';
 
 var markerDataSource = 'data/markers.json';
 var markersCategoryDataSource = 'data/markersCategoryData.json';
+var markerCluster;
 var quotesDataSource = 'data/quotes.json';
 var weatherDataSource = 'https://api.openweathermap.org/data/2.5/weather?&appid=11be7e069a8c86553c0daf1eae697cd9&units=imperial';
 
@@ -357,6 +358,12 @@ function addCustomControlsTo(map)
 		markerCategoryFilterDiv.index = 1;
 		map.controls[google.maps.ControlPosition.LEFT_CENTER].push(markerCategoryFilterDiv);
 
+		// Add custom control for CLUSTERING
+		var clusteringControlDiv = document.createElement('div');
+		var clusteringControl = new ClusteringControl(clusteringControlDiv, map);	
+		clusteringControlDiv.index = 1;
+		map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(clusteringControlDiv);
+
 		// Add custom control for ISATEST
 		var isatestControlDiv = document.createElement('div');
 		var isatestControl = new IsATestControl(isatestControlDiv, map);	
@@ -470,7 +477,7 @@ function addMarkersTo(map)
 		
 		// Marker Clustering
 		// https://github.com/googlemaps/v3-utility-library/blob/master/markerclustererplus/examples/events_example.htm
-		var markerCluster = new MarkerClusterer
+		markerCluster = new MarkerClusterer
 		(map, markersArray, 
 			{ 
 				  averageCenter: true
@@ -488,7 +495,7 @@ function addMarkersTo(map)
 					p.push(m[i].getPosition());
 				}
 			}
-		);
+		);							
 		
 		// Zoom to fit the bounds of all markers
 		// https://stackoverflow.com/a/22712105/4407150
@@ -787,11 +794,11 @@ function IsATestControl(controlDiv, map)
 		controlUI.id = 'ToggleIsATest';
 		if(isATest)
 		{
-			controlUI.className = 'control-test controlTestActive';
+			controlUI.className = 'control-test controlActive';
 		} 
 		else
 		{
-			controlUI.className = 'control-test controlTestInactive';
+			controlUI.className = 'control-test controlInactive';
 		}
 		controlUI.innerHTML = 
 			'<div><i class="fas fa-user-secret fa-1x"></i></i></i></div>';
@@ -808,14 +815,14 @@ function IsATestControl(controlDiv, map)
 				{
 					console.warn(messageToUserGeneralOFF);
 					isATest = false;
-					controlUI.className = 'control-test controlTestInactive';
+					controlUI.className = 'control-test controlInactive';
 					iziToast.info({title: 'Testing Ended', message: messageToUserGeneralOFF,});
 				}
 				else
 				{
 					console.warn(messageToUserGeneralON);
 					isATest = true;
-					controlUI.className = 'control-test controlTestActive';
+					controlUI.className = 'control-test controlActive';
 					iziToast.warning({title: 'Testing Started', message: messageToUserGeneralON + '<br/><br/>(Click to close this message.)', timeout: false, closeOnClick: true, closeOnEscape: true,});
 				}
 			}
@@ -880,6 +887,46 @@ function TrafficControl(controlDiv, map)
 	catch (e)
 	{		
 		handleError('Traffic', e);
+	}
+}
+
+function ClusteringControl(controlDiv, map)
+{
+	try
+	{		
+		// Set CSS for the control border.
+		var controlUI = document.createElement('div');
+		controlUI.className = 'control-clustering controlActive';
+		controlUI.id = 'ToggleClustering';
+		controlUI.innerHTML = '<i class="fas fa-map-marker-alt"></i>';
+		controlUI.title = 'Click to toggle clustering of markers.';
+		controlDiv.appendChild(controlUI);	
+
+		controlUI.addEventListener
+		('click', function() 
+			{	try
+				{	
+					if(typeof(markerCluster.getMap()) === 'undefined' || markerCluster.getMap() == null)
+					{	
+						markerCluster.setOptions({map:map});//restores the clusterIcons				
+						document.getElementById('ToggleClustering').className = 'control-clustering controlActive';
+					}
+					else
+					{				
+						markerCluster.setOptions({map:null});//hides the clusterIcons			
+						document.getElementById('ToggleClustering').className = 'control-clustering controlInactive';							
+					}
+				}
+				catch (e)
+				{	
+					handleError('Clustering', e);
+				}
+			}
+		);
+	}
+	catch (e)
+	{		
+		handleError('Clustering', e);
 	}
 }
 
