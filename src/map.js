@@ -115,10 +115,7 @@ function getMarkersCategoryDataFromFile()
 
 function getWeatherDataFromApi(markerLatitude, markerLongitude)
 {
-	var weatherDataCurrent = '';
-	var weatherDataTemps = '';
-	var weatherDataLocation = '';
-	var weatherDataSun = '';
+	var weatherDataResult = '';
 	
 	try
 	{    
@@ -127,7 +124,7 @@ function getWeatherDataFromApi(markerLatitude, markerLongitude)
 		loadJSON
 		(weatherDataSourceUrl, function(response) 
 			{
-				weatherDataResult = JSON.parse(response);
+				weatherData = JSON.parse(response);
 			}
 			, false
 		);
@@ -136,53 +133,67 @@ function getWeatherDataFromApi(markerLatitude, markerLongitude)
 		weatherDataCurrentIcons = '';
 		weatherDataCurrentText = '';
 		
-		weatherDataResult.weather.forEach
+		weatherData.weather.forEach
 			(function(weatherType, i) 
 				{
-					weatherDataCurrentIcons += '<img src="http://openweathermap.org/img/w/' + weatherDataResult.weather[i].icon + '.png" alt=' + weatherDataResult.weather[i].main + '/> ';
+					weatherDataCurrentIcons += '<img src="https://openweathermap.org/img/w/' + weatherData.weather[i].icon + '.png" alt=' + weatherData.weather[i].main + '/> ';
 					
 					if (i > 0)
 					{
 						weatherDataCurrentText += '<i>mixed with</i> ';
 					}
-					weatherDataCurrentText += '<b>' + weatherDataResult.weather[i].main + '</b> (' + weatherDataResult.weather[i].description + ') ';
+					weatherDataCurrentText += '<b>' + weatherData.weather[i].main + '</b> (' + weatherData.weather[i].description + ') ';
 				}
 			);
 		weatherDataCurrent = weatherDataCurrentIcons + '<div class="weatherCurrent">' + weatherDataCurrentText + '</div>';
 		
 		weatherDataTemps = ''
 			+ '<table><tr style="border: 1px;"><th>Now</th><th>High</th><th>Low</td></tr><tr><td>'
-			+ Math.round(weatherDataResult.main.temp) + ' &deg;F</td><td>' 
-			+ Math.round(weatherDataResult.main.temp_max) + ' &deg;F</td><td>' 
-			+ Math.round(weatherDataResult.main.temp_min) + ' &deg;F</td></tr></table>';
+			+ Math.round(weatherData.main.temp) + ' &deg;F</td><td>' 
+			+ Math.round(weatherData.main.temp_max) + ' &deg;F</td><td>' 
+			+ Math.round(weatherData.main.temp_min) + ' &deg;F</td></tr></table>';
 			
-		weatherDataLocation = weatherDataResult.name + ', ' + weatherDataResult.sys.country;
+		weatherDataLocation = weatherData.name + ', ' + weatherData.sys.country;
 		
-		var sunriseTime = (new Date((weatherDataResult.sys.sunrise) * 1000));
-		var sunsetTime = (new Date((weatherDataResult.sys.sunset) * 1000));
+		var sunriseTime = (new Date((weatherData.sys.sunrise) * 1000));
+		var sunsetTime = (new Date((weatherData.sys.sunset) * 1000));
 		weatherDataSunrise = sunriseTime;
 		weatherDataSunset = sunsetTime;
 		
+		weatherDataResult = ''
+			+ '<div class="markerQuickFact">'
+				+ '<div class="markerQuickFactLabel">Location</div>'
+				+ '<div class="markerQuickFactData">' + weatherDataLocation + '</div>'
+			+ '</div>'
+			+ '<div class="markerQuickFact">'
+				+ '<div class="markerQuickFactLabel">Weather</div>'
+				+ '<div class="markerQuickFactData">' + weatherDataCurrent + '</div>'
+			+ '</div>'
+			+ '<div class="markerQuickFact">'
+				+ '<div class="markerQuickFactLabel">Temps</div>'
+				+ '<div class="markerQuickFactData"><div class="weatherTemps">' + weatherDataTemps + '</div></div>'
+			+ '</div>'
+			+ '<div class="markerQuickFact">'
+				+ '<div class="markerQuickFactLabel">Sunrise</div>'
+				+ '<div class="markerQuickFactData"><div class="weatherSun">' + weatherDataSunrise + '</div></div>'
+			+ '</div>'
+			+ '<div class="markerQuickFact">'
+				+ '<div class="markerQuickFactLabel">Sunset</div>'
+				+ '<div class="markerQuickFactData"><div class="weatherSun">' + weatherDataSunset + '</div></div>'
+			+ '</div>';
+		
 		if(isATest)
 		{
-			console.log('TESTING: Weather: ' + weatherDataCurrent);
-			console.log('TESTING: Temps: ' + weatherDataTemps);
-			console.log('TESTING: Location: ' + weatherDataLocation);
-			console.log('TESTING: Sunrise: ' + weatherDataSunrise);
-			console.log('TESTING: Sunset: ' + weatherDataSunset);
+			console.log('TESTING: Weather: ' + weatherDataResult);
 		}
 		
-		return [weatherDataCurrent, weatherDataTemps, weatherDataLocation, weatherDataSunrise, weatherDataSunset];
+		return weatherDataResult;
 	}
 	catch (e)
 	{
 		handleError('Get Markers Data (json)', e);
-		weatherDataCurrent = 'ERROR: Unable to process weather data: ' + e;
-		weatherDataTemps = 'Unknown';
-		weatherDataLocation = 'Unknown';
-		weatherDataSunrise = 'Unknown';
-		weatherDataSunset = 'Unknown';
-		return [weatherDataCurrent, weatherDataTemps, weatherDataLocation, weatherDataSunrise, weatherDataSunset];
+		weatherDataResult = 'ERROR: Unable to process weather data: ' + e;
+		return weatherDataResult;
 	}
 }
 
@@ -400,11 +411,15 @@ function addMarkersTo(map)
 
 					bounds.extend(thisMarkerPosition);	
 					
-					addThisMarker.addListener('click', function(){ displayInfoPanelFor(thisMarker);});
-
+					addThisMarker.addListener
+					('click', function()
+						{ 
+							displayInfoPanelFor(thisMarker, 'cbsPoi', thisMarker.latitude, thisMarker.longitude);
+						}
+					);
 					markersArray.push(addThisMarker);				
 				}
-			)(i);
+			)(i); // END "immediately-invoked function expression"
 		}
 		
 		// Marker Clustering
@@ -427,7 +442,7 @@ function addMarkersTo(map)
 					p.push(m[i].getPosition());
 				}
 			}
-		);	
+		);
 		
 		// Zoom to fit the bounds of all markers
 		// https://stackoverflow.com/a/22712105/4407150
@@ -450,7 +465,7 @@ function addMarkersTo(map)
 	}
 }
 
-function displayInfoPanelFor(thisMarker)
+function displayInfoPanelFor(thisMarker, thisMarkerType, thisMarkerLatitude, thisMarkerLongitude)
 {	
 	try
 	{	
@@ -465,7 +480,7 @@ function displayInfoPanelFor(thisMarker)
 		// explicitly disallows saving of elevation data, so until/unless another source is found ...
 		
 		var elevator = new google.maps.ElevationService;
-		var location = {lat: thisMarker.latitude, lng: thisMarker.longitude};
+		var location = {lat: thisMarkerLatitude, lng: thisMarkerLongitude};
 		var locationElevation = null;							
 		elevator.getElevationForLocations
 		(
@@ -495,63 +510,99 @@ function displayInfoPanelFor(thisMarker)
 					}
 					
 					// ------------------------------------------------------------------
-					var thisMarkerCategoryData = getMarkerCategoryDataFromArray(thisMarker.cbsMainCategory);
+					var thisMarkerCategory = '';					
+					var thisMarkerCategoryData = '';
+					var thisMarkerrCategoryIconImage = '';
+					var markerShowWebsite = '';
+					var markerGooglePlaceId = '';
+					var markerStartNavigation = '';
+					var markerNotesForFurkot = '';
+					var markerUrlForFurkot = '';
+					var markerStopNameForFurkot = '';
+					var furkotLinkText = '';
+					var furkotLinkIcons = '';
+					var markerVisitedIcon = '';
+					var thisMarkerTags = '';
+					var thisMarkerCbsNotes = '';
+					var weatherData = '';
 					
-					var markerShowWebsite = thisMarker.cbsReferenceUrl 
-						? '<a href="' + thisMarker.cbsReferenceUrl + '" title="Website" target="_blank"><i class="fas fa-globe fa-2x"></i></a>' 
-						: '<i class="fas fa-globe fa-2x disabled"></i>';
-						
-					var markerGooglePlaceId = thisMarker.googlePlaceId
-						? '&destination_place_id=' + thisMarker.googlePlaceId
-						: '';
-					
-					//https://developers.google.com/maps/documentation/urls/guide
-					var markerStartNavigation = '<a href="https://www.google.com/maps/dir/?api=1'
-						+ '&destination=' + encodeURIComponent(thisMarker.latitude + ',' + thisMarker.longitude) 
-						+ markerGooglePlaceId
-						+ '&travelmode=driving'
-						+ '&dir_action=navigate'
-						+ '" target="googleMaps" title="Navigate"><i class="far fa-compass fa-2x"></i></a>';
-					
-					var markerNotesForFurkot = thisMarker.cbsNotes
-						? '&stop[notes]=' + encodeURIComponent(thisMarker.cbsNotes)
-						: '';
-					
-					var markerUrlForFurkot = thisMarker.cbsReferenceUrl 
-						? '&stop[url]=' + encodeURIComponent(thisMarker.cbsReferenceUrl) 
-						: '';
-					
-					var markerStopNameForFurkot = thisMarkerCategoryData.furkotPinName
-						? '&stop[pin]=' + thisMarkerCategoryData.furkotPinName
-						: '';
-					
-					var markerVisitedIcon = '<i class="far fa-question-circle fa-2x" title="We still need to log whether or not we have visited this entry."></i>';
-					switch(thisMarker.cbsVisited)
+					if(thisMarkerType === 'cbsPoi')
 					{
-						case "Y":
-							markerVisitedIcon = '<i class="far fa-eye fa-2x visited" title="We HAVE seen this with our own eyes!"></i>';
-						break;
+						thisMarkerTitle = thisMarker.cbsTitle;
+						thisMarkerCategory = thisMarker.cbsMainCategory;
+						thisMarkerCategoryData = getMarkerCategoryDataFromArray(thisMarkerCategory);
+						thisMarkerrCategoryIconImage = '<img src="' + thisMarkerCategoryData.mapMarkerIcon + '" alt="Marker Icon"/>';
 						
-						case "N":
-							markerVisitedIcon = '<i class="far fa-eye-slash fa-2x" title="We have NOT yet seen this with our own eyes."></i>';
-						break;
-					}			
-
-					var [weatherDataCurrent, weatherDataTemps, weatherDataLocation, weatherDataSunrise, weatherDataSunset] = getWeatherDataFromApi(thisMarker.latitude, thisMarker.longitude);
+						markerShowWebsite = thisMarker.cbsReferenceUrl 
+							? '<a href="' + thisMarker.cbsReferenceUrl + '" title="Website" target="_blank"><i class="fas fa-globe fa-2x"></i></a>' 
+							: '<i class="fas fa-globe fa-2x disabled"></i>';
+							
+						markerGooglePlaceId = thisMarker.googlePlaceId
+							? '&destination_place_id=' + thisMarker.googlePlaceId
+							: '';
+						
+						//https://developers.google.com/maps/documentation/urls/guide
+						markerStartNavigation = '<a href="https://www.google.com/maps/dir/?api=1'
+							+ '&destination=' + encodeURIComponent(thisMarker.latitude + ',' + thisMarker.longitude) 
+							+ markerGooglePlaceId
+							+ '&travelmode=driving'
+							+ '&dir_action=navigate'
+							+ '" target="googleMaps" title="Navigate"><i class="far fa-compass fa-2x"></i></a>';
+						
+						markerNotesForFurkot = thisMarker.cbsNotes
+							? '&stop[notes]=' + encodeURIComponent(thisMarker.cbsNotes)
+							: '';
+						
+						markerUrlForFurkot = thisMarker.cbsReferenceUrl 
+							? '&stop[url]=' + encodeURIComponent(thisMarker.cbsReferenceUrl) 
+							: '';
+						
+						markerStopNameForFurkot = thisMarkerCategoryData.furkotPinName
+							? '&stop[pin]=' + thisMarkerCategoryData.furkotPinName
+							: '';
+						
+						markerVisitedIcon = '<i class="far fa-question-circle fa-2x" title="We still need to log whether or not we have visited this entry."></i>';
+						switch(thisMarker.cbsVisited)
+						{
+							case "Y":
+								markerVisitedIcon = '<i class="far fa-eye fa-2x visited" title="We HAVE seen this with our own eyes!"></i>';
+							break;
+							
+							case "N":
+								markerVisitedIcon = '<i class="far fa-eye-slash fa-2x" title="We have NOT yet seen this with our own eyes."></i>';
+							break;
+						}
 											
-					//https://help.furkot.com/widgets/plan-with-furkot-buttons.html	
-					var furkotLinkText = 
-						'https://trips.furkot.com/trip?stop[name]=' 
-								+ encodeURIComponent(thisMarker.cbsTitle)
-							+ '&stop[coordinates][lat]=' 
-								+ thisMarker.latitude 
-							+ '&stop[coordinates][lon]=' 
-								+ thisMarker.longitude 
-							+ markerNotesForFurkot
-							+ markerUrlForFurkot
-							+ markerStopNameForFurkot
-							+ '&uid=6VjRjO';
-					var furkotLinkIcons = '<i class="ff-icon-furkot"></i><i class="ff-icon-' + thisMarkerCategoryData.furkotPinName + '"></i>';
+						//https://help.furkot.com/widgets/plan-with-furkot-buttons.html	
+						furkotLinkText = 
+							'https://trips.furkot.com/trip?stop[name]=' 
+									+ encodeURIComponent(thisMarker.cbsTitle)
+								+ '&stop[coordinates][lat]=' 
+									+ thisMarker.latitude 
+								+ '&stop[coordinates][lon]=' 
+									+ thisMarker.longitude 
+								+ markerNotesForFurkot
+								+ markerUrlForFurkot
+								+ markerStopNameForFurkot
+								+ '&uid=6VjRjO';
+						furkotLinkIcons = '<i class="ff-icon-furkot"></i><i class="ff-icon-' + thisMarkerCategoryData.furkotPinName + '"></i>';
+						
+						thisMarkerTags = thisMarker.cbsTags.toString().replace(/,/g, ', ');
+						
+						thisMarkerCbsNotes = thisMarker.cbsNotes;
+						
+						thisMarkerLatitude = thisMarker.latitude;
+						thisMarkerLongitude = thisMarker.longitude;
+					}
+					else if (thisMarkerType === 'gMap')
+					{
+						thisMarkerTitle = 'Current Location';
+						thisMarkerCategory = 'You Are Here';
+						thisMarkerrCategoryIconImage = document.getElementById('svgIcon').innerHTML;
+						thisMarkerTags = 'Approximately';
+					}
+
+					weatherData = getWeatherDataFromApi(thisMarkerLatitude, thisMarkerLongitude);
 					
 					var contentString = 
 						  '<div class="markerShelfIcons">'
@@ -562,43 +613,24 @@ function displayInfoPanelFor(thisMarker)
 						+ '<div class="markerQuickFacts">'
 							+ '<div class="markerQuickFact">'
 								+ '<div class="markerQuickFactLabel">Category</div>'
-								+ '<div class="markerQuickFactData">' + thisMarker.cbsMainCategory + '</div>'
+								+ '<div class="markerQuickFactData">' + thisMarkerCategory + '</div>'
 							+ '</div>'
 							+ '<div class="markerQuickFact">'
 								+ '<div class="markerQuickFactLabel">Tags</div>'
-								+ '<div class="markerQuickFactData">' + thisMarker.cbsTags.toString().replace(/,/g, ', ') + '</div>'
-							+ '</div>'
-							+ '<div class="markerQuickFact">'
-								+ '<div class="markerQuickFactLabel">Location</div>'
-								+ '<div class="markerQuickFactData">' + weatherDataLocation + '</div>'
-							+ '</div>'
-							+ '<div class="markerQuickFact">'
-								+ '<div class="markerQuickFactLabel">Coordinates</div>'
-								+ '<div class="markerQuickFactData">' + thisMarker.latitude + ', ' + thisMarker.longitude + '</div>'
+								+ '<div class="markerQuickFactData">' + thisMarkerTags + '</div>'
 							+ '</div>'
 							+ '<div class="markerQuickFact">'
 								+ '<div class="markerQuickFactLabel">Elevation</div>'
 								+ '<div class="markerQuickFactData">' + locationElevation + '</div>'
 							+ '</div>'
 							+ '<div class="markerQuickFact">'
-								+ '<div class="markerQuickFactLabel">Weather</div>'
-								+ '<div class="markerQuickFactData">' + weatherDataCurrent + '</div>'
+								+ '<div class="markerQuickFactLabel">Coordinates</div>'
+								+ '<div class="markerQuickFactData">' + thisMarkerLatitude + ', ' + thisMarkerLongitude + '</div>'
 							+ '</div>'
-							+ '<div class="markerQuickFact">'
-								+ '<div class="markerQuickFactLabel">Temps</div>'
-								+ '<div class="markerQuickFactData"><div class="weatherTemps">' + weatherDataTemps + '</div></div>'
-							+ '</div>'
-							+ '<div class="markerQuickFact">'
-								+ '<div class="markerQuickFactLabel">Sunrise</div>'
-								+ '<div class="markerQuickFactData"><div class="weatherSun">' + weatherDataSunrise + '</div></div>'
-							+ '</div>'
-							+ '<div class="markerQuickFact">'
-								+ '<div class="markerQuickFactLabel">Sunset</div>'
-								+ '<div class="markerQuickFactData"><div class="weatherSun">' + weatherDataSunset + '</div></div>'
-							+ '</div>'
+							+ weatherData
 						+ '</div>'
 						+ '<div class="markerNotes">' 
-							+ thisMarker.cbsNotes 
+							+ thisMarkerCbsNotes 
 						+ '</div>';
 					
 					if(isATest)
@@ -608,8 +640,8 @@ function displayInfoPanelFor(thisMarker)
 					
 					markerInfoContainer.style.display = 'table';					
 					
-					markerIconImage.src = thisMarkerCategoryData.mapMarkerIcon;
-					markerTitleText.innerHTML = thisMarker.cbsTitle;
+					markerIconImage.innerHTML = thisMarkerrCategoryIconImage;
+					markerTitleText.innerHTML = thisMarkerTitle;
 					markerData.innerHTML = contentString;
 					
 					markerPlanWithFurkotLink.innerHTML = furkotLinkIcons;
@@ -809,10 +841,12 @@ function watchLocation(map)
 					// callback to handle SUCCESS
 					try
 					{
+						var currentLocationLatitude = position.coords.latitude;
+						var currentLocationLongitude = position.coords.longitude;
 						var pos = 
 						{
-							lat: position.coords.latitude,
-							lng: position.coords.longitude
+							lat: currentLocationLatitude,
+							lng: currentLocationLongitude
 						};	
 
 						var currentLocationSvg = document.getElementById('svgIcon').innerHTML;
@@ -830,6 +864,13 @@ function watchLocation(map)
 										  url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(currentLocationSvg)
 										, scaledSize: new google.maps.Size(50, 50)
 									}
+								}
+							);
+					
+							currentLocationMarker.addListener
+							('click', function()
+								{ 
+									displayInfoPanelFor(currentLocationMarker, 'gMap', currentLocationLatitude, currentLocationLongitude);
 								}
 							);
 						}
@@ -876,6 +917,8 @@ function watchLocation(map)
 						{
 							locationMessage = 'Your browser doesn\'t support geolocation.' + currentTimestamp();
 						}
+						
+						console.error('GEOLOCATION: ' + locationMessage);
 							
 						if (document.getElementById('CurrentLocationInfo'))
 						{
@@ -891,7 +934,7 @@ function watchLocation(map)
 						handleError('Watch Location', e);
 					}
 				}
-				, {maximumAge:5000, timeout:4000, enableHighAccuracy: true}
+				, {maximumAge:10000, timeout:4000, enableHighAccuracy: true}
 			);
 		}
 		else
