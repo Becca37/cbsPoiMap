@@ -279,9 +279,6 @@ function initMap()
 		);
 		
 		addCustomControlsTo(map);
-		getMarkersDataFromFile();
-		getMarkersCategoryDataFromFile();
-		setMarkersCategoryData();
 		addMarkersTo(map);
 		//watchLocation(map); -- control is not available until page fully loads, so defer to user click to start the watch
 	}
@@ -368,21 +365,31 @@ function addMarkersTo(map)
 {
 	try
 	{
-		// Ran into the issue of every marker displaying the content for the LAST marker added
-		// To make each marker display its own data, use an "immediately-invoked function expression"
-		// https://stackoverflow.com/a/19324832/4407150
+		getMarkersDataFromFile();
+		getMarkersCategoryDataFromFile();
+		setMarkersCategoryData();
+		
+		var bounds = new google.maps.LatLngBounds();
 		
 		for (var i = 0; i < markerDataArray.length; i++) 
-		{
+		{		
+			// Ran into the issue of every marker displaying the content for the LAST marker added
+			// To make each marker display its own data, use an "immediately-invoked function expression"
+			// https://stackoverflow.com/a/19324832/4407150
 			(function(index) //an "immediately-invoked function expression"
 				{
 					var thisMarker = markerDataArray[i];
 					var thisMarkerCategoryData = getMarkerCategoryDataFromArray(thisMarker.cbsMainCategory);
+					var thisMarkerPosition = 
+						{
+							lat: thisMarker.latitude,
+							lng: thisMarker.longitude
+						};	
 					
 					var addThisMarker = new google.maps.Marker
 					(
 						{
-							position: {lat: thisMarker.latitude, lng: thisMarker.longitude},
+							position: thisMarkerPosition,
 							map: map,
 							title:  thisMarker.cbsTitle,
 							icon: thisMarkerCategoryData.mapMarkerIcon,
@@ -390,10 +397,12 @@ function addMarkersTo(map)
 							cbsId: thisMarker.cbsId
 						}
 					);
+
+					bounds.extend(thisMarkerPosition);	
 					
 					addThisMarker.addListener('click', function(){ displayInfoPanelFor(thisMarker);});
 
-					markersArray.push(addThisMarker);
+					markersArray.push(addThisMarker);				
 				}
 			)(i);
 		}
@@ -418,7 +427,22 @@ function addMarkersTo(map)
 					p.push(m[i].getPosition());
 				}
 			}
-		);		
+		);	
+		
+		// Zoom to fit the bounds of all markers
+		// https://stackoverflow.com/a/22712105/4407150
+		google.maps.event.addListenerOnce
+		(map, 'bounds_changed', function(event) 
+			{
+				this.setZoom(map.getZoom()-1);
+
+				if (this.getZoom() > 8) 
+				{
+					this.setZoom(8);
+				}
+			}
+		);
+		map.fitBounds(bounds);	
 	}
 	catch(e)
 	{

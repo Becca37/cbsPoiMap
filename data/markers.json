@@ -55,4 +55,17 @@
 		, "googlePlaceId": "ChIJUdLTpf_AuFQRtNEgx6zniBA"
 		, "cbsNotes": "This is my note."
 	}
+	, {
+	
+		  "cbsTitle": "Nara Deer Park"
+		, "cbsId": 6
+		, "cbsVisited": "Y"
+		, "cbsMainCategory": "ACC Study Abroad"
+		, "cbsTags": ["Ceramics", "Photography"]
+		, "latitude": 34.685053
+		, "longitude": 135.843014
+		, "googlePlaceId": "ChIJYWCMvZY5AWARVnREV_OsbPk"
+		, "cbsNotes": "'The park is home to hundreds of freely roaming deer. Considered in Shinto to be messengers of the gods, Nara's nearly 1200 deer have become a symbol of the city and have even been designated as a natural treasure. Nara's deer are surprisingly tame, although they can be aggressive if they think you will feed them. Deer crackers are for sale around the park, and some deer have learned to bow to visitors to ask to be fed.'"
+		, "cbsReferenceUrl": "https://www.japan-guide.com/e/e4103.html"
+	}
 ]
