@@ -25,18 +25,22 @@ var trafficLayer = null;
 var currentLocationMarker = null;
 var watchCurrentLocationId = null;
 	
-var markersArray = [];
-var markerDataArray = [];
-var markerCategoriesArray = [];
-var markersCategoryDataArray = [];
-var thisMarkerCategoryData = [];
-var quotesForFriends = '';
-var quotesForFamily = '';
+var markerDataArray = [];			//holds the Chasing Blue Sky point of interest data
+var markersArray = []; 				//holds the CBS POIs as Google Maps Marker data after processing
+
+var markersDistinctCategoriesArray = [];		//holds the distinct categories found in the CBS POIs markers
+var markersCategoryDataArray = [];	//holds the data about categories (e.g. name, icon, and Furkot pin)
+var thisMarkerCategoryData = [];	//holds the category data for a given marker
+
+var quotesForFriends = '';			//holds the string for quotes about Friends to be used as CBS Notes
+var quotesForFamily = '';			//holds the string for quotes about Family to be used as CBS Notes
 
 var markerDataSource = 'data/markers.json';
 var markersCategoryDataSource = 'data/markersCategoryData.json';
-var markerCluster;
+var markerClustering = null;
+
 var quotesDataSource = 'data/quotes.json';
+
 var weatherDataSource = 'https://api.openweathermap.org/data/2.5/weather?&appid=11be7e069a8c86553c0daf1eae697cd9&units=imperial';
 
 function loadJSON(jsonDataUrl, callback, asyncPref) 
@@ -77,14 +81,15 @@ function getMarkersDataFromFile()
 				markerDataArray = JSON.parse(response);
 			}
 			, false
-		);		
+		);	
 		if(isATest)
 		{
-			console.warn('TESTING: Marker Array Length: ' + markerDataArray.length);
+			console.warn('TESTING: Marker Data Array Length: ' + markerDataArray.length);
 			console.log('TESTING: Marker #1: ' + markerDataArray[0].cbsTitle);
 			console.log('TESTING: Marker #1 ID: ' + markerDataArray[0].cbsId);
 			console.log('TESTING: Marker #1 Category: ' + markerDataArray[0].cbsMainCategory);
 		}
+		getDistinctCategories();	
 	}
 	catch (e)
 	{
@@ -99,7 +104,7 @@ function getMarkersCategoryDataFromFile()
 		loadJSON
 		(markersCategoryDataSource, function(response) 
 			{
-				markersCategoryDataArray = JSON.parse(response);
+				markersCategoryDataArray = JSON.parse(response).sort(compareValues('cbsMainCategory', 'asc'));
 			}
 			, false
 		);		
@@ -335,6 +340,8 @@ function initMap()
 			}
 		);
 		
+		getMarkersCategoryDataFromFile();
+		getMarkersDataFromFile();
 		addCustomControlsTo(map);
 		addMarkersTo(map);
 		getQuotes();
@@ -354,7 +361,7 @@ function addCustomControlsTo(map)
 
 		// Add custom control for FILTERs on CATEGORIES
 		var markerCategoryFilterDiv = document.createElement('div');
-		var markerCategoryFilter = new MarkerCategoryFilter(markerCategoryFilterDiv, map);	
+		var markerCategoryFilter = new MarkerCategoryFilterControl(markerCategoryFilterDiv, map);	
 		markerCategoryFilterDiv.index = 1;
 		map.controls[google.maps.ControlPosition.LEFT_CENTER].push(markerCategoryFilterDiv);
 
@@ -388,30 +395,32 @@ function addCustomControlsTo(map)
 	}	
 }
 
-function setMarkersCategoryData()
+function getDistinctCategories()
 {
 	try
-	{				
+	{	
+		var workingArray = markerDataArray.sort(compareValues('cbsMainCategory', 'asc'));
+		
 		//Get the distinct categories from the marker data array then populate the markerCategoryArray
 		//https://jsperf.com/distinct-values-from-array
-		loop1: for (var i = 0; i < markerDataArray.length; i++) 
+		loop1: for (var i = 0; i < workingArray.length; i++) 
 		{				
-			var categoryName = markerDataArray[i].cbsMainCategory;
+			var categoryName = workingArray[i].cbsMainCategory;
 
-			for (var i2 = 0; i2 < markerCategoriesArray.length; i2++) 
+			for (var i2 = 0; i2 < markersDistinctCategoriesArray.length; i2++) 
 			{
-				if (markerCategoriesArray[i2] == categoryName) 
+				if (markersDistinctCategoriesArray[i2] == categoryName) 
 				{
 					continue loop1;
 				}
 			}
-			markerCategoriesArray.push(categoryName);
+			markersDistinctCategoriesArray.push(categoryName);
 		}
-		
+				
 		if(isATest)
 		{
-			console.warn('TESTING: Marker Category count: ' + markerCategoriesArray.length.toString());			
-			markerCategoriesArray.forEach
+			console.warn('TESTING: Distinct Categories count: ' + markersDistinctCategoriesArray.length.toString());			
+			markersDistinctCategoriesArray.forEach
 			(function(category, i) 
 				{
 					console.log('TESTING: Category', i, 'is', category);
@@ -428,11 +437,7 @@ function setMarkersCategoryData()
 function addMarkersTo(map) 
 {
 	try
-	{
-		getMarkersDataFromFile();
-		getMarkersCategoryDataFromFile();
-		setMarkersCategoryData();
-		
+	{		
 		var bounds = new google.maps.LatLngBounds();
 		
 		for (var i = 0; i < markerDataArray.length; i++) 
@@ -477,16 +482,17 @@ function addMarkersTo(map)
 		
 		// Marker Clustering
 		// https://github.com/googlemaps/v3-utility-library/blob/master/markerclustererplus/examples/events_example.htm
-		markerCluster = new MarkerClusterer
+		markerClustering = new MarkerClusterer
 		(map, markersArray, 
 			{ 
 				  averageCenter: true
 				, imagePath: 'images/icons/clusters/m' 
 			}
 		);
+		markerClustering.setIgnoreHidden(true);
 
 		google.maps.event.addListener
-		(markerCluster, "click", function (c) 
+		(markerClustering, "click", function (c) 
 			{
 				var m = c.getMarkers();
 				var p = [];
@@ -754,31 +760,39 @@ function LocationInfoControl(controlDiv, map)
 	}
 }
 
-function MarkerCategoryFilter(controlDiv, map)
+function MarkerCategoryFilterControl(controlDiv, map)
 {
 	try
-	{		
-		for (var i = 0; i < markerCategoriesArray.length; i++)
+	{	
+		var filterCategoryLegendText = '';
+		
+		for (var i = 0; i < markersDistinctCategoriesArray.length; i++)
 		{		
-			var filterCategory = markerCategoriesArray[i];
-			var index = markerCategoryDataArray.findIndex(entry => entry.name === filterCategory);
-			var thisMarkerCategoryData = markerCategoryDataArray[index];
-			
-			var controlUI = document.createElement('div');
-			controlUI.id = 'ToggleCategory' + filterCategory;
-			controlUI.className = 'control-filter controlInactive';
-			controlUI.innerHTML = 
-				'<div><img src="' + thisMarkerCategoryData.mapMarkerIcon + '" alt="' + filterCategory + ' Filter"/> ' + filterCategory + '</div>';
-			controlUI.title = 'Click to toggle display of all markers in the "' + filterCategory + '" category.';
-			controlDiv.appendChild(controlUI);	
+			(function(index) //an "immediately-invoked function expression"
+				{
+					var filterCategory = markersDistinctCategoriesArray[i];
+					var thisMarkerCategoryData = getMarkerCategoryDataFromArray(filterCategory);				
+								
+					var controlUI = document.createElement('div');
+					controlUI.id = 'ToggleCategory' + filterCategory;
+					controlUI.className = 'control-filter controlActive';
+					filterCategoryLegendText += '<div class="filterOption"><div class="filterIcon"><img src="' + thisMarkerCategoryData.mapMarkerIcon + '" alt="' + filterCategory + ' Filter"/></div><div class="filterText"> ' + filterCategory + '</div></div>';
+					controlUI.innerHTML = 
+						'<div class="filterOption"><div class="filterIcon"><img src="' + thisMarkerCategoryData.mapMarkerIcon + '" alt="' + filterCategory + ' Filter"/></div></div>';
+					controlUI.title = 'Click to toggle display of all markers in the "' + filterCategory + '" category.';
+					controlDiv.appendChild(controlUI);	
 
-			controlUI.addEventListener
-			('click', function()
-				{ 
-					toggleMarkers(map, filterCategory);
+					controlUI.addEventListener
+					('click', function()
+						{ 
+							toggleMarkers(map, filterCategory);
+						}
+					);					
 				}
-			);		
+			)(i); // END "immediately-invoked function expression"
 		}
+		
+		filterCategoryLegend.innerHTML = filterCategoryLegendText;
 	}
 	catch (e)
 	{		
@@ -906,14 +920,14 @@ function ClusteringControl(controlDiv, map)
 		('click', function() 
 			{	try
 				{	
-					if(typeof(markerCluster.getMap()) === 'undefined' || markerCluster.getMap() == null)
+					if(typeof(markerClustering.getMap()) === 'undefined' || markerClustering.getMap() == null)
 					{	
-						markerCluster.setOptions({map:map});//restores the clusterIcons				
+						markerClustering.setOptions({map:map});//restores the clusterIcons				
 						document.getElementById('ToggleClustering').className = 'control-clustering controlActive';
 					}
 					else
 					{				
-						markerCluster.setOptions({map:null});//hides the clusterIcons			
+						markerClustering.setOptions({map:null});//hides the clusterIcons			
 						document.getElementById('ToggleClustering').className = 'control-clustering controlInactive';							
 					}
 				}
@@ -1081,7 +1095,10 @@ function toggleMarkers(map, toggleCategory)
 {
 	try
 	{
-		var desiredState = 'hide';
+		var elementID = 'ToggleCategory' + toggleCategory;	
+		var desiredState = document.getElementById(elementID).classList.contains('controlActive')
+			? 'HIDING'
+			: 'SHOWING';
 		
 		var markersInThisCategoryArray = markersArray.filter
 		(
@@ -1099,27 +1116,66 @@ function toggleMarkers(map, toggleCategory)
 				var markerData = markersArray[i];		
 				console.log('TESTING: Marker Data', i, 'is', markerData);
 			}
-		}
-		
-		if(isATest)
-		{
 			console.warn('TESTING: Marker count in category "' + toggleCategory + '": ' + markersInThisCategoryArray.length.toString());
+			
+			console.log('TESTING: ' + desiredState + ' markers in category ' + toggleCategory);
+		}		
+					
+		if (desiredState === 'SHOWING')
+		{			
+			for (var i = 0; i < markersInThisCategoryArray.length; i++) 
+			{
+				markersInThisCategoryArray[i].setVisible(true);				
+				document.getElementById(elementID).className = 'control-filter controlActive';
+			}
+		}
+		else
+		{				
+			for (var i = 0; i < markersInThisCategoryArray.length; i++) 
+			{
+				markersInThisCategoryArray[i].setVisible(false);		
+				document.getElementById(elementID).className = 'control-filter controlInactive';
+			}
 		}
 		
-		for (var i = 0; i < markersInThisCategoryArray.length; i++) 
-		{
-			if (desiredState = 'show')
-			{
-				markersInThisCategoryArray[i].setMap(map);
-			}
-			else
-			{
-				markersInThisCategoryArray[i].setMap(null);
-			}	
-		}
+		markerClustering.repaint();	
 	}
 	catch(e)
 	{
 		handleError('Filter Markers', e);
 	}
+}
+
+function compareValues(key, order='asc')
+{
+	//https://www.sitepoint.com/sort-an-array-of-objects-in-javascript/
+	
+	return function(a, b) 
+	{
+		if(!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) 
+		{
+			return 0; 
+		}
+
+		const varA = (typeof a[key] === 'string') 
+			? a[key].toUpperCase() 
+			: a[key];
+		const varB = (typeof b[key] === 'string') 
+			? b[key].toUpperCase() 
+			: b[key];
+
+		let comparison = 0;
+		
+		if (varA > varB) 
+		{
+			comparison = 1;
+		} 
+		else if (varA < varB) 
+		{
+			comparison = -1;
+		}
+		return ((order == 'desc') 
+			? (comparison * -1) 
+			: comparison);
+	};
 }

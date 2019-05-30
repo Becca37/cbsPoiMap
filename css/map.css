@@ -77,14 +77,14 @@ input[type='checkbox'] + label
 	overflow: auto;
 }
 
-.siteInfoContainer, #markerInfoContainer, .backmatterContainer, #instructionsContainer, .markerShelfIcons, .markerQuickFacts
+.siteInfoContainer, #markerInfoContainer, .backmatterContainer, #instructionsContainer, .markerShelfIcons, .markerQuickFacts, .filterOption
 {
 	display: table;
 	width: 100%;
 	border-bottom:  1px solid rgba(0,0,0,.3);
 }
 
-.panelCloseButton, .siteIcon, .siteInfo, .sidePanelCloseButton, .markerIcon, .markerTitle, .markerPlanWithFurkot, .markerShelfIcon, .markerQuickFactLabel, .markerQuickFactData
+.panelCloseButton, .siteIcon, .siteInfo, .sidePanelCloseButton, .markerIcon, .markerTitle, .markerPlanWithFurkot, .markerShelfIcon, .markerQuickFactLabel, .markerQuickFactData, .filterIcon, .filterText
 {
 	display: table-cell;
 	padding: 3px;
@@ -287,6 +287,30 @@ input[type='checkbox'] + label
 	font-weight: 900;
 }
 
+.filterOption
+{
+	padding: 0px;
+	margin: 0px;
+	border-bottom: 1px solid #eaeaea;
+}
+
+.filterIcon
+{
+	width: 25px;
+}
+
+.filterIcon img
+{
+	width: 25px;
+}
+
+.filterText
+{
+	font-size: var(--cbs-font-size-the-fine-print);
+	line-height: var(--cbs-line-height-the-fine-print);
+	text-align: left;
+}
+
 /* GOOGLE MAP CUSTOM CONTROLS */
 
 .disabled
@@ -349,10 +373,10 @@ input[type='checkbox'] + label
 .control-filter
 {
 	margin-left: 10px;
-	margin-bottom: 15px;
+	margin-bottom: 3px;
 	text-align: left;	
 	vertical-align: middle;
-	padding: 6px 8px 5px 8px;
+	padding: 0px;
 }
 
 .controlActive
