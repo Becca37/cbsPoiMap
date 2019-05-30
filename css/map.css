@@ -29,6 +29,11 @@ html, body
 	line-height: var(--cbs-line-height-normal);
 }
 
+li
+{
+	padding: 5px 0px 5px 0px;
+}
+
 a, a:visited, a:hover, a:active
 {
   color: rgba(var(--cbs-color-accentR),.8);
@@ -67,6 +72,7 @@ input[type='checkbox'] + label
 	background-color: rgba(243,243,243,.3);
 	box-shadow: inset 7px 0 9px -7px rgba(0,0,0,.3);
 	padding: 0px;
+	padding-right: 15px;
 	margin: 0px;
 	overflow: auto;
 }

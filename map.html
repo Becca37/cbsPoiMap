@@ -66,14 +66,41 @@
 				<div id="instructionsContainer" class="isNotVisible">
 					<div class="instructionsText">
 						<b>This map</b> contains places we've been and places we might someday want to go. It's mainly meant so that we can look up places when we're out and about, but others might find some interesting places to visit too. Happy browsing. :0)  
-						<br/><br/>
-						<b>To view details of any marker</b> click its icon. The information for any icons added by <i>Chasing Blue Sky</i> will display in this side panel. Information for any normal <i>Google Maps icons</i> will show data in a popup window, with a link to the standard Google Maps.
-						<br/><br/>
-						<b>If a marker we've added interests you</b>, you can grab the GPS coordinates for use in your preferred mapping program. Alternately, the ability to add a marker to a FURKOT trip has been integrated into this website. To state the obvious, we think using Furkot for trip planning is a great option or we would not have integrated it. <a href="https://trips.furkot.com/" title="Click to visit Furkot, then scroll down to learn more.">Visit Furkot Site</a> :0)
-						<br/><br/>
-						<b>To show your current location</b> click the locator control (bottom left area). You will need to allow the browser to use your location. This will then populate your current location data and start tracking your location (location data is not stored). Your approximate current location will be displayed on the map with:<br/><div id="svgIcon"><svg width="30" height="30" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg">	<circle cx="20" cy="20" fill="none" r="11.8365" stroke="#1d86b1" stroke-width="2">		<animate attributeName="r" from="8" to="20" dur="2.50s" begin="0s" repeatCount="indefinite"></animate>		<animate attributeName="opacity" from="1" to="0" dur="2.50s" begin="0s" repeatCount="indefinite"></animate>	</circle>	<circle cx="20" cy="20" fill="#1d86b1" fill-opacity=".5" r="10"></circle></svg></div>
-						<b>Once location tracking has been started</b> you can click it at any time to pan/zoom to your current location.
-						<br/><br/>
+						<hr>
+						<b>Map Controls</b>
+						<ul>
+							<li><i class="fas fa-traffic-light"></i> To toggle the traffic layer, click the traffic control.</li>
+							<li><i class="fas fa-map-marker-alt"></i> To toggle the clustering of markers, click the clustering control.</li>
+							<li><i class="fas fa-user-secret"></i> To toggle troubleshooting, click the test control.</li>
+							<li><i class="fas fa-crosshairs"></i> To show your current location click the locator control (bottom left area). You will need to allow the browser to use your location. This will then:
+								<ul>
+									<li>Display the GPS coordinates and accuracy of your location in the locator control area.</li>
+									<li>Start watching your movements (less stalker-y than it sounds: location data is not stored).</li>
+									<li>Display your approximate current location on the map with a pulsating blue circle:<br/><div id="svgIcon"><svg width="30" height="30" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg">	<circle cx="20" cy="20" fill="none" r="11.8365" stroke="#1d86b1" stroke-width="2">		<animate attributeName="r" from="8" to="20" dur="2.50s" begin="0s" repeatCount="indefinite"></animate>		<animate attributeName="opacity" from="1" to="0" dur="2.50s" begin="0s" repeatCount="indefinite"></animate>	</circle>	<circle cx="20" cy="20" fill="#1d86b1" fill-opacity=".5" r="10"></circle></svg></div></li>
+								</ul>
+								<b>Once location tracking has been started</b> you can:
+									<ul>
+										<li>Click the crosshairs again at any time to pan/zoom to your current location.</li>
+										<li>Click the current location icon on the map to show additional information in this side panel about, yup, you guessed it, your current location.</li>
+									</ul>
+							</li>
+						</ul>
+						<hr>
+						<b>To view details of any marker</b> click its icon. <i>Information for any normal <i>Google Maps icons</i> will show data in a popup window, with a link to the standard Google Maps.</i>  The information for any icons added by <i>Chasing Blue Sky</i> will display in this side panel ... 
+						<ul>
+							<li><i class="far fa-eye"></i> <b>Visited</b> If we've personally visited the location, the eyeball icon will be green. If we haven't, it will be gray with a slash through it (<i class="far fa-eye-slash"></i>).</li>
+							<li><i class="fas fa-globe"></i> <b>Website</b> If we've recorded a reference website for the location, the globe icon will be blue and clickable.</li>
+							<li><i class="fas fa-compass"></i> <b>Navigator</b> The navigator icon will be blue and clickable. Click it to start navigating in Google Maps.</li>
+							<li><b>If a marker we've added interests you</b>, you can either:
+								<ul>
+									<li>Grab the GPS coordinates for use in your preferred mapping program. e.g. --> <i>Coordinates</i>	39.5261176, -105.0265309</li>
+									<li><i class="ff-icon-furkot"></i><i class="ff-icon-stop"></i> Add the location as a stop in a Furkot trip. The second icon there shows the icon which will be used by default within the Furkot interface.
+									<br/><br/>
+									To state the obvious, we think using Furkot for trip planning is a great option, <i>and</i> we use it ourselves, or we would not have integrated it. <a href="https://trips.furkot.com/" title="Click to visit Furkot, then scroll down to learn more.">Visit Furkot Site</a> :0)</li>
+								</ul>
+							</li>
+						</ul>						
+						<hr>
 						<b>Compatibility / Requirements</b> This does require an internet connection. Use it on a device with GPS if you're concerned about getting the best location accuracy. It should work on current browsers, both desktop and mobile. However, we make no promises about it being pretty or easy to work with on small screens*, on any given device, or on any given operation system. We have used it ourselves on Chrome (desktop, android Galaxy Note 9, iOS iPad Pro), Firefox (desktop), and Safari (iPad iPad Pro).
 						<br/><br/>
 						* If you are on a small device such as a smartphone, landscape mode and pinch-and-zoom is your friend. That or a magnifying glass.

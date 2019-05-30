@@ -801,7 +801,7 @@ function IsATestControl(controlDiv, map)
 			controlUI.className = 'control-test controlInactive';
 		}
 		controlUI.innerHTML = 
-			'<div><i class="fas fa-user-secret fa-1x"></i></i></i></div>';
+			'<div><i class="fas fa-user-secret fa-1x"></i></div>';
 		controlUI.title = 'Click to toggle general testing (then enable console: [F12]).';
 		controlDiv.appendChild(controlUI);	
 		
