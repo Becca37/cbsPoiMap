@@ -23,17 +23,21 @@ var mapCenter = {lat: 39.219422, lng: -105.530727}; // Colorado
 var trafficLayer = null;
 
 var currentLocationMarker = null;
+var currentLocationLatitude;
+var currentLocationLongitude;
+var currentLocationTitleString = 'Current Location';
 var watchCurrentLocationId = null;
+var devicePositionKnown = false;
 	
-var markerDataArray = [];			//holds the Chasing Blue Sky point of interest data
-var markersArray = []; 				//holds the CBS POIs as Google Maps Marker data after processing
+var markerDataArray = [];					//holds the Chasing Blue Sky point of interest data
+var markersArray = []; 						//holds the CBS POIs as Google Maps Marker data after processing
 
-var markersDistinctCategoriesArray = [];		//holds the distinct categories found in the CBS POIs markers
-var markersCategoryDataArray = [];	//holds the data about categories (e.g. name, icon, and Furkot pin)
-var thisMarkerCategoryData = [];	//holds the category data for a given marker
+var markersDistinctCategoriesArray = [];	//holds the distinct categories found in the CBS POIs markers
+var markersCategoryDataArray = [];			//holds the data about categories (e.g. name, icon, and Furkot pin)
+var thisMarkerCategoryData = [];			//holds the category data for a given marker
 
-var quotesForFriends = '';			//holds the string for quotes about Friends to be used as CBS Notes
-var quotesForFamily = '';			//holds the string for quotes about Family to be used as CBS Notes
+var quotesForFriends = '';					//holds the string for quotes about Friends to be used as CBS Notes
+var quotesForFamily = '';					//holds the string for quotes about Family to be used as CBS Notes
 
 var markerDataSource = 'data/markers.json';
 var markersCategoryDataSource = 'data/markersCategoryData.json';
@@ -41,7 +45,13 @@ var markerClustering = null;
 
 var quotesDataSource = 'data/quotes.json';
 
+var weatherDataOject;
 var weatherDataSource = 'https://api.openweathermap.org/data/2.5/weather?&appid=11be7e069a8c86553c0daf1eae697cd9&units=imperial';
+
+var poiTimeDataObject;
+var deviceTimeDataObject;
+//http://forum.geonames.org/gforum/posts/list/35422.page
+var timeDataSource = 'https://secure.geonames.org/timezoneJSON?username=ChasingBlueSky';
 
 function loadJSON(jsonDataUrl, callback, asyncPref) 
 {  
@@ -71,100 +81,96 @@ function loadJSON(jsonDataUrl, callback, asyncPref)
 	}
 }
 
-function getMarkersDataFromFile()
+function getJsonData(dataType, jsonDataSource)
 {
 	try
 	{    
+		var returnJsonData;
+		
 		loadJSON
-		(markerDataSource, function(response) 
+		(jsonDataSource, function(response) 
 			{
-				markerDataArray = JSON.parse(response);
+				returnJsonData = JSON.parse(response);
 			}
 			, false
 		);	
-		if(isATest)
-		{
-			console.warn('TESTING: Marker Data Array Length: ' + markerDataArray.length);
-			console.log('TESTING: Marker #1: ' + markerDataArray[0].cbsTitle);
-			console.log('TESTING: Marker #1 ID: ' + markerDataArray[0].cbsId);
-			console.log('TESTING: Marker #1 Category: ' + markerDataArray[0].cbsMainCategory);
-		}
-		getDistinctCategories();	
-	}
-	catch (e)
-	{
-		handleError('Get Markers Data (json)', e);
-	}
-}
-
-function getMarkersCategoryDataFromFile()
-{
-	try
-	{    
-		loadJSON
-		(markersCategoryDataSource, function(response) 
-			{
-				markersCategoryDataArray = JSON.parse(response).sort(compareValues('cbsMainCategory', 'asc'));
-			}
-			, false
-		);		
-		if(isATest)
-		{
-			console.warn('TESTING: Marker Category Data Array Length: ' + markersCategoryDataArray.length);
-			console.log('TESTING: Category #1 Category: ' + markersCategoryDataArray[0].cbsMainCategory);
-			console.log('TESTING: Category #1 Map Marker: ' + markersCategoryDataArray[0].mapMarkerIcon);
-			console.log('TESTING: Category #1 Furkot Pin: ' + markersCategoryDataArray[0].furkotPinName);
-		}
-	}
-	catch (e)
-	{
-		handleError('Get Markers Category Data (json)', e);
-	}
-}
-
-function getQuotes()
-{
-	try
-	{    
-		var quotesArray = [];
-		loadJSON
-		(quotesDataSource, function(response) 
-			{
-				quotesArray = JSON.parse(response);
-			}
-			, false
-		);		
 		
-		quotesArray.forEach
-		(function(thisQuote, i) 
+		if (dataType === 'markers')
+		{			
+			markerDataArray = returnJsonData;
+			if(isATest)
 			{
-				if (thisQuote.quoteType === 'Family')
-				{
-					quotesForFamily += '<div class="quoteText">' + thisQuote.quoteText + '<span class="quoteAttribution">' + thisQuote.quoteAttribution + '</span></div>'						
-				}
-				else if (thisQuote.quoteType === 'Friend')
-				{
-					quotesForFriends += '<div class="quoteText">' + thisQuote.quoteText + '<span class="quoteAttribution">' + thisQuote.quoteAttribution + '</span></div>'
-				}
+				console.warn('TESTING: Marker Data Array Length: ' + markerDataArray.length);
+				console.log('TESTING: Marker #1: ' + markerDataArray[0].cbsTitle);
+				console.log('TESTING: Marker #1 ID: ' + markerDataArray[0].cbsId);
+				console.log('TESTING: Marker #1 Category: ' + markerDataArray[0].cbsMainCategory);
 			}
-		);
+			getDistinctCategories();
+		}		
+		else if (dataType === 'markersCategory')
+		{
+			markersCategoryDataArray = returnJsonData.sort(compareValues('cbsMainCategory', 'asc'));	
+			if(isATest)
+			{
+				console.warn('TESTING: Marker Category Data Array Length: ' + markersCategoryDataArray.length);
+				console.log('TESTING: Category #1 Category: ' + markersCategoryDataArray[0].cbsMainCategory);
+				console.log('TESTING: Category #1 Map Marker: ' + markersCategoryDataArray[0].mapMarkerIcon);
+				console.log('TESTING: Category #1 Furkot Pin: ' + markersCategoryDataArray[0].furkotPinName);
+			}
+		}
+		else if (dataType === 'weather')
+		{
+			weatherDataOject = returnJsonData;	
+			if(isATest)
+			{
+				console.warn('TESTING: Weather Data');
+				console.log(weatherDataOject);
+			}
+		}
+		else if (dataType === 'times')
+		{
+			timeDataObject = returnJsonData;	
+			if(isATest)
+			{
+				console.warn('TESTING: Time Data');
+				console.log(timeDataObject);
+			}
+		}
+		else if (dataType === 'quotes')
+		{	
+			var quotesArray = [];	
 		
-		quotesForFamily = '<div class="quotes">' + quotesForFamily + '</div>';
-		quotesForFriends = '<div class="quotes">' + quotesForFriends + '</div>';
+			quotesArray.forEach
+			(function(thisQuote, i) 
+				{
+					if (thisQuote.quoteType === 'Family')
+					{
+						quotesForFamily += '<div class="quoteText">' + thisQuote.quoteText + '<span class="quoteAttribution">' + thisQuote.quoteAttribution + '</span></div>'						
+					}
+					else if (thisQuote.quoteType === 'Friend')
+					{
+						quotesForFriends += '<div class="quoteText">' + thisQuote.quoteText + '<span class="quoteAttribution">' + thisQuote.quoteAttribution + '</span></div>'
+					}
+				}
+			);
 			
-		if(isATest)
-		{
-			console.warn('TESTING: Quotes for Family: ' + quotesForFamily);
-			console.warn('TESTING: Quotes for Friends: ' + quotesForFriends);
+			quotesForFamily = '<div class="quotes">' + quotesForFamily + '</div>';
+			quotesForFriends = '<div class="quotes">' + quotesForFriends + '</div>';
+				
+			if(isATest)
+			{
+				console.warn('TESTING: Quotes for Family: ' + quotesForFamily);
+				console.warn('TESTING: Quotes for Friends: ' + quotesForFriends);
+			}
 		}
 	}
 	catch (e)
 	{
-		handleError('Get Markers Data (json)', e);
+		handleError('Get JSON Data: ' + dataType, e);
 	}
 }
 
-function getWeatherDataFromApi(markerLatitude, markerLongitude)
+function getWeatherData(markerLatitude, markerLongitude)
 {
 	var weatherDataResult = '';
 	
@@ -172,44 +178,38 @@ function getWeatherDataFromApi(markerLatitude, markerLongitude)
 	{    
 		var weatherDataSourceUrl = weatherDataSource + '&lat=' + markerLatitude + '&lon=' + markerLongitude;
 		
-		loadJSON
-		(weatherDataSourceUrl, function(response) 
-			{
-				weatherData = JSON.parse(response);
-			}
-			, false
-		);
+		getJsonData('weather', weatherDataSourceUrl);
 		
 		weatherDataCurrent = '';		
 		weatherDataCurrentIcons = '';
 		weatherDataCurrentText = '';
 		
-		weatherData.weather.forEach
+		weatherDataOject.weather.forEach
 			(function(weatherType, i) 
 				{
-					weatherDataCurrentIcons += '<img src="https://openweathermap.org/img/w/' + weatherData.weather[i].icon + '.png" alt=' + weatherData.weather[i].main + '/> ';
+					weatherDataCurrentIcons += '<img src="https://openweathermap.org/img/w/' + weatherDataOject.weather[i].icon + '.png" alt=' + weatherDataOject.weather[i].main + '/> ';
 					
 					if (i > 0)
 					{
 						weatherDataCurrentText += '<i>mixed with</i> ';
 					}
-					weatherDataCurrentText += '<b>' + weatherData.weather[i].main + '</b> (' + weatherData.weather[i].description + ') ';
+					weatherDataCurrentText += '<b>' + weatherDataOject.weather[i].main + '</b> (' + weatherDataOject.weather[i].description + ') ';
 				}
 			);
 		weatherDataCurrent = weatherDataCurrentIcons + '<div class="weatherCurrent">' + weatherDataCurrentText + '</div>';
 		
 		weatherDataTemps = ''
 			+ '<table><tr style="border: 1px;"><th>Now</th><th>High</th><th>Low</td></tr><tr><td>'
-			+ Math.round(weatherData.main.temp) + ' &deg;F</td><td>' 
-			+ Math.round(weatherData.main.temp_max) + ' &deg;F</td><td>' 
-			+ Math.round(weatherData.main.temp_min) + ' &deg;F</td></tr></table>';
+			+ Math.round(weatherDataOject.main.temp) + ' &deg;F</td><td>' 
+			+ Math.round(weatherDataOject.main.temp_max) + ' &deg;F</td><td>' 
+			+ Math.round(weatherDataOject.main.temp_min) + ' &deg;F</td></tr></table>';
 			
-		weatherDataLocation = weatherData.name + ', ' + weatherData.sys.country;
+		weatherDataLocation = weatherDataOject.name + ', ' + weatherDataOject.sys.country;
 		
-		var sunriseTime = (new Date((weatherData.sys.sunrise) * 1000));
-		var sunsetTime = (new Date((weatherData.sys.sunset) * 1000));
-		weatherDataSunrise = sunriseTime;
-		weatherDataSunset = sunsetTime;
+		// var sunriseTime = (new Date((weatherDataOject.sys.sunrise) * 1000));
+		// var sunsetTime = (new Date((weatherDataOject.sys.sunset) * 1000));
+		// weatherDataSunrise = sunriseTime;
+		// weatherDataSunset = sunsetTime;
 		
 		weatherDataResult = ''
 			+ '<div class="markerQuickFact">'
@@ -217,20 +217,12 @@ function getWeatherDataFromApi(markerLatitude, markerLongitude)
 				+ '<div class="markerQuickFactData">' + weatherDataLocation + '</div>'
 			+ '</div>'
 			+ '<div class="markerQuickFact">'
-				+ '<div class="markerQuickFactLabel">Weather</div>'
+				+ '<div class="markerQuickFactLabel">Weather*</div>'
 				+ '<div class="markerQuickFactData">' + weatherDataCurrent + '</div>'
 			+ '</div>'
 			+ '<div class="markerQuickFact">'
-				+ '<div class="markerQuickFactLabel">Temps</div>'
+				+ '<div class="markerQuickFactLabel">Temps*</div>'
 				+ '<div class="markerQuickFactData"><div class="weatherTemps">' + weatherDataTemps + '</div></div>'
-			+ '</div>'
-			+ '<div class="markerQuickFact">'
-				+ '<div class="markerQuickFactLabel">Sunrise</div>'
-				+ '<div class="markerQuickFactData"><div class="weatherSun">' + weatherDataSunrise + '</div></div>'
-			+ '</div>'
-			+ '<div class="markerQuickFact">'
-				+ '<div class="markerQuickFactLabel">Sunset</div>'
-				+ '<div class="markerQuickFactData"><div class="weatherSun">' + weatherDataSunset + '</div></div>'
 			+ '</div>';
 		
 		if(isATest)
@@ -242,9 +234,138 @@ function getWeatherDataFromApi(markerLatitude, markerLongitude)
 	}
 	catch (e)
 	{
-		handleError('Get Markers Data (json)', e);
-		weatherDataResult = 'ERROR: Unable to process weather data: ' + e;
+		handleError('Get Weather Data', e);
+		weatherDataResult = ''
+			+ '<div class="markerQuickFact">'
+				+ '<div class="markerQuickFactLabel">Weather</div>'
+				+ '<div class="markerQuickFactData"><div class="weatherSun">ERROR: Unable to process weather data: ' + e + '</div></div>'
+			+ '</div>';
 		return weatherDataResult;
+	}
+}
+
+function getTimeData(markerLatitude, markerLongitude)
+{
+	var timeDataResult = '';
+	
+	try
+	{   var deviceDateTime;
+		var deviceLatitude;
+		var deviceLongitude;
+		if(devicePositionKnown)
+		{
+			deviceLatitude = currentLocationLatitude;
+			deviceLongitude = currentLocationLongitude;
+		}
+	
+		var poiTimeDataSourceUrl = timeDataSource + '&lat=' + markerLatitude + '&lng=' + markerLongitude;
+		var deviceTimeDataSourceUrl = timeDataSource + '&lat=' + deviceLatitude + '&lng=' + deviceLongitude;
+		
+		getJsonData('times', poiTimeDataSourceUrl);	
+		poiTimeDataObject = timeDataObject;
+		
+		if (devicePositionKnown)
+		{
+			getJsonData('times', deviceTimeDataSourceUrl);	
+			deviceTimeDataObject = timeDataObject;	
+			if ('status' in deviceTimeDataObject)//.status.message.includes('the hourly limit'))
+			{
+				deviceDateTime = new Date();
+			}
+			else
+			{
+				deviceDateTime = deviceTimeDataObject.time;
+			}
+		}
+		else
+		{		
+			deviceDateTime = new Date();
+		}
+		
+		if ('status' in poiTimeDataObject)//poiTimeDataObject.status.message.includes('the hourly limit'))
+		{
+			timeDataResult = ''
+				+ '<div class="markerQuickFact">'
+					+ '<div class="markerQuickFactLabel">Times</div>'
+					+ '<div class="markerQuickFactData"><div class="weatherSun">ERROR: Unable to process time data.</div></div>'
+				+ '</div>';
+		}
+		else
+		{			
+			var poiDateTime = poiTimeDataObject.time;
+			var timeDateDifferenceExists = true;
+			
+			if (moment(poiDateTime).format('dddd YYYY-MM-DD hh') === moment(deviceDateTime).format('dddd YYYY-MM-DD hh'))
+			{
+				timeDateDifferenceExists = false;
+			}
+			
+			var poiDate = moment(poiDateTime).format('dddd YYYY-MM-DD');
+			var poiTime = moment(poiDateTime).format('hh:mm a');
+			var poiTimezoneAbbrv = moment(poiDateTime).tz(poiTimeDataObject.timezoneId).format('z');
+			
+			var poiSunriseTime = moment(poiTimeDataObject.sunrise).format('hh:mm a');
+			var poiSunsetTime = moment(poiTimeDataObject.sunset).format('hh:mm a');
+			
+			var deviceDate = moment(deviceDateTime).format('dddd YYYY-MM-DD');
+			var deviceTime = moment(deviceDateTime).format('hh:mm a');
+			var deviceTimezoneAbbrv = '';
+			if (devicePositionKnown)
+			{
+				deviceTimezoneAbbrv	= moment(deviceDateTime).tz(deviceTimeDataObject.timezoneId).format('z');	
+			}
+			
+			timeDataResult = ''
+				+ '<div class="markerQuickFact">'
+					+ '<div class="markerQuickFactLabel">Sunrise<br/>Sunset</div>'
+					+ '<div class="markerQuickFactData"><div class="weatherSun">' + poiSunriseTime  + ' ' + poiTimezoneAbbrv + '<br/>' + poiSunsetTime + ' ' + poiTimezoneAbbrv + '</div></div>'
+				+ '</div>'
+				+ '<div class="markerQuickFact">'
+					+ '<div class="markerQuickFactLabel">POI\'s Time*</div>'
+					+ '<div class="markerQuickFactData"><div class="weatherSun">' + poiTime + ' ' + poiTimezoneAbbrv + '<br/>on ' + poiDate + '</div></div>'
+				+ '</div>';
+				
+			if (timeDateDifferenceExists)
+			{
+				var timeDateDifference = moment(deviceDateTime).from(poiDateTime).toString();
+				if (timeDateDifference.includes('in '))
+				{
+					timeDateDifference = timeDateDifference.replace('in ', '')
+					timeDateDifference += ' ahead of POI';
+				}
+				else if (timeDateDifference.includes(' ago'))
+				{
+					timeDateDifference = timeDateDifference.replace(' ago', '')
+					timeDateDifference += ' behind POI';
+				}
+				
+				timeDataResult += ''
+					+ '<div class="markerQuickFact">'
+						+ '<div class="markerQuickFactLabel">Device\'s Time*</div>'
+						+ '<div class="markerQuickFactData"><div class="weatherSun">' + deviceTime + ' ' + deviceTimezoneAbbrv + '<br/>which is ' + timeDateDifference + '<br/>on ' + deviceDate + '</div></div>'
+					+ '</div>'
+			}
+			else
+			{
+				timeDataResult += ''
+					+ '<div class="markerQuickFact">'
+						+ '<div class="markerQuickFactLabel">Device\'s Time*</div>'
+						+ '<div class="markerQuickFactData"><div class="weatherSun">Same as POI.</div></div>'
+					+ '</div>'
+			}
+		}
+			
+		return timeDataResult;
+	}
+	catch (e)
+	{
+		handleError('Get Time Data', e);
+		timeDataResult = ''
+			+ '<div class="markerQuickFact">'
+				+ '<div class="markerQuickFactLabel">Times</div>'
+				+ '<div class="markerQuickFactData"><div class="weatherSun">ERROR: Unable to process time data: ' + e + '</div></div>'
+			+ '</div>';
+		return timeDataResult;
 	}
 }
 
@@ -340,11 +461,11 @@ function initMap()
 			}
 		);
 		
-		getMarkersCategoryDataFromFile();
-		getMarkersDataFromFile();
+		getJsonData('markersCategory', markersCategoryDataSource);
+		getJsonData('markers', markerDataSource);
 		addCustomControlsTo(map);
+		getJsonData('quotes', quotesDataSource);
 		addMarkersTo(map);
-		getQuotes();
 		//watchLocation(map); -- control is not available until page fully loads, so defer to user click to start the watch
 	}
 	catch (e)
@@ -472,7 +593,7 @@ function addMarkersTo(map)
 					addThisMarker.addListener
 					('click', function()
 						{ 
-							displayInfoPanelFor(thisMarker, 'cbsPoi', thisMarker.latitude, thisMarker.longitude);
+							displayInfoPanelFor(thisMarker, 'cbsPoi', thisMarker.latitude, thisMarker.longitude, '');
 						}
 					);
 					markersArray.push(addThisMarker);				
@@ -487,6 +608,7 @@ function addMarkersTo(map)
 			{ 
 				  averageCenter: true
 				, imagePath: 'images/icons/clusters/m' 
+				, maxZoom: 12
 			}
 		);
 		markerClustering.setIgnoreHidden(true);
@@ -524,7 +646,7 @@ function addMarkersTo(map)
 	}
 }
 
-function displayInfoPanelFor(thisMarker, thisMarkerType, thisMarkerLatitude, thisMarkerLongitude)
+function displayInfoPanelFor(thisMarker, thisMarkerType, thisMarkerLatitude, thisMarkerLongitude, extraInfo)
 {	
 	try
 	{	
@@ -532,196 +654,243 @@ function displayInfoPanelFor(thisMarker, thisMarkerType, thisMarkerLatitude, thi
 		{
 			console.warn('Processing marker for display.');
 		}
-		
-		// TODO: Ideally, we'll want to pull the ELEVATION data for every marker data ONE TIME
-		// via another process (i.o.w. not every time we display the marker) and write it
-		// to the file or database to store with the marker data, but Google Maps API terms
-		// explicitly disallows saving of elevation data, so until/unless another source is found ...
-		
-		var elevator = new google.maps.ElevationService;
-		var location = {lat: thisMarkerLatitude, lng: thisMarkerLongitude};
-		var locationElevation = null;							
-		elevator.getElevationForLocations
-		(
-			{
-				'locations': [location]
-			}, function(results, status) 
-				{
-					if (status === 'OK') 
-					{
-						if (results[0]) 
-						{
-							locationElevation =  Math.ceil(results[0].elevation *  3.28084).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' feet (' + Math.ceil(results[0].elevation).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' meters)';
-						} 
-						else 
-						{
-							locationElevation = 'No results found';
-						}
-					}
-					else
-					{
-						locationElevation = 'Elevation service failed due to: ' + status;
-					}
-					
-					if(isATest)
-					{
-						console.log('TESTING: Marker Elevation: ' + locationElevation);
-					}
-					
-					// ------------------------------------------------------------------
-					var thisMarkerCategory = '';					
-					var thisMarkerCategoryData = '';
-					var thisMarkerrCategoryIconImage = '';
-					var markerShowWebsite = '';
-					var markerGooglePlaceId = '';
-					var markerStartNavigation = '';
-					var markerNotesForFurkot = '';
-					var markerUrlForFurkot = '';
-					var markerStopNameForFurkot = '';
-					var furkotLinkText = '';
-					var furkotLinkIcons = '';
-					var markerVisitedIcon = '';
-					var thisMarkerTags = '';
-					var thisMarkerCbsNotes = '';
-					var weatherData = '';
-					
-					if(thisMarkerType === 'cbsPoi')
-					{
-						thisMarkerTitle = thisMarker.cbsTitle;
-						thisMarkerCategory = thisMarker.cbsMainCategory;
-						thisMarkerCategoryData = getMarkerCategoryDataFromArray(thisMarkerCategory);
-						thisMarkerrCategoryIconImage = '<img src="' + thisMarkerCategoryData.mapMarkerIcon + '" alt="Marker Icon"/>';
-						
-						markerShowWebsite = thisMarker.cbsReferenceUrl 
-							? '<a href="' + thisMarker.cbsReferenceUrl + '" title="Website" target="_blank"><i class="fas fa-globe fa-2x"></i></a>' 
-							: '<i class="fas fa-globe fa-2x disabled"></i>';
-							
-						markerGooglePlaceId = thisMarker.googlePlaceId
-							? '&destination_place_id=' + thisMarker.googlePlaceId
-							: '';
-						
-						//https://developers.google.com/maps/documentation/urls/guide
-						markerStartNavigation = '<a href="https://www.google.com/maps/dir/?api=1'
-							+ '&destination=' + encodeURIComponent(thisMarker.latitude + ',' + thisMarker.longitude) 
-							+ markerGooglePlaceId
-							+ '&travelmode=driving'
-							+ '&dir_action=navigate'
-							+ '" target="googleMaps" title="Navigate"><i class="far fa-compass fa-2x"></i></a>';
-						
-						markerNotesForFurkot = thisMarker.cbsNotes
-							? '&stop[notes]=' + encodeURIComponent(thisMarker.cbsNotes)
-							: '';
-						
-						markerUrlForFurkot = thisMarker.cbsReferenceUrl 
-							? '&stop[url]=' + encodeURIComponent(thisMarker.cbsReferenceUrl) 
-							: '';
-						
-						markerStopNameForFurkot = thisMarkerCategoryData.furkotPinName
-							? '&stop[pin]=' + thisMarkerCategoryData.furkotPinName
-							: '';
-						
-						markerVisitedIcon = '<i class="far fa-question-circle fa-2x" title="We still need to log whether or not we have visited this entry."></i>';
-						switch(thisMarker.cbsVisited)
-						{
-							case "Y":
-								markerVisitedIcon = '<i class="far fa-eye fa-2x visited" title="We HAVE seen this with our own eyes!"></i>';
-							break;
-							
-							case "N":
-								markerVisitedIcon = '<i class="far fa-eye-slash fa-2x" title="We have NOT yet seen this with our own eyes."></i>';
-							break;
-						}
-											
-						//https://help.furkot.com/widgets/plan-with-furkot-buttons.html	
-						furkotLinkText = 
-							'https://trips.furkot.com/trip?stop[name]=' 
-									+ encodeURIComponent(thisMarker.cbsTitle)
-								+ '&stop[coordinates][lat]=' 
-									+ thisMarker.latitude 
-								+ '&stop[coordinates][lon]=' 
-									+ thisMarker.longitude 
-								+ markerNotesForFurkot
-								+ markerUrlForFurkot
-								+ markerStopNameForFurkot
-								+ '&uid=6VjRjO';
-						furkotLinkIcons = '<i class="ff-icon-furkot"></i><i class="ff-icon-' + thisMarkerCategoryData.furkotPinName + '"></i>';
-						
-						thisMarkerTags = thisMarker.cbsTags.toString().replace(/,/g, ', ');
-						
-						thisMarkerCbsNotes = thisMarker.cbsNotes;
-						if (thisMarkerCbsNotes === 'useQuotes')
-						{
-							if (thisMarkerCategory === 'Friend(s)')
-							{
-								thisMarkerCbsNotes = quotesForFriends;
-							}
-							else if (thisMarkerCategory === 'Family')
-							{
-								thisMarkerCbsNotes = quotesForFamily;
-							}
-						}
-						
-						thisMarkerLatitude = thisMarker.latitude;
-						thisMarkerLongitude = thisMarker.longitude;
-					}
-					else if (thisMarkerType === 'gMap')
-					{
-						thisMarkerTitle = 'Current Location';
-						thisMarkerCategory = 'You Are Here';
-						thisMarkerrCategoryIconImage = document.getElementById('svgIcon').innerHTML;
-						thisMarkerTags = 'Approximately';
-					}
 
-					weatherData = getWeatherDataFromApi(thisMarkerLatitude, thisMarkerLongitude);
-					
-					var contentString = 
-						  '<div class="markerShelfIcons">'
-							+ '<div class="markerShelfIcon" alt="CBS Visited?">' + markerVisitedIcon + '</div>' 
-							+ '<div class="markerShelfIcon" alt="Website">' + markerShowWebsite + '</div>' 
-							+ '<div class="markerShelfIcon" alt="Navigate">' + markerStartNavigation + '</div>'
-						+ '</div>'
-						+ '<div class="markerQuickFacts">'
-							+ '<div class="markerQuickFact">'
-								+ '<div class="markerQuickFactLabel">Category</div>'
-								+ '<div class="markerQuickFactData">' + thisMarkerCategory + '</div>'
-							+ '</div>'
-							+ '<div class="markerQuickFact">'
-								+ '<div class="markerQuickFactLabel">Tags</div>'
-								+ '<div class="markerQuickFactData">' + thisMarkerTags + '</div>'
-							+ '</div>'
-							+ '<div class="markerQuickFact">'
-								+ '<div class="markerQuickFactLabel">Elevation</div>'
-								+ '<div class="markerQuickFactData">' + locationElevation + '</div>'
-							+ '</div>'
-							+ '<div class="markerQuickFact">'
-								+ '<div class="markerQuickFactLabel">Coordinates</div>'
-								+ '<div class="markerQuickFactData">' + thisMarkerLatitude + ', ' + thisMarkerLongitude + '</div>'
-							+ '</div>'
-							+ weatherData
-						+ '</div>'
-						+ '<div class="markerNotes">' 
-							+ thisMarkerCbsNotes 
-						+ '</div>';
-					
-					if(isATest)
+		if (thisMarkerType != 'cbsPoi' || (thisMarker.cbsTitle
+			&& thisMarker.cbsMainCategory 
+			&& thisMarker.latitude
+			&& thisMarker.longitude))
+		{
+			// TODO: Ideally, we'll want to pull the ELEVATION data for every marker data ONE TIME
+			// via another process (i.o.w. not every time we display the marker) and write it
+			// to the file or database to store with the marker data, but Google Maps API terms
+			// explicitly disallows saving of elevation data, so until/unless another source is found ...
+			
+			var elevator = new google.maps.ElevationService;
+			var location = {lat: thisMarkerLatitude, lng: thisMarkerLongitude};
+			var locationElevation = null;							
+			elevator.getElevationForLocations
+			(
+				{
+					'locations': [location]
+				}, function(results, status) 
 					{
-						console.log('TESTING: Marker Content: ' + contentString);
-					}		
-					
-					markerInfoContainer.style.display = 'table';					
-					
-					markerIconImage.innerHTML = thisMarkerrCategoryIconImage;
-					markerTitleText.innerHTML = thisMarkerTitle;
-					markerData.innerHTML = contentString;
-					
-					markerPlanWithFurkotLink.innerHTML = furkotLinkIcons;
-					markerPlanWithFurkotLink.href = furkotLinkText;
-					
-					panels.style.gridTemplateColumns = '2fr 1fr';
-					sidePanel.style.display = 'block';
-					// ------------------------------------------------------------------
-				}
-		);
+						if (status === 'OK') 
+						{
+							if (results[0]) 
+							{
+								locationElevation =  Math.ceil(results[0].elevation *  3.28084).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' feet (' + Math.ceil(results[0].elevation).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' meters)';
+							} 
+							else 
+							{
+								locationElevation = 'No results found';
+							}
+						}
+						else
+						{
+							locationElevation = 'Elevation service failed due to: ' + status;
+						}
+						
+						if(isATest)
+						{
+							console.log('TESTING: Marker Elevation: ' + locationElevation);
+						}
+						
+						// ------------------------------------------------------------------
+						var thisMarkerCategory;					
+						var thisMarkerCategoryData;
+						var thisMarkerCategoryIconImage;
+						var markerShowWebsite;
+						var markerStartNavigation;
+						var markerNotesForFurkot;
+						var markerUrlForFurkot;
+						var markerStopNameForFurkot;
+						var furkotLinkText;
+						var furkotLinkIcons;
+						var markerVisitedIcon;
+						var thisMarkerTags;
+						var thisMarkerCbsNotes;
+						var weatherDataDisplay;
+						var timeDataDisplay;
+						
+						if(thisMarkerType === 'cbsPoi')
+						{
+							thisMarkerTitle = thisMarker.cbsTitle;
+							
+							thisMarkerCategory = thisMarker.cbsMainCategory;
+							thisMarkerCategoryData = getMarkerCategoryDataFromArray(thisMarkerCategory);
+							thisMarkerCategoryIconImage = '<img src="' + thisMarkerCategoryData.mapMarkerIcon + '" alt="Marker Icon"/>';
+							
+							markerShowWebsite = thisMarker.cbsReferenceUrl 
+								? '<a href="' + thisMarker.cbsReferenceUrl + '" title="Website" target="_blank"><i class="fas fa-globe fa-2x"></i></a>' 
+								: '<i class="fas fa-globe fa-2x disabled"></i>';
+							
+							//https://developers.google.com/maps/documentation/urls/guide
+							markerStartNavigation = '<a href="https://www.google.com/maps/dir/?api=1'
+								+ '&destination=' + encodeURIComponent(thisMarker.latitude + ',' + thisMarker.longitude) 
+								+ '&travelmode=driving'
+								+ '&dir_action=navigate'
+								+ '" target="googleMaps" title="Navigate"><i class="far fa-compass fa-2x"></i></a>';
+							
+							markerNotesForFurkot = '';
+							if (thisMarker.cbsNotes)
+							{
+								markerNotesForFurkot = '&stop[notes]=' + encodeURIComponent(thisMarker.cbsNotes);
+							}	
+							
+							markerUrlForFurkot = '';
+							if (thisMarker.cbsReferenceUrl)
+							{
+								markerUrlForFurkot = '&stop[url]=' + encodeURIComponent(thisMarker.cbsReferenceUrl);
+							}
+							
+							markerStopNameForFurkot = '';
+							if (thisMarkerCategoryData.furkotPinName)
+							{
+								markerStopNameForFurkot = '&stop[pin]=' + thisMarkerCategoryData.furkotPinName;
+							}
+							markerVisitedIcon = '<i class="far fa-question-circle fa-2x" title="Unknown"></i>';
+							if (thisMarker.cbsVisited)
+							{
+								switch(thisMarker.cbsVisited)
+								{
+									case "Y":
+										markerVisitedIcon = '<i class="far fa-eye fa-2x visited" title="We HAVE seen this with our own eyes!"></i>';
+									break;
+									
+									case "N":
+										markerVisitedIcon = '<i class="far fa-eye-slash fa-2x" title="We have NOT yet seen this with our own eyes."></i>';
+									break;
+								}
+							}
+												
+							//https://help.furkot.com/widgets/plan-with-furkot-buttons.html	
+							furkotLinkText = 
+								'https://trips.furkot.com/trip?stop[name]=' 
+										+ encodeURIComponent(thisMarker.cbsTitle)
+									+ '&stop[coordinates][lat]=' 
+										+ thisMarker.latitude 
+									+ '&stop[coordinates][lon]=' 
+										+ thisMarker.longitude 
+									+ markerNotesForFurkot
+									+ markerUrlForFurkot
+									+ markerStopNameForFurkot
+									+ '&uid=6VjRjO';
+							furkotLinkIcons = '<i class="ff-icon-furkot"></i><i class="ff-icon-' + thisMarkerCategoryData.furkotPinName + '"></i>';
+							
+							thisMarkerTags = '';
+							if(thisMarkerTags)
+							{
+								thisMarkerTags = thisMarker.cbsTags.toString().replace(/,/g, ', ');
+							}
+							
+							if (thisMarker.cbsNotes)
+							{
+								if (thisMarkerCbsNotes === 'useQuotes')
+								{
+									if (thisMarkerCategory === 'Friend(s)')
+									{
+										thisMarkerCbsNotes = quotesForFriends;
+									}
+									else if (thisMarkerCategory === 'Family')
+									{
+										thisMarkerCbsNotes = quotesForFamily;
+									}
+								}
+								else
+								{
+									thisMarkerCbsNotes = thisMarker.cbsNotes;
+								}
+							}
+							else
+							{
+								thisMarkerCbsNotes = '';
+							}
+							
+							thisMarkerLatitude = thisMarker.latitude;
+							thisMarkerLongitude = thisMarker.longitude;
+						}
+						
+						if (markerTitleText.innerHTML != currentLocationTitleString)
+						{
+							weatherDataDisplay = getWeatherData(thisMarkerLatitude, thisMarkerLongitude);
+							timeDataDisplay = getTimeData(thisMarkerLatitude, thisMarkerLongitude);
+						}
+						
+						var contentString = 
+							  '<div class="markerShelfIcons">'
+								+ '<div class="markerShelfIcon" alt="CBS Visited?">' + markerVisitedIcon + '</div>' 
+								+ '<div class="markerShelfIcon" alt="Website">' + markerShowWebsite + '</div>' 
+								+ '<div class="markerShelfIcon" alt="Navigate">' + markerStartNavigation + '</div>'
+							+ '</div>'
+							+ '<div class="markerQuickFacts">'
+								+ '<div class="markerQuickFact">'
+									+ '<div class="markerQuickFactLabel">Category</div>'
+									+ '<div class="markerQuickFactData">' + thisMarkerCategory + '</div>'
+								+ '</div>'
+								+ '<div class="markerQuickFact">'
+									+ '<div class="markerQuickFactLabel">Tags</div>'
+									+ '<div class="markerQuickFactData">' + thisMarkerTags + '</div>'
+								+ '</div>'
+								+ '<div class="markerQuickFact">'
+									+ '<div class="markerQuickFactLabel">Elevation</div>'
+									+ '<div class="markerQuickFactData">' + locationElevation + '</div>'
+								+ '</div>'
+								+ '<div class="markerQuickFact">'
+									+ '<div class="markerQuickFactLabel">Coordinates</div>'
+									+ '<div class="markerQuickFactData">' + thisMarkerLatitude + ', ' + thisMarkerLongitude + '</div>'
+								+ '</div>'
+								+ weatherDataDisplay
+								+ timeDataDisplay
+								+ '<div class="markerQuickFact">'
+									+ '<div class="markerQuickFactLabel"><div class="weatherSun">Note: </div></div>'
+									+ '<div class="markerQuickFactData"><div class="weatherSun">* <i>When marker info loaded.</i></div></div>'
+								+ '</div>'
+							+ '</div>'
+							+ '<div class="markerNotes">' 
+								+ thisMarkerCbsNotes 
+							+ '</div>';
+							
+						if (thisMarkerType === 'gMap')
+						{
+							thisMarkerTitle = currentLocationTitleString;
+							thisMarkerCategory = 'You Are Here';
+							thisMarkerCategoryIconImage = document.getElementById('svgIcon').innerHTML;
+							thisMarkerTags = 'Approximately';
+							
+							thisMarkerCbsNotes = extraInfo;
+							markerVisitedIcon = '';
+							markerShowWebsite = '';
+							markerStartNavigation = '';					
+							furkotLinkIcons = '';
+						}
+						
+						if(isATest)
+						{
+							console.log('TESTING: Marker Content: ' + contentString);
+						}		
+						
+						markerInfoContainer.style.display = 'table';					
+						
+						markerIconImage.innerHTML = thisMarkerCategoryIconImage;
+						markerTitleText.innerHTML = thisMarkerTitle;
+						markerData.innerHTML = contentString;
+						
+						markerPlanWithFurkotLink.innerHTML = furkotLinkIcons;
+						markerPlanWithFurkotLink.href = furkotLinkText;
+						
+						panels.style.gridTemplateColumns = '2fr 1fr';
+						sidePanel.style.display = 'block';
+						// ------------------------------------------------------------------
+					}
+			);
+		}
+		else
+		{
+			if(isATest)
+			{
+				console.log('TESTING: Marker Does Not Meet Requirements, Skipping It');
+			}
+		}
 	}
 	catch (e)
 	{
@@ -959,8 +1128,8 @@ function watchLocation(map)
 					// callback to handle SUCCESS
 					try
 					{
-						var currentLocationLatitude = position.coords.latitude;
-						var currentLocationLongitude = position.coords.longitude;
+						currentLocationLatitude = position.coords.latitude;
+						currentLocationLongitude = position.coords.longitude;
 						var pos = 
 						{
 							lat: currentLocationLatitude,
@@ -988,7 +1157,7 @@ function watchLocation(map)
 							currentLocationMarker.addListener
 							('click', function()
 								{ 
-									displayInfoPanelFor(currentLocationMarker, 'gMap', currentLocationLatitude, currentLocationLongitude);
+									displayInfoPanelFor(currentLocationMarker, 'gMap', currentLocationLatitude, currentLocationLongitude, '');
 								}
 							);
 						}
@@ -1005,42 +1174,63 @@ function watchLocation(map)
 						}
 						
 						var accuracyInFeet = Math.ceil(position.coords.accuracy *  3.28084).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' feet';
-						var accuracyInMeters = ' (' + Math.ceil(position.coords.accuracy).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' meters)';	
+						var accuracyInMeters = ' (' + Math.ceil(position.coords.accuracy).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' meters)';
+
+						var extraInfo = '<span style="font-size: smaller;">Accuracy ~ ' + accuracyInFeet + accuracyInMeters + '. ' + currentTimestamp() + '</span>';
 
 						if (document.getElementById('currentLocationInfo'))
 						{							
 							document.getElementById('currentLocationInfoContainer').title = 'Click to pan and zoom to current location.';
 							
 							var controlUI = document.getElementById('currentLocationInfo');
-							controlUI.innerHTML = 'Click to pan/zoom to: <b>' + position.coords.latitude + ', ' + position.coords.longitude + '</b><br/><span style="font-size: smaller;">Accuracy ~ ' + accuracyInFeet + accuracyInMeters + '. ' + currentTimestamp() + '</span>';
+							controlUI.innerHTML = 'Click to pan/zoom to: <b>' + position.coords.latitude + ', ' + position.coords.longitude + '</b><br/>' + extraInfo;
 						}
+						
+						if (markerTitleText.innerHTML === currentLocationTitleString)
+						{
+							displayInfoPanelFor(currentLocationMarker, 'gMap', position.coords.latitude, position.coords.longitude, extraInfo);								
+						}
+						
+						devicePositionKnown = true;	
 					}
 					catch(e)
 					{
+						devicePositionKnown = false;	
 						handleError('Watch Location', e);
 					}
 				}
-				, function(browserHasGeolocation) 
+				, function(error) 
 				{	
 					// callback to handle ERROR
 					try
 					{
-						var locationMessage = null;
+						// if timeout is much shorter than 20000, FIREFOX location watch will BOTH succeed and fail AND THEN also ignore the elementById in favor of the toast for writing the message for the user; annoying!
 						
-						if(browserHasGeolocation)
+						devicePositionKnown = false;	
+						
+						var locationMessage = 'The Geolocation service failed: (' + error.code + ' - ' + error.message + '.) '
+						
+						switch (error.code)
 						{
-							locationMessage = 'The Geolocation service failed. Did you allow use of location in your browser?' + currentTimestamp();
+							case 1:
+							locationMessage += ' Geolocation cannot function unless you allow use of location in your browser.';
+							break;
+							
+							case 3:
+							locationMessage += ' It will continue to try at intervals.';
+							break;							
 						}
-						else
-						{
-							locationMessage = 'Your browser doesn\'t support geolocation.' + currentTimestamp();
-						}
+						
+						locationMessage += currentTimestamp();
 						
 						console.error('GEOLOCATION: ' + locationMessage);
 							
 						if (document.getElementById('CurrentLocationInfo'))
-						{
-							document.getElementById('CurrentLocationInfo').innerHTML = 	locationMessage;
+						{							
+							document.getElementById('currentLocationInfoContainer').title = 'Unable to Obtain Location';
+							
+							var controlUI = document.getElementById('currentLocationInfo');
+							controlUI.innerHTML = locationMessage;
 						}
 						else
 						{
@@ -1049,19 +1239,37 @@ function watchLocation(map)
 					}
 					catch(e)
 					{
+						devicePositionKnown = false;	
 						handleError('Watch Location', e);
 					}
 				}
-				, {maximumAge:10000, timeout:4000, enableHighAccuracy: true}
+				, {maximumAge:10000, timeout:200000, enableHighAccuracy: true}
 			);
 		}
 		else
-		{
-			handleLocationError(false);
+		{ 
+			devicePositionKnown = false;	
+			
+			var locationMessage = 'Your browser doesn\'t support geolocation.' + currentTimestamp();
+						
+			console.error('GEOLOCATION: ' + locationMessage);
+			
+			if (document.getElementById('CurrentLocationInfo'))
+			{						
+				document.getElementById('currentLocationInfoContainer').title = 'Geolocation Not Supported';
+							
+				var controlUI = document.getElementById('currentLocationInfo');
+				controlUI.innerHTML = locationMessage;
+			}
+			else
+			{
+				iziToast.warning({title: 'Location', message: locationMessage,});
+			}
 		}
 	}
 	catch(e)
 	{
+		devicePositionKnown = false;	
 		handleError('Watch Location', e);
 	}
 }

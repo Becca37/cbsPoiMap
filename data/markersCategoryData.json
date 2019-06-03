@@ -14,4 +14,9 @@
 		, "mapMarkerIcon": "/map/images/icons/mic/group-2.png"
 		, "furkotPinName": "users"
 	}
+	, {
+		  "cbsMainCategory": "Friend(s)"
+		, "mapMarkerIcon": "/map/images/icons/mic/group-22.png"
+		, "furkotPinName": "users"
+	}
 ]

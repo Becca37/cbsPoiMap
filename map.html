@@ -10,6 +10,8 @@
 		<link href="css/map.css" rel="stylesheet">		
 
 		<script src="https://cdn.furkot.com/scripts/furkot-trip-planner.min.js" defer type="text/javascript"></script>
+		<script src="src/moment.js" type="text/JavaScript"></script>
+		<script src="src/moment-timezone-with-data-1970-2030.js" type="text/JavaScript"></script>
 		<script src="src/markerclusterer.js" type="text/javascript"></script>
 		<script src="src/iziToast.js" type="text/javascript"></script>
 		<script src="src/map.js" type="text/javascript"></script>
@@ -76,7 +78,7 @@
 								<ul>
 									<li>Display the GPS coordinates and accuracy of your location in the locator control area.</li>
 									<li>Start watching your movements (less stalker-y than it sounds: location data is not stored).</li>
-									<li>Display your approximate current location on the map with a pulsating blue circle:<br/><div id="svgIcon"><svg width="30" height="30" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg">	<circle cx="20" cy="20" fill="none" r="11.8365" stroke="#1d86b1" stroke-width="2">		<animate attributeName="r" from="8" to="20" dur="2.50s" begin="0s" repeatCount="indefinite"></animate>		<animate attributeName="opacity" from="1" to="0" dur="2.50s" begin="0s" repeatCount="indefinite"></animate>	</circle>	<circle cx="20" cy="20" fill="#1d86b1" fill-opacity=".5" r="10"></circle></svg></div></li>
+									<li>Display your approximate current location on the map with a pulsating blue circle:<br/><div id="svgIcon"><svg width="30" height="30" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg">	<circle cx="20" cy="20" fill="none" r="11.8365" stroke="#1d86b1" stroke-width="2">		<animate attributeName="r" from="8" to="20" dur=".50s" begin="0s" repeatCount="indefinite"></animate>		<animate attributeName="opacity" from="1" to="0" dur=".50s" begin="0s" repeatCount="indefinite"></animate>	</circle>	<circle cx="20" cy="20" fill="#1d86b1" fill-opacity=".5" r="10"></circle></svg></div></li>
 								</ul>
 								<b>Once location tracking has been started</b> you can:
 									<ul>
