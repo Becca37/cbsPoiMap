@@ -896,10 +896,24 @@ function displayInfoPanelFor(thisMarker, thisMarkerType, thisMarkerLatitude, thi
 							thisMarkerLongitude = thisMarker.longitude;
 						}
 						
-						if (markerTitleText.innerHTML != currentLocationTitleString)
+						if (thisMarkerType === 'cbsPoi' || (thisMarkerType === 'gMap' && markerTitleText.innerHTML != currentLocationTitleString))
 						{
 							weatherDataDisplay = getWeatherData(thisMarkerLatitude, thisMarkerLongitude);
 							timeDataDisplay = getTimeData(thisMarkerLatitude, thisMarkerLongitude);
+						}
+							
+						if (thisMarkerType === 'gMap')
+						{
+							thisMarkerTitle = currentLocationTitleString;
+							thisMarkerCategory = 'You Are Here';
+							thisMarkerCategoryIconImage = document.getElementById('svgIcon').innerHTML;
+							thisMarkerTags = 'Approximately';
+							
+							thisMarkerCbsNotes = extraInfo;
+							markerVisitedIcon = '';
+							markerShowWebsite = '';
+							markerStartNavigation = '';					
+							furkotLinkIcons = '';
 						}
 						
 						var contentString = 
@@ -935,20 +949,6 @@ function displayInfoPanelFor(thisMarker, thisMarkerType, thisMarkerLatitude, thi
 							+ '<div class="markerNotes">' 
 								+ thisMarkerCbsNotes 
 							+ '</div>';
-							
-						if (thisMarkerType === 'gMap')
-						{
-							thisMarkerTitle = currentLocationTitleString;
-							thisMarkerCategory = 'You Are Here';
-							thisMarkerCategoryIconImage = document.getElementById('svgIcon').innerHTML;
-							thisMarkerTags = 'Approximately';
-							
-							thisMarkerCbsNotes = extraInfo;
-							markerVisitedIcon = '';
-							markerShowWebsite = '';
-							markerStartNavigation = '';					
-							furkotLinkIcons = '';
-						}
 						
 						if(isATest)
 						{
