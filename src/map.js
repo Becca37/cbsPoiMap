@@ -21,6 +21,7 @@ var map = null;
 var mapCenter = {lat: 39.219422, lng: -105.530727}; // Colorado
 
 var trafficLayer = null;
+var incidentsLayer = null;
 
 var currentLocationMarker = null;
 var currentLocationLatitude;
@@ -29,17 +30,20 @@ var currentLocationTitleString = 'Current Location';
 var watchCurrentLocationId = null;
 var devicePositionKnown = false;
 	
-var markerDataArray = [];					//holds the Chasing Blue Sky point of interest data
-var markersArray = []; 						//holds the CBS POIs as Google Maps Marker data after processing
+var markerDataArray = [];					//holds the Chasing Blue Sky POIs and Inciweb data
+var incidentDataObject;						//holds the Inciweb data, ready for adding to markerDataArray
 
-var markersDistinctCategoriesArray = [];	//holds the distinct categories found in the CBS POIs markers
+var markersArray = []; 						//holds the Google Maps Marker data after processing
+var markersDistinctCategoriesArray = [];	//holds the distinct categories found in the markers
 var markersCategoryDataArray = [];			//holds the data about categories (e.g. name, icon, and Furkot pin)
 var thisMarkerCategoryData = [];			//holds the category data for a given marker
 
 var quotesForFriends = '';					//holds the string for quotes about Friends to be used as CBS Notes
 var quotesForFamily = '';					//holds the string for quotes about Family to be used as CBS Notes
 
-var markerDataSource = 'data/markers.json';
+var poisDataSource = 'data/pois.json';
+var incidentsDataSource = 'https://inciweb.nwcg.gov/feeds/rss/incidents/';
+
 var markersCategoryDataSource = 'data/markersCategoryData.json';
 var markerClustering = null;
 
@@ -50,27 +54,31 @@ var weatherDataSource = 'https://api.openweathermap.org/data/2.5/weather?&appid=
 
 var poiTimeDataObject;
 var deviceTimeDataObject;
-//http://forum.geonames.org/gforum/posts/list/35422.page
 var timeDataSource = 'https://secure.geonames.org/timezoneJSON?username=ChasingBlueSky';
 
-function loadJSON(jsonDataUrl, callback, asyncPref) 
+var rssToJsonConverterUrl =  'https://api.rss2json.com/v1/api.json?api_key=wg0c3jzbgwcwf2eu7uwgm7bgguhkwqlpvzflsoxm&count=1000&rss_url=';
+
+function loadData(dataUrl, callback, dataType, asyncPref) 
 {  
 	try
 	{  
 		//https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
 		//https://codepen.io/KryptoniteDove/post/load-json-file-locally-using-pure-javascript
 		var xobj = new XMLHttpRequest();
-		xobj.overrideMimeType("application/json");
-		xobj.open('GET', jsonDataUrl, asyncPref);
+		if (dataType === 'json')
+		{
+			xobj.overrideMimeType("application/json");
+		}
+		xobj.open('GET', dataUrl, asyncPref);
 		xobj.onreadystatechange = function () 
 		{
-			if (xobj.readyState == 4 && xobj.status == "200") 
+			if (xobj.readyState == 4)
 			{
 				callback(xobj.responseText);
 			}
 			else
 			{
-				console.log('JSON File Request State: ' + xobj.readyState + ' and Status: ' + xobj.statusText + ';' + currentTimestamp());
+				console.log('Data Request State: ' + xobj.readyState + ' and Status: ' + xobj.statusText + ';' + currentTimestamp());
 			}
 		};
 		xobj.send(null);  
@@ -81,35 +89,51 @@ function loadJSON(jsonDataUrl, callback, asyncPref)
 	}
 }
 
-function getJsonData(dataType, jsonDataSource)
+function getData(dataCaller, dataSource, dataType)
 {
 	try
 	{    
-		var returnJsonData;
+		var returnData;
 		
-		loadJSON
-		(jsonDataSource, function(response) 
+		loadData
+		(dataSource, function(response) 
 			{
-				returnJsonData = JSON.parse(response);
+				if (dataType === 'json')
+				{
+					returnData = JSON.parse(response);
+				}
+				else
+				{
+					returnData = response;
+				}
 			}
-			, false
+			, dataType, false
 		);	
 		
-		if (dataType === 'markers')
+		if (dataCaller === 'pois')
 		{			
-			markerDataArray = returnJsonData;
+			markerDataArray = returnData;
 			if(isATest)
 			{
-				console.warn('TESTING: Marker Data Array Length: ' + markerDataArray.length);
-				console.log('TESTING: Marker #1: ' + markerDataArray[0].cbsTitle);
-				console.log('TESTING: Marker #1 ID: ' + markerDataArray[0].cbsId);
-				console.log('TESTING: Marker #1 Category: ' + markerDataArray[0].cbsMainCategory);
+				console.warn('TESTING: CBS POI Marker Data Array Length: ' + markerDataArray.length);
+				console.log('TESTING: CBS POI Marker #1: ' + markerDataArray[0].cbsTitle);
+				console.log('TESTING: CBS POI Marker #1 ID: ' + markerDataArray[0].cbsId);
+				console.log('TESTING: CBS POI Marker #1 Category: ' + markerDataArray[0].cbsMainCategory);
 			}
-			getDistinctCategories();
-		}		
-		else if (dataType === 'markersCategory')
+			//getIncidentsData();
+		}	
+		else if (dataCaller === 'incidents')
 		{
-			markersCategoryDataArray = returnJsonData.sort(compareValues('cbsMainCategory', 'asc'));	
+			incidentDataObject = returnData;
+			if(isATest)
+			{
+				console.warn('TESTING: Incident Data');
+				console.log(incidentDataObject);
+			}
+		}
+		else if (dataCaller === 'markersCategory')
+		{
+			markersCategoryDataArray = returnData.sort(compareValues('cbsMainCategory', 'asc'));	
 			if(isATest)
 			{
 				console.warn('TESTING: Marker Category Data Array Length: ' + markersCategoryDataArray.length);
@@ -118,25 +142,25 @@ function getJsonData(dataType, jsonDataSource)
 				console.log('TESTING: Category #1 Furkot Pin: ' + markersCategoryDataArray[0].furkotPinName);
 			}
 		}
-		else if (dataType === 'weather')
+		else if (dataCaller === 'weather')
 		{
-			weatherDataOject = returnJsonData;	
+			weatherDataOject = returnData;	
 			if(isATest)
 			{
 				console.warn('TESTING: Weather Data');
 				console.log(weatherDataOject);
 			}
 		}
-		else if (dataType === 'times')
+		else if (dataCaller === 'times')
 		{
-			timeDataObject = returnJsonData;	
+			timeDataObject = returnData;	
 			if(isATest)
 			{
 				console.warn('TESTING: Time Data');
 				console.log(timeDataObject);
 			}
 		}
-		else if (dataType === 'quotes')
+		else if (dataCaller === 'quotes')
 		{	
 			var quotesArray = [];	
 		
@@ -166,7 +190,58 @@ function getJsonData(dataType, jsonDataSource)
 	}
 	catch (e)
 	{
-		handleError('Get JSON Data: ' + dataType, e);
+		handleError('Get Data', e);
+	}
+}
+
+function getIncidentsData()
+{
+	try
+	{
+		var dataSource = incidentsDataSource;
+		//rssToJsonConverterUrl + encodeURIComponent(incidentsDataSource);
+		//getData('incidents', dataSource, 'xml');		
+		
+		fetch(dataSource).then
+		((res) => 
+			{
+				res.text().then
+				((xmlTxt) => 
+					{
+						var domParser = new DOMParser()
+						let doc = domParser.parseFromString(xmlTxt, 'text/xml')
+						doc.querySelectorAll('item').forEach
+						((item) => 
+							{
+								let h1 = document.createElement('h1')
+								h1.textContent = item.querySelector('title').textContent
+								document.querySelector('output').appendChild(h1)
+							}
+						)
+					}
+				)
+			}
+		)
+		
+		
+		if (incidentDataObject.status === 'ok')
+		{
+			if (isATest)
+			{
+				console.log('TESTING: Incident Data Item Count: ' + incidentDataObject.items.length);
+			}
+			
+			for (var i = 0; i < markerDataArray.length; i++) 
+			{
+				// var incidentTitle = incidentDataObject.items[i].title;
+				// var incidentUrl = incidentDataObject.items[i].guid;
+				// var incidentLatitude = incidentDataObject.items[i].title;
+			}
+		}	
+	}
+	catch (e)
+	{
+		handleError('Get Data (' + dataCaller + ', ' + dataType + '): ', e);
 	}
 }
 
@@ -178,7 +253,7 @@ function getWeatherData(markerLatitude, markerLongitude)
 	{    
 		var weatherDataSourceUrl = weatherDataSource + '&lat=' + markerLatitude + '&lon=' + markerLongitude;
 		
-		getJsonData('weather', weatherDataSourceUrl);
+		getData('weather', weatherDataSourceUrl, 'json');
 		
 		weatherDataCurrent = '';		
 		weatherDataCurrentIcons = '';
@@ -261,12 +336,12 @@ function getTimeData(markerLatitude, markerLongitude)
 		var poiTimeDataSourceUrl = timeDataSource + '&lat=' + markerLatitude + '&lng=' + markerLongitude;
 		var deviceTimeDataSourceUrl = timeDataSource + '&lat=' + deviceLatitude + '&lng=' + deviceLongitude;
 		
-		getJsonData('times', poiTimeDataSourceUrl);	
+		getData('times', poiTimeDataSourceUrl, 'json');	
 		poiTimeDataObject = timeDataObject;
 		
 		if (devicePositionKnown)
 		{
-			getJsonData('times', deviceTimeDataSourceUrl);	
+			getData('times', deviceTimeDataSourceUrl, 'json');	
 			deviceTimeDataObject = timeDataObject;	
 			if ('status' in deviceTimeDataObject)//.status.message.includes('the hourly limit'))
 			{
@@ -461,11 +536,16 @@ function initMap()
 			}
 		);
 		
-		getJsonData('markersCategory', markersCategoryDataSource);
-		getJsonData('markers', markerDataSource);
+		getData('markersCategory', markersCategoryDataSource, 'json');
+		getData('pois', poisDataSource, 'json');
+		getDistinctCategories();
+		
 		addCustomControlsTo(map);
-		getJsonData('quotes', quotesDataSource);
+		
+		getData('quotes', quotesDataSource, 'json');
+		
 		addMarkersTo(map);
+		
 		//watchLocation(map); -- control is not available until page fully loads, so defer to user click to start the watch
 	}
 	catch (e)
@@ -509,6 +589,12 @@ function addCustomControlsTo(map)
 		var trafficControl = new TrafficControl(trafficControlDiv, map);	
 		trafficControlDiv.index = 1;
 		map.controls[google.maps.ControlPosition.TOP_CENTER].push(trafficControlDiv);
+
+		// Add custom control for INCIDENTS
+		// var incidentsControlDiv = document.createElement('div');
+		// var incidentsControl = new IncidentsControl(incidentsControlDiv, map);	
+		// incidentsControlDiv.index = 1;
+		// map.controls[google.maps.ControlPosition.TOP_CENTER].push(incidentsControlDiv);
 	}
 	catch (e)
 	{
@@ -1110,6 +1196,50 @@ function ClusteringControl(controlDiv, map)
 	catch (e)
 	{		
 		handleError('Clustering', e);
+	}
+}
+
+function IncidentsControl(controlDiv, map)
+{
+	try
+	{	
+		incidentsLayer = new google.maps.KmlLayer();	
+		
+		// Set CSS for the control border.
+		var controlUI = document.createElement('div');
+		controlUI.className = 'control-incidents controlInactive';
+		controlUI.id = 'ToggleIncidents';
+		controlUI.innerHTML = '<i class="fas fa-fire-alt"></i>&nbsp;Incidents';
+		controlUI.title = 'Click to toggle incidents overlay display.';
+		controlDiv.appendChild(controlUI);	
+
+		controlUI.addEventListener
+		('click', function() 
+			{	try
+				{	
+					if(typeof(incidentsLayer.getMap()) === 'undefined' || incidentsLayer.getMap() == null)
+					{
+						incidentsLayer = new google.maps.KmlLayer({url: incidentsDataSource});
+						incidentsLayer.setMap(map);
+						document.getElementById('ToggleIncidents').className = 'control-incidents controlInactive';
+					}
+					else
+					{
+						incidentsLayer.setMap(null);					
+						document.getElementById('ToggleIncidents').className = 'control-incidents controlInactive';
+						
+					}
+				}
+				catch (e)
+				{	
+					handleError('Incidents', e);
+				}
+			}
+		);
+	}
+	catch (e)
+	{		
+		handleError('Incidents', e);
 	}
 }
 

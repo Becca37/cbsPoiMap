@@ -20,6 +20,8 @@ HTML5, javascript (v5), CSS
 			<li><a href="https://help.furkot.com/widgets/plan-with-furkot-buttons.html">Furkot Trip Planner</a> (or view on <a href="https://github.com/furkot/trip-planner">GitHub</a>)</li>
 			<li><a href="https://openweathermap.org/">Open Weather Map</a></li>
 			<li><a href="https://inciweb.nwcg.gov/">Inciweb</a> Incident Information System (USA)</li>
+			<li><a href="http://www.geonames.org/">GeoNames</a> for Sunrise/Sunset and Time data based on location</li>
+			<li><a href="http://momentjs.com/">Moment</a> and <a href="http://momentjs.com/timezone/">Moment Timezone</a> for time data manipulation</li>
 		</ul>
 	</li>    
 	<li><b>Fonts/Icons</b>:
