@@ -19,4 +19,14 @@
 		, "mapMarkerIcon": "/map/images/icons/mic/group-22.png"
 		, "furkotPinName": "users"
 	}
+	, {
+		  "cbsMainCategory": "Dog Park"
+		, "mapMarkerIcon": "/map/images/icons/mic/dog-park.png"
+		, "furkotPinName": "pets"
+	}
+	, {
+		  "cbsMainCategory": "Rails"
+		, "mapMarkerIcon": "/map/images/icons/mic/train.png"
+		, "furkotPinName": "train"
+	}
 ]

@@ -521,8 +521,6 @@ function initMap()
 		(
 			document.getElementById('mapPanel'), 
 			{
-				center: mapCenter,
-				zoom: 8,
 				mapTypeId: 'terrain',
 				mapTypeControl: true,
 				mapTypeControlOptions: 
@@ -536,6 +534,18 @@ function initMap()
 			}
 		);
 		
+		google.maps.event.addDomListener(window,'load',initMarkers);
+	}
+	catch (e)
+	{
+		handleError('Map Initialization', e);
+	}	
+}
+
+function initMarkers()
+{
+	try
+	{		
 		getData('markersCategory', markersCategoryDataSource, 'json');
 		getData('pois', poisDataSource, 'json');
 		getDistinctCategories();
@@ -550,7 +560,7 @@ function initMap()
 	}
 	catch (e)
 	{
-		handleError('Map Initialization', e);
+		handleError('Marker Initialization', e);
 	}	
 }
 
@@ -660,21 +670,46 @@ function addMarkersTo(map)
 						{
 							lat: thisMarker.latitude,
 							lng: thisMarker.longitude
-						};	
+						};
+
+
+					var thisMarkerLabel = '<i class="far fa-question-circle" title="Unknown"></i>';	
+					var thisMarkerLabelClass = 'poiUnknown';
+					var thisMarkerLabelTitleAddOn = ' ; Visited? Unknown';
+					if (thisMarker.cbsVisited)
+					{
+						switch(thisMarker.cbsVisited)
+						{
+							case "Y":
+								thisMarkerLabel = '<i class="far fa-eye" title="Visited"></i>';
+								thisMarkerLabelClass = 'poiVisited';
+								thisMarkerLabelTitleAddOn = ' ; Visited? Yes';
+							break;
+							
+							case "N":
+								thisMarkerLabel = '<i class="far fa-eye-slash" title="Someday"></i>';
+								thisMarkerLabelClass = 'poiSomeday';
+								thisMarkerLabelTitleAddOn = ' ; Visited? Someday';
+							break;
+						}
+					}
 					
-					var addThisMarker = new google.maps.Marker
+					var addThisMarker = new MarkerWithLabel
 					(
 						{
-							position: thisMarkerPosition,
 							map: map,
-							title:  thisMarker.cbsTitle,
+							position: thisMarkerPosition,
+							title:  thisMarker.cbsTitle + thisMarkerLabelTitleAddOn,
 							icon: thisMarkerCategoryData.mapMarkerIcon,
 							cbsCategory: thisMarker.cbsMainCategory,
-							cbsId: thisMarker.cbsId
+							labelContent: thisMarkerLabel,
+							labelAnchor: new google.maps.Point(25, 50),
+							labelInBackground: true,
+							labelClass: thisMarkerLabelClass
 						}
 					);
 
-					bounds.extend(thisMarkerPosition);	
+					bounds.extend(thisMarkerPosition);
 					
 					addThisMarker.addListener
 					('click', function()
@@ -724,7 +759,7 @@ function addMarkersTo(map)
 				}
 			}
 		);
-		map.fitBounds(bounds);	
+		map.fitBounds(bounds);
 	}
 	catch(e)
 	{

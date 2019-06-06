@@ -1,742 +1,1358 @@
-[  
-   {  
-      "cbsTitle":"(high paved point)",
-      "cbsVisited":"N",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":43.478145,
-      "longitude":-95.705353,
-      "cbsNotes":"Two miles south of Bigelow, MN on IA 60",
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"(Highest paved road point in OK)",
-      "cbsVisited":"N",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":36.719534,
-      "longitude":-103.001980,
-      "cbsNotes":"State line west of Mexhoma",
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"(highest paved road point in ND)",
-      "cbsVisited":"N",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":46.281900,
-      "longitude":-103.876554,
-      "cbsNotes":"5 miles North West of Rhame, ND",
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"along Sandia Crest",
-      "cbsVisited":"N",
-      "cbsMainCategory": "Paved High Point",
-      "cbsTags":null,
-      "latitude":35.210471,
-      "longitude":-106.449401,
-      "cbsNotes":null,
-      "cbsReferenceUrl":"http://www.scenicdrivesusa.com/node/129"
-   },
-   {  
-      "cbsTitle":"Arizona Snow Bowl",
-      "cbsVisited":"N",
-      "cbsMainCategory": "Paved High Point",
-      "cbsTags":null,
-      "latitude":35.330953,
-      "longitude":-111.709690,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Bald Mountain Pass",
-      "cbsVisited":"N",
-      "cbsMainCategory": "Paved High Point",
-      "cbsTags":null,
-      "latitude":40.688657,
-      "longitude":-110.898856,
-      "cbsNotes":null,
-      "cbsReferenceUrl":"http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:1454591"
-   },
-   {  
-      "cbsTitle":"Bald Mountain Pass",
-      "cbsVisited":"N",
-      "cbsMainCategory": "Pass",
-      "cbsTags":null,
-      "latitude":40.688657,
-      "longitude":-110.898856,
-      "cbsNotes":null,
-      "cbsReferenceUrl":"http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:1454591"
-   },
-   {  
-      "cbsTitle":"Beartooth Hwy",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":45.004851,
-      "longitude":-109.410433,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Beartooth Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":44.9691119,
-      "longitude":-109.4715514,
-      "cbsNotes":null,
-      "cbsReferenceUrl":"http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:1585289"
-   },
-   {  
-      "cbsTitle":"Berthoud Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":39.797778,
-      "longitude":-105.776944,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Brasstown Bald",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":34.874498,
-      "longitude":-83.811447,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Cameron Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":40.520833,
-      "longitude":-105.8925,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Cheaha Mountain",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":33.486791,
-      "longitude":-85.809216,
-      "cbsNotes":"Talladega Scenic Drive (Skyway Motorway)",
-      "cbsReferenceUrl":"https://en.wikipedia.org/wiki/Alabama_State_Route_281"
-   },
-   {  
-      "cbsTitle":"Coal Bank Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":37.700556,
-      "longitude":-107.776944,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Collins Gap",
-      "cbsVisited":"N",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":35.556768,
-      "longitude":-83.496103,
-      "cbsNotes":"At the TN / NC state line, parking area is in NC",
-      "cbsReferenceUrl":"http://www.nps.gov/grsm/planyourvisit/clingmansdome.htm"
-   },
-   {  
-      "cbsTitle":"Cottonwood Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":38.827864,
-      "longitude":-106.409269,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Cumbres Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":37.020556,
-      "longitude":-106.45,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Ebright Azimuth",
-      "cbsVisited":"N",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":39.835838,
-      "longitude":-75.519107,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Eureka Summit",
-      "cbsVisited":"N",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":61.942499,
-      "longitude":-147.174545,
-      "cbsNotes":"Mile 129.5",
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"FAA site on Black Mountain",
-      "cbsVisited":"N",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":36.914348,
-      "longitude":-82.894010,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Fall River Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":40.440556,
-      "longitude":-105.754722,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Fremont Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":39.366288,
-      "longitude":-106.186681,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Galena Summit",
-      "cbsVisited":"N",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":43.870770,
-      "longitude":-114.713998,
-      "cbsNotes":"Sawtooth Scenic Byway",
-      "cbsReferenceUrl":"http://www.summitpost.org/galena-peak/153215"
-   },
-   {  
-      "cbsTitle":"Guanella Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":39.5949872,
-      "longitude":-105.7111165,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Hoosier Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":39.361667,
-      "longitude":-106.0625,
-      "cbsNotes":"Who's your pass, baby, who's your pass?",
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Iceberg Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":40.417484,
-      "longitude":-105.7461187,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Independence Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":39.108056,
-      "longitude":-106.564444,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Jerimoth Hill on Hartford Pike",
-      "cbsVisited":"N",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":41.851216,
-      "longitude":-71.778842,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Juniper Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":39.672222,
-      "longitude":-105.565,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Kenosha Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":39.413333,
-      "longitude":-105.756667,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"La Manga Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":37.0775,
-      "longitude":-106.386111,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"La Veta Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":37.59305,
-      "longitude":-105.2027900,
-      "cbsNotes":null,
-      "cbsReferenceUrl":"http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:2791359"
-   },
-   {  
-      "cbsTitle":"Lizard Head Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":37.811667,
-      "longitude":-107.908333,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Loveland Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":39.663611,
-      "longitude":-105.879167,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Magazine Mountain",
-      "cbsVisited":"N",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":35.167294,
-      "longitude":-93.621526,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Mauna Loa Observatory",
-      "cbsVisited":"N",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":19.536195,
-      "longitude":-155.575284,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"McClure Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":39.12901,
-      "longitude":-107.28298,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Milner Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":40.419722,
-      "longitude":-105.811389,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Molas Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":37.737778,
-      "longitude":-107.698056,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Monarch Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":38.496667,
-      "longitude":-106.325,
-      "cbsNotes":null,
-      "cbsReferenceUrl":"http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:189720"
-   },
-   {  
-      "cbsTitle":"Mount Equinox",
-      "cbsVisited":"N",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":43.165307,
-      "longitude":-73.117104,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Mount Greylock",
-      "cbsVisited":"N",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":42.638016,
-      "longitude":-73.165653,
-      "cbsNotes":null,
-      "cbsReferenceUrl":"http://www.mass.gov/eea/agencies/dcr/massparks/region-west/mt-greylock-state-reservation-generic.html"
-   },
-   {  
-      "cbsTitle":"Mount Mitchell",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":35.767312,
-      "longitude":-82.264569,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Mount Washington",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":44.269763,
-      "longitude":-71.302454,
-      "cbsNotes":"Toll road ($)",
-      "cbsReferenceUrl":"http://mtwashingtonautoroad.com/"
-   },
-   {  
-      "cbsTitle":"Mt Evans",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":39.587795,
-      "longitude":-105.642439,
-      "cbsNotes":"Paved scenic byway to the top at 14,130 feet. Note that while it is paved, sometimes the road is still, er, rough.",
-      "cbsReferenceUrl":"https://www.fs.usda.gov/wps/portal/fsinternet/cs/recarea?ss=110308&navtype=BROWSEBYSUBJECT&cid=FSE_003738&navid=110240000000000&pnavid=110000000000000&position=generalinfo&recid=28508&ttype=recarea&pname=Mount%20Evans%20Scenic%20Byway"
-   },
-   {  
-      "cbsTitle":"Mt Locke",
-      "cbsVisited":"N",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":30.679974,
-      "longitude":-104.025057,
-      "cbsNotes":null,
-      "cbsReferenceUrl":"http://www.tourtexas.com/fortstockton/ftstockbigbend.cfm"
-   },
-   {  
-      "cbsTitle":"Mt Washington Road",
-      "cbsVisited":"N",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":42.039998,
-      "longitude":-73.470431,
-      "cbsNotes":"In Litchfield County, near the three corners of CT, NY, and MA.",
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"near Driskill Mountain",
-      "cbsVisited":"N",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":32.412542,
-      "longitude":-92.896443,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"near Mt Scott",
-      "cbsVisited":"N",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":42.931016,
-      "longitude":-122.027962,
-      "cbsNotes":"Crater Lake National Monument, East Rim",
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"North Cochetopa Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":38.216667,
-      "longitude":-106.575556,
-      "cbsNotes":null,
-      "cbsReferenceUrl":"http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:190046"
-   },
-   {  
-      "cbsTitle":"O'Neil Pass on US 85",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":44.200259,
-      "longitude":-104.011086,
-      "cbsNotes":"Between Newcastle, WY and Lead, SD",
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Pikes Peak",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":38.84054,
-      "longitude":-105.04442,
-      "cbsNotes":null,
-      "cbsReferenceUrl":"http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:204770"
-   },
-   {  
-      "cbsTitle":"Poncha Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":38.4222204,
-      "longitude":-106.0869615,
-      "cbsNotes":null,
-      "cbsReferenceUrl":"http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:189873"
-   },
-   {  
-      "cbsTitle":"Rabbit Ears Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":40.384928,
-      "longitude":-106.611717,
-      "cbsNotes":null,
-      "cbsReferenceUrl":"http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:172776"
-   },
-   {  
-      "cbsTitle":"Red Hill Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":39.267778,
-      "longitude":-105.961111,
-      "cbsNotes":null,
-      "cbsReferenceUrl":"http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:183404"
-   },
-   {  
-      "cbsTitle":"Red Mountain Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":37.898889,
-      "longitude":-107.711944,
-      "cbsNotes":null,
-      "cbsReferenceUrl":"http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:187296"
-   },
-   {  
-      "cbsTitle":"Rock Creek Road from Tom's Place",
-      "cbsVisited":"N",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":37.435295,
-      "longitude":-118.747107,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Sandia Crest Scenic Byway",
-      "cbsVisited":"N",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":35.209507,
-      "longitude":-106.448383,
-      "cbsNotes":"Observation Deck and Sandia Crest House Gift Shop and Café",
-      "cbsReferenceUrl":"http://www.motorcycleroads.com/75/383/New-Mexico/Route-536-Sandia-Crest-Road.html"
-   },
-   {  
-      "cbsTitle":"Sassafrass Mountain",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":35.064776,
-      "longitude":-82.776196,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Sherman Pass",
-      "cbsVisited":"N",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":48.607158,
-      "longitude":-118.479372,
-      "cbsNotes":null,
-      "cbsReferenceUrl":"http://www.myscenicdrives.com/drives/washington/sherman-pass-loop"
-   },
-   {  
-      "cbsTitle":"Slumgullion Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":37.985556,
-      "longitude":-107.222222,
-      "cbsNotes":null,
-      "cbsReferenceUrl":"http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:187058"
-   },
-   {  
-      "cbsTitle":"Smuggler's Notch",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":44.555387,
-      "longitude":-72.795833,
-      "cbsNotes":"near Mount Mansfield",
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Snowy Range Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":41.344137,
-      "longitude":-106.3019611,
-      "cbsNotes":null,
-      "cbsReferenceUrl":"http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:1594526"
-   },
-   {  
-      "cbsTitle":"Spring Creek Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":37.9408311,
-      "longitude":-107.1592184,
-      "cbsNotes":null,
-      "cbsReferenceUrl":"http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:187042"
-   },
-   {  
-      "cbsTitle":"Sunrise Ranger Station MRNP",
-      "cbsVisited":"N",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":46.914421,
-      "longitude":-121.642704,
-      "cbsNotes":"Inside Mount Ranier National Park",
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Tenderfoot Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":38.768,
-      "longitude":-105.150306,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Tennessee Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":39.361378,
-      "longitude":-106.311951,
-      "cbsNotes":null,
-      "cbsReferenceUrl":"http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:179869"
-   },
-   {  
-      "cbsTitle":"Trout Creek Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":38.9099949,
-      "longitude":-105.9750131,
-      "cbsNotes":null,
-      "cbsReferenceUrl":"http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:191087"
-   },
-   {  
-      "cbsTitle":"Vail Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":39.530556,
-      "longitude":-106.217222,
-      "cbsNotes":null,
-      "cbsReferenceUrl":"http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:176167"
-   },
-   {  
-      "cbsTitle":"Victor Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":38.710556,
-      "longitude":-105.133333,
-      "cbsNotes":null,
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Wheeler Peak Scenic Drive",
-      "cbsVisited":"N",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":39.010748,
-      "longitude":-114.301169,
-      "cbsNotes":"Inside Great Basin National Park",
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Whiteface Mountain",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Paved High Point",
-      "cbsTags":null,
-      "latitude":44.367134,
-      "longitude":-73.906358,
-      "cbsNotes":"Whiteface Mountain Memorial Highway",
-      "cbsReferenceUrl":null
-   },
-   {  
-      "cbsTitle":"Wilkerson Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":39.0380473,
-      "longitude":-105.5255561,
-      "cbsNotes":null,
-      "cbsReferenceUrl":"http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:183807"
-   },
-   {  
-      "cbsTitle":"Wolf Creek Pass",
-      "cbsVisited":"Y",
-      "cbsMainCategory":"Pass",
-      "cbsTags":null,
-      "latitude":37.482385,
-      "longitude":-106.798997,
-      "cbsNotes":null,
-      "cbsReferenceUrl":"http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:190982"
-   }
+[
+  {
+    "cbsTitle": "(high paved point)",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 43.478145,
+    "longitude": -95.705353,
+    "cbsNotes": "Two miles south of Bigelow, MN on IA 60",
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "(Highest paved road point in OK)",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 36.719534,
+    "longitude": -103.00198,
+    "cbsNotes": "State line west of Mexhoma",
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "(highest paved road point in ND)",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 46.2819,
+    "longitude": -103.876554,
+    "cbsNotes": "5 miles North West of Rhame, ND",
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "along Sandia Crest",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 35.210471,
+    "longitude": -106.449401,
+    "cbsNotes": null,
+    "cbsReferenceUrl": "http://www.scenicdrivesusa.com/node/129"
+  },
+  {
+    "cbsTitle": "Arizona Snow Bowl",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 35.330953,
+    "longitude": -111.70969,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Bald Mountain Pass",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 40.688657,
+    "longitude": -110.898856,
+    "cbsNotes": null,
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:1454591"
+  },
+  {
+    "cbsTitle": "Bald Mountain Pass",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 40.688657,
+    "longitude": -110.898856,
+    "cbsNotes": null,
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:1454591"
+  },
+  {
+    "cbsTitle": "Beartooth Hwy",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 45.004851,
+    "longitude": -109.410433,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Beartooth Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 44.9691119,
+    "longitude": -109.4715514,
+    "cbsNotes": null,
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:1585289"
+  },
+  {
+    "cbsTitle": "Berthoud Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 39.797778,
+    "longitude": -105.776944,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Brasstown Bald",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 34.874498,
+    "longitude": -83.811447,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Cameron Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 40.520833,
+    "longitude": -105.8925,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Cheaha Mountain",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 33.486791,
+    "longitude": -85.809216,
+    "cbsNotes": "Talladega Scenic Drive (Skyway Motorway)",
+    "cbsReferenceUrl": "https://en.wikipedia.org/wiki/Alabama_State_Route_281"
+  },
+  {
+    "cbsTitle": "Coal Bank Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 37.700556,
+    "longitude": -107.776944,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Collins Gap",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 35.556768,
+    "longitude": -83.496103,
+    "cbsNotes": "At the TN / NC state line, parking area is in NC",
+    "cbsReferenceUrl": "http://www.nps.gov/grsm/planyourvisit/clingmansdome.htm"
+  },
+  {
+    "cbsTitle": "Cottonwood Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 38.827864,
+    "longitude": -106.409269,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Cumbres Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 37.020556,
+    "longitude": -106.45,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Ebright Azimuth",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 39.835838,
+    "longitude": -75.519107,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Eureka Summit",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 61.942499,
+    "longitude": -147.174545,
+    "cbsNotes": "Mile 129.5",
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "FAA site on Black Mountain",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 36.914348,
+    "longitude": -82.89401,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Fall River Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 40.440556,
+    "longitude": -105.754722,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Fremont Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 39.366288,
+    "longitude": -106.186681,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Galena Summit",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 43.87077,
+    "longitude": -114.713998,
+    "cbsNotes": "Sawtooth Scenic Byway",
+    "cbsReferenceUrl": "http://www.summitpost.org/galena-peak/153215"
+  },
+  {
+    "cbsTitle": "Guanella Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 39.5949872,
+    "longitude": -105.7111165,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Hoosier Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 39.361667,
+    "longitude": -106.0625,
+    "cbsNotes": "Who's your pass, baby, who's your pass?",
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Iceberg Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 40.417484,
+    "longitude": -105.7461187,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Independence Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 39.108056,
+    "longitude": -106.564444,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Jerimoth Hill on Hartford Pike",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 41.851216,
+    "longitude": -71.778842,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Juniper Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 39.672222,
+    "longitude": -105.565,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Kenosha Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 39.413333,
+    "longitude": -105.756667,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "La Manga Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 37.0775,
+    "longitude": -106.386111,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "La Veta Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 37.59305,
+    "longitude": -105.20279,
+    "cbsNotes": null,
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:2791359"
+  },
+  {
+    "cbsTitle": "Lizard Head Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 37.811667,
+    "longitude": -107.908333,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Loveland Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 39.663611,
+    "longitude": -105.879167,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Magazine Mountain",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 35.167294,
+    "longitude": -93.621526,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Mauna Loa Observatory",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 19.536195,
+    "longitude": -155.575284,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "McClure Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 39.12901,
+    "longitude": -107.28298,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Milner Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 40.419722,
+    "longitude": -105.811389,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Molas Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 37.737778,
+    "longitude": -107.698056,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Monarch Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 38.496667,
+    "longitude": -106.325,
+    "cbsNotes": null,
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:189720"
+  },
+  {
+    "cbsTitle": "Mount Equinox",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 43.165307,
+    "longitude": -73.117104,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Mount Greylock",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 42.638016,
+    "longitude": -73.165653,
+    "cbsNotes": null,
+    "cbsReferenceUrl": "http://www.mass.gov/eea/agencies/dcr/massparks/region-west/mt-greylock-state-reservation-generic.html"
+  },
+  {
+    "cbsTitle": "Mount Mitchell",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 35.767312,
+    "longitude": -82.264569,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Mount Washington",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 44.269763,
+    "longitude": -71.302454,
+    "cbsNotes": "Toll road ($)",
+    "cbsReferenceUrl": "http://mtwashingtonautoroad.com/"
+  },
+  {
+    "cbsTitle": "Mt Evans",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 39.587795,
+    "longitude": -105.642439,
+    "cbsNotes": "Paved scenic byway to the top at 14,130 feet. Note that while it is paved, sometimes the road is still, er, rough.",
+    "cbsReferenceUrl": "https://www.fs.usda.gov/wps/portal/fsinternet/cs/recarea?ss=110308&navtype=BROWSEBYSUBJECT&cid=FSE_003738&navid=110240000000000&pnavid=110000000000000&position=generalinfo&recid=28508&ttype=recarea&pname=Mount%20Evans%20Scenic%20Byway"
+  },
+  {
+    "cbsTitle": "Mt Locke",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 30.679974,
+    "longitude": -104.025057,
+    "cbsNotes": null,
+    "cbsReferenceUrl": "http://www.tourtexas.com/fortstockton/ftstockbigbend.cfm"
+  },
+  {
+    "cbsTitle": "Mt Washington Road",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 42.039998,
+    "longitude": -73.470431,
+    "cbsNotes": "In Litchfield County, near the three corners of CT, NY, and MA.",
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "near Driskill Mountain",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 32.412542,
+    "longitude": -92.896443,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "near Mt Scott",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 42.931016,
+    "longitude": -122.027962,
+    "cbsNotes": "Crater Lake National Monument, East Rim",
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "North Cochetopa Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 38.216667,
+    "longitude": -106.575556,
+    "cbsNotes": null,
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:190046"
+  },
+  {
+    "cbsTitle": "O'Neil Pass on US 85",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 44.200259,
+    "longitude": -104.011086,
+    "cbsNotes": "Between Newcastle, WY and Lead, SD",
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Pikes Peak",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 38.84054,
+    "longitude": -105.04442,
+    "cbsNotes": null,
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:204770"
+  },
+  {
+    "cbsTitle": "Poncha Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 38.4222204,
+    "longitude": -106.0869615,
+    "cbsNotes": null,
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:189873"
+  },
+  {
+    "cbsTitle": "Rabbit Ears Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 40.384928,
+    "longitude": -106.611717,
+    "cbsNotes": null,
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:172776"
+  },
+  {
+    "cbsTitle": "Red Hill Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 39.267778,
+    "longitude": -105.961111,
+    "cbsNotes": null,
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:183404"
+  },
+  {
+    "cbsTitle": "Red Mountain Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 37.898889,
+    "longitude": -107.711944,
+    "cbsNotes": null,
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:187296"
+  },
+  {
+    "cbsTitle": "Rock Creek Road from Tom's Place",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 37.435295,
+    "longitude": -118.747107,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Sandia Crest Scenic Byway",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 35.209507,
+    "longitude": -106.448383,
+    "cbsNotes": "Observation Deck and Sandia Crest House Gift Shop and Café",
+    "cbsReferenceUrl": "http://www.motorcycleroads.com/75/383/New-Mexico/Route-536-Sandia-Crest-Road.html"
+  },
+  {
+    "cbsTitle": "Sassafrass Mountain",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 35.064776,
+    "longitude": -82.776196,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Sherman Pass",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 48.607158,
+    "longitude": -118.479372,
+    "cbsNotes": null,
+    "cbsReferenceUrl": "http://www.myscenicdrives.com/drives/washington/sherman-pass-loop"
+  },
+  {
+    "cbsTitle": "Slumgullion Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 37.985556,
+    "longitude": -107.222222,
+    "cbsNotes": null,
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:187058"
+  },
+  {
+    "cbsTitle": "Smuggler's Notch",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 44.555387,
+    "longitude": -72.795833,
+    "cbsNotes": "near Mount Mansfield",
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Snowy Range Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 41.344137,
+    "longitude": -106.3019611,
+    "cbsNotes": null,
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:1594526"
+  },
+  {
+    "cbsTitle": "Spring Creek Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 37.9408311,
+    "longitude": -107.1592184,
+    "cbsNotes": null,
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:187042"
+  },
+  {
+    "cbsTitle": "Sunrise Ranger Station MRNP",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 46.914421,
+    "longitude": -121.642704,
+    "cbsNotes": "Inside Mount Ranier National Park",
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Tenderfoot Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 38.768,
+    "longitude": -105.150306,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Tennessee Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 39.361378,
+    "longitude": -106.311951,
+    "cbsNotes": null,
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:179869"
+  },
+  {
+    "cbsTitle": "Trout Creek Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 38.9099949,
+    "longitude": -105.9750131,
+    "cbsNotes": null,
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:191087"
+  },
+  {
+    "cbsTitle": "Vail Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 39.530556,
+    "longitude": -106.217222,
+    "cbsNotes": null,
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:176167"
+  },
+  {
+    "cbsTitle": "Victor Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 38.710556,
+    "longitude": -105.133333,
+    "cbsNotes": null,
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Wheeler Peak Scenic Drive",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 39.010748,
+    "longitude": -114.301169,
+    "cbsNotes": "Inside Great Basin National Park",
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Whiteface Mountain",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 44.367134,
+    "longitude": -73.906358,
+    "cbsNotes": "Whiteface Mountain Memorial Highway",
+    "cbsReferenceUrl": null
+  },
+  {
+    "cbsTitle": "Wilkerson Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 39.0380473,
+    "longitude": -105.5255561,
+    "cbsNotes": null,
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:183807"
+  },
+  {
+    "cbsTitle": "Wolf Creek Pass",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Pass",
+    "cbsTags": null,
+    "latitude": 37.482385,
+    "longitude": -106.798997,
+    "cbsNotes": null,
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:190982"
+  },
+  {
+    "cbsTitle": "Chatfield Dog Park",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Dog Park",
+    "latitude": 39.561451,
+    "longitude": -105.054707,
+    "cbsNotes": "Inside Chatfield State Park ($)",
+    "cbsReferenceUrl": "https://cpw.state.co.us/placestogo/parks/Chatfield/Pages/DogOff-LeashArea.aspx"
+  },
+  {
+    "cbsTitle": "Eagle Lake Dog Park",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Dog Park",
+    "latitude": 44.159612,
+    "longitude": -93.890358,
+    "cbsNotes": "in Eagle Lake, MN"
+  },
+  {
+    "cbsTitle": "Ashland Dog Park",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Dog Park",
+    "latitude": 46.592037,
+    "longitude": -90.86373,
+    "cbsNotes": "in Ashland, WI",
+    "cbsReferenceUrl": "http://www.visitashland.com/member/ashland-dog-park/"
+  },
+  {
+    "cbsTitle": "Meadowlark North Dog Park",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Dog Park",
+    "latitude": 40.71159,
+    "longitude": -99.127657,
+    "cbsNotes": "in Kearney, NE",
+    "cbsReferenceUrl": "http://www.cityofkearney.org/DocumentCenter/View/3273/Meadowlark-North-Dog-Park?bidId="
+  },
+  {
+    "cbsTitle": "Oak Creek Dog Run",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Dog Park",
+    "latitude": 40.83408,
+    "longitude": -96.71743,
+    "cbsNotes": "in Lincoln, NE"
+  },
+  {
+    "cbsTitle": "Andy's Bark Park",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Dog Park",
+    "latitude": 44.880276,
+    "longitude": -92.86921,
+    "cbsNotes": "in Woodbury, MN; 4 paws up from Lu C. Fur!",
+    "cbsReferenceUrl": "https://www.woodburymn.gov/departments/parks_and_trails/andys_bark_park.php"
+  },
+  {
+    "cbsTitle": "New Richmond Area Off Leash Dog Park",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Dog Park",
+    "latitude": 45.129739,
+    "longitude": -92.582094,
+    "cbsNotes": "in New Richmond, WI"
+  },
+  {
+    "cbsTitle": "Weston Dog Park",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Dog Park",
+    "latitude": 44.910218,
+    "longitude": -89.547277,
+    "cbsNotes": "in Weston, WI",
+    "cbsReferenceUrl": "http://westonwi.gov/facilities/facility/details/westondogpark-1"
+  },
+  {
+    "cbsTitle": "Dog Run in Rest Area",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Dog Park",
+    "latitude": 43.566697,
+    "longitude": -95.651106,
+    "cbsNotes": "in Worthington, MN"
+  },
+  {
+    "cbsTitle": "White Pass & Yukon Route",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Rails",
+    "latitude": 59.453392,
+    "longitude": -135.317869,
+    "cbsNotes": "231 2nd Ave Skagway, AK Also two Canadian locations, Whitehorse and Carcross, both in Yukon Territory.",
+    "cbsReferenceUrl": "http://wpyr.com/"
+  },
+  {
+    "cbsTitle": "Arkansas & Missouri Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 35.437083,
+    "longitude": -94.352108,
+    "cbsNotes": "813 Main St. Van Buren, AR ",
+    "cbsReferenceUrl": "http://www.amrailroad.com/",
+    "Image": "http://www.amrailroad.com/images/logo.png"
+  },
+  {
+    "cbsTitle": "Grand Canyon Railway & Hotel",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 35.252211,
+    "longitude": -112.191567,
+    "cbsNotes": "Williams 235 N Grand Canyon Blvd, AZ ",
+    "cbsReferenceUrl": "https://www.thetrain.com/the-train/",
+    "Image": "https://www.thetrain.com/wp-content/uploads/2013/02/train-equipment-312x217.jpg"
+  },
+  {
+    "cbsTitle": "Verde Canyon Railroad - Wilderness Route",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 34.776517,
+    "longitude": -112.056243,
+    "cbsNotes": "300 N Broadway Clarkdale, AZ ",
+    "cbsReferenceUrl": "http://verdecanyonrr.com/",
+    "Image": "http://verdecanyonrr.com/wp-content/uploads/2015/05/vrcc-logo-25.png"
+  },
+  {
+    "cbsTitle": "Fillmore & Western Railway Co",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 34.399046,
+    "longitude": -118.910176,
+    "cbsNotes": "351 Santa Clara St Fillmore, CA ",
+    "cbsReferenceUrl": "http://fwry.com/",
+    "Image": ""
+  },
+  {
+    "cbsTitle": "Skunk Train - Redwood Route",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 39.4457,
+    "longitude": -123.806841,
+    "cbsNotes": "100 W Laurel St Fort Bragg, CA ",
+    "cbsReferenceUrl": "http://www.skunktrain.com/",
+    "Image": "http://www.skunktrain.com/images/logo-2013-medium.png"
+  },
+  {
+    "cbsTitle": "Cripple Creek and Victor Narrow Gauge Railroad",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Rails",
+    "latitude": 38.755297,
+    "longitude": -105.173572,
+    "cbsNotes": "520 E Carr Ave Cripple Creek, CO ",
+    "cbsReferenceUrl": "http://cripplecreekrailroad.com/",
+    "Image": "http://cripplecreekrailroad.com/wp-content/uploads/2012/08/Logo2.png"
+  },
+  {
+    "cbsTitle": "Cumbres & Toltec Scenic Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 37.070847,
+    "longitude": -106.012073,
+    "cbsNotes": "5234 B US-285 Antonito, CO There is also a depot in Chama, NM (500 S Terrace Ave). National Historic Landmark",
+    "cbsReferenceUrl": "http://cumbrestoltec.com/",
+    "Image": "http://cumbrestoltec.com/wp-content/uploads/2014/03/cumbres_logo.png"
+  },
+  {
+    "cbsTitle": "Durango & Silverton Narrow Gauge Railroad & Museum",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Rails",
+    "latitude": 37.268365,
+    "longitude": -107.882534,
+    "cbsNotes": "479 Main Ave Durango, CO ",
+    "cbsReferenceUrl": "http://www.durangotrain.com/",
+    "Image": "http://americanheritagerailways.com/sites/ahr/files/dsngr_logo_0.jpg"
+  },
+  {
+    "cbsTitle": "Georgetown Loop Railroad",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Rails",
+    "latitude": 39.701534,
+    "longitude": -105.706726,
+    "cbsNotes": "507 Taos St Georgetown, CO ",
+    "cbsReferenceUrl": "http://georgetownlooprr.com/",
+    "Image": "http://georgetownlooprr.com/cache/0fc053a052f6fb703bb973b225df77fb_w600_h600_scaled.jpg"
+  },
+  {
+    "cbsTitle": "Leadville Colorado & Southern Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 39.250776,
+    "longitude": -106.287104,
+    "cbsNotes": "326 E 7th St Leadville, CO ",
+    "cbsReferenceUrl": "https://www.leadville-train.com/",
+    "Image": "http://www.leadville-train.com/sites/default/files/uploads/stork_curve_picture_courtsey_of_damian.jpeg"
+  },
+  {
+    "cbsTitle": "Pikes Peak Cog Railway",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Rails",
+    "latitude": 38.856298,
+    "longitude": -104.931385,
+    "cbsNotes": "515 Ruxton Ave Manitou Springs, CO ",
+    "cbsReferenceUrl": "http://cograilway.com/",
+    "Image": "http://cograilway.com/images/BRD_CogRailLogo_RGB.png"
+  },
+  {
+    "cbsTitle": "Rio Grande - La Veta Pass Route",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 37.466984,
+    "longitude": -105.865635,
+    "cbsNotes": "610 State Ave Alamosa, CO ",
+    "cbsReferenceUrl": "https://www.coloradotrain.com/",
+    "Image": "https://www.coloradotrain.com/wp-content/themes/rio-grande/library/img/logo.png"
+  },
+  {
+    "cbsTitle": "Royal Gorge Route Railroad",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Rails",
+    "latitude": 38.438827,
+    "longitude": -105.242126,
+    "cbsNotes": "330 Royal Gorge Blvd Cañon City, CO ",
+    "cbsReferenceUrl": "https://www.royalgorgeroute.com/",
+    "Image": ""
+  },
+  {
+    "cbsTitle": "Essex Steam Train and Riverboat",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 41.350392,
+    "longitude": -72.404879,
+    "cbsNotes": "1 Railroad Ave Essex, CT Checkout the Saybrook special. ",
+    "cbsReferenceUrl": "http://essexsteamtrain.com/",
+    "Image": "http://essexsteamtrain.com/wp-content/uploads/2014/03/Brochure-Cover.jpg"
+  },
+  {
+    "cbsTitle": "Wilmington & Western Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 39.739113,
+    "longitude": -75.632349,
+    "cbsNotes": "2201 Newport Gap Pike Wilmington, DE ",
+    "cbsReferenceUrl": "http://www.wwrr.com/",
+    "Image": "http://www.wwrr.com/images/logo8.png"
+  },
+  {
+    "cbsTitle": "Blue Ridge Scenic Railway",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 34.865515,
+    "longitude": -84.324694,
+    "cbsNotes": "241 Depot St Blue Ridge, GA ",
+    "cbsReferenceUrl": "http://www.brscenic.com/",
+    "Image": "https://apps.vendini.com/i/5ab13c736ec0377ec5ab1a57265a71b297bac259.png"
+  },
+  {
+    "cbsTitle": "Boone & Scenic Valley Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 42.06669,
+    "longitude": -93.891296,
+    "cbsNotes": "225 10th Street Boone, IA ",
+    "cbsReferenceUrl": "http://www.bsvrr.com/",
+    "Image": "http://www.bsvrr.com/images/equipment/6540/6540high.jpg"
+  },
+  {
+    "cbsTitle": "Thunder Mountain Line",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 43.913582,
+    "longitude": -116.192761,
+    "cbsNotes": "120 Mill Rd Horseshoe Bend, ID ",
+    "cbsReferenceUrl": "http://www.thundermountainline.com/",
+    "Image": "http://www.thundermountainline.com/Home%20Page/tmllogoround4.gif"
+  },
+  {
+    "cbsTitle": "French Lick Scenic Railway",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 38.554872,
+    "longitude": -86.618858,
+    "cbsNotes": "1 Monon Drive French Lick, IN ",
+    "cbsReferenceUrl": "http://www.frenchlickscenicrailway.org/index.html",
+    "Image": "http://www.frenchlickscenicrailway.org/FLRR_photo.jpg"
+  },
+  {
+    "cbsTitle": "Big South Fork Scenic Railway",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 36.698932,
+    "longitude": -84.47613,
+    "cbsNotes": "100 Henderson St Stearns, KY ",
+    "cbsReferenceUrl": "http://www.bsfsry.com/",
+    "Image": "http://www.bsfsry.com/wp-content/uploads/2014/10/k-and-t-special.jpg"
+  },
+  {
+    "cbsTitle": "Cape Cod Central Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 41.655093,
+    "longitude": -70.28013,
+    "cbsNotes": "252 Main St Hyannis, MA ",
+    "cbsReferenceUrl": "http://www.capetrain.com/",
+    "Image": "http://www.capetrain.com/wp-content/themes/cape-cod-central/library/img/logo.png"
+  },
+  {
+    "cbsTitle": "Hoosac Valley Train",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 42.350636,
+    "longitude": -73.244238,
+    "cbsNotes": "10 Willow Creek Rd Lenox, MA ",
+    "cbsReferenceUrl": "http://hoosacvalleytrainride.com/",
+    "Image": "http://hoosacvalleytrainride.com/images/banner-hvs.gif"
+  },
+  {
+    "cbsTitle": "Western Maryland Scenic Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 39.649758,
+    "longitude": -78.763648,
+    "cbsNotes": "13 Canal St Cumberland, MD ",
+    "cbsReferenceUrl": "http://www.wmsr.com/",
+    "Image": "http://www.wmsr.com/var/skins/wmsr_desktop_fall_2012/images/skin/logo.png"
+  },
+  {
+    "cbsTitle": "Downeast Scenic Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 44.542523,
+    "longitude": -68.418,
+    "cbsNotes": "245 Main St Ellsworth, ME ",
+    "cbsReferenceUrl": "http://www.downeastscenicrail.org/",
+    "Image": "http://www.downeastscenicrail.org/ride/wp-content/uploads/2012/06/cropped-DowneastRailHeader2010-10001.jpg"
+  },
+  {
+    "cbsTitle": "North Shore Scenic Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 46.781478,
+    "longitude": -92.10353,
+    "cbsNotes": "506 West Michigan Street Duluth, MN ",
+    "cbsReferenceUrl": "http://www.northshorescenicrailroad.org/",
+    "Image": ""
+  },
+  {
+    "cbsTitle": "Branson Scenic Railway",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 36.643879,
+    "longitude": -93.214828,
+    "cbsNotes": "206 E Main St Branson, MO ",
+    "cbsReferenceUrl": "http://www.bransontrain.com/",
+    "Image": "http://www.bransontrain.com/images/media_5.jpg"
+  },
+  {
+    "cbsTitle": "Great Smoky Mountains Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 35.433795,
+    "longitude": -83.446361,
+    "cbsNotes": "226 Everett St Bryson City, NC ",
+    "cbsReferenceUrl": "http://www.gsmr.com/",
+    "Image": "http://americanheritagerailways.com/sites/ahr/files/styles/medium/public/inline-images/gsmrr.jpg"
+  },
+  {
+    "cbsTitle": "North Carolina Transportation Museum",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 35.687595,
+    "longitude": -80.434432,
+    "cbsNotes": "411 S Salisbury Ave Spencer, NC Train and turntable rides. :0)",
+    "cbsReferenceUrl": "http://www.nctrans.org/Plan-Visit/Train-Rides.aspx",
+    "Image": "http://www.nctrans.org/_nctm/media/Website-Layout/nctm-train-overlay.png"
+  },
+  {
+    "cbsTitle": "Conway Scenic Railway",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 44.051886,
+    "longitude": -71.128738,
+    "cbsNotes": "38 Norcross Cir North Conway, NH ",
+    "cbsReferenceUrl": "http://www.conwayscenic.com/",
+    "Image": "http://conwayscenic.com/wp-content/uploads/2015/01/7470updates1.jpg"
+  },
+  {
+    "cbsTitle": "Hobo Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 44.040667,
+    "longitude": -71.67925,
+    "cbsNotes": "64 Railroad St Lincoln, NH ",
+    "cbsReferenceUrl": "http://www.hoborr.com/hobonew.html",
+    "Image": "http://www.hoborr.com/images/hobomapa.jpg"
+  },
+  {
+    "cbsTitle": "Mount Washington Cog Railway",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 44.269719,
+    "longitude": -71.350965,
+    "cbsNotes": "Base Station Rd Bretton Woods, NH ",
+    "cbsReferenceUrl": "http://www.thecog.com/",
+    "Image": "http://www.thecog.com/images/header2011/cog_triptych.jpg"
+  },
+  {
+    "cbsTitle": "Winnipesaukee Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 43.651127,
+    "longitude": -71.499796,
+    "cbsNotes": "154 Main St Meredith, NH ",
+    "cbsReferenceUrl": "http://www.hoborr.com/winninew.html",
+    "Image": "http://www.foliagetrains.com/images/ashland-trestle.jpg"
+  },
+  {
+    "cbsTitle": "Cumbres & Toltec Scenic Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 36.903065,
+    "longitude": -106.578333,
+    "cbsNotes": "500 S Terrace Ave Chama, NM There is also a depot in Antonito, CO (5234 B US Hwy 285). National Historic Landmark",
+    "cbsReferenceUrl": "http://cumbrestoltec.com/",
+    "Image": "http://cumbrestoltec.com/wp-content/uploads/2014/03/cumbres_logo.png"
+  },
+  {
+    "cbsTitle": "Adirondack Scenic Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 43.104444,
+    "longitude": -75.223322,
+    "cbsNotes": "321 Main St Utica, NY ",
+    "cbsReferenceUrl": "http://www.adirondackrr.com/",
+    "Image": "http://www.adirondackrr.com/images/logo.png"
+  },
+  {
+    "cbsTitle": "Catskill Mountain Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 42.053849,
+    "longitude": -74.293797,
+    "cbsNotes": "NY-28 Mt Tremper, NY ",
+    "cbsReferenceUrl": "http://catskillmtrailroad.com/",
+    "Image": "http://www.catskillmtrailroad.com/images/top_cmrr2013.gif"
+  },
+  {
+    "cbsTitle": "Saratoga and North Creek Railway",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 43.083075,
+    "longitude": -73.810166,
+    "cbsNotes": "26 Station Ln, Saratoga Springs New York, NY ",
+    "cbsReferenceUrl": "http://www.sncrr.com/",
+    "Image": "http://www.sncrr.com/wp-content/themes/saratoga-north-creek/library/img/logo.png"
+  },
+  {
+    "cbsTitle": "Cuyahoga Valley Scenic Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 41.39442,
+    "longitude": -81.631026,
+    "cbsNotes": "7900 Old Rockside Rd Independence, OH ",
+    "cbsReferenceUrl": "http://www.cvsr.com/",
+    "Image": "http://cvsr.com/Data/Sites/1/assets/hp-slides/slide-03.jpg"
+  },
+  {
+    "cbsTitle": "Hocking Valley Scenic Railway",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 39.458912,
+    "longitude": -82.23372,
+    "cbsNotes": "33 E Canal St Nelsonville, OH ",
+    "cbsReferenceUrl": "http://www.hvsry.org/",
+    "Image": "http://www.hvsry.org/wp-content/uploads/2016/01/HVSRblack-transparent-90x69.png"
+  },
+  {
+    "cbsTitle": "Zanesville and Western Scenic Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 39.867771,
+    "longitude": -82.207432,
+    "cbsNotes": "5700 OH-204 Mt Perry, OH ",
+    "cbsReferenceUrl": "http://zwsr.org/",
+    "Image": "http://zwsr.org/images/logo.png"
+  },
+  {
+    "cbsTitle": "Mount Hood Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 45.710086,
+    "longitude": -121.511707,
+    "cbsNotes": "110 Mt Hood Railroad Hood River, OR ",
+    "cbsReferenceUrl": "http://www.mthoodrr.com/",
+    "Image": "http://www.mthoodrr.com/wp-content/themes/mount-hood/library/img/logo.png"
+  },
+  {
+    "cbsTitle": "New Hope & Ivyland Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 40.364337,
+    "longitude": -74.95216,
+    "cbsNotes": "32 W Bridge St New Hope, PA ",
+    "cbsReferenceUrl": "https://www.newhoperailroad.com/",
+    "Image": "https://www.newhoperailroad.com/pics/gallery/pg28_lg.jpg"
+  },
+  {
+    "cbsTitle": "Steamtown National Historic Site",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 41.407274,
+    "longitude": -75.6713,
+    "cbsNotes": "350 Cliff St Scranton, PA ",
+    "cbsReferenceUrl": "http://www.nps.gov/stea/planyourvisit/trainrides.htm",
+    "Image": ""
+  },
+  {
+    "cbsTitle": "Strasburg Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 39.983335,
+    "longitude": -76.159281,
+    "cbsNotes": "301 Gap Rd Ronks, PA ",
+    "cbsReferenceUrl": "http://www.strasburgrailroad.com/",
+    "Image": "http://www.strasburgrailroad.com/wp-content/gallery/photo-gallery/train_90_04.jpg"
+  },
+  {
+    "cbsTitle": "Black Hills Central Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 43.932787,
+    "longitude": -103.573355,
+    "cbsNotes": "222 Railroad Ave Hill City, SD ",
+    "cbsReferenceUrl": "http://www.1880train.com/",
+    "Image": "http://www.1880train.com/img/gallery/train-smoke_550.jpg"
+  },
+  {
+    "cbsTitle": "Tennessee Valley Railroad ",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 35.067157,
+    "longitude": -85.2061,
+    "cbsNotes": "4119 Cromwell Rd Chattanooga, TN ",
+    "cbsReferenceUrl": "http://www.tvrail.com/",
+    "Image": "http://www.tvrail.com/img/tennessee-valley-railroad-logo.png"
+  },
+  {
+    "cbsTitle": "Golden Spike National Historic Site - Locomotive Operations",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Rails",
+    "latitude": 41.623217,
+    "longitude": -112.548263,
+    "cbsNotes": "6200 North 22300th Street West Brigham City, UT Photos runs only, no rides. ",
+    "cbsReferenceUrl": "http://www.nps.gov/gosp/planyourvisit/locomotiveoperations.htm",
+    "Image": "http://www.nps.gov/gosp/images/Jupiter-in-the-snow-1a.jpg"
+  },
+  {
+    "cbsTitle": "Heber Valley Historic Railroad",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Rails",
+    "latitude": 40.502458,
+    "longitude": -111.424499,
+    "cbsNotes": "450 S 6th W Heber City, UT ",
+    "cbsReferenceUrl": "http://hebervalleyrr.org/",
+    "Image": "http://hebervalleyrr.org/wp-content/uploads/2015/03/header.png"
+  },
+  {
+    "cbsTitle": "Green Mountain Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 44.471697,
+    "longitude": -73.219942,
+    "cbsNotes": "One Railway Ln Burlington, VT ",
+    "cbsReferenceUrl": "http://www.rails-vt.com/",
+    "Image": "http://storage.googleapis.com/wzukusers/user-16827405/images/562a2b1f87209RCRDNeu/10518310_647655845302943_8086550364992829193_o.jpg"
+  },
+  {
+    "cbsTitle": "Chehalis-Centralia Railroad ",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 46.652623,
+    "longitude": -122.97728,
+    "cbsNotes": "1101 SW Sylvenus St Chehalis, WA ",
+    "cbsReferenceUrl": "http://steamtrainride.com/",
+    "Image": "http://steamtrainride.com/wp-content/uploads/2013/02/newbanner_ctown_3.png"
+  },
+  {
+    "cbsTitle": "Mt Rainier Railroad & Logging Museum",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 46.764204,
+    "longitude": -122.193382,
+    "cbsNotes": "54124 Mountain Hwy E Elbe, WA ",
+    "cbsReferenceUrl": "http://www.mtrainierrailroad.com/",
+    "Image": "https://static.wixstatic.com/media/14db6f_53e39b1bf87241bb9b0eca4d637b0a28.jpg/v1/fill/w_1439,h_444,al_c,q_85,usm_0.66_1.00_0.01/14db6f_53e39b1bf87241bb9b0eca4d637b0a28.jpg"
+  },
+  {
+    "cbsTitle": "CASS Scenic Railroad State Park",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 38.3971,
+    "longitude": -79.914716,
+    "cbsNotes": "242 Main St Cass, WV ",
+    "cbsReferenceUrl": "http://www.cassrailroad.com/",
+    "Image": "http://www.cassrailroad.com/etc/HEADER.jpg"
+  },
+  {
+    "cbsTitle": "Durbin & Greenbrier Valley Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 38.559764,
+    "longitude": -79.823438,
+    "cbsNotes": "4759 Staunton Parkersburg Turnpike Durbin, WV ",
+    "cbsReferenceUrl": "http://mountainrailwv.com/",
+    "Image": "http://mountainrailwv.com/wp-content/uploads//IMG_02415_Surreal-Cass1.jpg"
+  },
+  {
+    "cbsTitle": "Potomac Eagle Scenic Railroad",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Rails",
+    "latitude": 39.360924,
+    "longitude": -78.751999,
+    "cbsNotes": "149 Eagle Dr Romney, WV ",
+    "cbsReferenceUrl": "http://www.potomaceagle.info/",
+    "Image": "http://i2.wp.com/www.potomaceagle.info/wpsite/wp-content/uploads/2016/03/8-trip06.jpg?zoom=1.5&fit=225%2C300"
+  }
 ]

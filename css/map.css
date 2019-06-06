@@ -362,7 +362,7 @@ input[type='checkbox'] + label
   padding-right: 5px;
 }
 
-.control-traffic
+.control-traffic, .control-incidents
 {	
 	margin-top: 10px;
 	margin-left: 10px;
@@ -404,6 +404,30 @@ input[type='checkbox'] + label
 .control-clustering img
 {
 	width: 22px;
+}
+
+.poiVisited, .poiSomeday, .poiUnknown
+{
+	background: #fee1d7;
+	font-weight: bold;
+	
+	border-radius: 5px;
+	text-align: center;
+	padding: 3px;
+	font-size: 12px;
+	
+	color: rgba(255,255,255,1);
+	border: 1px solid rgba(255,255,255,.5);
+}
+
+.poiVisited
+{
+	background: rgb(0,128,0,.5);
+}
+
+.poiSomeday
+{
+	background: rgba(0,0,255,.5);
 }
 
 /*FURKOT INTEGRATION */
