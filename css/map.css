@@ -72,7 +72,6 @@ input[type='checkbox'] + label
 	background-color: rgba(243,243,243,.3);
 	box-shadow: inset 7px 0 9px -7px rgba(0,0,0,.3);
 	padding: 0px;
-	padding-right: 15px;
 	margin: 0px;
 	overflow: auto;
 }
@@ -84,12 +83,57 @@ input[type='checkbox'] + label
 	border-bottom:  1px solid rgba(0,0,0,.3);
 }
 
-.panelCloseButton, .siteIcon, .siteInfo, .sidePanelCloseButton, .markerIcon, .markerTitle, .markerPlanWithFurkot, .markerShelfIcon, .markerQuickFactLabel, .markerQuickFactData, .filterIcon, .filterText
+.markerQuickFact, .filterItem
+{
+	display: table-row;
+	margin: 3px;
+	border-bottom: 1px solid #eaeaea;
+}
+
+.panelCloseButton, .siteIcon, .siteInfo, .sidePanelCloseButton, .markerIcon, .markerTitle, .markerPlanWithFurkot, .markerShelfIcon, .markerQuickFactLabel, .markerQuickFactData, .filterHeader, .filterIcon, .filterText, .filterCount
 {
 	display: table-cell;
 	padding: 3px;
 	align-self: center;
 	justify-self: center;
+}
+
+.filterOption
+{
+	padding: 0px;
+	margin: 0px;
+}
+
+.filterHeader, .filterIcon, .filterText, .filterCount
+{
+	text-align: center;
+	vertical-align: middle;
+	border-bottom: 1px solid #eaeaea;
+}
+
+.odd
+{
+	background-color: rgba(	234, 234, 234, .5);
+}
+
+.filterIcon
+{
+	width: 25px;
+}
+
+.filterIcon img
+{
+	width: 25px;
+}
+
+.filterText
+{
+	font-size: var(--cbs-font-size-the-fine-print);
+	line-height: var(--cbs-line-height-the-fine-print);
+}
+.filterHeader
+{
+	font-style: italic;
 }
 
 .siteInfoContainer
@@ -162,12 +206,6 @@ input[type='checkbox'] + label
 #markerInfoContainer
 {
 	display: none;
-}
-
-.markerQuickFact
-{
-	display: table-row;
-	margin: 3px;
 }
 
 .markerPlanWithFurkot
@@ -285,30 +323,6 @@ input[type='checkbox'] + label
     margin-left: .5em;
     margin-right: .3em;
 	font-weight: 900;
-}
-
-.filterOption
-{
-	padding: 0px;
-	margin: 0px;
-	border-bottom: 1px solid #eaeaea;
-}
-
-.filterIcon
-{
-	width: 25px;
-}
-
-.filterIcon img
-{
-	width: 25px;
-}
-
-.filterText
-{
-	font-size: var(--cbs-font-size-the-fine-print);
-	line-height: var(--cbs-line-height-the-fine-print);
-	text-align: left;
 }
 
 /* GOOGLE MAP CUSTOM CONTROLS */

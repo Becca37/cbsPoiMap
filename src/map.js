@@ -133,7 +133,8 @@ function getData(dataCaller, dataSource, dataType)
 		}
 		else if (dataCaller === 'markersCategory')
 		{
-			markersCategoryDataArray = returnData.sort(compareValues('cbsMainCategory', 'asc'));	
+			markersCategoryDataArray = returnData.sort(compareValues('cbsMainCategory', 'asc'));
+			
 			if(isATest)
 			{
 				console.warn('TESTING: Marker Category Data Array Length: ' + markersCategoryDataArray.length);
@@ -457,13 +458,14 @@ function getMarkerCategoryDataFromArray(thisMarkerCategory)
 	{ 			
 		var index = markersCategoryDataArray.findIndex(entry => entry.cbsMainCategory === thisMarkerCategory);
 		var thisMarkerCategoryData = markersCategoryDataArray[index];
+		
 		if (thisMarkerCategoryData)
 		{		
 			categoryData = 
 			{ 
 				  cbsMainCategory: thisMarkerCategory
 				, mapMarkerIcon: thisMarkerCategoryData.mapMarkerIcon
-				, furkotPinName: thisMarkerCategoryData.furkotPinName 
+				, furkotPinName: thisMarkerCategoryData.furkotPinName
 			};
 		}			
 		
@@ -622,27 +624,48 @@ function getDistinctCategories()
 		//https://jsperf.com/distinct-values-from-array
 		loop1: for (var i = 0; i < workingArray.length; i++) 
 		{				
-			var categoryName = workingArray[i].cbsMainCategory;
+			var categoryName = workingArray[i].cbsMainCategory;		
 
 			for (var i2 = 0; i2 < markersDistinctCategoriesArray.length; i2++) 
 			{
-				if (markersDistinctCategoriesArray[i2] == categoryName) 
+				if (markersDistinctCategoriesArray[i2].categoryName == categoryName) 
 				{
 					continue loop1;
 				}
-			}
-			markersDistinctCategoriesArray.push(categoryName);
-		}
-				
-		if(isATest)
-		{
-			console.warn('TESTING: Distinct Categories count: ' + markersDistinctCategoriesArray.length.toString());			
-			markersDistinctCategoriesArray.forEach
-			(function(category, i) 
+			}			
+		
+			var inThisCategoryArray = workingArray.filter
+			(
+				function(filterOn) 
 				{
-					console.log('TESTING: Category', i, 'is', category);
+					return filterOn.cbsMainCategory == categoryName;
 				}
-			);		
+			);			
+			var countTotal = inThisCategoryArray.length;
+			
+			var visitedInThisCategoryArray = inThisCategoryArray.filter
+			(
+				function(filterOn) 
+				{
+					return filterOn.cbsVisited === 'Y';
+				}
+			);			
+			var countVisited = visitedInThisCategoryArray.length;
+			
+			var notVisitedInThisCategoryArray = inThisCategoryArray.filter
+			(
+				function(filterOn) 
+				{
+					return filterOn.cbsVisited === 'N';
+				}
+			);			
+			var countNotVisited = notVisitedInThisCategoryArray.length;
+			
+			var countVisitStatusUnknown = countTotal - countVisited - countNotVisited;	
+			
+			var categoryObject = {"categoryName": categoryName, "countTotal": countTotal, "countVisited": countVisited, "countNotVisited": countNotVisited, "countVisitStatusUnknown": 			countVisitStatusUnknown};
+			
+			markersDistinctCategoriesArray.push(categoryObject);
 		}
 	}
 	catch(e)
@@ -1057,19 +1080,56 @@ function MarkerCategoryFilterControl(controlDiv, map)
 {
 	try
 	{	
-		var filterCategoryLegendText = '';
+		var filterCategoryLegendText = '<div class="filterOption">'
+			+ '<div class="filterItem">'
+				+ '<div class="filterHeader">Icon</div>'
+				+ '<div class="filterHeader">Category</div>'
+				+ '<div class="filterHeader">Count<br/>Total</div>'
+				+ '<div class="filterHeader">Count<br/>Visited</div>'
+				+ '<div class="filterHeader">Count<br/>Not Visited</div>'
+				+ '<div class="filterHeader">Count<br/>Status Unknown</div>'
+			+ '</div>';	
+
+		var	filterCategoryLegendTextTemp = '';
+
+		var countAllTotal = 0;
+		var countAllVisited = 0;
+		var countAllNotVisited = 0;
+		var countAllVisitStatusUnknown = 0;
 		
 		for (var i = 0; i < markersDistinctCategoriesArray.length; i++)
 		{		
 			(function(index) //an "immediately-invoked function expression"
-				{
-					var filterCategory = markersDistinctCategoriesArray[i];
+				{					
+					var filterCategory = markersDistinctCategoriesArray[i].categoryName;
+					var filterCategoryCountTotal = markersDistinctCategoriesArray[i].countTotal;
+					var filterCategoryCountVisited = markersDistinctCategoriesArray[i].countVisited;
+					var filterCategoryCountNotVisited = markersDistinctCategoriesArray[i].countNotVisited;
+					var filterCategoryCountVisitStatusUnknown = markersDistinctCategoriesArray[i].countVisitStatusUnknown;
+					var filterRowOdd = (i + 1) %2 === 1 ? ' odd' : '';
+					
+								
+					countAllTotal += filterCategoryCountTotal;
+					countAllVisited += filterCategoryCountVisited;
+					countAllNotVisited += filterCategoryCountNotVisited;
+					countAllVisitStatusUnknown += filterCategoryCountVisitStatusUnknown;
+					
 					var thisMarkerCategoryData = getMarkerCategoryDataFromArray(filterCategory);				
 								
 					var controlUI = document.createElement('div');
 					controlUI.id = 'ToggleCategory ' + filterCategory;
 					controlUI.className = 'control-filter controlActive';
-					filterCategoryLegendText += '<div class="filterOption"><div class="filterIcon"><img src="' + thisMarkerCategoryData.mapMarkerIcon + '" alt="' + filterCategory + ' Filter"/></div><div class="filterText"> ' + filterCategory + '</div></div>';
+					
+					filterCategoryLegendTextTemp += ''
+						+ '<div class="filterItem' + filterRowOdd + '">'
+							+ '<div class="filterIcon"><img src="' + thisMarkerCategoryData.mapMarkerIcon + '" alt="' + filterCategory + ' Filter"/></div>'
+							+ '<div class="filterText"> ' + filterCategory + '</div>'
+							+ '<div class="filterCount"> ' + filterCategoryCountTotal + '</div>'
+							+ '<div class="filterCount"> ' + filterCategoryCountVisited + '</div>'
+							+ '<div class="filterCount"> ' + filterCategoryCountNotVisited + '</div>'
+							+ '<div class="filterCount"> ' + filterCategoryCountVisitStatusUnknown + '</div>'
+						+ '</div>';					
+					
 					controlUI.innerHTML = 
 						'<div class="filterOption"><div class="filterIcon"><img src="' + thisMarkerCategoryData.mapMarkerIcon + '" alt="' + filterCategory + ' Filter"/></div></div>';
 					controlUI.title = 'Click to toggle display of all markers in the "' + filterCategory + '" category.';
@@ -1084,6 +1144,18 @@ function MarkerCategoryFilterControl(controlDiv, map)
 				}
 			)(i); // END "immediately-invoked function expression"
 		}
+		
+		filterCategoryLegendText +=  ''
+			+ '<div class="filterItem">'
+				+ '<div class="filterIcon">&nbsp;</div>'
+				+ '<div class="filterText">All POIs</div>'
+				+ '<div class="filterCount"> ' + countAllTotal + '</div>'
+				+ '<div class="filterCount"> ' + countAllVisited + '</div>'
+				+ '<div class="filterCount"> ' + countAllNotVisited + '</div>'
+				+ '<div class="filterCount"> ' + countAllVisitStatusUnknown + '</div>'
+			+ '</div>'
+			+ filterCategoryLegendTextTemp
+			+ '</div>';
 		
 		filterCategoryLegend.innerHTML = filterCategoryLegendText;
 	}
@@ -1548,7 +1620,7 @@ function toggleMarkers(map, toggleCategory)
 			
 			for (var i = 0; i < markersDistinctCategoriesArray.length; i++)
 			{
-				var toggleThisCategory = markersDistinctCategoriesArray[i];	
+				var toggleThisCategory = markersDistinctCategoriesArray[i].categoryName;	
 				setVisibilityOnMarkersInArray(toggleThisCategory, showVisited, showNotVisited, 'all');
 			}
 		}
