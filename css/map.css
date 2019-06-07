@@ -370,13 +370,18 @@ input[type='checkbox'] + label
 	padding: 10px 15px 10px 15px;
 }
 
-.control-filter
+.control-filter, .control-visited, .control-notvisited
 {
 	margin-left: 10px;
 	margin-bottom: 3px;
 	text-align: left;	
 	vertical-align: middle;
 	padding: 0px;
+}
+
+.control-visited, .control-notvisited
+{
+	margin-bottom: 6px;	
 }
 
 .controlActive

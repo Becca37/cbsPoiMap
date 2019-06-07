@@ -11,8 +11,13 @@ HTML5, javascript (v5), CSS
 		<ul>
 			<li><a href="https://developers.google.com/maps/documentation/javascript/tutorial">Google Maps JavaScript API</a></li>
 			<li><a href="https://developers.google.com/maps/documentation/elevation/start">Google Maps Elevation API</a></li>
-			<li><a href="https://github.com/googlemaps/v3-utility-library/tree/master/markerclustererplus">Google Maps MarkerClustererPlus</a></li>
 			<li><a href="https://developers.google.com/maps/documentation/urls/guide">Google Maps URLs</a></li>
+			<li>Google Maps Utilities
+				<ul>
+					<li><a href="https://github.com/googlemaps/v3-utility-library/tree/master/markerclustererplus">Google Maps Utility MarkerClustererPlus</a></li>
+					<li><a href="https://github.com/googlemaps/v3-utility-library/tree/master/markerwithlabel">Google Maps Utility MarkerWithLabel</a></li>
+				</ul>
+			</li>
 		</ul>
 	</li>  
 	<li><b>Planning</b>:

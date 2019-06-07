@@ -533,19 +533,7 @@ function initMap()
 				streetViewControl: true
 			}
 		);
-		
-		google.maps.event.addDomListener(window,'load',initMarkers);
-	}
-	catch (e)
-	{
-		handleError('Map Initialization', e);
-	}	
-}
-
-function initMarkers()
-{
-	try
-	{		
+			
 		getData('markersCategory', markersCategoryDataSource, 'json');
 		getData('pois', poisDataSource, 'json');
 		getDistinctCategories();
@@ -560,7 +548,7 @@ function initMarkers()
 	}
 	catch (e)
 	{
-		handleError('Marker Initialization', e);
+		handleError('Map Initialization', e);
 	}	
 }
 
@@ -569,6 +557,18 @@ function addCustomControlsTo(map)
 	try
 	{
 		//https://developers.google.com/maps/documentation/javascript/controls#ControlPositioning
+
+		// Add custom control for VISITED
+		var visitedControlDiv = document.createElement('div');
+		var visitedControl = new VisitedControl(visitedControlDiv, map);	
+		visitedControlDiv.index = 1;
+		map.controls[google.maps.ControlPosition.LEFT_CENTER].push(visitedControlDiv);
+
+		// Add custom control for NOT VISITED
+		var notVisitedControlDiv = document.createElement('div');
+		var notVisitedControl = new NotVisitedControl(notVisitedControlDiv, map);	
+		notVisitedControlDiv.index = 1;
+		map.controls[google.maps.ControlPosition.LEFT_CENTER].push(notVisitedControlDiv);
 
 		// Add custom control for FILTERs on CATEGORIES
 		var markerCategoryFilterDiv = document.createElement('div');
@@ -676,8 +676,10 @@ function addMarkersTo(map)
 					var thisMarkerLabel = '<i class="far fa-question-circle" title="Unknown"></i>';	
 					var thisMarkerLabelClass = 'poiUnknown';
 					var thisMarkerLabelTitleAddOn = ' ; Visited? Unknown';
+					var thisMarkerVisited = 'U';
 					if (thisMarker.cbsVisited)
 					{
+						thisMarkerVisited = thisMarker.cbsVisited;
 						switch(thisMarker.cbsVisited)
 						{
 							case "Y":
@@ -702,6 +704,7 @@ function addMarkersTo(map)
 							title:  thisMarker.cbsTitle + thisMarkerLabelTitleAddOn,
 							icon: thisMarkerCategoryData.mapMarkerIcon,
 							cbsCategory: thisMarker.cbsMainCategory,
+							cbsVisited: thisMarker.cbsVisited,
 							labelContent: thisMarkerLabel,
 							labelAnchor: new google.maps.Point(25, 50),
 							labelInBackground: true,
@@ -1046,7 +1049,7 @@ function LocationInfoControl(controlDiv, map)
 	}
 	catch (e)
 	{		
-		handleError('Locator', e);
+		handleError('Adding Locator Control', e);
 	}
 }
 
@@ -1064,7 +1067,7 @@ function MarkerCategoryFilterControl(controlDiv, map)
 					var thisMarkerCategoryData = getMarkerCategoryDataFromArray(filterCategory);				
 								
 					var controlUI = document.createElement('div');
-					controlUI.id = 'ToggleCategory' + filterCategory;
+					controlUI.id = 'ToggleCategory ' + filterCategory;
 					controlUI.className = 'control-filter controlActive';
 					filterCategoryLegendText += '<div class="filterOption"><div class="filterIcon"><img src="' + thisMarkerCategoryData.mapMarkerIcon + '" alt="' + filterCategory + ' Filter"/></div><div class="filterText"> ' + filterCategory + '</div></div>';
 					controlUI.innerHTML = 
@@ -1077,7 +1080,7 @@ function MarkerCategoryFilterControl(controlDiv, map)
 						{ 
 							toggleMarkers(map, filterCategory);
 						}
-					);					
+					);						
 				}
 			)(i); // END "immediately-invoked function expression"
 		}
@@ -1086,7 +1089,7 @@ function MarkerCategoryFilterControl(controlDiv, map)
 	}
 	catch (e)
 	{		
-		handleError('Locator', e);
+		handleError('Adding Category Filter Control', e);
 	}
 }
 
@@ -1134,7 +1137,7 @@ function IsATestControl(controlDiv, map)
 	}
 	catch (e)
 	{		
-		handleError('Locator', e);
+		handleError('Adding IsATest Control', e);
 	}
 }
 
@@ -1144,7 +1147,6 @@ function TrafficControl(controlDiv, map)
 	{
 		trafficLayer = new google.maps.TrafficLayer();
 		
-		// Set CSS for the control border.
 		var controlUI = document.createElement('div');
 		controlUI.className = 'control-traffic controlInactive';
 		controlUI.id = 'ToggleTraffic';
@@ -1183,22 +1185,21 @@ function TrafficControl(controlDiv, map)
 				}
 				catch (e)
 				{	
-					handleError('Traffic', e);
+					handleError('Adding Traffic Control', e);
 				}
 			}
 		);
 	}
 	catch (e)
 	{		
-		handleError('Traffic', e);
+		handleError('Adding Traffic Control', e);
 	}
 }
 
 function ClusteringControl(controlDiv, map)
 {
 	try
-	{		
-		// Set CSS for the control border.
+	{	
 		var controlUI = document.createElement('div');
 		controlUI.className = 'control-clustering controlActive';
 		controlUI.id = 'ToggleClustering';
@@ -1223,14 +1224,62 @@ function ClusteringControl(controlDiv, map)
 				}
 				catch (e)
 				{	
-					handleError('Clustering', e);
+					handleError('Adding Clustering Control', e);
 				}
 			}
 		);
 	}
 	catch (e)
 	{		
-		handleError('Clustering', e);
+		handleError('Adding Clustering Control', e);
+	}
+}
+
+function VisitedControl(controlDiv, map)
+{
+	try
+	{		
+		var controlUI = document.createElement('div');
+		controlUI.className = 'control-visited controlActive';
+		controlUI.id = 'ToggleCategory Visited';
+		controlUI.innerHTML = '<i class="far fa-eye" title="Visited"></i>';
+		controlUI.title = 'Click to toggle POIs we have visited.';
+		controlDiv.appendChild(controlUI);	
+
+		controlUI.addEventListener
+		('click', function() 
+			{	
+				toggleMarkers(map, 'Visited');
+			}
+		);
+	}
+	catch (e)
+	{		
+		handleError('Adding Visited Control', e);
+	}
+}
+
+function NotVisitedControl(controlDiv, map)
+{
+	try
+	{		
+		var controlUI = document.createElement('div');
+		controlUI.className = 'control-notvisited controlActive';
+		controlUI.id = 'ToggleCategory NotVisited';
+		controlUI.innerHTML = '<i class="far fa-eye-slash" title="Someday"></i>';
+		controlUI.title = 'Click to toggle POIs we have not yet visited.';
+		controlDiv.appendChild(controlUI);	
+
+		controlUI.addEventListener
+		('click', function() 
+			{	
+				toggleMarkers(map, 'NotVisited');
+			}
+		);
+	}
+	catch (e)
+	{		
+		handleError('Adding Not Visited Control', e);
 	}
 }
 
@@ -1240,7 +1289,6 @@ function IncidentsControl(controlDiv, map)
 	{	
 		incidentsLayer = new google.maps.KmlLayer();	
 		
-		// Set CSS for the control border.
 		var controlUI = document.createElement('div');
 		controlUI.className = 'control-incidents controlInactive';
 		controlUI.id = 'ToggleIncidents';
@@ -1274,7 +1322,7 @@ function IncidentsControl(controlDiv, map)
 	}
 	catch (e)
 	{		
-		handleError('Incidents', e);
+		handleError('Adding Incidents Control', e);
 	}
 }
 
@@ -1467,11 +1515,63 @@ function goToCurrentLocation()
 function toggleMarkers(map, toggleCategory)
 {
 	try
+	{		
+		var showVisited = true;	
+		var showNotVisited = true;
+		var elementId = 'ToggleCategory ' + toggleCategory;
+		var classExtender = toggleCategory.toLowerCase();
+		
+		if (document.getElementById('ToggleCategory Visited').classList.contains('controlInactive'))
+		{	
+			showVisited = false;
+		}
+		
+		if (document.getElementById('ToggleCategory NotVisited').classList.contains('controlInactive'))
+		{	
+			showNotVisited = false;
+		}
+		
+		if (toggleCategory === 'Visited' || toggleCategory === 'NotVisited' )
+		{		
+			if (document.getElementById(elementId).classList.contains('controlActive'))
+			{	
+				document.getElementById(elementId).className = 'control-' + classExtender + ' controlInactive';
+				if (toggleCategory === 'Visited') showVisited = false;
+				if (toggleCategory === 'NotVisited') showNotVisited = false;
+			}
+			else
+			{	
+				document.getElementById(elementId).className = 'control-' + classExtender + ' controlActive';
+				if (toggleCategory === 'Visited') showVisited = true;
+				if (toggleCategory === 'NotVisited') showNotVisited = true;
+			}	
+			
+			for (var i = 0; i < markersDistinctCategoriesArray.length; i++)
+			{
+				var toggleThisCategory = markersDistinctCategoriesArray[i];	
+				setVisibilityOnMarkersInArray(toggleThisCategory, showVisited, showNotVisited, 'all');
+			}
+		}
+		else
+		{	
+			setVisibilityOnMarkersInArray(toggleCategory, showVisited, showNotVisited, 'category');
+		}
+		
+		markerClustering.repaint();	
+	}
+	catch(e)
 	{
-		var elementID = 'ToggleCategory' + toggleCategory;	
-		var desiredState = document.getElementById(elementID).classList.contains('controlActive')
-			? 'HIDING'
-			: 'SHOWING';
+		handleError('Toggle Markers', e);
+	}
+}
+
+function setVisibilityOnMarkersInArray(toggleCategory, showVisited, showNotVisited, callType)
+{
+	try
+	{
+		var elementID = 'ToggleCategory ' + toggleCategory;	
+		var controlIsCurrentlyActive = document.getElementById(elementID).classList.contains('controlActive');
+		var desiredStateIsVisible = true;	
 		
 		var markersInThisCategoryArray = markersArray.filter
 		(
@@ -1481,41 +1581,51 @@ function toggleMarkers(map, toggleCategory)
 			}
 		);
 		
-		if(isATest)
-		{			
-			console.warn('TESTING: All Markers count: ' + markersArray.length.toString());
-			for (var i = 0; i < 1; i++) 
+		for (var i = 0; i < markersInThisCategoryArray.length; i++) 
+		{		
+			var cbsVisitedThisMarker = markersInThisCategoryArray[i].cbsVisited;	
+						
+			if 
+			(
+				(callType === 'category' && controlIsCurrentlyActive)
+				|| (callType === 'all' && !controlIsCurrentlyActive)
+				|| (cbsVisitedThisMarker === 'Y' && !showVisited)
+				|| (cbsVisitedThisMarker === 'N' && !showNotVisited)
+			)
 			{
-				var markerData = markersArray[i];		
-				console.log('TESTING: Marker Data', i, 'is', markerData);
+				desiredStateIsVisible = false;
 			}
-			console.warn('TESTING: Marker count in category "' + toggleCategory + '": ' + markersInThisCategoryArray.length.toString());
+			else if
+			(
+				((callType === 'category' && !controlIsCurrentlyActive)
+				|| (callType === 'all' && controlIsCurrentlyActive))
+				&& 
+				(
+					(cbsVisitedThisMarker === 'Y' && showVisited)
+					|| (cbsVisitedThisMarker === 'N' && showNotVisited)
+				)
+			)
+			{
+				desiredStateIsVisible = true;
+			}
+			markersInThisCategoryArray[i].setVisible(desiredStateIsVisible);
+		}	
 			
-			console.log('TESTING: ' + desiredState + ' markers in category ' + toggleCategory);
-		}		
-					
-		if (desiredState === 'SHOWING')
+		if (callType === 'category')
 		{			
-			for (var i = 0; i < markersInThisCategoryArray.length; i++) 
+			var controlStatusClass = 'controlActive';
+			
+			if (controlIsCurrentlyActive)
 			{
-				markersInThisCategoryArray[i].setVisible(true);				
-				document.getElementById(elementID).className = 'control-filter controlActive';
+				controlStatusClass = 'controlInactive';
 			}
+			
+			document.getElementById(elementID).className = 'control-filter ' + controlStatusClass;
 		}
-		else
-		{				
-			for (var i = 0; i < markersInThisCategoryArray.length; i++) 
-			{
-				markersInThisCategoryArray[i].setVisible(false);		
-				document.getElementById(elementID).className = 'control-filter controlInactive';
-			}
-		}
-		
-		markerClustering.repaint();	
 	}
 	catch(e)
 	{
-		handleError('Filter Markers', e);
+		handleError('Set Visibility on Markers in Array', e);
 	}
 }
 
