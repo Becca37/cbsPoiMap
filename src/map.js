@@ -24,6 +24,7 @@ var trafficLayer = null;
 var incidentsLayer = null;
 
 var currentLocationMarker = null;
+var currentLocationMarkerArray = [];
 var currentLocationLatitude;
 var currentLocationLongitude;
 var currentLocationTitleString = 'Current Location';
@@ -1064,11 +1065,12 @@ function LocationInfoControl(controlDiv, map)
 	{
 		var controlUI = document.createElement('div');
 		controlUI.id = 'currentLocationInfoContainer';
-		controlUI.innerHTML = '<div id="currentLocationIcon"><i class="fas fa-crosshairs fa-2x"></i></div><div id="currentLocationInfo">Click to show current location info.</div>';
-		controlUI.title = 'Click to show current location info.';
-		controlDiv.appendChild(controlUI);	
-
-		controlUI.addEventListener('click', goToCurrentLocation);			
+		controlUI.innerHTML = ''
+			+ '<div id="currentLocationIcon" onclick="goToCurrentLocation()"><i class="fas fa-crosshairs fa-2x"></i></div>'
+			+ '<div id="currentLocationInfo" onclick="goToCurrentLocation()">Click to show current location info.</div>'
+			+ '<div id="currentLocationOffIcon" onclick="stopWatchingCurrentLocation()" class="isNotVisible"><i class="far fa-window-close fa-2x"></i></i></div>';
+		controlUI.title = 'Current location info.';
+		controlDiv.appendChild(controlUI);
 	}
 	catch (e)
 	{		
@@ -1428,10 +1430,11 @@ function watchLocation(map)
 							currentLocationMarker = new google.maps.Marker
 							(
 								{
-									position: pos,
-									map: map,
-									title:  'Approximate Current Location',
-									icon: 
+									  id: 'Current Location Marker'
+									, position: pos
+									, map: map
+									, title:  'Approximate Current Location'
+									, icon: 
 									{ 
 										  url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(currentLocationSvg)
 										, scaledSize: new google.maps.Size(50, 50)
@@ -1445,6 +1448,8 @@ function watchLocation(map)
 									displayInfoPanelFor(currentLocationMarker, 'gMap', currentLocationLatitude, currentLocationLongitude, '');
 								}
 							);
+							
+							currentLocationMarkerArray.push(currentLocationMarker);
 						}
 						else
 						{
@@ -1464,9 +1469,7 @@ function watchLocation(map)
 						var extraInfo = '<span style="font-size: smaller;">Accuracy ~ ' + accuracyInFeet + accuracyInMeters + '. ' + currentTimestamp() + '</span>';
 
 						if (document.getElementById('currentLocationInfo'))
-						{							
-							document.getElementById('currentLocationInfoContainer').title = 'Click to pan and zoom to current location.';
-							
+						{								
 							var controlUI = document.getElementById('currentLocationInfo');
 							controlUI.innerHTML = 'Click to pan/zoom to: <b>' + position.coords.latitude + ', ' + position.coords.longitude + '</b><br/>' + extraInfo;
 						}
@@ -1475,6 +1478,8 @@ function watchLocation(map)
 						{
 							displayInfoPanelFor(currentLocationMarker, 'gMap', position.coords.latitude, position.coords.longitude, extraInfo);								
 						}
+						
+						document.getElementById('currentLocationOffIcon').className = 'isVisible';
 						
 						devicePositionKnown = true;	
 					}
@@ -1507,8 +1512,6 @@ function watchLocation(map)
 						}
 						
 						locationMessage += currentTimestamp();
-						
-						console.error('GEOLOCATION: ' + locationMessage);
 							
 						if (document.getElementById('CurrentLocationInfo'))
 						{							
@@ -1519,7 +1522,7 @@ function watchLocation(map)
 						}
 						else
 						{
-							iziToast.warning({title: 'Location', message: locationMessage,});
+							console.error('GEOLOCATION: ' + locationMessage);
 						}
 					}
 					catch(e)
@@ -1536,8 +1539,6 @@ function watchLocation(map)
 			devicePositionKnown = false;	
 			
 			var locationMessage = 'Your browser doesn\'t support geolocation.' + currentTimestamp();
-						
-			console.error('GEOLOCATION: ' + locationMessage);
 			
 			if (document.getElementById('CurrentLocationInfo'))
 			{						
@@ -1548,7 +1549,7 @@ function watchLocation(map)
 			}
 			else
 			{
-				iziToast.warning({title: 'Location', message: locationMessage,});
+				console.error('GEOLOCATION: ' + locationMessage);
 			}
 		}
 	}
@@ -1581,6 +1582,33 @@ function goToCurrentLocation()
 	catch(e)
 	{
 		handleError('Go To Current Location', e);
+	}
+}
+
+function stopWatchingCurrentLocation()
+{
+	try
+	{	
+		//marker count in this array should always be one or none
+		//but 'just in case' we're cycling through it anyhow
+		for (var i = 0; i < currentLocationMarkerArray.length; i++)
+		{
+			currentLocationMarkerArray[i].setMap(null);
+		}
+		navigator.geolocation.clearWatch(watchCurrentLocationId);
+		watchCurrentLocationId = null;
+		currentLocationMarker = null;
+		currentLocationMarkerArray = [];
+		devicePositionKnown = false;
+		document.getElementById('currentLocationOffIcon').className = 'isNotVisible';
+							
+		document.getElementById('currentLocationInfoContainer').title = 'Click to show current location info.';		
+		var controlUI = document.getElementById('currentLocationInfo');
+		controlUI.innerHTML = 'Click to show current location info.';
+	}
+	catch(e)
+	{
+		handleError('Stop Watching Current Location', e);
 	}
 }
 

@@ -232,16 +232,6 @@ input[type='checkbox'] + label
 	cursor: pointer;
 }
 
-.isVisible
-{
-	display: block !important;
-}
-
-.isNotVisible
-{
-	display: none !important;
-}
-
 .instructionsText
 {
 	padding-top: 15px;
@@ -352,16 +342,15 @@ input[type='checkbox'] + label
 #currentLocationInfoContainer
 {
 	display: grid;
-	grid-template-columns: 35px 1fr;
+	grid-template-columns: 35px 1fr 35px;
 	box-shadow: 0 2px 6px rgba(0,0,0,.3);
 	cursor: pointer;
-	width: 100%;
 	min-height: 29px;
 	margin-left: 10px;
 	margin-bottom: 3px;
 	padding: 5px;
 	font-size: larger;
-	text-align: left;
+	text-align: center;
 	color: #9c9c9c;
 	background: rgba(255,255,255, 0.7);
 }
@@ -396,18 +385,6 @@ input[type='checkbox'] + label
 .control-visited, .control-notvisited
 {
 	margin-bottom: 6px;	
-}
-
-.controlActive
-{
-	background: rgba(0,128,0, 0.7);
-	color: rgba(255,255,255, 0.8);
-}
-
-.controlInactive
-{
-	background: rgba(255,255,255, 0.5);
-	color: #CCCCCC;
 }
 
 .control-test, .control-clustering
@@ -518,4 +495,28 @@ input[type='checkbox'] + label
     height: 400px;
     top: 50%;
     margin-top: -200px;
+}
+
+/* GENERAL load last */
+
+.controlActive
+{
+	background: rgba(0,128,0, 0.7);
+	color: rgba(255,255,255, 0.8);
+}
+
+.controlInactive
+{
+	background: rgba(255,255,255, 0.5);
+	color: #CCCCCC;
+}
+
+.isVisible
+{
+	display: block !important;
+}
+
+.isNotVisible
+{
+	display: none !important;
 }
