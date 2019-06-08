@@ -561,6 +561,18 @@ function addCustomControlsTo(map)
 	{
 		//https://developers.google.com/maps/documentation/javascript/controls#ControlPositioning
 
+		// Add custom control for SHOW ALL
+		var showAllControlDiv = document.createElement('div');
+		var showAllControl = new ShowAllControl(showAllControlDiv, map);	
+		showAllControlDiv.index = 1;
+		map.controls[google.maps.ControlPosition.LEFT_CENTER].push(showAllControlDiv);
+
+		// Add custom control for HIDE ALL
+		var hideAllControlDiv = document.createElement('div');
+		var hideAllControl = new HideAllControl(hideAllControlDiv, map);	
+		hideAllControlDiv.index = 1;
+		map.controls[google.maps.ControlPosition.LEFT_CENTER].push(hideAllControlDiv);
+		
 		// Add custom control for VISITED
 		var visitedControlDiv = document.createElement('div');
 		var visitedControl = new VisitedControl(visitedControlDiv, map);	
@@ -1309,6 +1321,54 @@ function ClusteringControl(controlDiv, map)
 	}
 }
 
+function ShowAllControl(controlDiv, map)
+{
+	try
+	{		
+		var controlUI = document.createElement('div');
+		controlUI.className = 'control-showAll';
+		controlUI.id = 'ToggleCategory ShowAll';
+		controlUI.innerHTML = '<i class="far fa-check-circle" title="ShowAll"></i>';
+		controlUI.title = 'Click to show all POIs.';
+		controlDiv.appendChild(controlUI);	
+
+		controlUI.addEventListener
+		('click', function() 
+			{	
+				toggleMarkers(map, 'ShowAll');
+			}
+		);
+	}
+	catch (e)
+	{		
+		handleError('Adding ShowAll Control', e);
+	}
+}
+
+function HideAllControl(controlDiv, map)
+{
+	try
+	{		
+		var controlUI = document.createElement('div');
+		controlUI.className = 'control-hideAll';
+		controlUI.id = 'ToggleCategory HideAll';
+		controlUI.innerHTML = '<i class="fas fa-ban" title="HideAll"></i>';
+		controlUI.title = 'Click to hide all POIs.';
+		controlDiv.appendChild(controlUI);	
+
+		controlUI.addEventListener
+		('click', function() 
+			{	
+				toggleMarkers(map, 'HideAll');
+			}
+		);
+	}
+	catch (e)
+	{		
+		handleError('Adding ShowAll Control', e);
+	}
+}
+
 function VisitedControl(controlDiv, map)
 {
 	try
@@ -1615,46 +1675,67 @@ function stopWatchingCurrentLocation()
 function toggleMarkers(map, toggleCategory)
 {
 	try
-	{		
-		var showVisited = true;	
-		var showNotVisited = true;
-		var elementId = 'ToggleCategory ' + toggleCategory;
-		var classExtender = toggleCategory.toLowerCase();
-		
-		if (document.getElementById('ToggleCategory Visited').classList.contains('controlInactive'))
-		{	
-			showVisited = false;
-		}
-		
-		if (document.getElementById('ToggleCategory NotVisited').classList.contains('controlInactive'))
-		{	
-			showNotVisited = false;
-		}
-		
-		if (toggleCategory === 'Visited' || toggleCategory === 'NotVisited' )
-		{		
-			if (document.getElementById(elementId).classList.contains('controlActive'))
-			{	
-				document.getElementById(elementId).className = 'control-' + classExtender + ' controlInactive';
-				if (toggleCategory === 'Visited') showVisited = false;
-				if (toggleCategory === 'NotVisited') showNotVisited = false;
+	{	
+		if (toggleCategory === 'ShowAll' || toggleCategory === 'HideAll')
+		{
+			var desiredState = toggleCategory === 'ShowAll' ? true : false;
+			for (var i = 0; i < markersArray.length; i++) 
+			{
+				markersArray[i].setVisible(desiredState);
 			}
-			else
-			{	
-				document.getElementById(elementId).className = 'control-' + classExtender + ' controlActive';
-				if (toggleCategory === 'Visited') showVisited = true;
-				if (toggleCategory === 'NotVisited') showNotVisited = true;
-			}	
+			document.getElementById('ToggleCategory Visited').className = 'control-visited controlActive';
+			document.getElementById('ToggleCategory NotVisited').className = 'control-notvisited controlActive';
 			
+			var controlStatusClass = 'controlActive';
+			if (toggleCategory === 'HideAll') { controlStatusClass = 'controlInactive'; }					
 			for (var i = 0; i < markersDistinctCategoriesArray.length; i++)
 			{
-				var toggleThisCategory = markersDistinctCategoriesArray[i].categoryName;	
-				setVisibilityOnMarkersInArray(toggleThisCategory, showVisited, showNotVisited, 'all');
+				var toggleThisCategory = markersDistinctCategoriesArray[i].categoryName;
+				document.getElementById('ToggleCategory ' + toggleThisCategory).className = 'control-filter ' + controlStatusClass;				
 			}
 		}
 		else
-		{	
-			setVisibilityOnMarkersInArray(toggleCategory, showVisited, showNotVisited, 'category');
+		{
+			var showVisited = true;	
+			var showNotVisited = true;
+			var elementId = 'ToggleCategory ' + toggleCategory;
+			var classExtender = toggleCategory.toLowerCase();
+			
+			if (document.getElementById('ToggleCategory Visited').classList.contains('controlInactive'))
+			{	
+				showVisited = false;
+			}
+			
+			if (document.getElementById('ToggleCategory NotVisited').classList.contains('controlInactive'))
+			{	
+				showNotVisited = false;
+			}
+			
+			if (toggleCategory === 'Visited' || toggleCategory === 'NotVisited' )
+			{		
+				if (document.getElementById(elementId).classList.contains('controlActive'))
+				{	
+					document.getElementById(elementId).className = 'control-' + classExtender + ' controlInactive';
+					if (toggleCategory === 'Visited') showVisited = false;
+					if (toggleCategory === 'NotVisited') showNotVisited = false;
+				}
+				else
+				{	
+					document.getElementById(elementId).className = 'control-' + classExtender + ' controlActive';
+					if (toggleCategory === 'Visited') showVisited = true;
+					if (toggleCategory === 'NotVisited') showNotVisited = true;
+				}	
+				
+				for (var i = 0; i < markersDistinctCategoriesArray.length; i++)
+				{
+					var toggleThisCategory = markersDistinctCategoriesArray[i].categoryName;	
+					setVisibilityOnMarkersInArray(toggleThisCategory, showVisited, showNotVisited, 'all');
+				}
+			}
+			else
+			{	
+				setVisibilityOnMarkersInArray(toggleCategory, showVisited, showNotVisited, 'category');
+			}
 		}
 		
 		markerClustering.repaint();	

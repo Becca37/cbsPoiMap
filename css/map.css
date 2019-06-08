@@ -373,7 +373,7 @@ input[type='checkbox'] + label
 	padding: 10px 15px 10px 15px;
 }
 
-.control-filter, .control-visited, .control-notvisited
+.control-filter, .control-visited, .control-notvisited, .control-showAll, .control-hideAll
 {
 	margin-left: 10px;
 	margin-bottom: 3px;
@@ -382,7 +382,7 @@ input[type='checkbox'] + label
 	padding: 0px;
 }
 
-.control-visited, .control-notvisited
+.control-visited, .control-notvisited, .control-showAll, .control-hideAll
 {
 	margin-bottom: 6px;	
 }
