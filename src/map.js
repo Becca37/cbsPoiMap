@@ -487,13 +487,13 @@ function showHideInstructions()
 		{
 			instructionsContainer.classList.remove('isVisible');
 			instructionsContainer.classList.add('isNotVisible');
-			toggleInstructions.innerHTML = '<span class="toggleInstructionsText"><i class="far fa-question-circle"></i> Hide Instructions</div></span>';
+			toggleInstructions.innerHTML = '<span class="toggleInstructionsText"><i class="far fa-question-circle"></i> Show Instructions</div></span>';
 		}
 		else
 		{
 			instructionsContainer.classList.remove('isNotVisible');
 			instructionsContainer.classList.add('isVisible');
-			toggleInstructions.innerHTML = '<span class="toggleInstructionsText"><i class="far fa-question-circle"></i> Show Instructions</div></span>';
+			toggleInstructions.innerHTML = '<span class="toggleInstructionsText"><i class="far fa-question-circle"></i> Hide Instructions</div></span>';
 		}
 	}
 	catch (e)
