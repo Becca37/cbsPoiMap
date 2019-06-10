@@ -1,0 +1,246 @@
+<html>
+	<head>
+		<link href="../css/furkot.css" rel="stylesheet"></script>				
+		<link href="../css/map.css" rel="stylesheet">		
+		<script src="https://cdn.furkot.com/scripts/furkot-trip-planner.min.js" defer type="text/javascript"></script>	
+		<style>
+			body
+			{
+				margin: 50px;
+			}
+			a 
+			{
+				cursor: pointer !important;
+			}
+			table 
+			{
+				width: 100%;
+				border-collapse: collapse;
+			}
+			td, th
+			{
+				border: 1px solid black;
+				padding: 20px 25px 20px 25px;
+			}
+			th
+			{
+				font-weight: bold;
+				background-color: #CCCCCC;		
+			}
+			tr:nth-child(odd) 
+			{
+				background-color: #f5f5f5;
+			}
+			.yay, .doable, .caution, .no
+			{
+				width: 10px;
+			}
+			.yay
+			{
+				background-color: #2dc937;
+			}
+			.doable
+			{
+				background-color: #4C4CFF;
+			}
+			.caution
+			{
+				background-color: #e7b416;
+			}
+			.no
+			{
+				background-color: #db7b2b;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+		
+			<tr>
+				<td class="yay"></td>
+				<td></td>
+				<td><a href="" target="furkot">Link</a></td>
+				<td></td>
+				<td></td>
+			</tr>
+		-->
+		<p>Here are some notes about the interaction with Furkot trip planner widget for the Chasing Blue Sky map. </p>
+		<ul>
+			<li><a href="https://ChasingBlueSky.net/mapTest/">TEST Env (latest features, but unstable)</a></li>
+			<li><a href="https://ChasingBlueSky.net/map/">PROD Env (runs behind features and POIs in TEST env, but pretty stable)</a></li>
+            <li><a href="https://github.com/Becca37/cbsPoiMap/">GitHub</a></li>
+		</ul>
+		<p>Please note that "expectations" might not match reality of what's offered by Furkot's API. 
+		</p>
+       <p><b>Status Legend</b>
+        <br /><span class="yay">_____</span> As Expected
+        <br /><span class="doable">_____</span> Not as expected, but works with a few tweaks.
+        <br /><span class="caution">_____</span> Not as expected and workarounds, if present, are rather troublesome for the average user.
+        <br /><span class="no">_____</span>Not as expected and just too wonky; don't use.
+        </p>
+        <p>
+		Expected behavior for all "add to Furkot links" using trip planner widget integration:
+		<ol>
+			<li>Opens Furkot Trip Planner Widget in "dialog" overlay.</li>
+			<li>Adds stop(s) to trip selected by user (after login and/or add new trip and/or confirming duplicate stop, as needed). </li>
+			<li>If multiple stops, 
+				<ol type="a">
+					<li>Adds them in the order provided.</li>
+					<li>If stop is provided as 0 duration and pin of passthrough, stop is treated as a passthrough point as per user settings (e.g. hidden if user is hiding them).</li>
+				</ol>
+			<li>If a route, also
+				<ol type="a">
+					<li>Adds the polyline to trip.</li>
+					<li>Uses travel MODE specified between stops.</li>
+				</ol>
+			</li>
+		</ol>
+		Expected behavior for "Plan with Furkot" link on tripshot widget --- in short: behavior is as expected. :0)
+        </p>
+		<table>
+			<tr><th>Status</th><th>Scenario</th><th>Example</th><th>Actual Results</th><th>Workaround</th></tr>
+			<tr>
+				<td class="yay"></td>
+				<td>Single Stop</td>
+				<td><a href="https://trips.furkot.com/trip?stop[name]=North%20Cochetopa%20Pass&stop[coordinates][lat]=38.216667&stop[coordinates][lon]=-106.575556&stop[url]=http%3A%2F%2Fgeonames.usgs.gov%2Fapex%2Ff%3Fp%3Dgnispq%3A3%3A%3A%3ANO%3A%3AP3_FID%3A190046&stop[pin]=mountains&uid=6VjRjO" target="furkot">North Cochetopa Pass, CO</a>
+				<td>As expected.</td>
+				<td>---</td>
+			</tr>
+            <tr>
+                <td class="caution"></td>
+                <td>Multi-Stop (6)</td>
+                <td><a href="https://trips.furkot.com/trip?stops[0][name]=Northern%20New%20Mexico%20Loop%20(Cundiyo%20Road)&stops[0][coordinates][lat]=35.896884&stops[0][coordinates][lon]=-106.019761&stops[0][notes]=Includes%20the%20High%20Road%20to%20Taos%20and%20the%20Enchanted%20Circle%20and%20additional%20roads.%3Cbr%2F%3E%3Cbr%2F%3E%3Ci%3ESource%3A%20%3C%2Fi%3E%20%3Ca%20href%3D%22https%3A%2F%2FchasingBlueSky.net%2F%22%20target%3D%22_blank%22%3EChasing%20Blue%20Sky%3C%2Fa%3E&stops[0][url]=https%3A%2F%2Fwww.newmexico.org%2Fthings-to-do%2Fscenic-byways%2F&stops[0][pin]=guide&stops[0][duration]=0&stops[1][name]=Northern%20New%20Mexico%20Loop%20(75%20%26%20518)&stops[1][coordinates][lat]=36.176071&stops[1][coordinates][lon]=-105.618355&stops[1][notes]=Includes%20the%20High%20Road%20to%20Taos%20and%20the%20Enchanted%20Circle%20and%20additional%20roads.%3Cbr%2F%3E%3Cbr%2F%3E%3Ci%3ESource%3A%20%3C%2Fi%3E%20%3Ca%20href%3D%22https%3A%2F%2FchasingBlueSky.net%2F%22%20target%3D%22_blank%22%3EChasing%20Blue%20Sky%3C%2Fa%3E&stops[1][url]=https%3A%2F%2Fwww.newmexico.org%2Fthings-to-do%2Fscenic-byways%2F&stops[1][pin]=passthru&stops[1][duration]=0&stops[2][name]=Northern%20New%20Mexico%20Loop%20(Eagle%20Nest)&stops[2][coordinates][lat]=36.553596&stops[2][coordinates][lon]=-105.266854&stops[2][notes]=Includes%20the%20High%20Road%20to%20Taos%20and%20the%20Enchanted%20Circle%20and%20additional%20roads.%3Cbr%2F%3E%3Cbr%2F%3E%3Ci%3ESource%3A%20%3C%2Fi%3E%20%3Ca%20href%3D%22https%3A%2F%2FchasingBlueSky.net%2F%22%20target%3D%22_blank%22%3EChasing%20Blue%20Sky%3C%2Fa%3E&stops[2][url]=https%3A%2F%2Fwww.newmexico.org%2Fthings-to-do%2Fscenic-byways%2F&stops[2][pin]=passthru&stops[2][duration]=0&stops[3][name]=Northern%20New%20Mexico%20Loop%20(Questa)&stops[3][coordinates][lat]=36.703825&stops[3][coordinates][lon]=-105.59591&stops[3][notes]=Includes%20the%20High%20Road%20to%20Taos%20and%20the%20Enchanted%20Circle%20and%20additional%20roads.%3Cbr%2F%3E%3Cbr%2F%3E%3Ci%3ESource%3A%20%3C%2Fi%3E%20%3Ca%20href%3D%22https%3A%2F%2FchasingBlueSky.net%2F%22%20target%3D%22_blank%22%3EChasing%20Blue%20Sky%3C%2Fa%3E&stops[3][url]=https%3A%2F%2Fwww.newmexico.org%2Fthings-to-do%2Fscenic-byways%2F&stops[3][pin]=passthru&stops[3][duration]=0&stops[4][name]=Northern%20New%20Mexico%20Loop%20(Tierra%20Amarilla)&stops[4][coordinates][lat]=36.687538&stops[4][coordinates][lon]=-106.558216&stops[4][notes]=Includes%20the%20High%20Road%20to%20Taos%20and%20the%20Enchanted%20Circle%20and%20additional%20roads.%3Cbr%2F%3E%3Cbr%2F%3E%3Ci%3ESource%3A%20%3C%2Fi%3E%20%3Ca%20href%3D%22https%3A%2F%2FchasingBlueSky.net%2F%22%20target%3D%22_blank%22%3EChasing%20Blue%20Sky%3C%2Fa%3E&stops[4][url]=https%3A%2F%2Fwww.newmexico.org%2Fthings-to-do%2Fscenic-byways%2F&stops[4][pin]=passthru&stops[4][duration]=0&stops[5][name]=Northern%20New%20Mexico%20Loop%20(Pojoaque)&stops[5][coordinates][lat]=35.897707&stops[5][coordinates][lon]=-106.021118&stops[5][notes]=Includes%20the%20High%20Road%20to%20Taos%20and%20the%20Enchanted%20Circle%20and%20additional%20roads.%3Cbr%2F%3E%3Cbr%2F%3E%3Ci%3ESource%3A%20%3C%2Fi%3E%20%3Ca%20href%3D%22https%3A%2F%2FchasingBlueSky.net%2F%22%20target%3D%22_blank%22%3EChasing%20Blue%20Sky%3C%2Fa%3E&stops[5][url]=https%3A%2F%2Fwww.newmexico.org%2Fthings-to-do%2Fscenic-byways%2F&stops[5][pin]=guide&stops[5][duration]=0&uid=6VjRjO" target="furkot">Northern New Mexico Loop</a></td>
+                <td>
+                    <ol>
+                        <li>Opens onsite dialog, but does not add stops.</li>
+                    </ol>
+                </td>
+                <td>
+                    Copy link and go to in browser. Stops are added but:
+                    <ul>
+                        <li>Not in the order provided; user would have to reset order. How to force a particular order?</li>
+                        <li>Hides some but not all passthrough points. How to make them be hidden? Stop duration is already set to 0 and pin is already set to passthrough.</li>
+                    </ul>
+                </td>
+            </tr>
+			<tr>
+				<td class="caution"></td>
+				<td>Multi-Stop (2), with Route Polyline, route type = THROUGH</td>
+				<td><a href="https://trips.furkot.com/trip?stops[0][name]=Devil%27s%20Highway%20666%20AZ%20(Three%20Way)&stops[0][coordinates][lat]=32.948572&stops[0][coordinates][lon]=-109.229845&stops[0][notes]=Fun!%20Have%20to%20drag%20D%20there%20sometime%2C%20fer%20sure.%3Cbr%2F%3E%3Cbr%2F%3E%3Ci%3ESource%3A%20%3C%2Fi%3E%20%3Ca%20href%3D%22https%3A%2F%2FchasingBlueSky.net%2F%22%20target%3D%22_blank%22%3EChasing%20Blue%20Sky%3C%2Fa%3E&stops[0][url]=http%3A%2F%2Fwww.twistypedia.com%2Froads%2Fusa%2Farizona%2Fdevils-hiway-us191-arizona%2F&stops[0][pin]=guide&stops[0][duration]=0&stops[0][route][mode]=car&stops[1][name]=Devil%27s%20Highway%20666%20AZ%20(Alpine)&stops[1][coordinates][lat]=33.848323&stops[1][coordinates][lon]=-109.146502&stops[1][notes]=Fun!%20Have%20to%20drag%20D%20there%20sometime%2C%20fer%20sure.%3Cbr%2F%3E%3Cbr%2F%3E%3Ci%3ESource%3A%20%3C%2Fi%3E%20%3Ca%20href%3D%22https%3A%2F%2FchasingBlueSky.net%2F%22%20target%3D%22_blank%22%3EChasing%20Blue%20Sky%3C%2Fa%3E&stops[1][url]=http%3A%2F%2Fwww.twistypedia.com%2Froads%2Fusa%2Farizona%2Fdevils-hiway-us191-arizona%2F&stops[1][pin]=guide&stops[1][duration]=0&stops[1][route][mode]=car&stops[1][route][polyline]=qgbhEp}tyS??GAaBSuBY{Co@_Cc@eBYo@Gs@CqAE}@@eAJcAP}@TeA\y@\QHoAr@kCzAuBpAuDdCy~@vRc]|b@oiAzhCwbAxdAilBjy@mlBndBqwA_l@my@pV_S~e@t@boAk{@z{ApjAsf@fHjLohB~{ArCra@}]r`A~OlVfAj|Ai[r_@mkAnNks@}Vu]nQkReXomAkLaj@ku@m`Av}@cYuJm_By@g^}^cb@|@cu@i]}Tph@{dA`lAmfAgJmy@kd@ot@xQi[jcAmq@xPgs@y~AefDyjAibAuz@ygByFej@n]{n@y|@}oBjHscBq[{jAuDkaA_h@uGoj@ae@id@mt@he@_x@]m`@oSmz@phAdPnf@qe@zI}r@laCgn@pOgl@oK`Eld@crAt@sw@_o@xQgo@a_@fLuGfd@ik@pIeYofAwg@rvAmbAi@eMc|@hCyv@yOefAol@kbAieAc}@o_@y@k^ii@iGev@o`C`Q}k@|y@oi@{Dot@rfAmw@vN_Wps@bLpl@~]~JwTls@aoAj`@mPq_Asp@oKqjBw{AwOch@sx@_RkaA`Ich@iJat@{uBvLywA}b@eoAaCcp@gk@ev@}zBcvAcn@kqDqz@gjAgnBgz@_|@_HqfAvy@{x@cVyo@tlAib@{Bw|@e~AkNohAqbAsv@mrAuzCi{@aCqgAzk@qU_g@_xAk`@qn@oCoAa@e@QoAc@wBgA{EoC{BiAwBy@_Ba@}AW{AOcBEgDC????&uid=6VjRjO" target="furkot">Devil's Highway, AZ</a></td>
+				<td>
+					<ol>
+						<li>Opens Furkot UI instead of onsite dialog.</li>
+						<li>Makes ROUTING for last stop (the one associated with the polyline) as Offroad Routing, which in turns sets duration to having to be manually calculated.</li>
+					</ol>
+				</td>
+				<td>
+					<ol>
+						<li>Onsite dialog is the preferred handling for all scenarios, but UI is workable if that's how it is supposed to be working per Furkot's end.</li>
+						<li>Having to manually edit each route to switch from offroad* to follow roads is a bit inconvenient, but doable. Add note about this to CBS map instructions.</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<td class="caution"></td>
+				<td>Multi-Stop (2), with Route Polyline, route type = ONEWAY</td>
+				<td><a href="https://trips.furkot.com/trip?stops[0][name]=Sky%20Island%20Scenic%20Byway%20(Start%20Here)&stops[0][coordinates][lat]=32.304561&stops[0][coordinates][lon]=-110.744944&stops[0][notes]=Also%20known%20as%20Mt%20Lemmon%20Scenic%20Byway%20and%20Catalina%20Highway%20Scenic%20Drive%3Cbr%2F%3E%3Cbr%2F%3E%3Ci%3ESource%3A%20%3C%2Fi%3E%20%3Ca%20href%3D%22https%3A%2F%2FchasingBlueSky.net%2F%22%20target%3D%22_blank%22%3EChasing%20Blue%20Sky%3C%2Fa%3E&stops[0][url]=https%3A%2F%2Fgrandcircle.org%2Fscenic-byways%2Fscenic-byways-of-arizona%2F54-sky-island-scenic-byway&stops[0][pin]=guide&stops[0][duration]=0&stops[0][route][mode]=car&stops[1][name]=Sky%20Island%20Scenic%20Byway%20(Mount%20Lemmon%20General%20Store)&stops[1][coordinates][lat]=32.442898&stops[1][coordinates][lon]=-110.759295&stops[1][notes]=Also%20known%20as%20Mt%20Lemmon%20Scenic%20Byway%20and%20Catalina%20Highway%20Scenic%20Drive%3Cbr%2F%3E%3Cbr%2F%3E%3Ci%3ESource%3A%20%3C%2Fi%3E%20%3Ca%20href%3D%22https%3A%2F%2FchasingBlueSky.net%2F%22%20target%3D%22_blank%22%3EChasing%20Blue%20Sky%3C%2Fa%3E&stops[1][url]=https%3A%2F%2Fgrandcircle.org%2Fscenic-byways%2Fscenic-byways-of-arizona%2F54-sky-island-scenic-byway&stops[1][pin]=guide&stops[1][duration]=0&stops[1][route][mode]=car&stops[1][route][polyline]=inddEnz|bT??iFmBeToAkHmEaIuB|A_FhMbBtDEvAmEwF{Ek@yEhDsGYoM_AeDgE_EtAaLcBgGiDkCv@cEtC?fC{D}@yCyEqDSyEp@_IeCgCp@uFvIyA{IeXc@eMsGoLyKg@oJqJeY_GyKmJmKwAuKsKuBkXiL{VuLkHoKBkS}XmFj@{BtNhIfUmDtIjAzX}AzToGfR|DxWoPxY_ZpD_NqByAv]iLlLmJg@mJyJgIlSaKaCyAmNuNaIeH_Pl@oVwM}VuPwRcJqWkJkOmFsQiBwQsMed@kKqJgF|CxFlTnGxFe@nI`Clb@dGnG~@lY~LvG|GjYrKhRyGdIoJm_@_UsQyEuOYkP{GuCqJsNwByMcV{PuUtHeKwFqJdBmJzKyNeNDeQkMoL}QlB_FvDw@lOfExIK`WgHtJkOyHyFr@sDdXwLdBiEdTpF~Kv@jLwKzMw@jt@nFtH_DzTmNxT_OtEAlTuK~DwKhPqWaCrCoTqEeCkBbPmIzN{HlFiBnBaGxJgHlH_AfCiA~I{BdFgBbHaCbEuBzAwHpA{[P}CLgHfCaF\{Io@}AFcIxByAlBk@~Cv@rEzGnLtBjH`DdC|BCnI_C????&uid=6VjRjO" target="furkot">Sky Island Scenic Byway, AZ</a></td>
+				<td>
+					<ol>
+						<li>Opens Furkot UI instead of onsite dialog.</li>
+						<li>Makes ROUTING&nbsp; for last stop (the one associated with the polyline) as Offroad Routing, which in turns sets duration to having to be manually calculated.</li>
+					</ol>
+				</td>
+				<td>
+					<ol>
+						<li>Onsite dialog is the preferred handling for all scenarios, but UI is workable if that's how it is supposed to be working per Furkot's end.</li>
+						<li>Having to manually edit each route to switch from offroad* to follow roads is a bit inconvenient, but doable. Add note about this to CBS map instructions.</li>
+						<li>Becomes undoable with routes with lots of stops and/or longer tracks.</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<td class="caution"></td>
+				<td>Multi-Stop (2), with Route Polyline, route type = LOOP</td>
+				<td>
+					<a href="https://trips.furkot.com/trip?stops[0][name]=San%20Juan%20Skyway%20(Ridgway)&stops[0][coordinates][lat]=38.15158&stops[0][coordinates][lon]=-107.74902&stops[0][notes]=Great%20loop!%20Includes%20the%20Million%20Dollar%20Highway%20which%20is%20the%20portion%20between%20route%20550%20between%20Ouray%20and%20Silverton.%3Cbr%2F%3E%3Cbr%2F%3E%3Ci%3ESource%3A%20%3C%2Fi%3E%20%3Ca%20href%3D%22https%3A%2F%2FchasingBlueSky.net%2F%22%20target%3D%22_blank%22%3EChasing%20Blue%20Sky%3C%2Fa%3E&stops[0][url]=https%3A%2F%2Fwww.durango.org%2Fdiscover-durango%2Fthe-san-juan-skyway&stops[0][pin]=guide&stops[0][duration]=0&stops[0][route][mode]=car&stops[1][name]=San%20Juan%20Skyway%20(Ridgway)&stops[1][coordinates][lat]=38.15138&stops[1][coordinates][lon]=-107.74814&stops[1][notes]=Great%20loop!%20Includes%20the%20Million%20Dollar%20Highway%20which%20is%20the%20portion%20between%20route%20550%20between%20Ouray%20and%20Silverton.%3Cbr%2F%3E%3Cbr%2F%3E%3Ci%3ESource%3A%20%3C%2Fi%3E%20%3Ca%20href%3D%22https%3A%2F%2FchasingBlueSky.net%2F%22%20target%3D%22_blank%22%3EChasing%20Blue%20Sky%3C%2Fa%3E&stops[1][url]=https%3A%2F%2Fwww.durango.org%2Fdiscover-durango%2Fthe-san-juan-skyway&stops[1][pin]=guide&stops[1][duration]=0&stops[1][route][mode]=car&stops[1][route][polyline]=knzgFlvspSOhcBw^rXcNt\m@|pBl@``AjRd_@~{@lUte@tYbWre@lj@nf@lOjUtQtMfJpVdAv]r_@rsA_Ldg@xEbWlMDpKaK~Pa@x`Ajn@pFzY|WbYjAnJ}Dxk@kOfaA{FlPmFjf@[h^yL~{@[`\iGdf@wM~]U~t@nFjd@pN|r@~[p}@U~x@hKj\`Gr`@f^dg@fq@rjApVrZpUhQtOb\hX|Qvo@bMll@p]fv@`Zxo@zZh[z\tc@lY`Yvj@pBnTtJiLtHw\fY{Pjh@gq@rHeYns@mf@vPua@Yai@dFma@aJw{ArKm]hWkQjl@}WrMgC~TiYhh@wy@|JeYhNcbBfN}`@xTcUpOwiA`NeYp[}b@lCsMpAugAfEks@kDcd@~@gf@}OahAg@ma@b\rKI`[xOvWpKsOfXdDfTsAnhAbY|c@gClKfBt`@nf@|JjFfr@w@b{@sObQbDp]}GtCcGhm@gPr[}Vd[_s@|KmHbLfH{Ent@hNlSjRbLbVyNph@a@~[jUx\jBbShHlVr^`b@tNfNxM`[rL`l@xkAfHzUZ~W|J|YlRbDtSbUhLlWbE~ZzSpZrZdO|RuDjVjCvDxMb@py@rYxx@`Rls@P~h@jMzh@lzAdyBvv@dt@~U``@zU`F`b@fc@lSxMfl@bCf^lP~]fI~g@wAdVqM`Qh@rQcGf^~B??hn@fMzu@vKnu@Ajs@jUvj@nm@`a@dF`PpMpm@v|Axa@hA~p@xL|Rza@vHdn@~a@z`@pO~]x[v~ApQbUdJ~c@~n@lo@gGhy@bLrbA~Uji@A`_@`a@~lAjH|n@d`@zv@sDtYLljAkNpx@~J~bD`c@fuA|EdcA~Klp@pAvp@aIrn@yv@`|@qh@r^sVx^cHt_@zDjnArJxeA}SbkA~IlcAxUdWpo@vR|w@j`@~j@hOve@z[b`@dLpgAbGb`AhS`k@bSzs@xNre@xZpNl`@bo@vx@~n@teAvz@zf@`U`i@qNlnGXtQl\~lDpHnXxd@`~@vNcEvZsb@zCak@fSy[vVaPxA_m@tS_[bA}t@p_@so@nRedBl@et@nMub@~`@am@bEgSG{bCdTyoAi@s|C`IuRvm@_Br_AoLjQoGrpBcfAf\qf@wFktAXox@zRerAlXcPdPaXrbAsaAvf@oVhk@eAcA_xA_Las@gXux@uYad@sGwt@jDwh@hTedAtZiq@rWgXxbAhCdIa`@qUcg@qHyn@|Eqe@z_@}s@hq@sp@fP{p@qQi~BsCi~AiKc~@s@wu@`NujAzb@_w@tBcYtOo_@dIen@fsAmvAjh@iv@joAc~CtSsUpLia@ja@wk@fMaq@tXqX`EiZk@}hCcMsc@w|@iPyLuHuD_XhPgj@oOyh@hF}^~e@aYx_@mq@n@kXuMia@aHcv@fAia@{Duq@nMeZiTPsc@eTg}@kCkDwI??oHfFnAyi@ulAq^iP{N__@_m@qJ_YwZq[g~@s@ew@jHsbHaKqvEobBaIwKmg@knAoQ{Ws\kVmy@eZg`AmRyu@qHkg@tFwXj[{WdI}Xp[kfAi@_}@lGeQ{Bsh@dUmx@iKuzAjDuk@xYsjApIol@oEus@zFeg@cLezArJsIuAknBez@ma@iJcm@}DalAk\ga@uDoq@xH{{@hWnK_k@_Sge@gd@iCsf@}LsMy_@{Uza@uOen@rCcR|Zi\me@cK}`AjB_KwMgh@l@e@ok@iHyH}f@hL?a_@eP}KyBw^wP_TyVpIkLmb@u`@qHea@~J~We\yCkXfK{i@cKyW{YcqAoKgO~DwYo@i|@mL_Wig@|Io]sh@sHqk@kc@e[gl@gDuNcIi^in@wc@mDqZzKaaAy@{y@jP{b@~]rKqf@sK{MmMva@qSxqA{`@vo@aRvh@wLpqAqFvIgp@tZobA|IqYaFws@|BadAoK}k@`AgQjVnEvo@iLyV_Gmc@yg@sLaHmTwWiEiWiXqbAac@sKsOa\yEce@ib@kK~NmR}EgFoj@g`@wX{k@keAyTqn@cL_Myh@gIkjAea@kTw@ip@eZaWbCke@_TqPiYyXgBi]rg@ae@vSwBvIwaAhKg_@lk@kQhF}|@VgJdP{Pj@cRfTwoAv`@ug@zi@uTzAy{A|h@iiAlk@ap@lWgr@~l@{zAhe@cbBdhAib@nGwnArqA&uid=6VjRjO" target="furkot">San Juan Skyway Scenic Byway, CO</a>	
+				</td>
+				<td>
+					<ol>
+						<li>Opens Furkot UI instead of onsite dialog.</li>
+						<li>Makes ROUTING&nbsp; for last stop (the one associated with the polyline) as Offroad Routing, which in turns sets duration to having to be manually calculated.</li>
+					</ol>
+				</td>
+				<td>
+					<ol>
+						<li>Onsite dialog is the preferred handling for all scenarios, but UI is workable if that's how it is supposed to be working per Furkot's end.</li>
+						<li>Having to manually edit each route to switch from offroad* to follow roads is a bit inconvenient, but doable. Add note about this to CBS map instructions.</li>
+						<li>Becomes undoable with routes with lots of stops and/or longer tracks.</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<td class="no"></td>
+				<td>Multi-stop (4) and Route Polyline, route type = LOOP</td>
+				<td><a href="https://trips.furkot.com/trip?stops[0][name]=San%20Juan%20Skyway%20(Ridgway)&stops[0][coordinates][lat]=38.15158&stops[0][coordinates][lon]=-107.74902&stops[0][notes]=Great%20loop!%20Includes%20the%20Million%20Dollar%20Highway%20which%20is%20the%20portion%20between%20route%20550%20between%20Ouray%20and%20Silverton.%3Cbr%2F%3E%3Cbr%2F%3E%3Ci%3ESource%3A%20%3C%2Fi%3E%20%3Ca%20href%3D%22https%3A%2F%2FchasingBlueSky.net%2F%22%20target%3D%22_blank%22%3EChasing%20Blue%20Sky%3C%2Fa%3E&stops[0][url]=https%3A%2F%2Fwww.durango.org%2Fdiscover-durango%2Fthe-san-juan-skyway&stops[0][pin]=guide&stops[0][duration]=0&stops[0][route][mode]=car&stops[1][name]=San%20Juan%20Skyway%20(Rico)&stops[1][coordinates][lat]=37.691993&stops[1][coordinates][lon]=-108.031456&stops[1][notes]=Great%20loop!%20Includes%20the%20Million%20Dollar%20Highway%20which%20is%20the%20portion%20between%20route%20550%20between%20Ouray%20and%20Silverton.%3Cbr%2F%3E%3Cbr%2F%3E%3Ci%3ESource%3A%20%3C%2Fi%3E%20%3Ca%20href%3D%22https%3A%2F%2FchasingBlueSky.net%2F%22%20target%3D%22_blank%22%3EChasing%20Blue%20Sky%3C%2Fa%3E&stops[1][url]=https%3A%2F%2Fwww.durango.org%2Fdiscover-durango%2Fthe-san-juan-skyway&stops[1][pin]=passthru&stops[1][duration]=0&stops[1][route][mode]=car&stops[2][name]=San%20Juan%20Skyway%20(Durango)&stops[2][coordinates][lat]=37.288327&stops[2][coordinates][lon]=-107.880923&stops[2][notes]=Great%20loop!%20Includes%20the%20Million%20Dollar%20Highway%20which%20is%20the%20portion%20between%20route%20550%20between%20Ouray%20and%20Silverton.%3Cbr%2F%3E%3Cbr%2F%3E%3Ci%3ESource%3A%20%3C%2Fi%3E%20%3Ca%20href%3D%22https%3A%2F%2FchasingBlueSky.net%2F%22%20target%3D%22_blank%22%3EChasing%20Blue%20Sky%3C%2Fa%3E&stops[2][url]=https%3A%2F%2Fwww.durango.org%2Fdiscover-durango%2Fthe-san-juan-skyway&stops[2][pin]=passthru&stops[2][duration]=0&stops[2][route][mode]=car&stops[3][name]=San%20Juan%20Skyway%20(Ridgway)&stops[3][coordinates][lat]=38.15138&stops[3][coordinates][lon]=-107.74814&stops[3][notes]=Great%20loop!%20Includes%20the%20Million%20Dollar%20Highway%20which%20is%20the%20portion%20between%20route%20550%20between%20Ouray%20and%20Silverton.%3Cbr%2F%3E%3Cbr%2F%3E%3Ci%3ESource%3A%20%3C%2Fi%3E%20%3Ca%20href%3D%22https%3A%2F%2FchasingBlueSky.net%2F%22%20target%3D%22_blank%22%3EChasing%20Blue%20Sky%3C%2Fa%3E&stops[3][url]=https%3A%2F%2Fwww.durango.org%2Fdiscover-durango%2Fthe-san-juan-skyway&stops[3][pin]=guide&stops[3][duration]=0&stops[3][route][mode]=car&stops[3][route][polyline]=knzgFlvspSOhcBw^rXcNt\m@|pBl@``AjRd_@~{@lUte@tYbWre@lj@nf@lOjUtQtMfJpVdAv]r_@rsA_Ldg@xEbWlMDpKaK~Pa@x`Ajn@pFzY|WbYjAnJ}Dxk@kOfaA{FlPmFjf@[h^yL~{@[`\iGdf@wM~]U~t@nFjd@pN|r@~[p}@U~x@hKj\`Gr`@f^dg@fq@rjApVrZpUhQtOb\hX|Qvo@bMll@p]fv@`Zxo@zZh[z\tc@lY`Yvj@pBnTtJiLtHw\fY{Pjh@gq@rHeYns@mf@vPua@Yai@dFma@aJw{ArKm]hWkQjl@}WrMgC~TiYhh@wy@|JeYhNcbBfN}`@xTcUpOwiA`NeYp[}b@lCsMpAugAfEks@kDcd@~@gf@}OahAg@ma@b\rKI`[xOvWpKsOfXdDfTsAnhAbY|c@gClKfBt`@nf@|JjFfr@w@b{@sObQbDp]}GtCcGhm@gPr[}Vd[_s@|KmHbLfH{Ent@hNlSjRbLbVyNph@a@~[jUx\jBbShHlVr^`b@tNfNxM`[rL`l@xkAfHzUZ~W|J|YlRbDtSbUhLlWbE~ZzSpZrZdO|RuDjVjCvDxMb@py@rYxx@`Rls@P~h@jMzh@lzAdyBvv@dt@~U``@zU`F`b@fc@lSxMfl@bCf^lP~]fI~g@wAdVqM`Qh@rQcGf^~B??hn@fMzu@vKnu@Ajs@jUvj@nm@`a@dF`PpMpm@v|Axa@hA~p@xL|Rza@vHdn@~a@z`@pO~]x[v~ApQbUdJ~c@~n@lo@gGhy@bLrbA~Uji@A`_@`a@~lAjH|n@d`@zv@sDtYLljAkNpx@~J~bD`c@fuA|EdcA~Klp@pAvp@aIrn@yv@`|@qh@r^sVx^cHt_@zDjnArJxeA}SbkA~IlcAxUdWpo@vR|w@j`@~j@hOve@z[b`@dLpgAbGb`AhS`k@bSzs@xNre@xZpNl`@bo@vx@~n@teAvz@zf@`U`i@qNlnGXtQl\~lDpHnXxd@`~@vNcEvZsb@zCak@fSy[vVaPxA_m@tS_[bA}t@p_@so@nRedBl@et@nMub@~`@am@bEgSG{bCdTyoAi@s|C`IuRvm@_Br_AoLjQoGrpBcfAf\qf@wFktAXox@zRerAlXcPdPaXrbAsaAvf@oVhk@eAcA_xA_Las@gXux@uYad@sGwt@jDwh@hTedAtZiq@rWgXxbAhCdIa`@qUcg@qHyn@|Eqe@z_@}s@hq@sp@fP{p@qQi~BsCi~AiKc~@s@wu@`NujAzb@_w@tBcYtOo_@dIen@fsAmvAjh@iv@joAc~CtSsUpLia@ja@wk@fMaq@tXqX`EiZk@}hCcMsc@w|@iPyLuHuD_XhPgj@oOyh@hF}^~e@aYx_@mq@n@kXuMia@aHcv@fAia@{Duq@nMeZiTPsc@eTg}@kCkDwI??oHfFnAyi@ulAq^iP{N__@_m@qJ_YwZq[g~@s@ew@jHsbHaKqvEobBaIwKmg@knAoQ{Ws\kVmy@eZg`AmRyu@qHkg@tFwXj[{WdI}Xp[kfAi@_}@lGeQ{Bsh@dUmx@iKuzAjDuk@xYsjApIol@oEus@zFeg@cLezArJsIuAknBez@ma@iJcm@}DalAk\ga@uDoq@xH{{@hWnK_k@_Sge@gd@iCsf@}LsMy_@{Uza@uOen@rCcR|Zi\me@cK}`AjB_KwMgh@l@e@ok@iHyH}f@hL?a_@eP}KyBw^wP_TyVpIkLmb@u`@qHea@~J~We\yCkXfK{i@cKyW{YcqAoKgO~DwYo@i|@mL_Wig@|Io]sh@sHqk@kc@e[gl@gDuNcIi^in@wc@mDqZzKaaAy@{y@jP{b@~]rKqf@sK{MmMva@qSxqA{`@vo@aRvh@wLpqAqFvIgp@tZobA|IqYaFws@|BadAoK}k@`AgQjVnEvo@iLyV_Gmc@yg@sLaHmTwWiEiWiXqbAac@sKsOa\yEce@ib@kK~NmR}EgFoj@g`@wX{k@keAyTqn@cL_Myh@gIkjAea@kTw@ip@eZaWbCke@_TqPiYyXgBi]rg@ae@vSwBvIwaAhKg_@lk@kQhF}|@VgJdP{Pj@cRfTwoAv`@ug@zi@uTzAy{A|h@iiAlk@ap@lWgr@~l@{zAhe@cbBdhAib@nGwnArqA&uid=6VjRjO" target="furkot">San Juan Skyway Scenic Byway, CO</a></td>
+				<td>
+					<ol>
+						<li>Opens Furkot UI instead of onsite dialog.</li>
+						<li>Makes ROUTING as Offroad Routing, which in turns sets duration to having to be manually calculated.</li>
+						<li>Routes fine between stop 1 / start (Ridgway) and stop 2 (Rico), between Rico and stop 3 (Durango), but then skips going from Durango to end / stop 4 (Ridgway again) and runs entire polyline line route.</li>
+					</ol>
+				</td>
+				<td>
+					<ol>
+						<li>Onsite dialog is the preferred handling for all scenarios, but UI is workable if that's how it is supposed to be working per Furkot's end.</li>
+						<li>Having to manually edit each route to switch from offroad* to follow roads is a bit inconvenient, but doable.</li>
+                        <li>After changing ROUTING to follow roads things then get really wonky.</li>
+						<li>Becomes undoable with routes with lots of stops and/or longer tracks.</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<td class="yay"></td>
+				<td>TripShot Widget</td>
+				<td>Northern New Mexico Loop</td>
+				<td>
+					<div style="min-width: 300px;"><div style="left: 0; height: 0; position: relative; width: 100%; padding-bottom: 75%;"><iframe frameborder="0" style="top: 0; height: 0; position: absolute; height: 100%; width: 100%;" src="https://trips.furkot.com/widget/ts/IOwQ6N?uid=6VjRjO"></iframe></div><a href="https://trips.furkot.com/ts/IOwQ6N?uid=6VjRjO">testing</a></div>
+				</td>
+				<td>
+					This seems to be the best option, but will take some user gyrations.
+					<ol>
+						<li>Click the Plan with Furkot link in upper right corner of tripshot widget. Opens Furkot UI.<br /><img border="0" src="../images/readme/furkotTripShotToTrip_00.png"/></li>
+						<li>When prompted to create your own version of a trip {trip name}, click OK. This will create and display your copy of the trip.
+							<ul>
+								<li>If you're just starting your trip planning and this is the first thing you've added and you don't care to save the route as a separate entity all its own, you can start adding other stops and routes to this trip.</li>
+								<li>Otherwise, continue below to add this route to a a different trip (existing or new).</li>
+							</ul><br /><img border="0" src="../images/readme/furkotTripShotToTrip_01.png"/>
+						</li>
+						<li>Click the <i>My Trips</i> tab.<br /><img border="0" src="../images/readme/furkotTripShotToTrip_02.png"/></li>
+						<li>Open (or create) <i>the trip to which you wish to add the route</i>.</li>
+						<li>Click the <i>Find</i> tab.<br /><img border="0" src="../images/readme/furkotTripShotToTrip_03.png"/></li>
+						<li>Click the <i>My other trips, routes and tracks</i> icon.<br /><img border="0" src="../images/readme/furkotTripShotToTrip_04.png"/></li>
+						<li>Click the <i>Show all places</i> icon, if not already enabled.<br /><img border="0" src="../images/readme/furkotTripShotToTrip_05.png"/></li>
+						<li>You should see the route, probably with a car icon unless another mode of travel was specified. If you have a lot of other trips and places you might have to scroll around to find it.<br /><img border="0" src="../images/readme/furkotTripShotToTrip_06.png"/></li>
+						<li>Click the desired route to add.<br /><img border="0" src="../images/readme/furkotTripShotToTrip_08.png"/></li>
+						<li>Click the <i>Route</i> option to add all stops it in the order provided, OR click the <i>Backtrack</i> icon to add all stops in reverse order. (NOTE: clicking the <i>Stop</i> or <i>Maybe</i> options add a stop to your trip plan but then cannot be deleted or manipulated so we do not suggest using them.)<br /><img border="0" src="../images/readme/furkotTripShotToTrip_09.png"/></li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<td class="doable"></td>
+				<td>General Note</td>
+				<td colspan="2">If an onsite dialog is used to add stops, then the UI is opened (or vice versa) to add a multi-stop or route, or to make changes, but not closed then later trying to add new multi-stops or routes opens the window but doesn't add the stops/routes.</td>
+				<td>Close the UI after each use. Add note about this to CBS map instructions.</td>
+			</tr>
+		</table>
+       <p> * Guessing this is because it's using the polyline route provided, which because it has to be a smallish number of tracks (thus is not high detail) in order to pass it through via HTTP, it is indeed frequently "off road". </p>
+        <p>
+        e.g. San Juan Skyway gpx generated via RideWithGps has 14K track points and produces a beautifully anchored-to-the-road track in the CBS map but can't be successfully transferred as a polyline to Furkot (server closes connection, assumption is that the allowed request size is being exceeded).</p>
+        <p>
+        Alternately, a gpx for the exact same route generated via Furkot itself and exported has only 450 tracks, so of course doesn't follow the road as closely, but can be successfully passed as a polyline back to Furkot.</p>
+		<p>Limit is reached, however, somewhere between 450 and 750 tracks as the Northern New Mexico Loop has 750 tracks (and more routing waypoints and a longer name, it all adds up) and that returns the server closed connection message. Exploring alternatives suggested that use of the TripShot widget would be the best solution for CBS&#39;s needs.</p>
+        <p>
+            See Also: <a href="../ReadMe_CreatingRoutes.md">ReadMe_CreatingRoutes.md</a> for general notes about how the routes and associated files are being created for the CBS map.</p>
+&nbsp;<div class="furkot-widget"></div>
+	</body>
+</html>

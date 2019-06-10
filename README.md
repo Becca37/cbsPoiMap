@@ -22,7 +22,12 @@ HTML5, javascript (v5), CSS
 	</li>  
 	<li><b>Planning</b>:
 		<ul>
-			<li><a href="https://help.furkot.com/widgets/plan-with-furkot-buttons.html">Furkot Trip Planner</a> (or view on <a href="https://github.com/furkot/trip-planner">GitHub</a>)</li>
+			<li>Furkot Integration
+				<ul>
+					<li><a href="https://help.furkot.com/widgets/plan-with-furkot-buttons.html">Furkot Trip Planner Widget</a> (or view on <a href="https://github.com/furkot/trip-planner">GitHub</a>)</li>
+					<li><a href="https://help.furkot.com/widgets/embed.html">Furkot Tripshot Widgets</a> (or view on <a href="https://github.com/furkot/tripshot">GitHub</a>)</li> 
+				</ul>
+			</li>
 			<li><a href="https://openweathermap.org/">Open Weather Map</a></li>
 			<li><a href="https://inciweb.nwcg.gov/">Inciweb</a> Incident Information System (USA)</li>
 			<li><a href="http://www.geonames.org/">GeoNames</a> for Sunrise/Sunset and Time data based on location</li>
@@ -41,6 +46,12 @@ HTML5, javascript (v5), CSS
 			<li><a href="http://izitoast.marcelodolza.com/">IziToast</a> (or view on <a href="https://github.com/marcelodolza/iziToast">GitHub</a>)</li>
 		</ul>
 	</li>
+</ul>
+
+See also: 
+<ul>
+	<li><a href="ReadMe_CreatingRoutes.md">ReadMe: Creating Routes</a></li>
+	<li><a href="examples/FurkotLinkExamples.html">Notes about Furkot integration</a></li>
 </ul>
 
 <hr>

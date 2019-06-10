@@ -1,42 +1,47 @@
 [
 	{ 
 		  "cbsMainCategory": "Pass"
-		, "mapMarkerIcon": "/map/images/icons/mic/mountain-pass-locator-diagonal-reverse-export.png"
+		, "mapMarkerIcon": "images/icons/mic/mountain-pass-locator-diagonal-reverse-export.png"
 		, "furkotPinName": "mountains"
 	}
 	, {
 		  "cbsMainCategory": "Paved High Point"
-		, "mapMarkerIcon": "/map/images/icons/mic/direction_up.png"
+		, "mapMarkerIcon": "images/icons/mic/direction_up.png"
 		, "furkotPinName": "one-way"
 	}
 	, {
 		  "cbsMainCategory": "Family"
-		, "mapMarkerIcon": "/map/images/icons/mic/group-2.png"
+		, "mapMarkerIcon": "images/icons/mic/group-2.png"
 		, "furkotPinName": "users"
 	}
 	, {
 		  "cbsMainCategory": "Friend(s)"
-		, "mapMarkerIcon": "/map/images/icons/mic/group-22.png"
+		, "mapMarkerIcon": "images/icons/mic/group-22.png"
 		, "furkotPinName": "users"
 	}
 	, {
 		  "cbsMainCategory": "Dog Park"
-		, "mapMarkerIcon": "/map/images/icons/mic/dog-park.png"
+		, "mapMarkerIcon": "images/icons/mic/dog-park.png"
 		, "furkotPinName": "pets"
 	}
 	, {
-		  "cbsMainCategory": "Rails"
-		, "mapMarkerIcon": "/map/images/icons/mic/train.png"
+		  "cbsMainCategory": "Railroad"
+		, "mapMarkerIcon": "images/icons/mic/train.png"
 		, "furkotPinName": "train"
 	}
 	, {
 		  "cbsMainCategory": "Skywalk"
-		, "mapMarkerIcon": "/map/images/icons/mic/photo.png"
+		, "mapMarkerIcon": "images/icons/mic/photo.png"
 		, "furkotPinName": "attraction"
 	}
 	, {
 		  "cbsMainCategory": "Flags Across America"
-		, "mapMarkerIcon": "/map/images/icons/mic/flags-across-america.png"
+		, "mapMarkerIcon": "images/icons/mic/flags-across-america.png"
 		, "furkotPinName": "embassy"
+	}
+	, {
+		  "cbsMainCategory": "Route"
+		, "mapMarkerIcon": "images/icons/mic/signpost-3.png"
+		, "furkotPinName": "guide"
 	}
 ]

@@ -76,6 +76,12 @@ input[type='checkbox'] + label
 	overflow: auto;
 }
 
+.disclaimer
+{
+	font-style: italic;
+	margin: 10px 25px 10px 20px;
+}
+
 .siteInfoContainer, #markerInfoContainer, .backmatterContainer, #instructionsContainer, .markerShelfIcons, .markerQuickFacts, .filterOption
 {
 	display: table;
@@ -90,7 +96,7 @@ input[type='checkbox'] + label
 	border-bottom: 1px solid #eaeaea;
 }
 
-.panelCloseButton, .siteIcon, .siteInfo, .sidePanelCloseButton, .markerIcon, .markerTitle, .markerPlanWithFurkot, .markerShelfIcon, .markerQuickFactLabel, .markerQuickFactData, .filterHeader, .filterIcon, .filterText, .filterCount
+.panelCloseButton, .siteIcon, .siteInfo, .sidePanelCloseButton, .markerIcon, .markerTitle, #markerPlanWithFurkot, .markerShelfIcon, .markerQuickFactLabel, .markerQuickFactData, .filterHeader, .filterIcon, .filterText, .filterCount
 {
 	display: table-cell;
 	padding: 3px;
@@ -201,6 +207,7 @@ input[type='checkbox'] + label
 {
 	padding-top: 10px;
 	padding-bottom: 10px;
+	margin: 0px 10px 0px 0px;
 }
 
 #markerInfoContainer
@@ -208,7 +215,7 @@ input[type='checkbox'] + label
 	display: none;
 }
 
-.markerPlanWithFurkot
+#markerPlanWithFurkot
 {
 	text-align: right;
 }
@@ -232,10 +239,22 @@ input[type='checkbox'] + label
 	cursor: pointer;
 }
 
+#instructionsContainer
+{
+	border-bottom:  3px double rgba(0,0,0,.3);
+}
+
 .instructionsText
 {
 	padding-top: 15px;
 	padding-bottom: 15px;
+	margin: 0px 10px 0px 0px;
+	font-size: var(--cbs-font-size-the-fine-print);
+	line-height: var(--cbs-line-height-the-fine-print);
+}
+
+.routeWaypointType
+{
 	font-size: var(--cbs-font-size-the-fine-print);
 	line-height: var(--cbs-line-height-the-fine-print);
 }
@@ -317,15 +336,6 @@ input[type='checkbox'] + label
 
 /* GOOGLE MAP CUSTOM CONTROLS */
 
-.disabled
-{
-	color: #CCCCCC;
-}
-
-.visited
-{
-	color: green;
-} 
 
 [class^="control-"]
 {  
@@ -355,6 +365,18 @@ input[type='checkbox'] + label
 	background: rgba(255,255,255, 0.7);
 }
 
+.controlActive
+{
+	background: rgba(0,128,0, 0.7);
+	color: rgba(255,255,255, 0.8);
+}
+
+.controlInactive
+{
+	background: rgba(255,255,255, 0.5);
+	color: #CCCCCC;
+}
+
 .control-text
 {  
   color: rgb(25,25,25);
@@ -373,13 +395,19 @@ input[type='checkbox'] + label
 	padding: 10px 15px 10px 15px;
 }
 
-.control-filter, .control-visited, .control-notvisited, .control-showAll, .control-hideAll
+.control-filter, .control-visited, .control-notvisited, .control-showAll, .control-hideAll, .control-routes
 {
 	margin-left: 10px;
 	margin-bottom: 3px;
 	text-align: left;	
 	vertical-align: middle;
 	padding: 0px;
+}
+
+.control-routes
+{
+	padding: 8px 5px 10px 6px;
+	text-align: center;	
 }
 
 .control-visited, .control-notvisited, .control-showAll, .control-hideAll
@@ -402,9 +430,19 @@ input[type='checkbox'] + label
 	width: 22px;
 }
 
-.poiVisited, .poiSomeday, .poiUnknown
+.routeUseInfo
 {
-	background: #fee1d7;
+	margin-top: 15px;
+}
+
+.routeUseInfo img 
+{
+	max-width: 90%;
+}
+
+.poiVisited, .poiSomeday, .poiUnknown, .poiOne
+{
+	background: #000000;
 	font-weight: bold;
 	
 	border-radius: 5px;
@@ -419,6 +457,11 @@ input[type='checkbox'] + label
 .poiVisited
 {
 	background: rgb(0,128,0,.5);
+}
+
+.poiOne
+{
+	background: rgba(255,128, 0,.5);
 }
 
 .poiSomeday
@@ -499,16 +542,19 @@ input[type='checkbox'] + label
 
 /* GENERAL load last */
 
-.controlActive
+.disabled
 {
-	background: rgba(0,128,0, 0.7);
-	color: rgba(255,255,255, 0.8);
+	color: #CCCCCC;
 }
 
-.controlInactive
+.visited
 {
-	background: rgba(255,255,255, 0.5);
-	color: #CCCCCC;
+	color: green;
+}
+
+.oneVisited
+{
+	color: #FF8000; /* rgb(255,128,0)*/
 }
 
 .isVisible

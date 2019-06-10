@@ -18,7 +18,7 @@
 		
 		<!-- The all-important Google Maps API -->
 		<!-- Replace the value of the key parameter with your own API key. -->
-		<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYkQt42ziK8vw6E9Z_r6_NK1_B-DCPBXc"></script>
+		<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYkQt42ziK8vw6E9Z_r6_NK1_B-DCPBXc&libraries=geometry"></script>
 		<!-- Google Maps label utility must be included AFTER the main script -->
 		<script defer src="src/markerwithlabel.js" type="text/javascript"></script>
 		
@@ -58,9 +58,7 @@
 						<div class="markerTitle">
 							<span id="markerTitleText"></span>
 						</div>	
-						<div class="markerPlanWithFurkot">
-							<a id="markerPlanWithFurkotLink" href="https://trips.furkot.com/trip?stop[name]=Chasing%20Blue%20Sky&stop[coordinates][lat]=39.538187&stop[coordinates][lon]=-105.036304&stop[notes]=This%20is%20only%20a%20test.&stop[url]=https%3A%2F%2FChasingBlueSky.net&stop[pin]=stop" target="furkot" title="Add to a Furkot Trip"><i class="ff-icon-furkot"></i><i class="ff-icon-stop"></i></a>
-						</div>
+						<div id="markerPlanWithFurkot"></div>
 					</div>
 					<div id="markerData"></div>
 				</div>
@@ -69,7 +67,8 @@
 				</div>
 				<div id="instructionsContainer" class="isNotVisible">
 					<div class="instructionsText">
-						<b>This map</b> contains places we've been and places we might someday want to go. It's mainly meant so that we can look up places when we're out and about, but others might find some interesting places to visit too. Many, many more POIs yet to be added! Happy browsing. :0)  
+						<b>This map</b> contains places we've been and places we might someday want to go. It's mainly meant so that we can look up places when we're out and about, but others might find some interesting places to visit too.  Happy browsing. :0)
+						<div class="disclaimer">Many, many more POIs and routes are yet to be added, and lots of clean-up is needed to the ones already present. All locations are approximate. No promise is made that any POI or route currently exists and/or has any of the properties or features described herein. Use at own risk.</div>  
 						<hr>
 						<b>Map Controls</b>
 						<ul>
@@ -101,12 +100,40 @@
 							</li>
 						</ul>						
 						<hr>
-						<b>Compatibility / Requirements</b> This does require an internet connection. Use it on a device with GPS if you're concerned about getting the best location accuracy. It should work on current browsers, both desktop and mobile. However, we make no promises about it being pretty or easy to work with on small screens*, on any given device, or on any given operation system. We have used it ourselves on Chrome (desktop, android Galaxy Note 9, iOS iPad Pro), Firefox (desktop), and Safari (iPad iPad Pro).
+						<b>Compatibility / Requirements</b> This does require an internet connection. Use it on a device with GPS if you're concerned about getting the best location accuracy. It should work on current browsers, both desktop and mobile. However, we make no promises about it being pretty or easy to work with on small screens**, on any given device, or on any given operation system. We have used it ourselves on Chrome (desktop, android Galaxy Note 9, iOS iPad Pro), Firefox (desktop), and Safari (iPad iPad Pro).
 						<br/><br/>
-						* If you are on a small device such as a smartphone, landscape mode and pinch-and-zoom is your friend. That or a magnifying glass.
+						** If you are on a small device such as a smartphone, landscape mode and pinch-and-zoom is your friend. That, or a magnifying glass.
 						<hr>
-						<b>Category Icon Legend</b>
-						<div id="filterCategoryLegend"></div>		
+						<b>Category Icon Legend</b> 
+						<div id="filterCategoryLegend"></div>	
+						<div class="routeUseInfo">
+							&dagger; <b>Routes</b> are shown by colored lines on the map. They also have route markers showing end points. Some also have markers which are via points to force following a specific path. Route markers are not included in any counts above.
+							<br/><br/><b>Route lines are colored randomly</b> each time you load the page; there is no classification or rating system in place. Sometimes routes overlap, which can indeed make distinguishing between routes difficult. Look for places where they do not overlap and find a marker in that area to learn more about a particular route.
+							<br/><br/><b>Route lines and route markers can be toggled on/off</b> separately using their respective filter icons:
+							<ul>
+								<li>Routes <i class="fas fa-map-marked-alt" alt="Route Icon"></i></li>
+								<li>Route Markers <img src="images/icons/mic/signpost-3.png" alt="Route Marker Icon"/></li>
+							</ul>
+							<b>To add a route to Furkot</b>, the route markers must be showing. Click any route marker for a given route to display the info, then scroll down in the side panel to the Plan With Furkot widget. Note that when you add the route, ALL the markers for that route will be added to your trip; you do not have to add each route marker individually.
+								<ol>
+									<li>Click the Plan with Furkot link in upper right corner of tripshot widget. Opens Furkot UI.<br /><img border="0" src="images/readme/furkotTripShotToTrip_00.png"/></li>
+									<li>When prompted to create your own version of a trip {trip name}, click OK. This will create and display your copy of the trip.
+										<ul>
+											<li>If you're just starting your trip planning and this is the first thing you've added and you don't care to save the route as a separate entity all its own, you can start adding other stops and routes to this trip.</li>
+											<li>Otherwise, continue below to add this route to a a different trip (existing or new).</li>
+										</ul><br /><img border="0" src="images/readme/furkotTripShotToTrip_01.png"/>
+									</li>
+									<li>Click the <i>My Trips</i> tab.<br /><img border="0" src="images/readme/furkotTripShotToTrip_02.png"/></li>
+									<li>Open (or create) <i>the trip to which you wish to add the route</i>.</li>
+									<li>Click the <i>Find</i> tab.<br /><img border="0" src="images/readme/furkotTripShotToTrip_03.png"/></li>
+									<li>Click the <i>My other trips, routes and tracks</i> icon.<br /><img border="0" src="images/readme/furkotTripShotToTrip_04.png"/></li>
+									<li>Click the <i>Show all places</i> icon, if not already enabled.<br /><img border="0" src="images/readme/furkotTripShotToTrip_05.png"/></li>
+									<li>You should see the route, probably with a car icon unless another mode of travel was specified. If you have a lot of other trips and places you might have to scroll around to find it.<br /><img border="0" src="images/readme/furkotTripShotToTrip_06.png"/></li>
+									<li>Click the desired route to add.<br /><img border="0" src="images/readme/furkotTripShotToTrip_08.png"/></li>
+									<li>Click the <i>Route</i> option to add all stops it in the order provided, OR click the <i>Backtrack</i> icon to add all stops in reverse order. (NOTE: clicking the <i>Stop</i> or <i>Maybe</i> options add a stop to your trip plan but then cannot be deleted or manipulated so we do not suggest using them.)<br /><img border="0" src="images/readme/furkotTripShotToTrip_09.png"/></li>
+									<li>Rearrange to suit yourself!</li>
+								</ol>
+						</div>
 					</div>
 				</div>
 				<div class="furkot-widget"></div>

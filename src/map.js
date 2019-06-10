@@ -42,6 +42,17 @@ var thisMarkerCategoryData = [];			//holds the category data for a given marker
 var quotesForFriends = '';					//holds the string for quotes about Friends to be used as CBS Notes
 var quotesForFamily = '';					//holds the string for quotes about Family to be used as CBS Notes
 
+var routesDataArray = [];					//holds the data for the routes to be added to the map
+var routeTrackArray = [];					//holds the track points for a specific route for processing
+var routesArray = [];						//holds the Google Maps Routes data after processing
+var routesDataSourceUrl = 'data/routes.json';
+var routeDataSourceUrl = 'data/routes/';	
+var routeColorOpacity = '.6';
+
+var furkotRevenueId = '6VjRjO';
+var furkotTripShotUrlPart1 = 'https://trips.furkot.com/widget/ts/';
+var furkotTripShotUrlPart2 = 'https://trips.furkot.com/ts/';
+
 var poisDataSource = 'data/pois.json';
 var incidentsDataSource = 'https://inciweb.nwcg.gov/feeds/rss/incidents/';
 
@@ -188,6 +199,15 @@ function getData(dataCaller, dataSource, dataType)
 				console.warn('TESTING: Quotes for Family: ' + quotesForFamily);
 				console.warn('TESTING: Quotes for Friends: ' + quotesForFriends);
 			}
+		}
+		else if (dataCaller === 'routes')
+		{
+			routesDataArray = returnData;
+		}
+		else if (dataCaller === 'route')
+		{
+			routeTrackArray = [];
+			routeTrackArray = returnData;
 		}
 	}
 	catch (e)
@@ -419,7 +439,7 @@ function getTimeData(markerLatitude, markerLongitude)
 				timeDataResult += ''
 					+ '<div class="markerQuickFact">'
 						+ '<div class="markerQuickFactLabel">Device\'s Time*</div>'
-						+ '<div class="markerQuickFactData"><div class="weatherSun">' + deviceTime + ' ' + deviceTimezoneAbbrv + '<br/>which is ' + timeDateDifference + '<br/>on ' + deviceDate + '</div></div>'
+						+ '<div class="markerQuickFactData"><div class="weatherSun">' + deviceTime + ' ' + deviceTimezoneAbbrv + '<br/>Device is ' + timeDateDifference + '<br/>on ' + deviceDate + '.</div></div>'
 					+ '</div>'
 			}
 			else
@@ -446,12 +466,189 @@ function getTimeData(markerLatitude, markerLongitude)
 	}
 }
 
+function getRouteData(map)
+{
+	try
+	{		
+		getData('routes', routesDataSourceUrl, 'json');	
+		var lastColorUsed = '';
+		//https://www.canva.com/learn/100-color-combinations/ for inspiration :0)
+		//probably will need to weed through and remove ones which don't display well
+		var routeColors = ['#011A27', '#063852', '#07575B', '#265C00', '#2D4262', '#2E4600', '#486824', '#4C3F54', '#4CB5F5', '#5BC8AC', '#662E1C', '#73605B', '#752A07', '#763626', '#7F152E', '#805A3B', '#867666', '#8D230F', '#9B4F0F', '#A10115', '#A11F0C', '#A43820', '#AF4425', '#B6452C', '#DE7A22', '#E73F0B', '#E94F08', '#F0810F', '#F18D9E', '#F25C00', '#F52549', '#FB6542'];
+		if (isATest)
+		{
+			console.warn('TESTING: Route Colors');
+			for (var c = 0; c < routeColors.length; c++)
+			{
+				var thisColor = routeColors[c];
+				console.log('TESTING: Color ' + thisColor);
+				console.log('%c     ', 'background-color: ' + thisColor + '; padding: 30px 50px 30px 50px;');
+			}
+		}
+		
+		for (var i = 0; i < routesDataArray.length; i++)
+		{
+			var routeId = routesDataArray[i].routeId;
+			var routeName = routesDataArray[i].routeName;
+
+			var routeFileName = routeDataSourceUrl + routesDataArray[i].routeFileName + '.json';			
+			getData('route', routeFileName, 'json');	
+			var routePathCoordinates = routeTrackArray;
+			
+			var useThisColor = routeColors[Math.floor(Math.random() * routeColors.length)];
+			var cc = 0;
+			do 
+			{
+				useThisColor = routeColors[Math.floor(Math.random() * routeColors.length)]
+				cc++;
+			}
+			while (cc < 15 && useThisColor === lastColorUsed);
+			
+			lastColorUsed = useThisColor;			
+			
+			var routePath = new google.maps.Polyline
+			(
+				{
+					  cbsRouteId: routeId
+					, cbsRouteName: routeName
+					, cbsVisited: routesDataArray[i].routeTaken
+					, path: routePathCoordinates
+					, geodesic: true
+					, strokeColor: useThisColor
+					, strokeOpacity: routeColorOpacity
+					, strokeWeight: 8
+				}
+			);
+			routePath.setMap(map);		
+			routesArray.push(routePath);						
+			
+			var thisMarkerCategoryData = getMarkerCategoryDataFromArray('Route');
+			
+			//https://help.furkot.com/widgets/plan-with-furkot-buttons.html
+			var furkotMultipleStopsText = ''
+			
+            var routeWaypoints = routesDataArray[i].routeWaypoints.sort(compareValues('waypointOrder', 'asc'));
+
+            var routingPoints = '';
+            			
+			var routeTempArray = []; //to hold furkotMultipleStopsText for each route
+			
+			//------------------------------------------------------
+			//we need to cycle through the waypoints twice
+			//if we try to do in a single pass, only the LAST waypoint will have
+			//all the needed furkotMultipleStopsText data and to build the 
+            //routing points list for display
+			//------------------------------------------------------
+			//first time to generate the furkotMultipleStopsText
+			for (var w = 0; w < routeWaypoints.length; w++)
+            {				
+				var routeWaypointName = routeName + ' (' + routeWaypoints[w].waypointName + ')';			
+				var routeLatitude = routeWaypoints[w].lat;
+				var routeLongitude = routeWaypoints[w].lng;
+				var routeNotes = routesDataArray[i].routeNotes;
+				var routeUrl = routesDataArray[i].routeUrl;
+				
+				var startText = w === 0 ? '?' : '&';
+				
+				var furkotPinName = thisMarkerCategoryData.furkotPinName;
+				var waypointType = 'End';
+				if (routeWaypoints[w].waypointType)
+				{
+					waypointType = routeWaypoints[w].waypointType;
+					if (waypointType === 'Via')
+					{
+						furkotPinName = 'passthru';
+					}
+                }
+
+                routingPoints += '<li>' + waypointType + ' - ' + routeWaypoints[w].waypointName + '</li>';
+				
+				furkotMultipleStopsText += ''
+					+ startText + 'stops[' + w + '][name]=' + encodeURIComponent(routeWaypointName)
+					+ '&stops[' + w + '][coordinates][lat]=' + routeLatitude
+					+ '&stops[' + w + '][coordinates][lon]=' + routeLongitude					
+					+ '&stops[' + w + '][notes]=' + encodeURIComponent(routeNotes + '<br/><br/><i>Source: </i> <a href="https://chasingBlueSky.net/" target="_blank">Chasing Blue Sky</a>')
+					+ '&stops[' + w + '][url]=' + encodeURIComponent(routeUrl)
+					+ '&stops[' + w + '][pin]=' + furkotPinName
+					+ '&stops[' + w + '][duration]=0';
+				
+				routeTempArray.push({ "routeId": routeId, "furkotMultipleStopsText": furkotMultipleStopsText});
+			}
+			
+			//second time to push the waypoints to the markersDataArray
+			for  (var w = 0; w < routeWaypoints.length; w++)
+            {
+                var routeWaypointName = routeName + ' (' + routeWaypoints[w].waypointName + ')';				
+
+				var thisRouteFurkotMultipleStopsText = (routeTempArray.filter(function(filterOn){return filterOn.routeId === routeId;}))[0].furkotMultipleStopsText;
+				
+				var waypointType = 'End';
+				var furkotPinName = thisMarkerCategoryData.furkotPinName;
+				if (routeWaypoints[w].waypointType)
+				{
+					waypointType = routeWaypoints[w].waypointType;
+					if (waypointType === 'Via')
+					{
+						furkotPinName = 'passthru';
+					}
+                }	
+					var routeColorRGB = hex2rgb(useThisColor);
+					var routeColorRGBa = 'rgba(' + routeColorRGB + ',' + routeColorOpacity + ')';
+					var showRoutecolor = '<div style="margin-top: 15px; border-bottom: 15px solid ' + routeColorRGBa + ';"><i>Route Color Used Here</i>: ' + useThisColor  + ' ' + routeColorRGBa + '</div>';
+
+                var cbsNotes = routesDataArray[i].routeNotes
+                    + '<hr><i>Route Name</i>: <b>' + routeName + '</b>'
+					+ showRoutecolor
+                    + '<br/><i>Route Type</i>: ' + routesDataArray[i].routeType
+                    + '<br/><br/><i>Routing Points</i>: '
+                    + '<ul>' + routingPoints + '</ul>';
+
+				var furkotTripShot = '';
+				if(routesDataArray[i].routeFurkotId) {
+					var furkotTripShotId=routesDataArray[i].routeFurkotId;
+					furkotTripShot+=''
+						+'<div style="left: 0; height: 0; position: relative; width: 100%; padding-bottom: 75%;">'
+						+'<iframe frameborder="0" style="top: 0; height: 0; position: absolute; height: 100%; width: 100%;" src="'+furkotTripShotUrlPart1+furkotTripShotId+'?uid='+furkotRevenueId+'"></iframe>'
+						+'</div>'
+						+'Click the Plan with Furkot in the upper right corner to add route to your trip (see instructions below for details) or <a href="'+furkotTripShotUrlPart2+furkotTripShotId+'?uid='+furkotRevenueId+'" target="_blank">view route in a new window</a>.';
+
+					cbsNotes+=furkotTripShot;
+				}
+				else 
+				{
+					cbsNotes += 'Plan with Furkot tripshot widget coming soon!';
+				}
+				
+				var waypointObject = 
+				{
+					  "cbsTitle": routeWaypointName
+					, "cbsMainCategory": 'Route'
+					, "latitude": routeWaypoints[w].lat
+					, "longitude": routeWaypoints[w].lng
+					, "cbsTags": routesDataArray[i].routeTags
+                    , "cbsNotes": cbsNotes
+					, "cbsReferenceUrl": routesDataArray[i].routeUrl
+					, "cbsVisited": routesDataArray[i].routeTaken
+					, "furkotMultipleStopsText": furkotMultipleStopsText
+					, "furkotPinName" : furkotPinName
+				}
+				
+				markerDataArray.push(waypointObject);
+			}
+		}
+	}
+	catch(e)
+	{
+		handleError('Add Routes', e);
+	}
+}
+
 function getMarkerCategoryDataFromArray(thisMarkerCategory)
 {	
 	var categoryData = 
 	{ 
 		  cbsMainCategory: thisMarkerCategory
-		, mapMarkerIcon: '/map/images/icons/mic/flag-export.png'
+		, mapMarkerIcon: 'images/icons/mic/flag-export.png'
 		, furkotPinName: 'stop' 
 	};	
 	
@@ -538,7 +735,8 @@ function initMap()
 		);
 			
 		getData('markersCategory', markersCategoryDataSource, 'json');
-		getData('pois', poisDataSource, 'json');
+		getData('pois', poisDataSource, 'json');		
+		getRouteData(map); // MUST be called AFTER getting POIs and BEFORE getting distinct categories
 		getDistinctCategories();
 		
 		addCustomControlsTo(map);
@@ -584,6 +782,12 @@ function addCustomControlsTo(map)
 		var notVisitedControl = new NotVisitedControl(notVisitedControlDiv, map);	
 		notVisitedControlDiv.index = 1;
 		map.controls[google.maps.ControlPosition.LEFT_CENTER].push(notVisitedControlDiv);
+		
+		// Add custom control for ROUTES
+		var routesControlDiv = document.createElement('div');
+		var routesControl = new RoutesControl(routesControlDiv, map);	
+		routesControlDiv.index = 1;
+		map.controls[google.maps.ControlPosition.LEFT_CENTER].push(routesControlDiv);
 
 		// Add custom control for FILTERs on CATEGORIES
 		var markerCategoryFilterDiv = document.createElement('div');
@@ -645,38 +849,9 @@ function getDistinctCategories()
 				{
 					continue loop1;
 				}
-			}			
-		
-			var inThisCategoryArray = workingArray.filter
-			(
-				function(filterOn) 
-				{
-					return filterOn.cbsMainCategory == categoryName;
-				}
-			);			
-			var countTotal = inThisCategoryArray.length;
+			}
 			
-			var visitedInThisCategoryArray = inThisCategoryArray.filter
-			(
-				function(filterOn) 
-				{
-					return filterOn.cbsVisited === 'Y';
-				}
-			);			
-			var countVisited = visitedInThisCategoryArray.length;
-			
-			var notVisitedInThisCategoryArray = inThisCategoryArray.filter
-			(
-				function(filterOn) 
-				{
-					return filterOn.cbsVisited === 'N';
-				}
-			);			
-			var countNotVisited = notVisitedInThisCategoryArray.length;
-			
-			var countVisitStatusUnknown = countTotal - countVisited - countNotVisited;	
-			
-			var categoryObject = {"categoryName": categoryName, "countTotal": countTotal, "countVisited": countVisited, "countNotVisited": countNotVisited, "countVisitStatusUnknown": 			countVisitStatusUnknown};
+			var categoryObject = {"categoryName": categoryName};
 			
 			markersDistinctCategoriesArray.push(categoryObject);
 		}
@@ -729,6 +904,11 @@ function addMarkersTo(map)
 								thisMarkerLabelClass = 'poiSomeday';
 								thisMarkerLabelTitleAddOn = ' ; Visited? Someday';
 							break;
+							
+							case "1":
+								thisMarkerLabel = '<i class="fas fa-low-vision" title="One of Us"></i>';
+								thisMarkerLabelClass = 'poiOne';
+								thisMarkerLabelTitleAddOn = ' ; Visited? One of Us';
 						}
 					}
 					
@@ -859,13 +1039,21 @@ function displayInfoPanelFor(thisMarker, thisMarkerType, thisMarkerLatitude, thi
 						var thisMarkerCategory;					
 						var thisMarkerCategoryData;
 						var thisMarkerCategoryIconImage;
+						
 						var markerShowWebsite;
 						var markerStartNavigation;
-						var markerNotesForFurkot;
-						var markerUrlForFurkot;
-						var markerStopNameForFurkot;
+						
+						var	markerTitleForFurkot = '';
+						var	markerLatitudeForFurkot = '';
+						var	markerLongitudeForFurkot = '';
+						var markerNotesForFurkot = '';
+						var markerUrlForFurkot = '';
+						var markerStopNameForFurkot = '';
+						var markerMultipleStopsForFurkot = '';
+						
 						var furkotLinkText;
 						var furkotLinkIcons;
+						
 						var markerVisitedIcon;
 						var thisMarkerTags;
 						var thisMarkerCbsNotes;
@@ -890,24 +1078,42 @@ function displayInfoPanelFor(thisMarker, thisMarkerType, thisMarkerLatitude, thi
 								+ '&travelmode=driving'
 								+ '&dir_action=navigate'
 								+ '" target="googleMaps" title="Navigate"><i class="far fa-compass fa-2x"></i></a>';
-							
-							markerNotesForFurkot = '';
-							if (thisMarker.cbsNotes)
-							{
-								markerNotesForFurkot = '&stop[notes]=' + encodeURIComponent(thisMarker.cbsNotes);
-							}	
-							
-							markerUrlForFurkot = '';
-							if (thisMarker.cbsReferenceUrl)
-							{
-								markerUrlForFurkot = '&stop[url]=' + encodeURIComponent(thisMarker.cbsReferenceUrl);
+															
+							if (thisMarkerCategory === 'Route')
+							{	
+								if (thisMarker.furkotMultipleStopsText)
+								{
+									markerMultipleStopsForFurkot = thisMarker.furkotMultipleStopsText;
+								}
+							}
+							else
+							{ 
+								markerTitleForFurkot = '?stop[name]=' + encodeURIComponent(thisMarker.cbsTitle);
+								
+								markerLatitudeForFurkot = ''
+									+ '&stop[coordinates][lat]=' 
+									+ thisMarker.latitude ;
+								
+								markerLongitudeForFurkot = ''								
+									+ '&stop[coordinates][lon]=' 
+									+ thisMarker.longitude;
+									
+								if (thisMarker.cbsNotes)
+								{
+									markerNotesForFurkot = '&stop[notes]=' + encodeURIComponent(thisMarker.cbsNotes + '<br/><br/><i>Source: </i> <a href="https://chasingBlueSky.net/" target="_blank">Chasing Blue Sky</a>');
+								}	
+								
+								if (thisMarker.cbsReferenceUrl)
+								{
+									markerUrlForFurkot = '&stop[url]=' + encodeURIComponent(thisMarker.cbsReferenceUrl);
+								}
+								
+								if (thisMarkerCategoryData.furkotPinName)
+								{
+									markerStopNameForFurkot = '&stop[pin]=' + thisMarkerCategoryData.furkotPinName;
+								}
 							}
 							
-							markerStopNameForFurkot = '';
-							if (thisMarkerCategoryData.furkotPinName)
-							{
-								markerStopNameForFurkot = '&stop[pin]=' + thisMarkerCategoryData.furkotPinName;
-							}
 							markerVisitedIcon = '<i class="far fa-question-circle fa-2x" title="Unknown"></i>';
 							if (thisMarker.cbsVisited)
 							{
@@ -920,22 +1126,38 @@ function displayInfoPanelFor(thisMarker, thisMarkerType, thisMarkerLatitude, thi
 									case "N":
 										markerVisitedIcon = '<i class="far fa-eye-slash fa-2x" title="We have NOT yet seen this with our own eyes."></i>';
 									break;
+									
+									case "1":
+										markerVisitedIcon = '<i class="fas fa-low-vision fa-2x oneVisited" title="ONE of us has seen this with their own eyes."></i>';
+									break;
 								}
+							}
+							
+							var useFurkotPinName = thisMarkerCategoryData.furkotPinName;
+							if (thisMarkerCategory === 'Route' && thisMarker.furkotPinName)
+							{
+								useFurkotPinName = thisMarker.furkotPinName
 							}
 												
 							//https://help.furkot.com/widgets/plan-with-furkot-buttons.html	
 							furkotLinkText = 
-								'https://trips.furkot.com/trip?stop[name]=' 
-										+ encodeURIComponent(thisMarker.cbsTitle)
-									+ '&stop[coordinates][lat]=' 
-										+ thisMarker.latitude 
-									+ '&stop[coordinates][lon]=' 
-										+ thisMarker.longitude 
+								'https://trips.furkot.com/trip'
+									+ markerTitleForFurkot
+									+ markerLatitudeForFurkot
+									+ markerLongitudeForFurkot
 									+ markerNotesForFurkot
 									+ markerUrlForFurkot
 									+ markerStopNameForFurkot
-									+ '&uid=6VjRjO';
-							furkotLinkIcons = '<i class="ff-icon-furkot"></i><i class="ff-icon-' + thisMarkerCategoryData.furkotPinName + '"></i>';
+									+ markerMultipleStopsForFurkot
+									+ '&uid=' + furkotRevenueId;
+							furkotLinkIcons = '<i class="ff-icon-furkot"></i><i class="ff-icon-' + useFurkotPinName + '"></i>';
+
+							var markerPlanWithFurkotContent = '<a id="markerPlanWithFurkotLink" href="' + furkotLinkText + '" target="furkot" title="Add to a Furkot Trip">' + furkotLinkIcons + '</a>';
+							
+							if(thisMarkerCategory==='Route') 
+							{
+								markerPlanWithFurkotContent = '<i class="ff-icon-furkot"></i> See Below';
+							}
 							
 							thisMarkerTags = '';
 							if(thisMarkerTags)
@@ -1035,8 +1257,7 @@ function displayInfoPanelFor(thisMarker, thisMarkerType, thisMarkerLatitude, thi
 						markerTitleText.innerHTML = thisMarkerTitle;
 						markerData.innerHTML = contentString;
 						
-						markerPlanWithFurkotLink.innerHTML = furkotLinkIcons;
-						markerPlanWithFurkotLink.href = furkotLinkText;
+						markerPlanWithFurkot.innerHTML = markerPlanWithFurkotContent;
 						
 						panels.style.gridTemplateColumns = '2fr 1fr';
 						sidePanel.style.display = 'block';
@@ -1100,6 +1321,7 @@ function MarkerCategoryFilterControl(controlDiv, map)
 				+ '<div class="filterHeader">Category</div>'
 				+ '<div class="filterHeader">Count<br/>Total</div>'
 				+ '<div class="filterHeader">Count<br/>Visited</div>'
+				+ '<div class="filterHeader">Count<br/>One Has Visited</div>'
 				+ '<div class="filterHeader">Count<br/>Not Visited</div>'
 				+ '<div class="filterHeader">Count<br/>Status Unknown</div>'
 			+ '</div>';	
@@ -1108,44 +1330,82 @@ function MarkerCategoryFilterControl(controlDiv, map)
 
 		var countAllTotal = 0;
 		var countAllVisited = 0;
+		var countAllOneVisited = 0;
 		var countAllNotVisited = 0;
 		var countAllVisitStatusUnknown = 0;
+		var thisCategoryLegentIconAltRoutes = '';		
+					
+		var distinctCategoryArray = markersDistinctCategoriesArray.sort(compareValues('cbsMainCategory', 'asc'));
 		
-		for (var i = 0; i < markersDistinctCategoriesArray.length; i++)
+		for (var i = 0; i < distinctCategoryArray.length; i++)
 		{		
 			(function(index) //an "immediately-invoked function expression"
-				{					
-					var filterCategory = markersDistinctCategoriesArray[i].categoryName;
-					var filterCategoryCountTotal = markersDistinctCategoriesArray[i].countTotal;
-					var filterCategoryCountVisited = markersDistinctCategoriesArray[i].countVisited;
-					var filterCategoryCountNotVisited = markersDistinctCategoriesArray[i].countNotVisited;
-					var filterCategoryCountVisitStatusUnknown = markersDistinctCategoriesArray[i].countVisitStatusUnknown;
-					var filterRowOdd = (i + 1) %2 === 1 ? ' odd' : '';
+				{			
+					var filterCategory = distinctCategoryArray[i].categoryName;	
+					var legendCategory = filterCategory;
 					
-								
-					countAllTotal += filterCategoryCountTotal;
-					countAllVisited += filterCategoryCountVisited;
-					countAllNotVisited += filterCategoryCountNotVisited;
-					countAllVisitStatusUnknown += filterCategoryCountVisitStatusUnknown;
+					var thisMarkerCategoryData = getMarkerCategoryDataFromArray(filterCategory);
 					
-					var thisMarkerCategoryData = getMarkerCategoryDataFromArray(filterCategory);				
+					var thisCategoryMarkerIcon = thisMarkerCategoryData.mapMarkerIcon;			
+					var thisCategoryLegendIcon = '<img src="' + thisCategoryMarkerIcon + '" alt="' + filterCategory + ' Filter"/>'
 								
 					var controlUI = document.createElement('div');
 					controlUI.id = 'ToggleCategory ' + filterCategory;
-					controlUI.className = 'control-filter controlActive';
+					controlUI.className = 'control-filter controlActive';					
+									
+                    var workingArray = markerDataArray.filter(function (filterOn) { return filterOn.cbsMainCategory === filterCategory; });
+					
+                    if(distinctCategoryArray[i].categoryName==='Route')
+					{
+                        workingArray=routesDataArray;
+                        legendCategory='Route &dagger;';
+                        thisCategoryLegentIconAltRoutes=thisCategoryLegendIcon;
+                        thisCategoryLegendIcon='<i class="fas fa-map-marked-alt" title="Routes"></i>';
+
+                        filterCategoryCountTotal = workingArray.length;
+					
+                        filterCategoryCountVisited = (workingArray.filter(function (filterOn) { return filterOn.routeTaken === 'Y';})).length;
+					
+                        filterCategoryCountOneVisited = (workingArray.filter(function (filterOn) { return filterOn.routeTaken === '1';})).length;
+					
+                        filterCategoryCountNotVisited = (workingArray.filter(function (filterOn) { return filterOn.routeTaken === 'N';})).length;
+					
+                        filterCategoryCountVisitStatusUnknown = (workingArray.filter(function (filterOn) { return filterOn.routeTaken === 'U';})).length;
+                    }
+                    else 
+                    {
+                        filterCategoryCountTotal = workingArray.length;
+					
+                        filterCategoryCountVisited = (workingArray.filter(function (filterOn) { return filterOn.cbsVisited === 'Y';})).length;
+					
+                        filterCategoryCountOneVisited = (workingArray.filter(function (filterOn) { return filterOn.cbsVisited === '1';})).length;
+					
+                        filterCategoryCountNotVisited = (workingArray.filter(function (filterOn) { return filterOn.cbsVisited === 'N';})).length;
+					
+                        filterCategoryCountVisitStatusUnknown = (workingArray.filter(function (filterOn) { return filterOn.cbsVisited === 'U';})).length;
+                    }
+
+					var filterRowOdd = (i + 1) %2 === 1 ? ' odd' : '';
+								
+					countAllTotal += filterCategoryCountTotal;
+					countAllVisited += filterCategoryCountVisited;
+					countAllOneVisited += filterCategoryCountOneVisited;
+					countAllNotVisited += filterCategoryCountNotVisited;
+					countAllVisitStatusUnknown += filterCategoryCountVisitStatusUnknown;
 					
 					filterCategoryLegendTextTemp += ''
 						+ '<div class="filterItem' + filterRowOdd + '">'
-							+ '<div class="filterIcon"><img src="' + thisMarkerCategoryData.mapMarkerIcon + '" alt="' + filterCategory + ' Filter"/></div>'
-							+ '<div class="filterText"> ' + filterCategory + '</div>'
+							+ '<div class="filterIcon">' + thisCategoryLegendIcon + '</div>'
+							+ '<div class="filterText"> ' + legendCategory + '</div>'
 							+ '<div class="filterCount"> ' + filterCategoryCountTotal + '</div>'
 							+ '<div class="filterCount"> ' + filterCategoryCountVisited + '</div>'
+							+ '<div class="filterCount"> ' + filterCategoryCountOneVisited + '</div>'
 							+ '<div class="filterCount"> ' + filterCategoryCountNotVisited + '</div>'
 							+ '<div class="filterCount"> ' + filterCategoryCountVisitStatusUnknown + '</div>'
 						+ '</div>';					
 					
 					controlUI.innerHTML = 
-						'<div class="filterOption"><div class="filterIcon"><img src="' + thisMarkerCategoryData.mapMarkerIcon + '" alt="' + filterCategory + ' Filter"/></div></div>';
+						'<div class="filterOption"><div class="filterIcon"><img src="' + thisCategoryMarkerIcon + '" alt="' + filterCategory + ' Filter"/></div></div>';
 					controlUI.title = 'Click to toggle display of all markers in the "' + filterCategory + '" category.';
 					controlDiv.appendChild(controlUI);	
 
@@ -1165,6 +1425,7 @@ function MarkerCategoryFilterControl(controlDiv, map)
 				+ '<div class="filterText">All POIs</div>'
 				+ '<div class="filterCount"> ' + countAllTotal + '</div>'
 				+ '<div class="filterCount"> ' + countAllVisited + '</div>'
+				+ '<div class="filterCount"> ' + countAllOneVisited + '</div>'
 				+ '<div class="filterCount"> ' + countAllNotVisited + '</div>'
 				+ '<div class="filterCount"> ' + countAllVisitStatusUnknown + '</div>'
 			+ '</div>'
@@ -1366,6 +1627,30 @@ function HideAllControl(controlDiv, map)
 	catch (e)
 	{		
 		handleError('Adding ShowAll Control', e);
+	}
+}
+
+function RoutesControl(controlDiv, map)
+{
+	try
+	{		
+		var controlUI = document.createElement('div');
+		controlUI.className = 'control-routes controlActive';
+		controlUI.id = 'ToggleCategory Routes';
+		controlUI.innerHTML = '<i class="fas fa-map-marked-alt" title="Routes"></i>';
+		controlUI.title = 'Click to toggle display of routes.';
+		controlDiv.appendChild(controlUI);	
+
+		controlUI.addEventListener
+		('click', function() 
+			{	
+				toggleMarkers(map, 'Routes');
+			}
+		);
+	}
+	catch (e)
+	{		
+		handleError('Adding Routes Control', e);
 	}
 }
 
@@ -1679,15 +1964,25 @@ function toggleMarkers(map, toggleCategory)
 		if (toggleCategory === 'ShowAll' || toggleCategory === 'HideAll')
 		{
 			var desiredState = toggleCategory === 'ShowAll' ? true : false;
+			
 			for (var i = 0; i < markersArray.length; i++) 
 			{
 				markersArray[i].setVisible(desiredState);
 			}
+			
+			for (var i = 0; i < routesArray.length; i++) 
+			{
+				routesArray[i].setVisible(desiredState);
+			}
+			
 			document.getElementById('ToggleCategory Visited').className = 'control-visited controlActive';
 			document.getElementById('ToggleCategory NotVisited').className = 'control-notvisited controlActive';
 			
 			var controlStatusClass = 'controlActive';
-			if (toggleCategory === 'HideAll') { controlStatusClass = 'controlInactive'; }					
+			if (toggleCategory === 'HideAll') { controlStatusClass = 'controlInactive'; }	
+			
+			document.getElementById('ToggleCategory Routes').className = 'control-routes ' + controlStatusClass;
+							
 			for (var i = 0; i < markersDistinctCategoriesArray.length; i++)
 			{
 				var toggleThisCategory = markersDistinctCategoriesArray[i].categoryName;
@@ -1731,6 +2026,11 @@ function toggleMarkers(map, toggleCategory)
 					var toggleThisCategory = markersDistinctCategoriesArray[i].categoryName;	
 					setVisibilityOnMarkersInArray(toggleThisCategory, showVisited, showNotVisited, 'all');
 				}
+			
+				for (var i = 0; i < routesArray.length; i++) 
+				{
+					setVisibilityOnMarkersInArray('Routes', showVisited, showNotVisited, 'all');
+				}
 			}
 			else
 			{	
@@ -1754,13 +2054,22 @@ function setVisibilityOnMarkersInArray(toggleCategory, showVisited, showNotVisit
 		var controlIsCurrentlyActive = document.getElementById(elementID).classList.contains('controlActive');
 		var desiredStateIsVisible = true;	
 		
-		var markersInThisCategoryArray = markersArray.filter
-		(
-			function(filterOn) 
-			{
-				return filterOn.cbsCategory == toggleCategory;
-			}
-		);
+		var markersInThisCategoryArray = [];
+		
+		if (toggleCategory === 'Routes')
+		{
+			markersInThisCategoryArray = routesArray;
+		}
+		else
+		{
+			markersInThisCategoryArray = markersArray.filter
+			(
+				function(filterOn) 
+				{
+					return filterOn.cbsCategory == toggleCategory;
+				}
+			);
+		}
 		
 		for (var i = 0; i < markersInThisCategoryArray.length; i++) 
 		{		
@@ -1801,7 +2110,13 @@ function setVisibilityOnMarkersInArray(toggleCategory, showVisited, showNotVisit
 				controlStatusClass = 'controlInactive';
 			}
 			
-			document.getElementById(elementID).className = 'control-filter ' + controlStatusClass;
+			var classExtension = 'filter';
+			if (toggleCategory === 'Routes')
+			{			
+				classExtension = 'routes';
+			}
+			
+			document.getElementById(elementID).className = 'control-' + classExtension + ' ' + controlStatusClass;
 		}
 	}
 	catch(e)
@@ -1842,4 +2157,10 @@ function compareValues(key, order='asc')
 			? (comparison * -1) 
 			: comparison);
 	};
+}
+
+function hex2rgb(hex) 
+{
+	//https://stackoverflow.com/a/14101452/4407150
+	return ['0x' + hex[1] + hex[2] | 0, '0x' + hex[3] + hex[4] | 0, '0x' + hex[5] + hex[6] | 0];
 }

@@ -1,0 +1,164 @@
+[
+  {
+    "routeId": 1,
+    "routeName": "Devil's Highway 666 AZ",
+    "routeFileName": "AZ-DevilsHighway-666",
+    "routeTaken": "1",
+    "routeUrl": "http://www.twistypedia.com/roads/usa/arizona/devils-hiway-us191-arizona/",
+    "routeTags": [ "Scenic Byway" ],
+    "routeNotes": "Fun! Have to drag D there sometime, fer sure.",
+    "routeType": "Through",
+	"routeFurkotId": "xVtSmS",
+    "routeWaypoints": [
+      {
+        "lat":32.94893,
+		"lng":-109.22979,
+        "waypointType": "End",
+        "waypointOrder": 1,
+        "waypointName": "Three Way, AZ"
+      },
+      {
+        "lat":33.84834,
+		"lng":-109.14649,
+        "waypointType": "End",
+        "waypointOrder": 2,
+        "waypointName": "Alpine, AZ"
+      }
+    ]
+  },
+  {
+    "routeId": 2,
+    "routeName": "Sky Island Scenic Byway",
+    "routeFileName": "AZ-SkyIslandScenicByway",
+    "routeTaken": "Y",
+    "routeUrl": "https://grandcircle.org/scenic-byways/scenic-byways-of-arizona/54-sky-island-scenic-byway",
+    "routeTags": [ "Scenic Byway", "USDA", "Forest Service", "Coronado National Forest" ],
+    "routeNotes": "Also known as Mt Lemmon Scenic Byway and Catalina Highway Scenic Drive",
+    "routeType": "In-and-Out",
+	"routeFurkotId": "r261vo",
+    "routeWaypoints": [
+      {
+        "lat":32.30461,
+		"lng":-110.74482,
+        "waypointType": "End",
+        "waypointOrder": 1,
+        "waypointName": "Mt Lemmon Highway"
+      },
+      {
+        "lat":32.44286
+		,"lng":-110.75986,
+        "waypointType": "End",
+        "waypointOrder": 2,
+        "waypointName": "Mount Lemmon General Store"
+      }
+    ]
+  },
+  {
+    "routeId": 3,
+    "routeName": "Million Dollar Highway",
+    "routeFileName": "CO-MillionDollaryHighway",
+    "routeTaken": "Y",
+    "routeUrl": "https://www.durango.com/million-dollar-highway/",
+    "routeTags": [ "Scenic Byway" ],
+    "routeNotes": "The part of route 550 between Ouray and Silverton in Colorado. Fun! This is part of the San Juan Skyway loop, but deserves a mention all of its own, and can be traversed without doing the full loop.",
+    "routeType": "Through",
+	"routeFurkotId": "c4TrxA",
+    "routeWaypoints": [
+      {
+       "lat":38.01931,
+	   "lng":-107.67148,
+        "waypointType": "End",
+        "waypointOrder": 1,
+        "waypointName": "Ouray, CO"
+      },
+      {
+        "lat":37.80596,
+		"lng":-107.67214,
+        "waypointType": "End",
+        "waypointOrder": 2,
+        "waypointName": "Silverton, CO"
+      }
+    ]
+  },
+  {
+    "routeId": 4,
+    "routeName": "San Juan Skyway",
+    "routeFileName": "CO-SanJuanSkyway",
+    "routeTaken": "Y",
+    "routeUrl": "https://www.durango.org/discover-durango/the-san-juan-skyway",
+    "routeTags": [ "Scenic Byway" ],
+    "routeNotes": "Great loop! Includes the Million Dollar Highway which is the portion between route 550 between Ouray and Silverton.",
+    "routeType": "Loop",
+	"routeFurkotId": "BS1Wgt",
+    "routeWaypoints": [
+      {
+        "lat":38.15157,
+		"lng":-107.74904,
+        "waypointType": "End",
+        "waypointOrder": 1,
+        "waypointName": "Ridgway, CO"
+      },
+      {
+        "lat":38.14914,
+		"lng":-107.74591,
+        "waypointType": "End",
+        "waypointOrder": 4,
+        "waypointName": "Ridgway, CO"
+      }
+    ]
+  },
+  {
+    "routeId": 5,
+    "routeName": "Northern New Mexico Loop",
+    "routeFileName": "NM-NorthernNewMexicoLoop",
+    "routeTaken": "1",
+    "routeUrl": "https://www.newmexico.org/things-to-do/scenic-byways/",
+    "routeNotes": "Includes the High Road to Taos and the Enchanted Circle and additional roads.",
+    "routeType": "Loop",
+	"routeFurkotId": "hmT13U",
+    "routeWaypoints": [
+      {
+        "lat": 35.89701,
+		"lng": -106.02021,
+        "waypointType": "End",
+        "waypointOrder": 1,
+        "waypointName": "Cundiyo Road"
+      },
+      {
+        "lat": 36.176071,
+        "lng": -105.618355,
+        "waypointType": "Via",
+        "waypointOrder": 2,
+        "waypointName": "75 & 518"
+      },
+      {
+        "lat": 36.553596,
+        "lng": -105.266854,
+        "waypointType": "Via",
+        "waypointOrder": 3,
+        "waypointName": "Eagle Nest, NM"
+      },
+      {
+        "lat": 36.703825,
+        "lng": -105.59591,
+        "waypointType": "Via",
+        "waypointOrder": 4,
+        "waypointName": "Questa, NM"
+      },
+      {
+        "lat": 36.687538,
+        "lng": -106.558216,
+        "waypointType": "Via",
+        "waypointOrder": 5,
+        "waypointName": "Tierra Amarilla, NM"
+      },
+      {
+        "lat": 35.89751,
+		"lng": -106.02123,
+        "waypointType": "End",
+        "waypointOrder": 6,
+        "waypointName": "Pojoaque, NM"
+      }
+    ]
+  }
+]
