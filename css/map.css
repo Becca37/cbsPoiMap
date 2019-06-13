@@ -376,6 +376,21 @@ input[type='checkbox'] {
 	padding: 10px 15px 10px 15px;
 }
 
+.control-zoom, .control-reset {
+	margin-top: 5px;
+	margin-right: 11px;
+	text-align: center;
+	background: rgba(255,255,255, 0.5);
+}
+
+.control-zoom {
+	padding: 9px;
+}
+
+.control-reset {
+	padding: 8px;
+}
+
 .control-filter, .control-visited, .control-notvisited, .control-showAll, .control-hideAll, .control-routes {
 	margin-left: 10px;
 	margin-bottom: 3px;

@@ -18,7 +18,9 @@ function handleError(useTitle, e)
 } 
 
 var map = null;
-var mapCenter = {lat: 39.219422, lng: -105.530727}; // Colorado
+var mapCenter = { lat: 39.219422, lng: -105.530727 }; // Colorado
+var mapBounds = null;
+var mapInitialZoom = 6;
 
 var trafficLayer = null;
 var incidentsLayer = null;
@@ -709,7 +711,7 @@ function currentTimestamp()
 	catch (e)
 	{
 		handleError('Map Initialization', e);
-		return '[Error setting timestamp.]'
+		return '[Error setting timestamp.]';
 	}
 }
 
@@ -730,7 +732,9 @@ function initMap()
 				},
 				scrollwheel: true,
 				scaleControl: true,
-				streetViewControl: true
+				streetViewControl: true,
+				center: mapCenter,
+				zoom: mapInitialZoom
 			}
 		);
 			
@@ -819,6 +823,18 @@ function addCustomControlsTo(map)
 		trafficControlDiv.index = 1;
 		map.controls[google.maps.ControlPosition.TOP_CENTER].push(trafficControlDiv);
 
+		// Add custom control for ZOOM TO BOUNDS
+		var zoomToBoundsControlDiv = document.createElement('div');
+		var zoomToBoundsControl = new ZoomToBoundsControl(zoomToBoundsControlDiv, map);
+		zoomToBoundsControlDiv.index = 1;
+		map.controls[google.maps.ControlPosition.RIGHT_TOP].push(zoomToBoundsControlDiv);
+
+		// Add custom control for RESET to CENTER
+		var resetToCenterControlDiv = document.createElement('div');
+		var resetToCenterControl = new ResetToCenterControl(resetToCenterControlDiv, map);
+		zoomToBoundsControlDiv.index = 1;
+		map.controls[google.maps.ControlPosition.RIGHT_TOP].push(resetToCenterControlDiv);
+
 		// Add custom control for INCIDENTS
 		// var incidentsControlDiv = document.createElement('div');
 		// var incidentsControl = new IncidentsControl(incidentsControlDiv, map);	
@@ -866,7 +882,7 @@ function addMarkersTo(map)
 {
 	try
 	{		
-		var bounds = new google.maps.LatLngBounds();
+		mapBounds = new google.maps.LatLngBounds();
 		
 		for (var i = 0; i < markerDataArray.length; i++) 
 		{		
@@ -928,7 +944,7 @@ function addMarkersTo(map)
 						}
 					);
 
-					bounds.extend(thisMarkerPosition);
+					mapBounds.extend(thisMarkerPosition);
 					
 					addThisMarker.addListener
 					('click', function()
@@ -963,22 +979,7 @@ function addMarkersTo(map)
 					p.push(m[i].getPosition());
 				}
 			}
-		);							
-		
-		// Zoom to fit the bounds of all markers
-		// https://stackoverflow.com/a/22712105/4407150
-		google.maps.event.addListenerOnce
-		(map, 'bounds_changed', function(event) 
-			{
-				this.setZoom(map.getZoom()-1);
-
-				if (this.getZoom() > 8) 
-				{
-					this.setZoom(8);
-				}
-			}
-		);
-		map.fitBounds(bounds);
+		);	
 	}
 	catch(e)
 	{
@@ -1742,6 +1743,58 @@ function IncidentsControl(controlDiv, map)
 	catch (e)
 	{		
 		handleError('Adding Incidents Control', e);
+	}
+}
+
+function ZoomToBoundsControl(controlDiv, map) {
+	try {
+		var controlUI = document.createElement('div');
+		controlUI.className = 'control-zoom';
+		controlUI.id = 'ZoomToBounds';
+		controlUI.innerHTML = '<i class="fas fa-expand-arrows-alt"></i>';
+		controlUI.title = 'Click to zoom to bounds of all markers.';
+		controlDiv.appendChild(controlUI);
+
+		controlUI.addEventListener
+			('click', function () {
+				try {
+
+					map.fitBounds(mapBounds);
+				}
+				catch (e) {
+					handleError('Zoom to Bounds Control', e);
+				}
+			}
+			);
+	}
+	catch (e) {
+		handleError('Adding Zoom to Bounds Control', e);
+	}
+}
+
+function ResetToCenterControl(controlDiv, map) {
+	try {
+		var controlUI = document.createElement('div');
+		controlUI.className = 'control-reset';
+		controlUI.id = 'ResetToCenter';
+		controlUI.innerHTML = '<i class="fas fa-compress-arrows-alt"></i>';
+		controlUI.title = 'Click to reset to original map center.';
+		controlDiv.appendChild(controlUI);
+
+		controlUI.addEventListener
+			('click', function () {
+				try {
+					map.zoom = mapInitialZoom;
+					map.panTo(mapCenter);
+				}
+				catch (e) {
+					handleError('Reset to Center Control', e);
+				}
+			}
+			);
+	}
+	catch (e) {
+		handleError('Adding Reset to Center Control', e);
 	}
 }
 
