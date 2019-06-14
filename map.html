@@ -54,17 +54,15 @@
 
 	</div>
 
-	<div id="panels">
+	<div id="content">
 
-		<div id="mapPanel"><table style="width: 100%; height: 100%; text-align: center;"><tr style="vertical-align: middle;"><td><img src="images/loading.gif" alt="loading" /></td></tr></table></div>
-
-		<div id="sidePanel">
+		<panel id="markerInfo" class="sidePanel markerInfo isVisible">
 
 			<div class="sidePanelHeaderContainer">
 				<div class="sidePanelHeader">
 					Marker Information
 				</div>
-				<div class="sidePanelCloseButton" onclick="closeSidePanel()">
+				<div class="sidePanelCloseButton" onclick="closeMarkerInfoPanel()">
 					<i class="far fa-times-circle" title="Close Panel"></i>
 				</div>
 			</div>
@@ -168,7 +166,11 @@
 
 			<div class="furkot-widget"></div>
 
-		</div>
+		</panel>
+
+		<panel class="mapPanel isVisible">
+			<div id="map"><table style="width: 100%; height: 100%; text-align: center;"><tr style="vertical-align: middle;"><td><img src="images/loading.gif" alt="loading" /></td></tr></table></div>
+		</panel>
 
 	</div>
 
