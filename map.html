@@ -56,7 +56,7 @@
 
 	<div id="content">
 
-		<panel id="markerInfo" class="sidePanel markerInfo isVisible">
+		<panel id="markerInfoPanel" class="sidePanel markerInfoPanel isVisible">
 
 			<div class="sidePanelHeaderContainer">
 				<div class="sidePanelHeader">
@@ -94,24 +94,15 @@
 					<hr>
 					<b>Map Controls</b>
 					<ul>
-						<li>
-							<b>Show/Hide POI Markers</b>
-							<ul>
-								<li>To toggle POIs in a particular category, click that category's Icon control (see legend at end of instructions for details).*</li>
-								<li><i class="far fa-eye"></i> To toggle POIs we have visited personally, click the Visited control.*</li>
-								<li><i class="far fa-eye-slash"></i> To toggle POIs we have not yet visited personally, click the Not Visited control.*</li>
-								<li><i class="fas fa-expand-arrows-alt"></i> To zoom/pan to display all visible markers on one screen.</li>
-								<li><i class="fas fa-compress-arrows-alt"></i> To zoom/pan map to original center (Colorado, USA).</li>
-								<li><i class="far fa-check-circle"></i> To show ALL POIs, click the Show All control. This is useful if you've hidden a bunch of categories and want to show everything again with one click.</li>
-								<li><i class="fas fa-ban"></i> To hide ALL POIs, click the Hide All control. This is useful if you only want to see one or more categories, e.g. Dog Parks, and don't want to have to turn every other category off one by one. First click this, then click the one(s) you do want to see.</li>
-							</ul>
-							* Note that the visited, not visited, and category-specific controls toggle markers in conjunction with one another. e.g. if you hide visited icons one or more categories which are being shown might have no markers. Thus, it's possible to have a map showing no markers depending on the combination selected.
+						<li><i class="fas fa-filter"></i> <b>Filters</b> click to show/hide filter options panel.</li>
+						<li><i class="fas fa-expand-arrows-alt"></i> <b>Expand</b> click to zoom/pan to display all visible markers on one screen.</li>
+						<li><i class="fas fa-compress-arrows-alt"></i> <b>Re-center</b> click to zoom/pan map to original center (Colorado, USA).</li>
 						</li>
-						<li><i class="fas fa-map-marker-alt"></i> <b>Clustering</b> To toggle the clustering of markers, click the clustering control.</li>
-						<li><i class="fas fa-traffic-light"></i> <b>Traffic</b> To toggle the traffic layer, click the traffic control.</li>
-						<li><i class="fas fa-user-secret"></i> <b>Troubleshooting</b> To toggle troubleshooting, click the test control.</li>
+						<li><i class="fas fa-map-marker-alt"></i> <b>Clustering</b> click to toggle the clustering of markers.</li>
+						<li><i class="fas fa-traffic-light"></i> <b>Traffic</b> click to toggle the traffic layer.</li>
+						<li><i class="fas fa-user-secret"></i> <b>Troubleshooting</b> click to toggle troubleshooting.</li>
 						<li>
-							<i class="fas fa-crosshairs"></i> <b>Location</b> To show your current location click the locator control (bottom left area). You will need to allow the browser to use your location. This will then:
+							<i class="fas fa-crosshairs"></i> <b>Location</b> click to show your current location. You will need to allow the browser to use your location. This will then:
 							<ul>
 								<li>Display the GPS coordinates and accuracy of your location in the locator control area.</li>
 								<li>Start watching your movements (less stalker-y than it sounds: location data is not stored).</li>
@@ -125,46 +116,125 @@
 							</ul>
 						</li>
 					</ul>
-					<hr>
-					<b>Compatibility / Requirements</b> This does require an internet connection. Use it on a device with GPS if you're concerned about getting the best location accuracy. It should work on current browsers, both desktop and mobile. However, we make no promises about it being pretty or easy to work with on small screens**, on any given device, or on any given operation system. We have used it ourselves on Chrome (desktop, android Galaxy Note 9, iOS iPad Pro), Firefox (desktop), and Safari (iPad iPad Pro).
-					<br /><br />
-					** If you are on a small device such as a smartphone, landscape mode and pinch-and-zoom is your friend. That, or a magnifying glass.
-					<hr>
-					<b>Category Icon Legend</b>
-					<div id="filterCategoryLegend"></div>
+					<hr />
 					<div class="routeUseInfo">
-						&dagger; <b>Routes</b> are shown by colored lines on the map. They also have route markers showing end points. Some also have markers which are via points to force following a specific path. Route markers are not included in any counts above.
-						<br /><br /><b>Route lines are colored randomly</b> each time you load the page; there is no classification or rating system in place. Sometimes routes overlap, which can indeed make distinguishing between routes difficult. Look for places where they do not overlap and find a marker in that area to learn more about a particular route.
-						<br /><br /><b>Route lines and route markers can be toggled on/off</b> separately using their respective filter icons:
-						<ul>
-							<li>Routes <i class="fas fa-map-marked-alt" alt="Route Icon"></i></li>
-							<li>Route Markers <img src="images/icons/mic/signpost-3.png" alt="Route Marker Icon" /></li>
-						</ul>
-						<b>To add a route to Furkot</b>, the route markers must be showing. Click any route marker for a given route to display the info, then scroll down in the side panel to the Plan With Furkot widget. Note that when you add the route, ALL the markers for that route will be added to your trip; you do not have to add each route marker individually.
-						<ol>
-							<li>Click the Plan with Furkot link in upper right corner of tripshot widget. Opens Furkot UI.<br /><img border="0" src="images/readme/furkotTripShotToTrip_00.png" /></li>
-							<li>
-								When prompted to create your own version of a trip {trip name}, click OK. This will create and display your copy of the trip.
-								<ul>
-									<li>If you're just starting your trip planning and this is the first thing you've added and you don't care to save the route as a separate entity all its own, you can start adding other stops and routes to this trip.</li>
-									<li>Otherwise, continue below to add this route to a a different trip (existing or new).</li>
-								</ul><br /><img border="0" src="images/readme/furkotTripShotToTrip_01.png" />
-							</li>
-							<li>Click the <i>My Trips</i> tab.<br /><img border="0" src="images/readme/furkotTripShotToTrip_02.png" /></li>
-							<li>Open (or create) <i>the trip to which you wish to add the route</i>.</li>
-							<li>Click the <i>Find</i> tab.<br /><img border="0" src="images/readme/furkotTripShotToTrip_03.png" /></li>
-							<li>Click the <i>My other trips, routes and tracks</i> icon.<br /><img border="0" src="images/readme/furkotTripShotToTrip_04.png" /></li>
-							<li>Click the <i>Show all places</i> icon, if not already enabled.<br /><img border="0" src="images/readme/furkotTripShotToTrip_05.png" /></li>
-							<li>You should see the route, probably with a car icon unless another mode of travel was specified. If you have a lot of other trips and places you might have to scroll around to find it.<br /><img border="0" src="images/readme/furkotTripShotToTrip_06.png" /></li>
-							<li>Click the desired route to add.<br /><img border="0" src="images/readme/furkotTripShotToTrip_08.png" /></li>
-							<li>Click the <i>Route</i> option to add all stops it in the order provided, OR click the <i>Backtrack</i> icon to add all stops in reverse order. (NOTE: clicking the <i>Stop</i> or <i>Maybe</i> options add a stop to your trip plan but then cannot be deleted or manipulated so we do not suggest using them.)<br /><img border="0" src="images/readme/furkotTripShotToTrip_09.png" /></li>
-							<li>Rearrange to suit yourself!</li>
-						</ol>
+						<b>Routes</b>
+						<blockquote>
+							Routes are shown by colored lines on the map. They also have route markers showing end points. Some also have markers which are via points to force following a specific path. Route markers are not included in any counts above.
+							<br /><br />
+							<b>Route lines are colored randomly</b> each time you load the page; there is no classification or rating system in place. Sometimes routes overlap, which can indeed make distinguishing between routes difficult. Look for places where they do not overlap and find a marker in that area to learn more about a particular route.
+							<br /><br />
+							<b>Route lines and route markers can be toggled on/off</b> separately using their respective filter icons:
+							<ul>
+								<li>Routes <i class="fas fa-map-marked-alt" alt="Route Icon"></i></li>
+								<li>Route Markers <img src="images/icons/mic/signpost-3.png" alt="Route Marker Icon" /></li>
+							</ul>
+							<b>To add a route to Furkot</b>, the route markers must be showing. Click any route marker for a given route to display the info, then scroll down in the side panel to the Plan With Furkot widget. Note that when you add the route, ALL the markers for that route will be added to your trip; you do not have to add each route marker individually.
+							<ol>
+								<li>Click the Plan with Furkot link in upper right corner of tripshot widget. Opens Furkot UI.<br /><img border="0" src="images/readme/furkotTripShotToTrip_00.png" /></li>
+								<li>
+									When prompted to create your own version of a trip {trip name}, click OK. This will create and display your copy of the trip.
+									<ul>
+										<li>If you're just starting your trip planning and this is the first thing you've added and you don't care to save the route as a separate entity all its own, you can start adding other stops and routes to this trip.</li>
+										<li>Otherwise, continue below to add this route to a a different trip (existing or new).</li>
+									</ul><br /><img border="0" src="images/readme/furkotTripShotToTrip_01.png" />
+								</li>
+								<li>Click the <i>My Trips</i> tab.<br /><img border="0" src="images/readme/furkotTripShotToTrip_02.png" /></li>
+								<li>Open (or create) <i>the trip to which you wish to add the route</i>.</li>
+								<li>Click the <i>Find</i> tab.<br /><img border="0" src="images/readme/furkotTripShotToTrip_03.png" /></li>
+								<li>Click the <i>My other trips, routes and tracks</i> icon.<br /><img border="0" src="images/readme/furkotTripShotToTrip_04.png" /></li>
+								<li>Click the <i>Show all places</i> icon, if not already enabled.<br /><img border="0" src="images/readme/furkotTripShotToTrip_05.png" /></li>
+								<li>You should see the route, probably with a car icon unless another mode of travel was specified. If you have a lot of other trips and places you might have to scroll around to find it.<br /><img border="0" src="images/readme/furkotTripShotToTrip_06.png" /></li>
+								<li>Click the desired route to add.<br /><img border="0" src="images/readme/furkotTripShotToTrip_08.png" /></li>
+								<li>Click the <i>Route</i> option to add all stops it in the order provided, OR click the <i>Backtrack</i> icon to add all stops in reverse order. (NOTE: clicking the <i>Stop</i> or <i>Maybe</i> options add a stop to your trip plan but then cannot be deleted or manipulated so we do not suggest using them.)<br /><img border="0" src="images/readme/furkotTripShotToTrip_09.png" /></li>
+								<li>Rearrange to suit yourself!</li>
+							</ol>
+						</blockquote>
 					</div>
+					<hr>
+					<b>Compatibility / Requirements</b>
+					<blockquote>
+						This does require an internet connection. Use it on a device with GPS if you're concerned about getting the best location accuracy. It should work on current browsers, both desktop and mobile. However, we make no promises about it being pretty or easy to work with on small screens**, on any given device, or on any given operation system. We have used it ourselves on Chrome (desktop, android Galaxy Note 9, iOS iPad Pro), Firefox (desktop), and Safari (iPad iPad Pro).
+						<br /><br />
+						** If you are on a small device such as a smartphone, landscape mode and pinch-and-zoom is your friend. That, or a magnifying glass.
+					</blockquote>
 				</div>
 			</div>
 
 			<div class="furkot-widget"></div>
+
+		</panel>
+
+		<panel id="filterOptionsPanel" class="sidePanel filterOptionsPanel isNotVisible">
+
+			<div class="sidePanelHeaderContainer">
+
+				<div class="sidePanelHeader">
+					Filter Options
+				</div>
+
+				<div class="sidePanelCloseButton" onclick="toggleFilterOptionsPanel()">
+					<i class="far fa-times-circle" title="Close Panel"></i>
+				</div>
+
+			</div>
+
+			<div id="filterOptionsContainer">
+
+				<div id="filterOptions">
+
+					<div class="filterOption">
+
+						<h4>All at Once</h4>
+
+						<div class="filterItem">
+							<div class="filterDisplay">&nbsp;</div>
+							<div class="filterIcon"><i class="far fa-check-circle" title="ShowAll"></i></div>
+							<div class="filterName"><button type="button" id="ToggleCategory ShowAll" onclick="toggleMarkers('ShowAll');">Show All</button>  This is useful if you've hidden a bunch of categories and want to show everything again with one click.</div>
+						</div>
+
+						<div class="filterItem">
+							<div class="filterDisplay">&nbsp;</div>
+							<div class="filterIcon"><i class="fas fa-ban" title="HideAll"></i></div>
+							<div class="filterName"><button type="button" id="ToggleCategory HideAll" onclick="toggleMarkers('HideAll');">Hide All</button> This is useful if you only want to see one or more categories, e.g. Dog Parks, and don't want to have to turn every other category off one by one. First click this, then click the one(s) you do want to see.</div>
+						</div>
+					</div>
+
+					<div class="filterOption">
+
+						<h4>by Visit Status</h4>
+						To toggle POIs based on whether or not Chasing Blue Sky has personally visited it or not, use these two filters.*
+
+						<div class="filterItem">
+							<div class="filterDisplay">
+								<input type="checkbox" checked id="ToggleCategory Visited" onclick="toggleMarkers('Visited');" />
+							</div>
+							<div class="filterIcon"><i class="far fa-eye" title="Visited"></i></div>
+							<div class="filterName">Visited</div>
+						</div>
+
+						<div class="filterItem">
+							<div class="filterDisplay">
+								<input type="checkbox" checked id="ToggleCategory NotVisited" onclick="toggleMarkers('NotVisited');" />
+							</div>
+							<div class="filterIcon"><i class="far fa-eye-slash" title="NotVisited"></i></div>
+							<div class="filterName">Not Visited</div>
+						</div>
+
+					</div>
+
+					<div class="filterOption">
+						<h4>by Category</h4>
+						To toggle POIs in a particular category, click that category's checkbox.*
+						<div id="filtersByCategory"></div>
+						<div class="filterLegendLegend">T = Total; V = Both Visited; 1 = One Visited; N = Not Visited; U = Unknown</div>
+					</div>
+
+					* Note that the visited, not visited, and category-specific controls toggle markers in conjunction with one another. e.g. if you hide visited icons one or more categories which are being shown might have no markers. Thus, it's possible to have a map showing no markers depending on the combination selected.
+
+				</div>
+
+			</div>
 
 		</panel>
 

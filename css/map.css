@@ -10,40 +10,42 @@
 	--cbs-font-size-normal: calc(16px + (22 - 16) * ((100vw - 300px) / (1600 - 300))); /*12pt*/
 	--cbs-font-size-site-tagline: calc(13px + (19 - 13) * ((100vw - 300px) / (1600 - 300))); /*10pt*/
 	--cbs-font-size-the-fine-print: calc(11px + (17 - 11) * ((100vw - 300px) / (1600 - 300))); /*8pt*/
+	--cbs-font-size-the-finer-print: calc(8px + (14 - 8) * ((100vw - 300px) / (1600 - 300))); /*6pt*/
 	/* --- line-height --*/
 	--cbs-line-height-site-name: calc(31px + (37 - 31) * ((100vw - 300px)/(1600 - 300)));
 	--cbs-line-height-marker-title: calc(28px + (34 - 28) * ((100vw - 300px) / (1600 - 300)));
 	--cbs-line-height-normal: calc(18px + (24 - 18) * ((100vw - 300px) / (1600 - 300)));
 	--cbs-line-height-site-tagline: calc(15px + (21 - 15) * ((100vw - 300px) / (1600 - 300)));
 	--cbs-line-height-the-fine-print: calc(13px + (19 - 13) * ((100vw - 300px) / (1600 - 300)));
+	--cbs-line-height-the-finer-print: calc(11px + (17 - 11) * ((100vw - 300px) / (1600 - 300)));
 }
 /* --------------------------------------------------------------------------- */
 /* SITE STRUCTURE for RESPONSIVE LAYOUT                                        */
 /* --------------------------------------------------------------------------- */
 /* adapted from http://codepen.io/HugoGiraudel/pen/qIAwr/ */
 
-html, body 
-{
-	padding: 0px;
-	margin: 0px;
-	height: 100vh;
-	width: 100%;
-}
-
 body 
 {
+	height: 100vh;
 	display: flex;
 	flex-flow: row wrap;
 	font-size: var(--cbs-font-size-normal);
 	line-height: var(--cbs-line-height-normal);
 	background-color: white;
+	padding: 0px;
+	margin: 0px;
 }
 
 body > * 
 {
 	flex: 1 100%;
+}
+
+content > * 
+{	
 	padding: 0px;
 	margin: 0px;
+	box-sizing: border-box;
 }
 
 #header 
@@ -108,9 +110,11 @@ panel
 	min-width: 400px;
 }
 
-.mapPanel 
+.mapPanel
 {
+	width: 100%;
 }
+
 
 #map 
 {
@@ -135,14 +139,13 @@ panel
 	padding: 0px;
 }
 
-.markerInfo 
+.markerInfoPanel
 {
-	padding: 0px;
 	background-color: rgba(243,243,243,.3);
 	box-shadow: inset 7px 0 9px -7px rgba(0,0,0,.3);
 }
 
-.filterOptions 
+.filterOptionsPanel
 {
 	padding: 0px;
 	background-color: rgba(243,243,243,.3);
@@ -162,21 +165,25 @@ panel
 	.mapPanel 
 	{
 		flex: 3 0px;
-	}	
+	}
 
-	.filterOptions 
+	.filterOptionsPanel 
 	{
 		order: 1;
+		max-width: 25%;
 	}
 
 	.mapPanel 
 	{
 		order: 2;
-	}
+		min-width: 50%;
+		max-width: 100%;
+	}	
 
-	.markerInfo 
+	.markerInfoPanel
 	{
 		order: 3;
+		max-width: 25%;
 	}
 
 }
@@ -221,7 +228,7 @@ input[type='checkbox'] + label
 	width: 100px;
 }
 
-#markerInfoContainer, #instructionsContainer, .markerShelfIcons, .markerQuickFacts, .filterOption 
+#markerInfoContainer, #instructionsContainer, .markerShelfIcons, .markerQuickFacts, #filtersByCategory
 {
 	display: table;
 	width: 100%;
@@ -233,14 +240,23 @@ input[type='checkbox'] + label
 	display: table-row;
 	margin: 3px;
 	border-bottom: 1px solid #eaeaea;
+	text-align: center;
+	vertical-align: middle;
 }
 
-.panelCloseButton, .sidePanelHeader, .sidePanelCloseButton, .markerIcon, .markerTitle, #markerPlanWithFurkot, .markerShelfIcon, .markerQuickFactLabel, .markerQuickFactData, .filterHeader, .filterIcon, .filterText, .filterCount 
+.panelCloseButton, .sidePanelHeader, .sidePanelCloseButton, .markerIcon, .markerTitle, #markerPlanWithFurkot, .markerShelfIcon, .markerQuickFactLabel, .markerQuickFactData, .filterHeader, .filterIcon, .filterDisplay, .filterName
 {
 	display: table-cell;
 	padding: 3px;
 	align-self: center;
 	justify-self: center;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.filterDisplay > input
+{
+	float: none;
 }
 
 .sidePanelHeaderContainer 
@@ -260,22 +276,34 @@ input[type='checkbox'] + label
 	margin: 10px 25px 10px 20px;
 }
 
-.filterOption 
+#filterOptionsContainer
 {
-	padding: 0px;
-	margin: 0px;
+	padding: 15px;
+	font-size: var(--cbs-font-size-the-fine-print);
+	line-height: var(--cbs-line-height-the-fine-print);
 }
 
-.filterHeader, .filterIcon, .filterText, .filterCount 
+.filterHeader, .filterIcon, .filterName
 {
 	text-align: center;
 	vertical-align: middle;
 	border-bottom: 1px solid #eaeaea;
 }
 
+.filterCounts, .filterLegendLegend
+{
+	font-size: var(--cbs-font-size-the-finer-print);
+	line-height: var(--cbs-line-height-the-finer-print);
+}
+
 .odd 
 {
 	background-color: rgba( 234, 234, 234, .5);
+}
+
+.filterOption
+{
+	padding-bottom: 20px;
 }
 
 .filterIcon 
@@ -288,17 +316,15 @@ input[type='checkbox'] + label
 	width: 25px;
 }
 
-.filterText 
+.filterName
 {
-	font-size: var(--cbs-font-size-the-fine-print);
-	line-height: var(--cbs-line-height-the-fine-print);
+	text-align: left;
 }
 
 .filterHeader 
 {
 	font-style: italic;
 }
-
 
 .markerHeader 
 {
@@ -509,9 +535,9 @@ input[type='checkbox'] + label
 	color: rgba(255,255,255, 0.8);
 }
 
-.controlInactive 
+.controlInactive, .control-filterOptionsPanel
 {
-	background: rgba(255,255,255, 0.5);
+	background: rgba(255,255,255, 0.7);
 	color: #CCCCCC;
 }
 
@@ -533,6 +559,13 @@ input[type='checkbox'] + label
 	padding: 10px 15px 10px 15px;
 }
 
+.control-filterOptionsPanel
+{
+	writing-mode: vertical-lr;
+	text-orientation: sideways;
+	padding: 5px;
+}
+
 .control-zoom, .control-reset 
 {
 	margin-top: 5px;
@@ -549,26 +582,6 @@ input[type='checkbox'] + label
 .control-reset 
 {
 	padding: 8px;
-}
-
-.control-filter, .control-visited, .control-notvisited, .control-showAll, .control-hideAll, .control-routes 
-{
-	margin-left: 10px;
-	margin-bottom: 3px;
-	text-align: left;
-	vertical-align: middle;
-	padding: 0px;
-}
-
-.control-routes 
-{
-	padding: 8px 5px 10px 6px;
-	text-align: center;
-}
-
-.control-visited, .control-notvisited, .control-showAll, .control-hideAll 
-{
-	margin-bottom: 6px;
 }
 
 .control-test, .control-clustering 
