@@ -22,30 +22,19 @@
 /* --------------------------------------------------------------------------- */
 /* SITE STRUCTURE for RESPONSIVE LAYOUT                                        */
 /* --------------------------------------------------------------------------- */
-/* adapted from http://codepen.io/HugoGiraudel/pen/qIAwr/ */
+/* adapted from http://codepen.io/HugoGiraudel/pen/qIAwr/ 
+and https://codepen.io/HugoGiraudel/pen/fec8936890d14e842ac4856ce34e5fbe */
 
 body 
 {
 	height: 100vh;
-	display: flex;
-	flex-flow: row wrap;
+	width: 100%;
+
 	font-size: var(--cbs-font-size-normal);
 	line-height: var(--cbs-line-height-normal);
 	background-color: white;
 	padding: 0px;
 	margin: 0px;
-}
-
-body > * 
-{
-	flex: 1 100%;
-}
-
-content > * 
-{	
-	padding: 0px;
-	margin: 0px;
-	box-sizing: border-box;
 }
 
 #header 
@@ -60,13 +49,14 @@ content > *
 }
 
 .siteIcon,
-.siteInfo,
+.siteName,
+.siteTagline,
 .siteBackmatter 
 {
 	display: table-cell;
 	border: 10px solid transparent;
 	text-align: center;
-	vertical-align: middle;
+	vertical-align: bottom;
 }
 
 .siteIcon img 
@@ -79,7 +69,6 @@ content > *
 	font-weight: bold;
 	font-size: var(--cbs-font-size-site-name);
 	line-height: var(--cbs-line-height-site-name);
-	display: inline;
 }
 
 .siteTagline 
@@ -87,7 +76,6 @@ content > *
 	font-style: italic;
 	font-size: var(--cbs-font-size-site-tagline);
 	line-height: var(--cbs-line-height-site-tagline);
-	display: inline;
 }
 
 .siteBackmatter 
@@ -98,26 +86,45 @@ content > *
 	margin-right: 15px;
 }
 
-#content 
+#content
 {
-	display: flex;
-	flex-flow: row wrap;
+	padding: 0;
+	margin: 0;
 	height: 100%;
+  
+	-ms-box-orient: horizontal;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -moz-flex;
+	display: -webkit-flex;
+	display: flex;
+  
+	-webkit-justify-content: space-around;
+	justify-content: space-around;
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
+	-webkit-align-items: stretch;
+	align-items: stretch;
 }
 
-panel 
+#content > * 
+{	
+	padding: 0px;
+	margin: 0px;
+	box-sizing: border-box;
+}
+
+#mapPanel
 {
-	min-width: 400px;
+	height: 100%;  
+	flex: 1 auto;
 }
-
-.mapPanel
-{
-	width: 100%;
-}
-
 
 #map 
 {
+	min-width: 300px;
+	min-height: 300px;
 	height: 100%;
 	width: 100%;
 }
@@ -128,10 +135,9 @@ panel
 	vertical-align: middle;
 }
 
-.sidePanel 
+.sidePanel
 {
-	flex: 1;
-	overflow-y: auto;
+	flex: 1 100%;
 }
 
 .sidePanel > * 
@@ -152,38 +158,47 @@ panel
 	box-shadow: inset -7px 0 9px -7px rgba(0,0,0,.3);
 }
 
-@media all and (min-width: 600px) 
+/*@media all and (min-width: 600px) 
 {
 	.sidePanel 
 	{
 		flex: 1 0 0;
 	}
-}
+}*/
 
-@media all and (min-width: 950px) 
+@media all and (min-width: 1200px) 
 {
+	#content
+	{
+		flex-flow: row nowrap;
+	}
+
 	.mapPanel 
 	{
-		flex: 3 0px;
+		flex: 2 auto;
+		min-width: 600px;
+	}
+
+	.sidePanel
+	{
+		flex: 1;
+		overflow-y: auto;
+		min-width: 300px;
 	}
 
 	.filterOptionsPanel 
 	{
 		order: 1;
-		max-width: 25%;
 	}
 
 	.mapPanel 
 	{
 		order: 2;
-		min-width: 50%;
-		max-width: 100%;
 	}	
 
 	.markerInfoPanel
 	{
 		order: 3;
-		max-width: 25%;
 	}
 
 }
@@ -252,6 +267,11 @@ input[type='checkbox'] + label
 	justify-self: center;
 	text-align: center;
 	vertical-align: middle;
+}
+
+.sidePanelHeader, .sidePanelCloseButton
+{
+	padding: 0px;
 }
 
 .filterDisplay > input
@@ -525,8 +545,6 @@ input[type='checkbox'] + label
 	padding: 5px;
 	font-size: larger;
 	text-align: center;
-	color: #9c9c9c;
-	background: rgba(255,255,255, 0.7);
 }
 
 .controlActive 
@@ -535,28 +553,10 @@ input[type='checkbox'] + label
 	color: rgba(255,255,255, 0.8);
 }
 
-.controlInactive, .control-filterOptionsPanel
+.controlInactive, .control-filterOptionsPanel, .control-zoom, .control-reset, #currentLocationInfoContainer 
 {
 	background: rgba(255,255,255, 0.7);
-	color: #CCCCCC;
-}
-
-.control-text 
-{
-	color: rgb(25,25,25);
-	font-family: Roboto,Arial,sans-serif;
-	font-size: 16px;
-	line-height: 38px;
-	padding-left: 5px;
-	padding-right: 5px;
-}
-
-.control-traffic, .control-incidents
-{
-	margin-top: 10px;
-	margin-left: 10px;
-	text-align: left;
-	padding: 10px 15px 10px 15px;
+	color: rgba(0,0,0, 0.7);
 }
 
 .control-filterOptionsPanel
@@ -566,22 +566,27 @@ input[type='checkbox'] + label
 	padding: 5px;
 }
 
+.control-traffic, .control-incidents, .control-zoom, .control-reset 
+{
+	margin-top: 10px;
+	margin-left: 10px;
+	text-align: left;
+	padding: 10px 15px 10px 15px;
+}
+
 .control-zoom, .control-reset 
 {
-	margin-top: 5px;
-	margin-right: 11px;
 	text-align: center;
-	background: rgba(255,255,255, 0.5);
 }
 
 .control-zoom 
 {
-	padding: 9px;
+	padding: 12px 15px 12px 15px;
 }
 
 .control-reset 
 {
-	padding: 8px;
+	padding: 12px 15px 12px 15px;
 }
 
 .control-test, .control-clustering 

@@ -1,4 +1,4 @@
-var isATest = false;
+var isATest = true;
 		
 function handleError(useTitle, e)
 {	
@@ -802,13 +802,13 @@ function addCustomControlsTo(map)
 		var zoomToBoundsControlDiv = document.createElement('div');
 		var zoomToBoundsControl = new ZoomToBoundsControl(zoomToBoundsControlDiv, map);
 		zoomToBoundsControlDiv.index = 1;
-		map.controls[google.maps.ControlPosition.RIGHT_TOP].push(zoomToBoundsControlDiv);
+		map.controls[google.maps.ControlPosition.TOP_CENTER].push(zoomToBoundsControlDiv);
 
 		// Add custom control for RESET to CENTER
 		var resetToCenterControlDiv = document.createElement('div');
 		var resetToCenterControl = new ResetToCenterControl(resetToCenterControlDiv, map);
 		zoomToBoundsControlDiv.index = 1;
-		map.controls[google.maps.ControlPosition.RIGHT_TOP].push(resetToCenterControlDiv);
+		map.controls[google.maps.ControlPosition.TOP_CENTER].push(resetToCenterControlDiv);
 
 		// Add custom control for INCIDENTS
 		// var incidentsControlDiv = document.createElement('div');
@@ -1238,6 +1238,7 @@ function displayInfoPanelFor(thisMarker, thisMarkerType, thisMarkerLatitude, thi
 
 						markerInfoPanel.classList.remove('isNotVisible');
 						markerInfoPanel.classList.add('isVisible');
+						adjustContentHeight();
 						// ------------------------------------------------------------------
 					}
 			);
@@ -1262,6 +1263,7 @@ function closeMarkerInfoPanel()
 	{
 		markerInfoPanel.classList.remove('isVisible');
 		markerInfoPanel.classList.add('isNotVisible');
+		adjustContentHeight();
 	}
 	catch(e)
 	{
@@ -1448,6 +1450,7 @@ function toggleFilterOptionsPanel() {
 			filterOptionsPanel.classList.remove('isNotVisible');
 			filterOptionsPanel.classList.add('isVisible');
 		}
+		adjustContentHeight();
 	}
 	catch (e) {
 		handleError('Toggle Filter Options Panel', e);
@@ -2113,13 +2116,21 @@ function throttler() {
 	}
 }
 
-function adjustContentHeight() {
+function adjustContentHeight() 
+{
+	var viewportOrientation = screen.orientation.angle;
 	var viewportHeight = window.innerHeight;
+	var viewportWidth = window.innerWidth;
 	var headerHeight = document.getElementById('header').offsetHeight;
-	var useContentHeight = "height:" + (viewportHeight - headerHeight).toString() + "px";
-	document.getElementById('content').setAttribute("style", useContentHeight);
-	document.getElementById('markerInfoPanel').setAttribute("style", useContentHeight);
-	document.getElementById('filterOptionsPanel').setAttribute("style", useContentHeight);
+	var contentHeight = viewportHeight - headerHeight;
+	document.getElementById('content').setAttribute("style", "height:" +  contentHeight.toString() + "px");
+
+	if (isATest)
+	{
+		viewportSize.innerHTML = viewportWidth.toString() + 'px wide, ' + viewportHeight.toString() + 'px high, ' + viewportOrientation;
+		viewportSize.setAttribute("style", "font-weight: bold; font-style: normal; font-size: larger; display: block;");
+	}
 }
-// Listen to resize event, and run throttler()
-window.addEventListener("resize", throttler);
+// Listen to resize and orientation change events, and run throttler()
+window.addEventListener('resize', throttler);
+window.addEventListener('deviceorientation', throttler);
