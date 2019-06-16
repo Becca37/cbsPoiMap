@@ -641,6 +641,12 @@ input[type='checkbox'] + label
 	background: rgba(0,0,255,.5);
 }
 
+.itIsARoute
+{	
+	font-size: var(--cbs-font-size-the-finer-print);
+	line-height: var(--cbs-line-height-the-finer-print);
+}
+
 /*FURKOT INTEGRATION */
 
 [class^="ff-icon-"] 

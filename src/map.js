@@ -1,4 +1,4 @@
-var isATest = true;
+var isATest = false;
 		
 function handleError(useTitle, e)
 {	
@@ -972,7 +972,7 @@ function displayInfoPanelFor(thisMarker, thisMarkerType, thisMarkerLatitude, thi
 			console.warn('Processing marker for display.');
 		}
 
-		if (thisMarkerType != 'cbsPoi' || (thisMarker.cbsTitle
+		if (thisMarkerType !== 'cbsPoi' || (thisMarker.cbsTitle
 			&& thisMarker.cbsMainCategory 
 			&& thisMarker.latitude
 			&& thisMarker.longitude))
@@ -1113,7 +1113,7 @@ function displayInfoPanelFor(thisMarker, thisMarkerType, thisMarkerLatitude, thi
 							var useFurkotPinName = thisMarkerCategoryData.furkotPinName;
 							if (thisMarkerCategory === 'Route' && thisMarker.furkotPinName)
 							{
-								useFurkotPinName = thisMarker.furkotPinName
+								useFurkotPinName = thisMarker.furkotPinName;
 							}
 												
 							//https://help.furkot.com/widgets/plan-with-furkot-buttons.html	
@@ -1129,11 +1129,21 @@ function displayInfoPanelFor(thisMarker, thisMarkerType, thisMarkerLatitude, thi
 									+ '&uid=' + furkotRevenueId;
 							furkotLinkIcons = '<i class="ff-icon-furkot"></i><i class="ff-icon-' + useFurkotPinName + '"></i>';
 
-							var markerPlanWithFurkotContent = '<a id="markerPlanWithFurkotLink" href="' + furkotLinkText + '" target="furkot" title="Add to a Furkot Trip">' + furkotLinkIcons + '</a>';
+							//var markerPlanWithFurkotContent = '<a class="furkot-widget-inactive" href="' + furkotLinkText + '" target="furkot">' + furkotLinkIcons + '</a>';
+
+							//title="Add ' + thisMarkerTitle + ' to a Furkot Trip"
 							
-							if(thisMarkerCategory==='Route') 
+							if (markerPlanWithFurkotLink.classList.contains('isNotVisible'))
 							{
-								markerPlanWithFurkotContent = '<i class="ff-icon-furkot"></i> See Below';
+								markerPlanWithFurkotLink.classList.remove('isNotVisible');
+								markerPlanWithFurkotLink.classList.add('isVisible');
+							}
+							markerPlanWithFurkotRoute.className = 'isNotVisible';
+							if(thisMarkerCategory==='Route Marker') 
+							{
+								markerPlanWithFurkotRoute.className = 'isVisible';
+								markerPlanWithFurkotLink.classList.remove('isVisible');
+								markerPlanWithFurkotLink.classList.add('isNotVisible');
 							}
 							
 							thisMarkerTags = '';
@@ -1169,7 +1179,7 @@ function displayInfoPanelFor(thisMarker, thisMarkerType, thisMarkerLatitude, thi
 							thisMarkerLongitude = thisMarker.longitude;
 						}
 						
-						if (thisMarkerType === 'cbsPoi' || (thisMarkerType === 'gMap' && markerTitleText.innerHTML != currentLocationTitleString))
+						if (thisMarkerType === 'cbsPoi' || (thisMarkerType === 'gMap' && markerTitleText.innerHTML !== currentLocationTitleString))
 						{
 							weatherDataDisplay = getWeatherData(thisMarkerLatitude, thisMarkerLongitude);
 							timeDataDisplay = getTimeData(thisMarkerLatitude, thisMarkerLongitude);
@@ -1234,7 +1244,8 @@ function displayInfoPanelFor(thisMarker, thisMarkerType, thisMarkerLatitude, thi
 						markerTitleText.innerHTML = thisMarkerTitle;
 						markerData.innerHTML = contentString;
 						
-						markerPlanWithFurkot.innerHTML = markerPlanWithFurkotContent;
+						markerPlanWithFurkotLink.href = furkotLinkText;
+						markerPlanWithFurkotLink.innerHTML = furkotLinkIcons;
 
 						markerInfoPanel.classList.remove('isNotVisible');
 						markerInfoPanel.classList.add('isVisible');
