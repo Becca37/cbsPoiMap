@@ -53,4 +53,10 @@
 		, "mapMarkerIcon": "images/icons/mic/signpost-3.png"
 		, "furkotPinName": "guide"
 	}
+	, {
+		  "cbsMainCategory": "National Park Service (NPS)"
+		, "cbsMainCategoryPlural": "National Park Service (NPS)"
+		, "mapMarkerIcon": "images/icons/mic/star-3.png"
+		, "furkotPinName": "star-stroke"
+	  }
 ]

@@ -55,8 +55,22 @@ var furkotRevenueId = '6VjRjO';
 var furkotTripShotUrlPart1 = 'https://trips.furkot.com/widget/ts/';
 var furkotTripShotUrlPart2 = 'https://trips.furkot.com/ts/';
 
+var showMapIconArray = 
+[
+	  '<i class="fas fa-globe-europe fa-2x" title="Show Map"></i>'
+	, '<i class="fas fa-globe-asia fa-2x" title="Show Map"></i>'
+	, '<i class="fas fa-globe-americas fa-2x" title="Show Map"></i>'
+	, '<i class="fas fa-globe-africa fa-2x" title="Show Map"></i>'
+];
+var filterOptionsPanelWasVisible = false;
+var markerInfoPanelWasVisible = false;
+
 var poisDataSource = 'data/pois.json';
 var incidentsDataSource = 'https://inciweb.nwcg.gov/feeds/rss/incidents/';
+var poiIconVisited = '<i class="far fa-eye visited" title="We HAVE seen this with our own eyes!"></i>';
+var poiIconNotVisited = '<i class="far fa-eye-slash" title="We have NOT yet seen this with our own eyes."></i>';
+var poiIconOneVisited = '<i class="fas fa-low-vision oneVisited" title="ONE of us has seen this with their own eyes."></i>';
+var poiIconUnknown = '<i class="fas fa-question" title="Unknown"></i>';
 
 var markersCategoryDataSource = 'data/markersCategoryData.json';
 var markerClustering = null;
@@ -312,7 +326,7 @@ function getWeatherData(markerLatitude, markerLongitude)
 		
 		weatherDataResult = ''
 			+ '<div class="markerQuickFact">'
-				+ '<div class="markerQuickFactLabel">Location</div>'
+				+ '<div class="markerQuickFactLabel">Weather Location</div>'
 				+ '<div class="markerQuickFactData">' + weatherDataLocation + '</div>'
 			+ '</div>'
 			+ '<div class="markerQuickFact">'
@@ -594,14 +608,14 @@ function getRouteData(map)
 						furkotPinName = 'passthru';
 					}
                 }	
-					var routeColorRGB = hex2rgb(useThisColor);
-					var routeColorRGBa = 'rgba(' + routeColorRGB + ',' + routeColorOpacity + ')';
-					var showRoutecolor = '<div style="margin-top: 15px; border-bottom: 15px solid ' + routeColorRGBa + ';"><i>Route Color Used Here</i>: ' + useThisColor  + ' ' + routeColorRGBa + '</div>';
+
+				var routeColorRGB = hex2rgb(useThisColor);
+				var routeColorRGBa = 'rgba(' + routeColorRGB + ',' + routeColorOpacity + ')';
+				var showRoutecolor = '<div style="margin-top: 15px; border-bottom: 15px solid ' + routeColorRGBa + ';"><i>Route Color Used Here</i>: ' + useThisColor  + ' ' + routeColorRGBa + '</div>';
 
                 var cbsNotes = routesDataArray[i].routeNotes
                     + '<hr><i>Route Name</i>: <b>' + routeName + '</b>'
-					+ showRoutecolor
-                    + '<br/><i>Route Type</i>: ' + routesDataArray[i].routeType
+                    + '<br/><br/><i>Route Type</i>: ' + routesDataArray[i].routeType
                     + '<br/><br/><i>Routing Points</i>: '
                     + '<ul>' + routingPoints + '</ul>';
 
@@ -609,12 +623,13 @@ function getRouteData(map)
 				if(routesDataArray[i].routeFurkotId) {
 					var furkotTripShotId=routesDataArray[i].routeFurkotId;
 					furkotTripShot+=''
+						+ showRoutecolor 
+						+ '<hr>'
+						+ '<b>Add to a Furkot Trip</b>'
 						+'<div style="left: 0; height: 0; position: relative; width: 100%; padding-bottom: 75%;">'
 						+'<iframe frameborder="0" style="top: 0; height: 0; position: absolute; height: 100%; width: 100%;" src="'+furkotTripShotUrlPart1+furkotTripShotId+'?uid='+furkotRevenueId+'"></iframe>'
 						+'</div>'
 						+'Click the Plan with Furkot in the upper right corner to add route to your trip (see instructions below for details) or <a href="'+furkotTripShotUrlPart2+furkotTripShotId+'?uid='+furkotRevenueId+'" target="_blank">view route in a new window</a>.';
-
-					cbsNotes+=furkotTripShot;
 				}
 				else 
 				{
@@ -632,9 +647,13 @@ function getRouteData(map)
                     , "cbsNotes": cbsNotes
 					, "cbsReferenceUrl": routesDataArray[i].routeUrl
 					, "cbsVisited": routesDataArray[i].routeTaken
+					, "addressCity": routeWaypoints[w].addressCity
+					, "addressState": routeWaypoints[w].addressState
+					, "addressCountry": routeWaypoints[w].addressCountry
 					, "furkotMultipleStopsText": furkotMultipleStopsText
 					, "furkotPinName" : furkotPinName
-				}
+					, "furkotTripShot" : furkotTripShot
+				};
 				
 				markerDataArray.push(waypointObject);
 			}
@@ -681,29 +700,6 @@ function getMarkerCategoryDataFromArray(thisMarkerCategory)
 	}
 }
 
-function showHideInstructions()
-{
-	try
-	{ 
-		if (instructionsContainer.classList.contains('isVisible'))
-		{
-			instructionsContainer.classList.remove('isVisible');
-			instructionsContainer.classList.add('isNotVisible');
-			toggleInstructions.innerHTML = '<span class="toggleInstructionsText"><i class="far fa-question-circle"></i> Show Instructions</div></span>';
-		}
-		else
-		{
-			instructionsContainer.classList.remove('isNotVisible');
-			instructionsContainer.classList.add('isVisible');
-			toggleInstructions.innerHTML = '<span class="toggleInstructionsText"><i class="far fa-question-circle"></i> Hide Instructions</div></span>';
-		}
-	}
-	catch (e)
-	{
-		handleError('Show/Hide Instructions', e);
-	}
-}
-
 function currentTimestamp()
 {
 	try
@@ -733,7 +729,7 @@ function initMap()
 					style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
 					position: google.maps.ControlPosition.TOP_LEFT
 				},
-				scrollwheel: true,
+				scrollwheel: false,
 				scaleControl: true,
 				streetViewControl: true,
 				center: mapCenter,
@@ -754,7 +750,7 @@ function initMap()
 		
 		//watchLocation(map); -- control is not available until page fully loads, so defer to user click to start the watch
 
-		adjustContentHeight();	
+		adjustContentHeight();
 	}
 	catch (e)
 	{
@@ -874,8 +870,7 @@ function addMarkersTo(map)
 							lng: thisMarker.longitude
 						};
 
-
-					var thisMarkerLabel = '<i class="far fa-question-circle" title="Unknown"></i>';	
+					var thisMarkerLabel = poiIconUnknown;	
 					var thisMarkerLabelClass = 'poiUnknown';
 					var thisMarkerLabelTitleAddOn = ' ; Visited? Unknown';
 					var thisMarkerVisited = 'U';
@@ -885,19 +880,19 @@ function addMarkersTo(map)
 						switch(thisMarker.cbsVisited)
 						{
 							case "Y":
-								thisMarkerLabel = '<i class="far fa-eye" title="Visited"></i>';
+								thisMarkerLabel = poiIconVisited;
 								thisMarkerLabelClass = 'poiVisited';
 								thisMarkerLabelTitleAddOn = ' ; Visited? Yes';
 							break;
 							
 							case "N":
-								thisMarkerLabel = '<i class="far fa-eye-slash" title="Someday"></i>';
+								thisMarkerLabel = poiIconNotVisited;
 								thisMarkerLabelClass = 'poiSomeday';
 								thisMarkerLabelTitleAddOn = ' ; Visited? Someday';
 							break;
 							
 							case "1":
-								thisMarkerLabel = '<i class="fas fa-low-vision" title="One of Us"></i>';
+								thisMarkerLabel = poiIconOneVisited;
 								thisMarkerLabelClass = 'poiOne';
 								thisMarkerLabelTitleAddOn = ' ; Visited? One of Us';
 						}
@@ -913,6 +908,9 @@ function addMarkersTo(map)
 							cbsCategory: thisMarker.cbsMainCategory,
 							cbsCategoryPlural: thisMarkerCategoryData.cbsMainCategoryPlural,
 							cbsVisited: thisMarker.cbsVisited,
+							addressCity: thisMarker.addressCity,
+							addressState: thisMarker.addressState,
+							addressCountry: thisMarker.addressCountry,
 							labelContent: thisMarkerLabel,
 							labelAnchor: new google.maps.Point(25, 50),
 							labelInBackground: true,
@@ -1034,8 +1032,13 @@ function displayInfoPanelFor(thisMarker, thisMarkerType, thisMarkerLatitude, thi
 						var markerVisitedIcon;
 						var thisMarkerTags;
 						var thisMarkerCbsNotes;
+						var thisMarkerLocation = '';
 						var weatherDataDisplay;
 						var timeDataDisplay;
+
+						if (thisMarker.addressCity) { thisMarkerLocation += thisMarker.addressCity + ' '; } 
+						if (thisMarker.addressState) { thisMarkerLocation += thisMarker.addressState + ' '; } 
+						if (thisMarker.addressCountry) { thisMarkerLocation += thisMarker.addressCountry + ' '; } 
 						
 						if(thisMarkerType === 'cbsPoi')
 						{
@@ -1069,7 +1072,7 @@ function displayInfoPanelFor(thisMarker, thisMarkerType, thisMarkerLatitude, thi
 								
 								markerLatitudeForFurkot = ''
 									+ '&stop[coordinates][lat]=' 
-									+ thisMarker.latitude ;
+									+ thisMarker.latitude;
 								
 								markerLongitudeForFurkot = ''								
 									+ '&stop[coordinates][lon]=' 
@@ -1091,21 +1094,21 @@ function displayInfoPanelFor(thisMarker, thisMarkerType, thisMarkerLatitude, thi
 								}
 							}
 							
-							markerVisitedIcon = '<i class="far fa-question-circle fa-2x" title="Unknown"></i>';
+							markerVisitedIcon = poiIconUnknown;
 							if (thisMarker.cbsVisited)
 							{
 								switch(thisMarker.cbsVisited)
 								{
 									case "Y":
-										markerVisitedIcon = '<i class="far fa-eye fa-2x visited" title="We HAVE seen this with our own eyes!"></i>';
+										markerVisitedIcon = poiIconVisited;
 									break;
 									
 									case "N":
-										markerVisitedIcon = '<i class="far fa-eye-slash fa-2x" title="We have NOT yet seen this with our own eyes."></i>';
+										markerVisitedIcon = poiIconNotVisited;
 									break;
 									
 									case "1":
-										markerVisitedIcon = '<i class="fas fa-low-vision fa-2x oneVisited" title="ONE of us has seen this with their own eyes."></i>';
+										markerVisitedIcon = poiIconOneVisited;
 									break;
 								}
 							}
@@ -1128,11 +1131,7 @@ function displayInfoPanelFor(thisMarker, thisMarkerType, thisMarkerLatitude, thi
 									+ markerMultipleStopsForFurkot
 									+ '&uid=' + furkotRevenueId;
 							furkotLinkIcons = '<i class="ff-icon-furkot"></i><i class="ff-icon-' + useFurkotPinName + '"></i>';
-
-							//var markerPlanWithFurkotContent = '<a class="furkot-widget-inactive" href="' + furkotLinkText + '" target="furkot">' + furkotLinkIcons + '</a>';
-
-							//title="Add ' + thisMarkerTitle + ' to a Furkot Trip"
-							
+														
 							if (markerPlanWithFurkotLink.classList.contains('isNotVisible'))
 							{
 								markerPlanWithFurkotLink.classList.remove('isNotVisible');
@@ -1168,6 +1167,10 @@ function displayInfoPanelFor(thisMarker, thisMarkerType, thisMarkerLatitude, thi
 								else
 								{
 									thisMarkerCbsNotes = thisMarker.cbsNotes;
+									if(thisMarkerCategory==='Route Marker') 
+									{
+										thisMarkerCbsNotes += thisMarker.furkotTripShot;
+									}
 								}
 							}
 							else
@@ -1221,6 +1224,10 @@ function displayInfoPanelFor(thisMarker, thisMarkerType, thisMarkerLatitude, thi
 								+ '<div class="markerQuickFact">'
 									+ '<div class="markerQuickFactLabel">Coordinates</div>'
 									+ '<div class="markerQuickFactData">' + thisMarkerLatitude + ', ' + thisMarkerLongitude + '</div>'
+								+ '</div>'
+								+ '<div class="markerQuickFact">'
+									+ '<div class="markerQuickFactLabel">Location</div>'
+									+ '<div class="markerQuickFactData">' + thisMarkerLocation + '</div>'
 								+ '</div>'
 								+ weatherDataDisplay
 								+ timeDataDisplay
@@ -1451,20 +1458,228 @@ function addMarkerCategoryFilters()
 	}
 }
 
-function toggleFilterOptionsPanel() {
-	try {
-		if (filterOptionsPanel.classList.contains('isVisible')) {
+function toggleFilterOptionsPanel() 
+{
+	try 
+	{
+		if (filterOptionsPanel.classList.contains('isVisible')) 
+		{
 			filterOptionsPanel.classList.remove('isVisible');
 			filterOptionsPanel.classList.add('isNotVisible');
 		}
-		else {
+		else 
+		{
 			filterOptionsPanel.classList.remove('isNotVisible');
 			filterOptionsPanel.classList.add('isVisible');
 		}
 		adjustContentHeight();
 	}
-	catch (e) {
+	catch (e) 
+	{
 		handleError('Toggle Filter Options Panel', e);
+	}
+}
+
+function toggleDataInstructionsMap(toggleThis)
+{
+	try 
+	{
+		var randomIndex = Math.floor(Math.random() * showMapIconArray.length);
+		var reset = false;
+
+		if (dataListPanel.classList.contains('isNotVisible') && instructionsPanel.classList.contains('isNotVisible'))
+		{
+			filterOptionsPanelWasVisible = filterOptionsPanel.classList.contains('isVisible');
+			markerInfoPanelWasVisible = markerInfoPanel.classList.contains('isVisible');
+		}
+
+		mapPanel.classList.remove('isVisible');
+		mapPanel.classList.add('isNotVisible');
+
+		filterOptionsPanel.classList.remove('isVisible');
+		filterOptionsPanel.classList.add('isNotVisible');
+
+		markerInfoPanel.classList.remove('isVisible');
+		markerInfoPanel.classList.add('isNotVisible');
+
+		if (toggleThis === 'instructions')
+		{
+			if (instructionsPanel.classList.contains('isNotVisible'))
+			{
+				instructionsPanel.classList.remove('isNotVisible');
+				instructionsPanel.classList.add('isVisible');
+				toggleInstructionsMapIcon.innerHTML = showMapIconArray[randomIndex];
+
+				dataListPanel.classList.remove('isVisible');
+				dataListPanel.classList.add('isNotVisible');
+				toggleDataMapIcon.innerHTML = '<i class="far fa-list-alt fa-2x" title="Show Data"></i>';
+			}
+			else
+			{
+				instructionsPanel.classList.remove('isVisible');
+				instructionsPanel.classList.add('isNotVisible');
+				toggleInstructionsMapIcon.innerHTML = '<i class="far fa-question-circle fa-2x" title="Show Instructions"></i>';
+
+				mapPanel.classList.remove('isNotVisible');
+				mapPanel.classList.add('isVisible');
+
+				reset = true;
+			}
+		}
+		else
+		{
+			if (dataListPanel.classList.contains('isNotVisible'))
+			{
+				dataListPanel.classList.remove('isNotVisible');
+				dataListPanel.classList.add('isVisible');
+				toggleDataMapIcon.innerHTML = showMapIconArray[randomIndex];
+
+				instructionsPanel.classList.remove('isVisible');
+				instructionsPanel.classList.add('isNotVisible');
+				toggleInstructionsMapIcon.innerHTML = '<i class="far fa-question-circle fa-2x" title="Show Instructions"></i>';
+
+				var dataListSortIcon = '&nbsp;<i class="fas fa-sort"></i>';
+			
+				var dataListContent = ''				
+					+ '<input id="dataListSearch" class="search" placeholder="Search" />'
+					+ '<table>'
+						+ '<thead>'
+							+ '<th><button type="button" class="sort" data-sort="dlVisited">Visited' + dataListSortIcon + '</button></th>'
+							+ '<th><button type="button" class="sort" data-sort="dlIcon">Icon' + dataListSortIcon + '</button></th>'
+							+ '<th><button type="button" class="sort" data-sort="dlTitle">Title' + dataListSortIcon + '</button></th>'
+							+ '<th><button class="sort">Notes</button></th>'
+							+ '<th><button class="sort"></button></th>'
+							+ '<th><button class="sort" data-sort="dlCity">City' + dataListSortIcon + '</button></th>'
+							+ '<th><button class="sort" data-sort="dlState">State' + dataListSortIcon + '</button></th>'
+							+ '<th><button class="sort" data-sort="dlCountry">Country' + dataListSortIcon + '</button></th>'
+							+ '<th><button class="sort" data-sort="dlImage">Image' + dataListSortIcon + '</button></th>'
+						+ '</thead>'
+						+ '<!-- IMPORTANT, class="list" have to be at tbody -->'
+						+ '<tbody class="list">';
+
+				var poiCountTotal = 0;
+				var poiCountVisited = 0;
+				var poiCountNotVisited = 0;
+				var poiCountOneVisited = 0;
+				var poiCountUnknown = 0;
+
+				for (var i = 0; i < markerDataArray.length; i++)
+				{
+					var thisCategory =  markerDataArray[i].cbsMainCategory;
+					var thisCategoryIsRoute = thisCategory === 'Route Marker';
+					var thisCategoryData = getMarkerCategoryDataFromArray(thisCategory);
+					var thisCategoryIcon = '<img src="' + thisCategoryData.mapMarkerIcon + '" title="' + thisCategory + '"/>';
+					var thisCbsVisitedIcon = poiIconUnknown;
+					if (markerDataArray[i].cbsVisited)
+					{
+						switch(markerDataArray[i].cbsVisited)
+						{
+							case "Y":
+								thisCbsVisitedIcon = poiIconVisited;
+								poiCountVisited++;
+							break;
+									
+							case "N":
+								thisCbsVisitedIcon = poiIconNotVisited;
+								poiCountNotVisited++;
+							break;
+									
+							case "1":
+								thisCbsVisitedIcon = poiIconOneVisited;
+								poiCountOneVisited++;
+							break;
+
+							default:
+								poiCountUnknown++;
+							break;
+						}
+					}
+					var thisReferenceLink = '';
+					if (markerDataArray[i].cbsReferenceUrl)
+					{
+						thisReferenceLink = '<a href="' + markerDataArray[i].cbsReferenceUrl + '" target="_blank"><i class="fas fa-external-link-alt"></i></a>';
+					}
+
+					var thisImage = '';
+					if (markerDataArray[i].cbsImage)
+					{
+						thisImage = '<a href="' + markerDataArray[i].cbsImage + '" target="_blank"><img class="dataListImage" src="' + markerDataArray[i].cbsImage + '" alt="Image or Logo" /></a>';
+					}
+
+					dataListContent += ''
+						+ '<tr>'
+							+ '<td class="dlVisited">' + thisCbsVisitedIcon + '</td>'
+							+ '<td class="dlIcon">' + thisCategoryIcon + '</td>'
+							+ '<td class="dlTitle">' + markerDataArray[i].cbsTitle + '</td>'
+							+ '<td class="dlNotes">' + markerDataArray[i].cbsNotes + '</td>'
+							+ '<td class="dlUrl">' +thisReferenceLink + '</td>'
+							+ '<td class="dlCity">' + markerDataArray[i].addressCity + '</td>'
+							+ '<td class="dlState">' + markerDataArray[i].addressState + '</td>'
+							+ '<td class="dlCountry">' + markerDataArray[i].addressCountry + '</td>'
+							+ '<td class="dlImage">' + thisImage + '</td>'
+						+ '</tr>';
+
+					poiCountTotal++;
+				}
+
+				dataListContent += ''				
+						+ '</tbody>'
+					+ '</table>'
+					+ '<div id="dataListNoSearchResult" class="isNotVisible">No Result</div>'
+					+ '<div class="poiCounts">' 
+						+ 'Total: ' +   poiCountTotal
+						+ '; ' + poiIconVisited + ' Visited: ' +   poiCountVisited
+						+ '; ' + poiIconNotVisited + ' Not Visited: ' +   poiCountNotVisited
+						+ '; ' + poiIconOneVisited + ' One Visited: ' +   poiCountOneVisited
+						+ '; ' + poiIconUnknown + ' Unknown: ' +   poiCountUnknown
+					+ '</div>';
+
+				document.getElementById('dataList').innerHTML = dataListContent;
+
+				var options = { valueNames: [ 'dlVisited', 'dlIcon', 'dlTitle', 'dlNotes', 'dlUrl', 'dlCity', 'dlState', 'dlCountry', 'dlImage' ] };
+				var dataListTable = new List('dataList', options);
+				dataListTable.on
+				('updated', function(list) 
+					{
+						if (list.matchingItems.length > 0) 
+						{
+							dataListNoSearchResult.className = 'isNotVisible';
+						} 
+						else 
+						{
+							dataListNoSearchResult.className = 'isVisible';
+						}
+					}
+				);
+			}
+			else
+			{
+				dataListPanel.classList.remove('isVisible');
+				dataListPanel.classList.add('isNotVisible');
+				toggleDataMapIcon.innerHTML = '<i class="far fa-list-alt fa-2x" title="Show Data"></i>';
+
+				mapPanel.classList.remove('isNotVisible');
+				mapPanel.classList.add('isVisible');
+
+				reset = true;
+			}
+		}
+
+		if (reset && filterOptionsPanelWasVisible)
+		{
+			filterOptionsPanel.classList.remove('isNotVisible');
+			filterOptionsPanel.classList.add('isVisible');
+		}
+
+		if (reset && markerInfoPanelWasVisible)
+		{
+			markerInfoPanel.classList.remove('isNotVisible');
+			markerInfoPanel.classList.add('isVisible');
+		}
+	}
+	catch (e) 
+	{
+		handleError('Toggle Data List Panel', e);
 	}
 }
 
@@ -2132,9 +2347,11 @@ function adjustContentHeight()
 	var viewportOrientation = screen.orientation.angle;
 	var viewportHeight = window.innerHeight;
 	var viewportWidth = window.innerWidth;
+
 	var headerHeight = document.getElementById('header').offsetHeight;
-	var contentHeight = viewportHeight - headerHeight;
-	document.getElementById('content').setAttribute("style", "height:" +  contentHeight.toString() + "px");
+	var headerFooter = document.getElementById('footer').offsetHeight;
+	var contentHeight = viewportHeight - headerHeight - headerFooter;
+	document.getElementById('content').setAttribute("style", "height: " +  contentHeight + 'px');
 
 	if (isATest)
 	{

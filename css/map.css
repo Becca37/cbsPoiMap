@@ -37,7 +37,36 @@ body
 	margin: 0px;
 }
 
-#header 
+#pageWrapper, #content
+{
+	padding: 0;
+	margin: 0;
+	height: 100%;
+  
+	-ms-box-orient: horizontal;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -moz-flex;
+	display: -webkit-flex;
+	display: flex;
+  
+	-webkit-justify-content: space-around;
+	justify-content: space-around;
+	-webkit-flex-flow: column nowrap;
+	flex-flow: column nowrap;
+	-webkit-align-items: stretch;
+	align-items: stretch;
+}
+
+#pageWrapper > * 
+{	
+	padding: 0px;
+	margin: 0px;
+	box-sizing: border-box;
+}
+
+#header, #footer
 {
 	background: #b3b7d2;
 	display: table;
@@ -45,12 +74,18 @@ body
 	color: rgba(var(--cbs-color-accentR),.5);
 	text-align: center;
 	background-color: white;
+}
+#header, 
+#footer
+{
 	border-bottom: var(--cbs-border-accent);
 }
 
 .siteIcon,
 .siteName,
 .siteTagline,
+.siteToggleDataMap,
+.siteToggleInstructionsMap,
 .siteBackmatter 
 {
 	display: table-cell;
@@ -87,38 +122,20 @@ body
 }
 
 #content
-{
-	padding: 0;
-	margin: 0;
-	height: 100%;
-  
-	-ms-box-orient: horizontal;
-	display: -webkit-box;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: -moz-flex;
-	display: -webkit-flex;
-	display: flex;
-  
-	-webkit-justify-content: space-around;
-	justify-content: space-around;
+{	
 	-webkit-flex-flow: row wrap;
 	flex-flow: row wrap;
-	-webkit-align-items: stretch;
-	align-items: stretch;
 }
 
-#content > * 
-{	
-	padding: 0px;
-	margin: 0px;
-	box-sizing: border-box;
-}
-
-#mapPanel
+#mapPanel, #dataListPanel, #instructionsPanel
 {
 	height: 100%;  
 	flex: 1 auto;
+}
+
+#dataListPanel, #instructionsPanel
+{
+	overflow-y: auto;
 }
 
 #map 
@@ -135,7 +152,7 @@ body
 	vertical-align: middle;
 }
 
-.sidePanel
+.sidePanel, .dataListPanel, .instructionsPanel
 {
 	flex: 1 100%;
 }
@@ -158,22 +175,33 @@ body
 	box-shadow: inset -7px 0 9px -7px rgba(0,0,0,.3);
 }
 
-/*@media all and (min-width: 600px) 
-{
-	.sidePanel 
-	{
-		flex: 1 0 0;
-	}
-}*/
 
+/* If change breakpoint here, change also in JS adjustContentHeight()  */
 @media all and (min-width: 1200px) 
 {
+	#header
+	{
+		order: 1;
+		flex: 1 auto;
+	}
+
 	#content
 	{
+		order: 2;
+		flex: 1 auto;
 		flex-flow: row nowrap;
 	}
 
-	.mapPanel 
+	#footer
+	{
+		order: 3;
+		flex: 1 auto;
+		bottom: 0px;
+		border-top: var(--cbs-border-accent);
+		border-bottom: none;
+	}
+
+	#mapPanel, #dataListPanel, #instructionsPanel
 	{
 		flex: 2 auto;
 		min-width: 600px;
@@ -200,7 +228,6 @@ body
 	{
 		order: 3;
 	}
-
 }
 
 /* --------------------------------------------------------------------------- */
@@ -243,7 +270,7 @@ input[type='checkbox'] + label
 	width: 100px;
 }
 
-#markerInfoContainer, #instructionsContainer, .markerShelfIcons, .markerQuickFacts, #filtersByCategory
+#markerInfoContainer, .markerShelfIcons, .markerQuickFacts, #filtersByCategory
 {
 	display: table;
 	width: 100%;
@@ -267,6 +294,26 @@ input[type='checkbox'] + label
 	justify-self: center;
 	text-align: center;
 	vertical-align: middle;
+}
+
+#dataListPanel
+{
+	margin: 15px; 
+	width: 100%;
+}
+
+
+.sort
+{
+	background-color: white;
+	border: none;
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+.dataListImage
+{
+	max-width: 150px;
 }
 
 .sidePanelHeader, .sidePanelCloseButton
@@ -316,7 +363,7 @@ input[type='checkbox'] + label
 	line-height: var(--cbs-line-height-the-finer-print);
 }
 
-.odd 
+.odd, tr:nth-child(even)
 {
 	background-color: rgba( 234, 234, 234, .5);
 }
@@ -405,16 +452,6 @@ input[type='checkbox'] + label
 	padding-left: 15px;
 }
 
-#toggleInstructions 
-{
-	margin-top: 15px;
-	cursor: pointer;
-	font-size: var(--cbs-font-size-the-fine-print);
-	line-height: var(--cbs-line-height-the-fine-print);
-	width: 100%;
-	text-align: center;
-}
-
 .tldr 
 {
 	border: 1px solid --cbs-color-accentH;
@@ -424,18 +461,11 @@ input[type='checkbox'] + label
 	margin-bottom: 5px;
 }
 
-#instructionsContainer 
-{
-	border-bottom: 3px double rgba(0,0,0,.3);
-}
-
-.instructionsText 
+.instructionsText
 {
 	padding-top: 15px;
 	padding-bottom: 15px;
 	margin: 0px 10px 0px 0px;
-	font-size: var(--cbs-font-size-the-fine-print);
-	line-height: var(--cbs-line-height-the-fine-print);
 }
 
 .routeWaypointType 
@@ -447,7 +477,7 @@ input[type='checkbox'] + label
 #svgIcon 
 {
 	width: 100%;
-	text-align: center;
+	text-align: left;
 }
 
 .weatherCurrent 
@@ -641,11 +671,19 @@ input[type='checkbox'] + label
 	background: rgba(0,0,255,.5);
 }
 
+.poiCounts
+{
+	margin-top: 10px;
+	margin-bottom: 25px;
+	font-style: italic;
+}
+
 .itIsARoute
 {	
 	font-size: var(--cbs-font-size-the-finer-print);
 	line-height: var(--cbs-line-height-the-finer-print);
 }
+
 
 /*FURKOT INTEGRATION */
 

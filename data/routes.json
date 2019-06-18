@@ -15,14 +15,20 @@
 		"lng":-109.22979,
         "waypointType": "End",
         "waypointOrder": 1,
-        "waypointName": "Three Way, AZ"
+        "waypointName": "666 (191) & 78 & 75",
+		"addressCity": "Three Way",
+		"addressState": "AZ",
+		"addressCountry": "USA"
       },
       {
         "lat":33.84834,
 		"lng":-109.14649,
         "waypointType": "End",
         "waypointOrder": 2,
-        "waypointName": "Alpine, AZ"
+        "waypointName": "666 (191) & 180",
+		"addressCity": "Alpine",
+		"addressState": "AZ",
+		"addressCountry": "USA"
       }
     ]
   },
@@ -42,14 +48,20 @@
 		"lng":-110.74482,
         "waypointType": "End",
         "waypointOrder": 1,
-        "waypointName": "Mt Lemmon Highway"
+        "waypointName": "Southern End",
+		"addressCity": "",
+		"addressState": "AZ",
+		"addressCountry": "USA"
       },
       {
         "lat":32.44286
 		,"lng":-110.75986,
         "waypointType": "End",
         "waypointOrder": 2,
-        "waypointName": "Mount Lemmon General Store"
+        "waypointName": "Northern End",
+		"addressCity": "Summerhaven",
+		"addressState": "AZ",
+		"addressCountry": "USA"
       }
     ]
   },
@@ -69,14 +81,19 @@
 	   "lng":-107.67148,
         "waypointType": "End",
         "waypointOrder": 1,
-        "waypointName": "Ouray, CO"
+        "waypointName": "550 at Ouray",
+		"addressCity": "Ouray",
+		"addressState": "CO",
+		"addressCountry": "USA"
       },
       {
         "lat":37.80596,
 		"lng":-107.67214,
         "waypointType": "End",
-        "waypointOrder": 2,
-        "waypointName": "Silverton, CO"
+        "waypointOrder": "550 at Silberton",
+		"addressCity": "Silverton",
+		"addressState": "CO",
+		"addressCountry": "USA"
       }
     ]
   },
@@ -96,14 +113,20 @@
 		"lng":-107.74904,
         "waypointType": "End",
         "waypointOrder": 1,
-        "waypointName": "Ridgway, CO"
+        "waypointName": "62 off 550",
+		"addressCity": "Ridgway",
+		"addressState": "CO",
+		"addressCountry": "USA"
       },
       {
         "lat":38.14914,
 		"lng":-107.74591,
         "waypointType": "End",
         "waypointOrder": 4,
-        "waypointName": "Ridgway, CO"
+        "waypointName": "550 at 62",
+		"addressCity": "Ridgway",
+		"addressState": "CO",
+		"addressCountry": "USA"
       }
     ]
   },
@@ -122,42 +145,60 @@
 		"lng": -106.02021,
         "waypointType": "End",
         "waypointOrder": 1,
-        "waypointName": "Cundiyo Road"
+        "waypointName": "Nambe Rd off 285",
+		"addressCity": "Pojoaque",
+		"addressState": "NM",
+		"addressCountry": "USA"
       },
       {
         "lat": 36.176071,
         "lng": -105.618355,
         "waypointType": "Via",
         "waypointOrder": 2,
-        "waypointName": "75 & 518"
+        "waypointName": "75 & 518",
+		"addressCity": "",
+		"addressState": "NM",
+		"addressCountry": "USA"
       },
       {
         "lat": 36.553596,
         "lng": -105.266854,
         "waypointType": "Via",
         "waypointOrder": 3,
-        "waypointName": "Eagle Nest, NM"
+        "waypointName": "64 & 38",
+		"addressCity": "Eagle Nest",
+		"addressState": "NM",
+		"addressCountry": "USA"
       },
       {
         "lat": 36.703825,
         "lng": -105.59591,
         "waypointType": "Via",
         "waypointOrder": 4,
-        "waypointName": "Questa, NM"
+        "waypointName": "38 & 522",
+		"addressCity": "Questa",
+		"addressState": "NM",
+		"addressCountry": "USA"
       },
       {
         "lat": 36.687538,
         "lng": -106.558216,
         "waypointType": "Via",
         "waypointOrder": 5,
-        "waypointName": "Tierra Amarilla, NM"
+        "waypointName": "64 & 84",
+		"addressCity": "near Tierra Amarilla",
+		"addressState": "NM",
+		"addressCountry": "USA"
       },
       {
         "lat": 35.89751,
 		"lng": -106.02123,
         "waypointType": "End",
         "waypointOrder": 6,
-        "waypointName": "Pojoaque, NM"
+        "waypointName": "285 at Nambe Rd",
+		"addressCity": "Pojoaque",
+		"addressState": "NM",
+		"addressCountry": "USA"
       }
     ]
   }

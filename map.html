@@ -10,6 +10,7 @@
 	<link href="css/map.css" rel="stylesheet">
 
 	<script src="https://cdn.furkot.com/scripts/furkot-trip-planner.min.js" defer type="text/javascript"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
 	<script src="src/moment.js" type="text/JavaScript"></script>
 	<script src="src/moment-timezone-with-data-1970-2030.js" type="text/JavaScript"></script>
 	<script src="src/markerclusterer.js" type="text/javascript"></script>
@@ -21,7 +22,6 @@
 	<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYkQt42ziK8vw6E9Z_r6_NK1_B-DCPBXc&libraries=geometry"></script>
 	<!-- Google Maps label utility must be included AFTER the main script -->
 	<script defer src="src/markerwithlabel.js" type="text/javascript"></script>
-
 	<!-- Google Analytics -->
 	<script src="https://www.googletagmanager.com/gtag/js?id=UA-79516965-4"></script>
 	<script>
@@ -37,66 +37,197 @@
 <body onload="initMap()">
 	<!-- ****************************************************************** -->
 
-	<div id="header">
+	<div id="pageWrapper">
 
-		<div class="siteIcon">
-			<a href="/" title="Go to Main Website"><img class="markerOwnerHeaderIconImage" src="/map/images/logos/CBS_Logo.png" alt="Site Icon" /></a>
+		<div id="header">
+
+			<div class="siteIcon">
+				<a href="/" title="Go to Main Website"><img class="markerOwnerHeaderIconImage" src="/map/images/logos/CBS_Logo.png" alt="Site Icon" /></a>
+			</div>
+
+			<div class="siteName">Chasing Blue Sky</div>
+
+			<div class="siteToggleDataMap">
+				<span id="toggleDataMapIcon" onclick="toggleDataInstructionsMap('data');">
+					<i class="far fa-list-alt fa-2x" title="Show Data"></i>
+				</span>
+			</div>
+
+			<div class="siteToggleInstructionsMap">
+				<span id="toggleInstructionsMapIcon" onclick="toggleDataInstructionsMap('instructions');">
+					<i class="far fa-question-circle fa-2x" title="Show Instructions"></i>
+				</span>
+			</div>
+
 		</div>
 
-		<div class="siteName">Chasing Blue Sky</div>
+		<div id="footer">
 
-		<div class="siteTagline"><div id="viewportSize" style="display: none;"></div>Oh, the places we will go!</div>
+			<div class="siteTagline">
+				<div id="viewportSize" style="display: none;"></div>
+				Oh, the places we will go!
+			</div>
 
-		<div class="siteBackmatter">
-			~ <a href="/about/credits/" alt="Credits" target="_blank">Credits</a> ~ <a href="/about/policies-and-terms/" alt="Policies and Terms" target="_blank">Policies and Terms</a> ~ <a href="https://github.com/Becca37/cbsPoiMap" target="_blank">GitHub</a> ~
+			<div class="siteBackmatter">
+				~ <a href="/about/credits/" alt="Credits" target="_blank">Credits</a> ~ <a href="/about/policies-and-terms/" alt="Policies and Terms" target="_blank">Policies and Terms</a> ~ <a href="https://github.com/Becca37/cbsPoiMap" target="_blank">GitHub</a> ~
+			</div>
+
 		</div>
 
-	</div>
+		<div id="content">
 
-	<div id="content">
+			<panel id="markerInfoPanel" class="sidePanel markerInfoPanel isNotVisible">
 
-		<panel id="markerInfoPanel" class="sidePanel markerInfoPanel isVisible">
-
-			<div class="sidePanelHeaderContainer">
-				<div class="sidePanelHeader">
-					Marker Information
-				</div>
-				<div class="sidePanelCloseButton" onclick="closeMarkerInfoPanel()">
-					<i class="far fa-times-circle" title="Close Panel"></i>
-				</div>
-			</div>
-
-			<div id="markerInfoContainer">
-				<div class="markerHeader">
-					<div class="markerIcon">
-						<div id="markerIconImage"></div>
+				<div class="sidePanelHeaderContainer">
+					<div class="sidePanelHeader">
+						Marker Information
 					</div>
-					<div class="markerTitle">
-						<span id="markerTitleText"></span>
-					</div>
-					<div id="markerPlanWithFurkot">
-						<div id="markerPlanWithFurkotRoute" class="isNotVisible"><i class="ff-icon-furkot"></i><div class="itIsARoute">See Below</div></div>
-						<a id="markerPlanWithFurkotLink" href="https://trips.furkot.com/trip?stop[name]=North%20Cochetopa%20Pass&amp;stop[coordinates][lat]=38.216667&amp;stop[coordinates][lon]=-106.575556&amp;stop[url]=http%3A%2F%2Fgeonames.usgs.gov%2Fapex%2Ff%3Fp%3Dgnispq%3A3%3A%3A%3ANO%3A%3AP3_FID%3A190046&amp;stop[pin]=mountains&amp;uid=6VjRjO" target="furkot"><i class="ff-icon-furkot"></i><i class="ff-icon-stop"></i></a>
+					<div class="sidePanelCloseButton" onclick="closeMarkerInfoPanel()">
+						<i class="far fa-times-circle" title="Close Panel"></i>
 					</div>
 				</div>
-				<div id="markerData"></div>
-			</div>
 
-			<div id="toggleInstructions" onclick="showHideInstructions()">
-				<span class="toggleInstructionsText"><i class="far fa-question-circle"></i> Show Instructions</span>
-			</div>
+				<div id="markerInfoContainer">
+					<div class="markerHeader">
+						<div class="markerIcon">
+							<div id="markerIconImage"></div>
+						</div>
+						<div class="markerTitle">
+							<span id="markerTitleText"></span>
+						</div>
+						<div id="markerPlanWithFurkot">
+							<div id="markerPlanWithFurkotRoute" class="isNotVisible"><i class="ff-icon-furkot"></i><div class="itIsARoute">See Below</div></div>
+							<a id="markerPlanWithFurkotLink" href="https://trips.furkot.com/trip?stop[name]=North%20Cochetopa%20Pass&amp;stop[coordinates][lat]=38.216667&amp;stop[coordinates][lon]=-106.575556&amp;stop[url]=http%3A%2F%2Fgeonames.usgs.gov%2Fapex%2Ff%3Fp%3Dgnispq%3A3%3A%3A%3ANO%3A%3AP3_FID%3A190046&amp;stop[pin]=mountains&amp;uid=6VjRjO" target="furkot"><i class="ff-icon-furkot"></i><i class="ff-icon-stop"></i></a>
+						</div>
+					</div>
+					<div id="markerData">[data list goes here ]</div>
+				</div>
 
-			<div id="instructionsContainer" class="isNotVisible">
+				<div class="furkot-widget"></div>
+
+			</panel>
+
+			<panel id="filterOptionsPanel" class="sidePanel filterOptionsPanel isNotVisible">
+
+				<div class="sidePanelHeaderContainer">
+
+					<div class="sidePanelHeader">
+						Filter Options
+					</div>
+
+					<div class="sidePanelCloseButton" onclick="toggleFilterOptionsPanel()">
+						<i class="far fa-times-circle" title="Close Panel"></i>
+					</div>
+
+				</div>
+
+				<div id="filterOptionsContainer">
+
+					<div id="filterOptions">
+
+						<div class="filterOption">
+
+							<h4>All at Once</h4>
+
+							<div class="filterItem">
+								<div class="filterDisplay">&nbsp;</div>
+								<div class="filterIcon"><i class="far fa-check-circle" title="ShowAll"></i></div>
+								<div class="filterName"><button type="button" id="ToggleCategory ShowAll" onclick="toggleMarkers('ShowAll');">Show All</button>  This is useful if you've hidden a bunch of categories and want to show everything again with one click.</div>
+							</div>
+
+							<div class="filterItem">
+								<div class="filterDisplay">&nbsp;</div>
+								<div class="filterIcon"><i class="fas fa-ban" title="HideAll"></i></div>
+								<div class="filterName"><button type="button" id="ToggleCategory HideAll" onclick="toggleMarkers('HideAll');">Hide All</button> This is useful if you only want to see one or more categories, e.g. Dog Parks, and don't want to have to turn every other category off one by one. First click this, then click the one(s) you do want to see.</div>
+							</div>
+						</div>
+
+						<div class="filterOption">
+
+							<h4>by Visit Status</h4>
+							To toggle POIs based on whether or not Chasing Blue Sky has personally visited it or not, use these two filters.*
+
+							<div class="filterItem">
+								<div class="filterDisplay">
+									<input type="checkbox" checked id="ToggleCategory Visited" onclick="toggleMarkers('Visited');" />
+								</div>
+								<div class="filterIcon"><i class="far fa-eye" title="Visited"></i></div>
+								<div class="filterName">Visited</div>
+							</div>
+
+							<div class="filterItem">
+								<div class="filterDisplay">
+									<input type="checkbox" checked id="ToggleCategory NotVisited" onclick="toggleMarkers('NotVisited');" />
+								</div>
+								<div class="filterIcon"><i class="far fa-eye-slash" title="NotVisited"></i></div>
+								<div class="filterName">Not Visited</div>
+							</div>
+
+						</div>
+
+						<div class="filterOption">
+							<h4>by Category</h4>
+							To toggle POIs in a particular category, click that category's checkbox.*
+							<div id="filtersByCategory"></div>
+							<div class="filterLegendLegend">T = Total; V = Both Visited; 1 = One Visited; N = Not Visited; U = Unknown</div>
+						</div>
+
+						* Note that the visited, not visited, and category-specific controls toggle markers in conjunction with one another. e.g. if you hide visited icons one or more categories which are being shown might have no markers. Thus, it's possible to have a map showing no markers depending on the combination selected.
+
+					</div>
+
+				</div>
+
+			</panel>
+
+			<panel id="dataListPanel" class="isNotVisible">
+
+				<div id="dataList">
+
+					<input class="search" placeholder="Search" />
+
+					<table>
+						<!-- IMPORTANT, class="list" have to be at tbody -->
+						<tbody class="list">
+							<tr>
+								<td class="dlCategory">Category</td>
+								<td class="dlIcon">ICON</td>
+								<td class="dlVisited">Visited</td>
+								<td class="dlTitle">Title</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+
+			</panel>
+
+			<panel id="instructionsPanel" class="isNotVisible">
+
 				<div class="instructionsText">
+
 					<div class="tldr">
-						TL/DR: Click any marker, or the current location indicator, and information will be displayed here. Use the various map controls to show/hide things. Happy browsing. :0)
+						TL/DR: Click any marker, or the current location indicator, and information will be displayed in a side panel. Use the various controls to show/hide things. Happy browsing. :0)
 					</div>
+
 					<b>This map</b> contains places we've been and places we might someday want to go. It's mainly meant so that we can look up places when we're out and about, but others might find some interesting places to visit too.
+
 					<div class="disclaimer">
 						Many, many more POIs and routes are yet to be added, and lots of clean-up is needed to the ones already present. All locations are approximate. No promise is made that any POI or route currently exists and/or has any of the properties or features described herein. Use at own risk.
 					</div>
+
 					<hr>
+
+					<b>General</b>
+					<ul>
+						<li><i class="far fa-list-alt" title="Show Data"></i> <b>Data List</b> Click to show the data list. Icon will be replaced with a globe image to click to return to the map.</li>
+						<li><i class="far fa-question-circle" title="Show Instructions"></i> <b>Instructions</b> Click to show the instructions. Oh wait, you're here already so you figured it out on your own. :0) Icon will be replaced with a globe image to click to return to the map.</li>
+					</ul>
+
+					<hr>
+
 					<b>Map Controls</b>
+
 					<ul>
 						<li><i class="fas fa-filter"></i> <b>Filters</b> click to show/hide filter options panel.</li>
 						<li><i class="fas fa-expand-arrows-alt"></i> <b>Expand</b> click to zoom/pan to display all visible markers on one screen.</li>
@@ -110,7 +241,7 @@
 							<ul>
 								<li>Display the GPS coordinates and accuracy of your location in the locator control area.</li>
 								<li>Start watching your movements (less stalker-y than it sounds: location data is not stored).</li>
-								<li>Display your approximate current location on the map with a pulsating blue circle:<br /><div id="svgIcon"><svg width="30" height="30" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg">	<circle cx="20" cy="20" fill="none" r="11.8365" stroke="#1d86b1" stroke-width="2">		<animate attributeName="r" from="8" to="20" dur=".50s" begin="0s" repeatCount="indefinite"></animate>		<animate attributeName="opacity" from="1" to="0" dur=".50s" begin="0s" repeatCount="indefinite"></animate>	</circle>	<circle cx="20" cy="20" fill="#1d86b1" fill-opacity=".5" r="10"></circle></svg></div></li>
+								<li>Display your approximate current location on the map with a pulsating blue circle: <div id="svgIcon"><svg width="30" height="30" viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg">	<circle cx="20" cy="20" fill="none" r="11.8365" stroke="#1d86b1" stroke-width="2">		<animate attributeName="r" from="8" to="20" dur=".50s" begin="0s" repeatCount="indefinite"></animate>		<animate attributeName="opacity" from="1" to="0" dur=".50s" begin="0s" repeatCount="indefinite"></animate>	</circle>	<circle cx="20" cy="20" fill="#1d86b1" fill-opacity=".5" r="10"></circle></svg></div></li>
 							</ul>
 							<b>Once location tracking has been started</b> you can:
 							<ul>
@@ -120,8 +251,11 @@
 							</ul>
 						</li>
 					</ul>
+
 					<hr />
+
 					<div class="routeUseInfo">
+
 						<b>Routes</b>
 						<blockquote>
 							Routes are shown by colored lines on the map. They also have route markers showing end points. Some also have markers which are via points to force following a specific path. Route markers are not included in any counts above.
@@ -154,99 +288,30 @@
 								<li>Rearrange to suit yourself!</li>
 							</ol>
 						</blockquote>
+
 					</div>
+
 					<hr>
+
 					<b>Compatibility / Requirements</b>
+
 					<blockquote>
 						This does require an internet connection. Use it on a device with GPS if you're concerned about getting the best location accuracy. It should work on current browsers, both desktop and mobile. However, we make no promises about it being pretty or easy to work with on small screens**, on any given device, or on any given operation system. We have used it ourselves on Chrome (desktop, android Galaxy Note 9, iOS iPad Pro), Firefox (desktop), and Safari (iPad iPad Pro).
 						<br /><br />
 						** If you are on a small device such as a smartphone, landscape mode and pinch-and-zoom is your friend. That, or a magnifying glass.
 					</blockquote>
-				</div>
-			</div>
-
-			<div class="furkot-widget"></div>
-
-		</panel>
-
-		<panel id="filterOptionsPanel" class="sidePanel filterOptionsPanel isNotVisible">
-
-			<div class="sidePanelHeaderContainer">
-
-				<div class="sidePanelHeader">
-					Filter Options
-				</div>
-
-				<div class="sidePanelCloseButton" onclick="toggleFilterOptionsPanel()">
-					<i class="far fa-times-circle" title="Close Panel"></i>
-				</div>
-
-			</div>
-
-			<div id="filterOptionsContainer">
-
-				<div id="filterOptions">
-
-					<div class="filterOption">
-
-						<h4>All at Once</h4>
-
-						<div class="filterItem">
-							<div class="filterDisplay">&nbsp;</div>
-							<div class="filterIcon"><i class="far fa-check-circle" title="ShowAll"></i></div>
-							<div class="filterName"><button type="button" id="ToggleCategory ShowAll" onclick="toggleMarkers('ShowAll');">Show All</button>  This is useful if you've hidden a bunch of categories and want to show everything again with one click.</div>
-						</div>
-
-						<div class="filterItem">
-							<div class="filterDisplay">&nbsp;</div>
-							<div class="filterIcon"><i class="fas fa-ban" title="HideAll"></i></div>
-							<div class="filterName"><button type="button" id="ToggleCategory HideAll" onclick="toggleMarkers('HideAll');">Hide All</button> This is useful if you only want to see one or more categories, e.g. Dog Parks, and don't want to have to turn every other category off one by one. First click this, then click the one(s) you do want to see.</div>
-						</div>
-					</div>
-
-					<div class="filterOption">
-
-						<h4>by Visit Status</h4>
-						To toggle POIs based on whether or not Chasing Blue Sky has personally visited it or not, use these two filters.*
-
-						<div class="filterItem">
-							<div class="filterDisplay">
-								<input type="checkbox" checked id="ToggleCategory Visited" onclick="toggleMarkers('Visited');" />
-							</div>
-							<div class="filterIcon"><i class="far fa-eye" title="Visited"></i></div>
-							<div class="filterName">Visited</div>
-						</div>
-
-						<div class="filterItem">
-							<div class="filterDisplay">
-								<input type="checkbox" checked id="ToggleCategory NotVisited" onclick="toggleMarkers('NotVisited');" />
-							</div>
-							<div class="filterIcon"><i class="far fa-eye-slash" title="NotVisited"></i></div>
-							<div class="filterName">Not Visited</div>
-						</div>
-
-					</div>
-
-					<div class="filterOption">
-						<h4>by Category</h4>
-						To toggle POIs in a particular category, click that category's checkbox.*
-						<div id="filtersByCategory"></div>
-						<div class="filterLegendLegend">T = Total; V = Both Visited; 1 = One Visited; N = Not Visited; U = Unknown</div>
-					</div>
-
-					* Note that the visited, not visited, and category-specific controls toggle markers in conjunction with one another. e.g. if you hide visited icons one or more categories which are being shown might have no markers. Thus, it's possible to have a map showing no markers depending on the combination selected.
 
 				</div>
 
-			</div>
+			</panel>
 
-		</panel>
+			<panel id="mapPanel" class="mapPanel isVisible">
 
-		<panel id="mapPanel" class="mapPanel isVisible">
+				<div id="map"><table style="width: 100%; height: 100%; text-align: center;"><tr style="vertical-align: middle;"><td><img src="images/loading.gif" alt="loading" /></td></tr></table></div>
 
-			<div id="map"><table style="width: 100%; height: 100%; text-align: center;"><tr style="vertical-align: middle;"><td><img src="images/loading.gif" alt="loading" /></td></tr></table></div>
+			</panel>
 
-		</panel>
+		</div>
 
 	</div>
 
