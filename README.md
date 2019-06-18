@@ -32,6 +32,7 @@ HTML5, javascript (v5), CSS
 			<li><a href="https://inciweb.nwcg.gov/">Inciweb</a> Incident Information System (USA)</li>
 			<li><a href="http://www.geonames.org/">GeoNames</a> for Sunrise/Sunset and Time data based on location</li>
 			<li><a href="http://momentjs.com/">Moment</a> and <a href="http://momentjs.com/timezone/">Moment Timezone</a> for time data manipulation</li>
+			<li><a href="https://listjs.com/">List.js</a> for displaying all marker data in a sortable, filterable list.</li>
 		</ul>
 	</li>    
 	<li><b>Fonts/Icons</b>:
