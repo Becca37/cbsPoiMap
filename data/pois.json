@@ -1,83 +1,115 @@
 [
   {
-    "cbsTitle": "(high paved point)",
+    "cbsTitle": "Paved High Point - IA",
     "cbsVisited": "N",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 43.478145,
     "longitude": -95.705353,
     "cbsNotes": "Two miles south of Bigelow, MN on IA 60",
-    "cbsReferenceUrl": null
+    "addressCity": "",
+    "addressState": "IA",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "(Highest paved road point in OK)",
+    "cbsTitle": "Paved High Point - OK",
     "cbsVisited": "N",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 36.719534,
     "longitude": -103.00198,
     "cbsNotes": "State line west of Mexhoma",
-    "cbsReferenceUrl": null
+    "addressCity": "",
+    "addressState": "OK",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "(highest paved road point in ND)",
-    "cbsVisited": "N",
+    "cbsTitle": "Paved High Point - ND",
+    "cbsVisited": "Y",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 46.2819,
     "longitude": -103.876554,
     "cbsNotes": "5 miles North West of Rhame, ND",
-    "cbsReferenceUrl": null
+    "addressCity": "",
+    "addressState": "ND",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "along Sandia Crest",
+    "cbsTitle": "Paved High Point - NM",
     "cbsVisited": "N",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 35.210471,
     "longitude": -106.449401,
-    "cbsNotes": null,
-    "cbsReferenceUrl": "http://www.scenicdrivesusa.com/node/129"
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "NM",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://www.scenicdrivesusa.com/node/129",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "Arizona Snow Bowl",
+    "cbsTitle": "Paved High Point - AZ",
     "cbsVisited": "N",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 35.330953,
     "longitude": -111.70969,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
-  },
-  {
-    "cbsTitle": "Bald Mountain Pass",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Paved High Point",
-    "cbsTags": null,
-    "latitude": 40.688657,
-    "longitude": -110.898856,
-    "cbsNotes": null,
-    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:1454591"
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "AZ",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Bald Mountain Pass",
     "cbsVisited": "N",
     "cbsMainCategory": "Pass",
     "cbsTags": null,
-    "latitude": 40.688657,
-    "longitude": -110.898856,
-    "cbsNotes": null,
-    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:1454591"
+    "latitude": 40.68836,
+    "longitude": -110.898013,
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "UT",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:1454591",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "Beartooth Hwy",
+    "cbsTitle": "Paved High Point - UT",
+    "cbsVisited": "N",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 40.688657,
+    "longitude": -110.898856,
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "UT",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:1454591",
+    "cbsImage": ""
+  },
+  {
+    "cbsTitle": "Paved High Point - MT",
     "cbsVisited": "Y",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 45.004851,
     "longitude": -109.410433,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "MT",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Beartooth Pass",
@@ -86,8 +118,12 @@
     "cbsTags": null,
     "latitude": 44.9691119,
     "longitude": -109.4715514,
-    "cbsNotes": null,
-    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:1585289"
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "WY",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:1585289",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Berthoud Pass",
@@ -96,18 +132,26 @@
     "cbsTags": null,
     "latitude": 39.797778,
     "longitude": -105.776944,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "Brasstown Bald",
+    "cbsTitle": "Paved High Point - GA",
     "cbsVisited": "Y",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 34.874498,
     "longitude": -83.811447,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "Brasstown Bald",
+    "addressCity": "",
+    "addressState": "GA",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Cameron Pass",
@@ -116,18 +160,26 @@
     "cbsTags": null,
     "latitude": 40.520833,
     "longitude": -105.8925,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "Cheaha Mountain",
+    "cbsTitle": "Paved High Point - AL",
     "cbsVisited": "Y",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 33.486791,
     "longitude": -85.809216,
-    "cbsNotes": "Talladega Scenic Drive (Skyway Motorway)",
-    "cbsReferenceUrl": "https://en.wikipedia.org/wiki/Alabama_State_Route_281"
+    "cbsNotes": "Cheaha Mountain; Talladega Scenic Drive (Skyway Motorway)",
+    "addressCity": "",
+    "addressState": "AL",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "https://en.wikipedia.org/wiki/Alabama_State_Route_281",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Coal Bank Pass",
@@ -136,18 +188,26 @@
     "cbsTags": null,
     "latitude": 37.700556,
     "longitude": -107.776944,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "Collins Gap",
+    "cbsTitle": "Paved High Point - TN",
     "cbsVisited": "N",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 35.556768,
     "longitude": -83.496103,
-    "cbsNotes": "At the TN / NC state line, parking area is in NC",
-    "cbsReferenceUrl": "http://www.nps.gov/grsm/planyourvisit/clingmansdome.htm"
+    "cbsNotes": "Collins Gap; at the TN / NC state line, parking area is in NC",
+    "addressCity": "",
+    "addressState": "TN",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://www.nps.gov/grsm/planyourvisit/clingmansdome.htm",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Cottonwood Pass",
@@ -156,8 +216,12 @@
     "cbsTags": null,
     "latitude": 38.827864,
     "longitude": -106.409269,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Cumbres Pass",
@@ -166,38 +230,54 @@
     "cbsTags": null,
     "latitude": 37.020556,
     "longitude": -106.45,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "Ebright Azimuth",
+    "cbsTitle": "Paved High Point - DE",
     "cbsVisited": "N",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 39.835838,
     "longitude": -75.519107,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "Ebright Azimuth",
+    "addressCity": "",
+    "addressState": "DE",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "Eureka Summit",
-    "cbsVisited": "N",
+    "cbsTitle": "Paved High Point - AK",
+    "cbsVisited": "Y",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 61.942499,
     "longitude": -147.174545,
-    "cbsNotes": "Mile 129.5",
-    "cbsReferenceUrl": null
+    "cbsNotes": "Eureka Summit; Mile 129.5",
+    "addressCity": "",
+    "addressState": "AK",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "FAA site on Black Mountain",
+    "cbsTitle": "Paved High Point - KY",
     "cbsVisited": "N",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 36.914348,
     "longitude": -82.89401,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "FAA site on Black Mountain",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Fall River Pass",
@@ -206,8 +286,12 @@
     "cbsTags": null,
     "latitude": 40.440556,
     "longitude": -105.754722,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Fremont Pass",
@@ -216,18 +300,26 @@
     "cbsTags": null,
     "latitude": 39.366288,
     "longitude": -106.186681,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "Galena Summit",
+    "cbsTitle": "Paved High Point - ID",
     "cbsVisited": "N",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 43.87077,
     "longitude": -114.713998,
-    "cbsNotes": "Sawtooth Scenic Byway",
-    "cbsReferenceUrl": "http://www.summitpost.org/galena-peak/153215"
+    "cbsNotes": "Galena Summit; Sawtooth Scenic Byway",
+    "addressCity": "",
+    "addressState": "ID",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://www.summitpost.org/galena-peak/153215",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Guanella Pass",
@@ -236,8 +328,12 @@
     "cbsTags": null,
     "latitude": 39.5949872,
     "longitude": -105.7111165,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Hoosier Pass",
@@ -247,7 +343,11 @@
     "latitude": 39.361667,
     "longitude": -106.0625,
     "cbsNotes": "Who's your pass, baby, who's your pass?",
-    "cbsReferenceUrl": null
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Iceberg Pass",
@@ -256,8 +356,12 @@
     "cbsTags": null,
     "latitude": 40.417484,
     "longitude": -105.7461187,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Independence Pass",
@@ -266,18 +370,26 @@
     "cbsTags": null,
     "latitude": 39.108056,
     "longitude": -106.564444,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "Jerimoth Hill on Hartford Pike",
+    "cbsTitle": "Paved High Point - RI",
     "cbsVisited": "N",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 41.851216,
     "longitude": -71.778842,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "Jerimoth Hill on Hartford Pike",
+    "addressCity": "",
+    "addressState": "RI",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Juniper Pass",
@@ -286,8 +398,12 @@
     "cbsTags": null,
     "latitude": 39.672222,
     "longitude": -105.565,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Kenosha Pass",
@@ -296,8 +412,12 @@
     "cbsTags": null,
     "latitude": 39.413333,
     "longitude": -105.756667,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "La Manga Pass",
@@ -306,8 +426,12 @@
     "cbsTags": null,
     "latitude": 37.0775,
     "longitude": -106.386111,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "La Veta Pass",
@@ -316,8 +440,12 @@
     "cbsTags": null,
     "latitude": 37.59305,
     "longitude": -105.20279,
-    "cbsNotes": null,
-    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:2791359"
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:2791359",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Lizard Head Pass",
@@ -326,8 +454,12 @@
     "cbsTags": null,
     "latitude": 37.811667,
     "longitude": -107.908333,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Loveland Pass",
@@ -336,28 +468,40 @@
     "cbsTags": null,
     "latitude": 39.663611,
     "longitude": -105.879167,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "Magazine Mountain",
+    "cbsTitle": "Paved High Point - AR",
     "cbsVisited": "N",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 35.167294,
     "longitude": -93.621526,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "Magazine Mountain",
+    "addressCity": "",
+    "addressState": "AR",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "Mauna Loa Observatory",
+    "cbsTitle": "Paved High Point - HI",
     "cbsVisited": "N",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 19.536195,
     "longitude": -155.575284,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "Mauna Loa Observatory",
+    "addressCity": "",
+    "addressState": "HI",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "McClure Pass",
@@ -366,8 +510,12 @@
     "cbsTags": null,
     "latitude": 39.12901,
     "longitude": -107.28298,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Milner Pass",
@@ -376,8 +524,12 @@
     "cbsTags": null,
     "latitude": 40.419722,
     "longitude": -105.811389,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Molas Pass",
@@ -386,8 +538,12 @@
     "cbsTags": null,
     "latitude": 37.737778,
     "longitude": -107.698056,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Monarch Pass",
@@ -396,98 +552,138 @@
     "cbsTags": null,
     "latitude": 38.496667,
     "longitude": -106.325,
-    "cbsNotes": null,
-    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:189720"
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:189720",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "Mount Equinox",
+    "cbsTitle": "Paved High Point - VT",
     "cbsVisited": "N",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 43.165307,
     "longitude": -73.117104,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "Mount Equinox",
+    "addressCity": "",
+    "addressState": "VT",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "Mount Greylock",
+    "cbsTitle": "Paved High Point - MA",
     "cbsVisited": "N",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 42.638016,
     "longitude": -73.165653,
-    "cbsNotes": null,
-    "cbsReferenceUrl": "http://www.mass.gov/eea/agencies/dcr/massparks/region-west/mt-greylock-state-reservation-generic.html"
+    "cbsNotes": "Mount Greylock",
+    "addressCity": "",
+    "addressState": "MA",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://www.mass.gov/eea/agencies/dcr/massparks/region-west/mt-greylock-state-reservation-generic.html",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "Mount Mitchell",
+    "cbsTitle": "Paved High Point - NC",
     "cbsVisited": "Y",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 35.767312,
     "longitude": -82.264569,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "Mount Mitchell",
+    "addressCity": "",
+    "addressState": "NC",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "Mount Washington",
+    "cbsTitle": "Paved High Point - NH",
     "cbsVisited": "Y",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 44.269763,
     "longitude": -71.302454,
-    "cbsNotes": "Toll road ($)",
-    "cbsReferenceUrl": "http://mtwashingtonautoroad.com/"
+    "cbsNotes": "Mount Washington; Toll road ($)",
+    "addressCity": "",
+    "addressState": "NH",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://mtwashingtonautoroad.com/",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "Mt Evans",
+    "cbsTitle": "Paved High Point - CO",
     "cbsVisited": "Y",
     "cbsMainCategory": "Paved High Point",
-    "cbsTags": ["Scenic Byway", "14er", "USDA", "Forest Service", "Lincoln National Forest"],
+    "cbsTags": null,
     "latitude": 39.587795,
     "longitude": -105.642439,
-    "cbsNotes": "Paved scenic byway to the top at 14,130 feet. Note that while it is paved, sometimes the road is still, er, rough.",
-    "cbsReferenceUrl": "https://www.fs.usda.gov/wps/portal/fsinternet/cs/recarea?ss=110308&navtype=BROWSEBYSUBJECT&cid=FSE_003738&navid=110240000000000&pnavid=110000000000000&position=generalinfo&recid=28508&ttype=recarea&pname=Mount%20Evans%20Scenic%20Byway"
+    "cbsNotes": "Mt Evans; Paved scenic byway to the top at 14,130 feet. Note that while it is paved, sometimes the road is still, er, rough. Watch for: wildlife, pedestrians, roller skaters, skateboarders, bicyclists, motorcyclists, drivers, and most especially drivers who are afraid of the edge and take up 3/4 to all of the road to avoid it regardless of who or what else might be on the road with them and/or can't navigate a hairpin turn.",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "https://www.fs.usda.gov/wps/portal/fsinternet/cs/recarea?ss=110308&navtype=BROWSEBYSUBJECT&cid=FSE_003738&navid=110240000000000&pnavid=110000000000000&position=generalinfo&recid=28508&ttype=recarea&pname=Mount%20Evans%20Scenic%20Byway",
+    "cbsImage": "https://photos.smugmug.com/Life-Happens/2015/2015-08-29-Mount-Evans/i-vksNRXJ/0/274872e8/X4/2015-08-30%2012.06.52.jpg"
   },
   {
-    "cbsTitle": "Mt Locke",
+    "cbsTitle": "Paved High Point - TX",
     "cbsVisited": "N",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 30.679974,
     "longitude": -104.025057,
-    "cbsNotes": null,
-    "cbsReferenceUrl": "http://www.tourtexas.com/fortstockton/ftstockbigbend.cfm"
+    "cbsNotes": "Mt Locke;  McDonald Observatory",
+    "addressCity": "",
+    "addressState": "TX",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://www.tourtexas.com/fortstockton/ftstockbigbend.cfm",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "Mt Washington Road",
+    "cbsTitle": "Paved High Point - CT",
     "cbsVisited": "N",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 42.039998,
     "longitude": -73.470431,
-    "cbsNotes": "In Litchfield County, near the three corners of CT, NY, and MA.",
-    "cbsReferenceUrl": null
+    "cbsNotes": "Mt Washington Road; In Litchfield County, near the three corners of CT, NY, and MA.",
+    "addressCity": "",
+    "addressState": "CT",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "near Driskill Mountain",
+    "cbsTitle": "Paved High Point - LA",
     "cbsVisited": "N",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 32.412542,
     "longitude": -92.896443,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "near Driskill Mountain",
+    "addressCity": "",
+    "addressState": "LA",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "near Mt Scott",
+    "cbsTitle": "Paved High Point - OR",
     "cbsVisited": "N",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 42.931016,
     "longitude": -122.027962,
-    "cbsNotes": "Crater Lake National Monument, East Rim",
-    "cbsReferenceUrl": null
+    "cbsNotes": "near Mt Scott; Crater Lake National Monument, East Rim",
+    "addressCity": "",
+    "addressState": "OR",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "North Cochetopa Pass",
@@ -496,18 +692,40 @@
     "cbsTags": null,
     "latitude": 38.216667,
     "longitude": -106.575556,
-    "cbsNotes": null,
-    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:190046"
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:190046",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "O'Neil Pass on US 85",
     "cbsVisited": "Y",
     "cbsMainCategory": "Pass",
     "cbsTags": null,
-    "latitude": 44.200259,
-    "longitude": -104.011086,
+    "latitude": 44.199997,
+    "longitude": -104.011042,
     "cbsNotes": "Between Newcastle, WY and Lead, SD",
-    "cbsReferenceUrl": null
+    "addressCity": "",
+    "addressState": "SD",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
+  },
+  {
+    "cbsTitle": "O'Neil Pass on US 85",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "Paved High Point",
+    "cbsTags": null,
+    "latitude": 44.200312,
+    "longitude": -104.011136,
+    "cbsNotes": "Between Newcastle, WY and Lead, SD",
+    "addressCity": "",
+    "addressState": "SD",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Pikes Peak",
@@ -516,8 +734,12 @@
     "cbsTags": null,
     "latitude": 38.84054,
     "longitude": -105.04442,
-    "cbsNotes": null,
-    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:204770"
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:204770",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Poncha Pass",
@@ -526,8 +748,12 @@
     "cbsTags": null,
     "latitude": 38.4222204,
     "longitude": -106.0869615,
-    "cbsNotes": null,
-    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:189873"
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:189873",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Rabbit Ears Pass",
@@ -536,8 +762,12 @@
     "cbsTags": null,
     "latitude": 40.384928,
     "longitude": -106.611717,
-    "cbsNotes": null,
-    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:172776"
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:172776",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Red Hill Pass",
@@ -546,8 +776,12 @@
     "cbsTags": null,
     "latitude": 39.267778,
     "longitude": -105.961111,
-    "cbsNotes": null,
-    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:183404"
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:183404",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Red Mountain Pass",
@@ -556,48 +790,68 @@
     "cbsTags": null,
     "latitude": 37.898889,
     "longitude": -107.711944,
-    "cbsNotes": null,
-    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:187296"
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:187296",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "Rock Creek Road from Tom's Place",
+    "cbsTitle": "Paved High Point - CA",
     "cbsVisited": "N",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 37.435295,
     "longitude": -118.747107,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "Rock Creek Road from Tom's Place",
+    "addressCity": "",
+    "addressState": "CA",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "Sandia Crest Scenic Byway",
+    "cbsTitle": "Paved High Point - NM",
     "cbsVisited": "N",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 35.209507,
     "longitude": -106.448383,
     "cbsNotes": "Observation Deck and Sandia Crest House Gift Shop and Café",
-    "cbsReferenceUrl": "http://www.motorcycleroads.com/75/383/New-Mexico/Route-536-Sandia-Crest-Road.html"
+    "addressCity": "",
+    "addressState": "NM",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://www.motorcycleroads.com/75/383/New-Mexico/Route-536-Sandia-Crest-Road.html",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "Sassafrass Mountain",
+    "cbsTitle": "Paved High Point - SC",
     "cbsVisited": "Y",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 35.064776,
     "longitude": -82.776196,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "Sassafrass Mountain",
+    "addressCity": "",
+    "addressState": "SC",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Sherman Pass",
     "cbsVisited": "N",
-    "cbsMainCategory": "Paved High Point",
+    "cbsMainCategory": "Stop",
     "cbsTags": null,
     "latitude": 48.607158,
     "longitude": -118.479372,
-    "cbsNotes": null,
-    "cbsReferenceUrl": "http://www.myscenicdrives.com/drives/washington/sherman-pass-loop"
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "WA",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://www.myscenicdrives.com/drives/washington/sherman-pass-loop",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Slumgullion Pass",
@@ -606,18 +860,26 @@
     "cbsTags": null,
     "latitude": 37.985556,
     "longitude": -107.222222,
-    "cbsNotes": null,
-    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:187058"
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:187058",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Smuggler's Notch",
     "cbsVisited": "Y",
-    "cbsMainCategory": "Paved High Point",
+    "cbsMainCategory": "Stop",
     "cbsTags": null,
     "latitude": 44.555387,
     "longitude": -72.795833,
-    "cbsNotes": "near Mount Mansfield",
-    "cbsReferenceUrl": null
+    "cbsNotes": "Smuggler's Notch; near Mount Mansfield",
+    "addressCity": "",
+    "addressState": "VT",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Snowy Range Pass",
@@ -626,8 +888,12 @@
     "cbsTags": null,
     "latitude": 41.344137,
     "longitude": -106.3019611,
-    "cbsNotes": null,
-    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:1594526"
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "WY",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:1594526",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Spring Creek Pass",
@@ -636,18 +902,26 @@
     "cbsTags": null,
     "latitude": 37.9408311,
     "longitude": -107.1592184,
-    "cbsNotes": null,
-    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:187042"
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:187042",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "Sunrise Ranger Station MRNP",
+    "cbsTitle": "Paved High Point - WA",
     "cbsVisited": "N",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 46.914421,
     "longitude": -121.642704,
-    "cbsNotes": "Inside Mount Ranier National Park",
-    "cbsReferenceUrl": null
+    "cbsNotes": "Sunrise Ranger Station MRNP; Inside Mount Ranier National Park",
+    "addressCity": "",
+    "addressState": "WA",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Tenderfoot Pass",
@@ -656,8 +930,12 @@
     "cbsTags": null,
     "latitude": 38.768,
     "longitude": -105.150306,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Tennessee Pass",
@@ -666,8 +944,12 @@
     "cbsTags": null,
     "latitude": 39.361378,
     "longitude": -106.311951,
-    "cbsNotes": null,
-    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:179869"
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:179869",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Trout Creek Pass",
@@ -676,8 +958,12 @@
     "cbsTags": null,
     "latitude": 38.9099949,
     "longitude": -105.9750131,
-    "cbsNotes": null,
-    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:191087"
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:191087",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Vail Pass",
@@ -686,8 +972,12 @@
     "cbsTags": null,
     "latitude": 39.530556,
     "longitude": -106.217222,
-    "cbsNotes": null,
-    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:176167"
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:176167",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Victor Pass",
@@ -696,28 +986,40 @@
     "cbsTags": null,
     "latitude": 38.710556,
     "longitude": -105.133333,
-    "cbsNotes": null,
-    "cbsReferenceUrl": null
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "Wheeler Peak Scenic Drive",
+    "cbsTitle": "Paved High Point - NV",
     "cbsVisited": "N",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 39.010748,
     "longitude": -114.301169,
-    "cbsNotes": "Inside Great Basin National Park",
-    "cbsReferenceUrl": null
+    "cbsNotes": "along Wheeler Peak Scenic Drive; Inside Great Basin National Park",
+    "addressCity": "",
+    "addressState": "NV",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
-    "cbsTitle": "Whiteface Mountain",
+    "cbsTitle": "Paved High Point - NY",
     "cbsVisited": "Y",
     "cbsMainCategory": "Paved High Point",
     "cbsTags": null,
     "latitude": 44.367134,
     "longitude": -73.906358,
-    "cbsNotes": "Whiteface Mountain Memorial Highway",
-    "cbsReferenceUrl": null
+    "cbsNotes": "top of Whiteface Mountain Memorial Highway",
+    "addressCity": "",
+    "addressState": "NY",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Wilkerson Pass",
@@ -726,8 +1028,12 @@
     "cbsTags": null,
     "latitude": 39.0380473,
     "longitude": -105.5255561,
-    "cbsNotes": null,
-    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:183807"
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:183807",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Wolf Creek Pass",
@@ -736,624 +1042,432 @@
     "cbsTags": null,
     "latitude": 37.482385,
     "longitude": -106.798997,
-    "cbsNotes": null,
-    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:190982"
+    "cbsNotes": "",
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://geonames.usgs.gov/apex/f?p=gnispq:3:::NO::P3_FID:190982",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Chatfield Dog Park",
     "cbsVisited": "Y",
     "cbsMainCategory": "Dog Park",
+    "cbsTags": null,
     "latitude": 39.561451,
     "longitude": -105.054707,
     "cbsNotes": "Inside Chatfield State Park ($)",
-    "cbsReferenceUrl": "https://cpw.state.co.us/placestogo/parks/Chatfield/Pages/DogOff-LeashArea.aspx"
+    "addressCity": "",
+    "addressState": "CO",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "https://cpw.state.co.us/placestogo/parks/Chatfield/Pages/DogOff-LeashArea.aspx",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Eagle Lake Dog Park",
     "cbsVisited": "Y",
     "cbsMainCategory": "Dog Park",
+    "cbsTags": null,
     "latitude": 44.159612,
     "longitude": -93.890358,
-    "cbsNotes": "in Eagle Lake, MN"
+    "cbsNotes": "",
+    "addressCity": "Eagle Lake",
+    "addressState": "MN",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Ashland Dog Park",
     "cbsVisited": "Y",
     "cbsMainCategory": "Dog Park",
+    "cbsTags": null,
     "latitude": 46.592037,
     "longitude": -90.86373,
-    "cbsNotes": "in Ashland, WI",
-    "cbsReferenceUrl": "http://www.visitashland.com/member/ashland-dog-park/"
+    "cbsNotes": "",
+    "addressCity": "Ashland",
+    "addressState": "WI",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://www.visitashland.com/member/ashland-dog-park/",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Meadowlark North Dog Park",
     "cbsVisited": "Y",
     "cbsMainCategory": "Dog Park",
+    "cbsTags": null,
     "latitude": 40.71159,
     "longitude": -99.127657,
-    "cbsNotes": "in Kearney, NE",
-    "cbsReferenceUrl": "http://www.cityofkearney.org/DocumentCenter/View/3273/Meadowlark-North-Dog-Park?bidId="
+    "cbsNotes": "",
+    "addressCity": "Kearney",
+    "addressState": "NE",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://www.cityofkearney.org/DocumentCenter/View/3273/Meadowlark-North-Dog-Park?bidId=",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Oak Creek Dog Run",
     "cbsVisited": "Y",
     "cbsMainCategory": "Dog Park",
+    "cbsTags": null,
     "latitude": 40.83408,
     "longitude": -96.71743,
-    "cbsNotes": "in Lincoln, NE"
+    "cbsNotes": "",
+    "addressCity": "Lincoln",
+    "addressState": "NE",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Andy's Bark Park",
     "cbsVisited": "Y",
     "cbsMainCategory": "Dog Park",
+    "cbsTags": null,
     "latitude": 44.880276,
     "longitude": -92.86921,
-    "cbsNotes": "in Woodbury, MN; 4 paws up from Lu C. Fur!",
-    "cbsReferenceUrl": "https://www.woodburymn.gov/departments/parks_and_trails/andys_bark_park.php"
+    "cbsNotes": "",
+    "addressCity": "Woodbury",
+    "addressState": "MN",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "https://www.woodburymn.gov/departments/parks_and_trails/andys_bark_park.php",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "New Richmond Area Off Leash Dog Park",
     "cbsVisited": "Y",
     "cbsMainCategory": "Dog Park",
+    "cbsTags": null,
     "latitude": 45.129739,
     "longitude": -92.582094,
-    "cbsNotes": "in New Richmond, WI"
+    "cbsNotes": "",
+    "addressCity": "New Richmond",
+    "addressState": "WI",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Weston Dog Park",
     "cbsVisited": "Y",
     "cbsMainCategory": "Dog Park",
+    "cbsTags": null,
     "latitude": 44.910218,
     "longitude": -89.547277,
-    "cbsNotes": "in Weston, WI",
-    "cbsReferenceUrl": "http://westonwi.gov/facilities/facility/details/westondogpark-1"
+    "cbsNotes": "",
+    "addressCity": "Weston",
+    "addressState": "WI",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "http://westonwi.gov/facilities/facility/details/westondogpark-1",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Dog Run in Rest Area",
     "cbsVisited": "Y",
     "cbsMainCategory": "Dog Park",
+    "cbsTags": null,
     "latitude": 43.566697,
     "longitude": -95.651106,
-    "cbsNotes": "in Worthington, MN"
-  },
-  {
-    "cbsTitle": "White Pass & Yukon Route",
-    "cbsVisited": "Y",
-    "cbsMainCategory": "Railroad",
-    "latitude": 59.453392,
-    "longitude": -135.317869,
-    "cbsNotes": "231 2nd Ave Skagway, AK Also two Canadian locations, Whitehorse and Carcross, both in Yukon Territory.",
-    "cbsReferenceUrl": "http://wpyr.com/"
-  },
-  {
-    "cbsTitle": "Arkansas & Missouri Railroad",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 35.437083,
-    "longitude": -94.352108,
-    "cbsNotes": "813 Main St. Van Buren, AR ",
-    "cbsReferenceUrl": "http://www.amrailroad.com/",
-    "Image": "http://www.amrailroad.com/images/logo.png"
-  },
-  {
-    "cbsTitle": "Grand Canyon Railway & Hotel",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 35.252211,
-    "longitude": -112.191567,
-    "cbsNotes": "Williams 235 N Grand Canyon Blvd, AZ ",
-    "cbsReferenceUrl": "https://www.thetrain.com/the-train/",
-    "Image": "https://www.thetrain.com/wp-content/uploads/2013/02/train-equipment-312x217.jpg"
-  },
-  {
-    "cbsTitle": "Verde Canyon Railroad - Wilderness Route",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 34.776517,
-    "longitude": -112.056243,
-    "cbsNotes": "300 N Broadway Clarkdale, AZ ",
-    "cbsReferenceUrl": "http://verdecanyonrr.com/",
-    "Image": "http://verdecanyonrr.com/wp-content/uploads/2015/05/vrcc-logo-25.png"
-  },
-  {
-    "cbsTitle": "Fillmore & Western Railway Co",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 34.399046,
-    "longitude": -118.910176,
-    "cbsNotes": "351 Santa Clara St Fillmore, CA ",
-    "cbsReferenceUrl": "http://fwry.com/",
-    "Image": ""
-  },
-  {
-    "cbsTitle": "Skunk Train - Redwood Route",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 39.4457,
-    "longitude": -123.806841,
-    "cbsNotes": "100 W Laurel St Fort Bragg, CA ",
-    "cbsReferenceUrl": "http://www.skunktrain.com/",
-    "Image": "http://www.skunktrain.com/images/logo-2013-medium.png"
-  },
-  {
-    "cbsTitle": "Cripple Creek and Victor Narrow Gauge Railroad",
-    "cbsVisited": "Y",
-    "cbsMainCategory": "Railroad",
-    "latitude": 38.755297,
-    "longitude": -105.173572,
-    "cbsNotes": "520 E Carr Ave Cripple Creek, CO ",
-    "cbsReferenceUrl": "http://cripplecreekrailroad.com/",
-    "Image": "http://cripplecreekrailroad.com/wp-content/uploads/2012/08/Logo2.png"
+    "cbsNotes": "",
+    "addressCity": "Worthington",
+    "addressState": "MN",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "",
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Cumbres & Toltec Scenic Railroad",
     "cbsVisited": "N",
     "cbsMainCategory": "Railroad",
-    "latitude": 37.070847,
-    "longitude": -106.012073,
-    "cbsNotes": "5234 B US-285 Antonito, CO There is also a depot in Chama, NM (500 S Terrace Ave). National Historic Landmark",
-    "cbsReferenceUrl": "http://cumbrestoltec.com/",
-    "Image": "http://cumbrestoltec.com/wp-content/uploads/2014/03/cumbres_logo.png"
-  },
-  {
-    "cbsTitle": "Durango & Silverton Narrow Gauge Railroad & Museum",
-    "cbsVisited": "Y",
-    "cbsMainCategory": "Railroad",
-    "latitude": 37.268365,
-    "longitude": -107.882534,
-    "cbsNotes": "479 Main Ave Durango, CO ",
-    "cbsReferenceUrl": "http://www.durangotrain.com/",
-    "Image": "http://americanheritagerailways.com/sites/ahr/files/dsngr_logo_0.jpg"
-  },
-  {
-    "cbsTitle": "Georgetown Loop Railroad",
-    "cbsVisited": "Y",
-    "cbsMainCategory": "Railroad",
-    "latitude": 39.701534,
-    "longitude": -105.706726,
-    "cbsNotes": "507 Taos St Georgetown, CO ",
-    "cbsReferenceUrl": "http://georgetownlooprr.com/",
-    "Image": "http://georgetownlooprr.com/cache/0fc053a052f6fb703bb973b225df77fb_w600_h600_scaled.jpg"
-  },
-  {
-    "cbsTitle": "Leadville Colorado & Southern Railroad",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 39.250776,
-    "longitude": -106.287104,
-    "cbsNotes": "326 E 7th St Leadville, CO ",
-    "cbsReferenceUrl": "https://www.leadville-train.com/",
-    "Image": "http://www.leadville-train.com/sites/default/files/uploads/stork_curve_picture_courtsey_of_damian.jpeg"
-  },
-  {
-    "cbsTitle": "Pikes Peak Cog Railway",
-    "cbsVisited": "Y",
-    "cbsMainCategory": "Railroad",
-    "latitude": 38.856298,
-    "longitude": -104.931385,
-    "cbsNotes": "515 Ruxton Ave Manitou Springs, CO ",
-    "cbsReferenceUrl": "http://cograilway.com/",
-    "Image": "http://cograilway.com/images/BRD_CogRailLogo_RGB.png"
-  },
-  {
-    "cbsTitle": "Rio Grande - La Veta Pass Route",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 37.466984,
-    "longitude": -105.865635,
-    "cbsNotes": "610 State Ave Alamosa, CO ",
-    "cbsReferenceUrl": "https://www.coloradotrain.com/",
-    "Image": "https://www.coloradotrain.com/wp-content/themes/rio-grande/library/img/logo.png"
-  },
-  {
-    "cbsTitle": "Royal Gorge Route Railroad",
-    "cbsVisited": "Y",
-    "cbsMainCategory": "Railroad",
-    "latitude": 38.438827,
-    "longitude": -105.242126,
-    "cbsNotes": "330 Royal Gorge Blvd Cañon City, CO ",
-    "cbsReferenceUrl": "https://www.royalgorgeroute.com/",
-    "Image": ""
-  },
-  {
-    "cbsTitle": "Essex Steam Train and Riverboat",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 41.350392,
-    "longitude": -72.404879,
-    "cbsNotes": "1 Railroad Ave Essex, CT Checkout the Saybrook special. ",
-    "cbsReferenceUrl": "http://essexsteamtrain.com/",
-    "Image": "http://essexsteamtrain.com/wp-content/uploads/2014/03/Brochure-Cover.jpg"
-  },
-  {
-    "cbsTitle": "Wilmington & Western Railroad",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 39.739113,
-    "longitude": -75.632349,
-    "cbsNotes": "2201 Newport Gap Pike Wilmington, DE ",
-    "cbsReferenceUrl": "http://www.wwrr.com/",
-    "Image": "http://www.wwrr.com/images/logo8.png"
-  },
-  {
-    "cbsTitle": "Blue Ridge Scenic Railway",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 34.865515,
-    "longitude": -84.324694,
-    "cbsNotes": "241 Depot St Blue Ridge, GA ",
-    "cbsReferenceUrl": "http://www.brscenic.com/",
-    "Image": "https://apps.vendini.com/i/5ab13c736ec0377ec5ab1a57265a71b297bac259.png"
-  },
-  {
-    "cbsTitle": "Boone & Scenic Valley Railroad",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 42.06669,
-    "longitude": -93.891296,
-    "cbsNotes": "225 10th Street Boone, IA ",
-    "cbsReferenceUrl": "http://www.bsvrr.com/",
-    "Image": "http://www.bsvrr.com/images/equipment/6540/6540high.jpg"
-  },
-  {
-    "cbsTitle": "Thunder Mountain Line",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 43.913582,
-    "longitude": -116.192761,
-    "cbsNotes": "120 Mill Rd Horseshoe Bend, ID ",
-    "cbsReferenceUrl": "http://www.thundermountainline.com/",
-    "Image": "http://www.thundermountainline.com/Home%20Page/tmllogoround4.gif"
-  },
-  {
-    "cbsTitle": "French Lick Scenic Railway",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 38.554872,
-    "longitude": -86.618858,
-    "cbsNotes": "1 Monon Drive French Lick, IN ",
-    "cbsReferenceUrl": "http://www.frenchlickscenicrailway.org/index.html",
-    "Image": "http://www.frenchlickscenicrailway.org/FLRR_photo.jpg"
-  },
-  {
-    "cbsTitle": "Big South Fork Scenic Railway",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 36.698932,
-    "longitude": -84.47613,
-    "cbsNotes": "100 Henderson St Stearns, KY ",
-    "cbsReferenceUrl": "http://www.bsfsry.com/",
-    "Image": "http://www.bsfsry.com/wp-content/uploads/2014/10/k-and-t-special.jpg"
-  },
-  {
-    "cbsTitle": "Cape Cod Central Railroad",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 41.655093,
-    "longitude": -70.28013,
-    "cbsNotes": "252 Main St Hyannis, MA ",
-    "cbsReferenceUrl": "http://www.capetrain.com/",
-    "Image": "http://www.capetrain.com/wp-content/themes/cape-cod-central/library/img/logo.png"
-  },
-  {
-    "cbsTitle": "Hoosac Valley Train",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 42.350636,
-    "longitude": -73.244238,
-    "cbsNotes": "10 Willow Creek Rd Lenox, MA ",
-    "cbsReferenceUrl": "http://hoosacvalleytrainride.com/",
-    "Image": "http://hoosacvalleytrainride.com/images/banner-hvs.gif"
-  },
-  {
-    "cbsTitle": "Western Maryland Scenic Railroad",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 39.649758,
-    "longitude": -78.763648,
-    "cbsNotes": "13 Canal St Cumberland, MD ",
-    "cbsReferenceUrl": "http://www.wmsr.com/",
-    "Image": "http://www.wmsr.com/var/skins/wmsr_desktop_fall_2012/images/skin/logo.png"
-  },
-  {
-    "cbsTitle": "Downeast Scenic Railroad",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 44.542523,
-    "longitude": -68.418,
-    "cbsNotes": "245 Main St Ellsworth, ME ",
-    "cbsReferenceUrl": "http://www.downeastscenicrail.org/",
-    "Image": "http://www.downeastscenicrail.org/ride/wp-content/uploads/2012/06/cropped-DowneastRailHeader2010-10001.jpg"
-  },
-  {
-    "cbsTitle": "North Shore Scenic Railroad",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 46.781478,
-    "longitude": -92.10353,
-    "cbsNotes": "506 West Michigan Street Duluth, MN ",
-    "cbsReferenceUrl": "http://www.northshorescenicrailroad.org/",
-    "Image": ""
-  },
-  {
-    "cbsTitle": "Branson Scenic Railway",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 36.643879,
-    "longitude": -93.214828,
-    "cbsNotes": "206 E Main St Branson, MO ",
-    "cbsReferenceUrl": "http://www.bransontrain.com/",
-    "Image": "http://www.bransontrain.com/images/media_5.jpg"
-  },
-  {
-    "cbsTitle": "Great Smoky Mountains Railroad",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 35.433795,
-    "longitude": -83.446361,
-    "cbsNotes": "226 Everett St Bryson City, NC ",
-    "cbsReferenceUrl": "http://www.gsmr.com/",
-    "Image": "http://americanheritagerailways.com/sites/ahr/files/styles/medium/public/inline-images/gsmrr.jpg"
-  },
-  {
-    "cbsTitle": "North Carolina Transportation Museum",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 35.687595,
-    "longitude": -80.434432,
-    "cbsNotes": "411 S Salisbury Ave Spencer, NC Train and turntable rides. :0)",
-    "cbsReferenceUrl": "http://www.nctrans.org/Plan-Visit/Train-Rides.aspx",
-    "Image": "http://www.nctrans.org/_nctm/media/Website-Layout/nctm-train-overlay.png"
-  },
-  {
-    "cbsTitle": "Conway Scenic Railway",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 44.051886,
-    "longitude": -71.128738,
-    "cbsNotes": "38 Norcross Cir North Conway, NH ",
-    "cbsReferenceUrl": "http://www.conwayscenic.com/",
-    "Image": "http://conwayscenic.com/wp-content/uploads/2015/01/7470updates1.jpg"
-  },
-  {
-    "cbsTitle": "Hobo Railroad",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 44.040667,
-    "longitude": -71.67925,
-    "cbsNotes": "64 Railroad St Lincoln, NH ",
-    "cbsReferenceUrl": "http://www.hoborr.com/hobonew.html",
-    "Image": "http://www.hoborr.com/images/hobomapa.jpg"
-  },
-  {
-    "cbsTitle": "Mount Washington Cog Railway",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 44.269719,
-    "longitude": -71.350965,
-    "cbsNotes": "Base Station Rd Bretton Woods, NH ",
-    "cbsReferenceUrl": "http://www.thecog.com/",
-    "Image": "http://www.thecog.com/images/header2011/cog_triptych.jpg"
-  },
-  {
-    "cbsTitle": "Winnipesaukee Railroad",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
-    "latitude": 43.651127,
-    "longitude": -71.499796,
-    "cbsNotes": "154 Main St Meredith, NH ",
-    "cbsReferenceUrl": "http://www.hoborr.com/winninew.html",
-    "Image": "http://www.foliagetrains.com/images/ashland-trestle.jpg"
-  },
-  {
-    "cbsTitle": "Cumbres & Toltec Scenic Railroad",
-    "cbsVisited": "N",
-    "cbsMainCategory": "Railroad",
+    "cbsTags": null,
     "latitude": 36.903065,
     "longitude": -106.578333,
     "cbsNotes": "500 S Terrace Ave Chama, NM There is also a depot in Antonito, CO (5234 B US Hwy 285). National Historic Landmark",
+    "addressCity": "Chama",
+    "addressState": "NM",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://cumbrestoltec.com/",
-    "Image": "http://cumbrestoltec.com/wp-content/uploads/2014/03/cumbres_logo.png"
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Adirondack Scenic Railroad",
     "cbsVisited": "N",
     "cbsMainCategory": "Railroad",
+    "cbsTags": null,
     "latitude": 43.104444,
     "longitude": -75.223322,
     "cbsNotes": "321 Main St Utica, NY ",
+    "addressCity": "Utica",
+    "addressState": "NY",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://www.adirondackrr.com/",
-    "Image": "http://www.adirondackrr.com/images/logo.png"
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Catskill Mountain Railroad",
     "cbsVisited": "N",
     "cbsMainCategory": "Railroad",
+    "cbsTags": null,
     "latitude": 42.053849,
     "longitude": -74.293797,
     "cbsNotes": "NY-28 Mt Tremper, NY ",
+    "addressCity": "Tremper",
+    "addressState": "NY",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://catskillmtrailroad.com/",
-    "Image": "http://www.catskillmtrailroad.com/images/top_cmrr2013.gif"
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Saratoga and North Creek Railway",
     "cbsVisited": "N",
     "cbsMainCategory": "Railroad",
+    "cbsTags": null,
     "latitude": 43.083075,
     "longitude": -73.810166,
     "cbsNotes": "26 Station Ln, Saratoga Springs New York, NY ",
+    "addressCity": "New York",
+    "addressState": "NY",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://www.sncrr.com/",
-    "Image": "http://www.sncrr.com/wp-content/themes/saratoga-north-creek/library/img/logo.png"
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Cuyahoga Valley Scenic Railroad",
     "cbsVisited": "N",
     "cbsMainCategory": "Railroad",
+    "cbsTags": null,
     "latitude": 41.39442,
     "longitude": -81.631026,
     "cbsNotes": "7900 Old Rockside Rd Independence, OH ",
+    "addressCity": "Independence",
+    "addressState": "OH",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://www.cvsr.com/",
-    "Image": "http://cvsr.com/Data/Sites/1/assets/hp-slides/slide-03.jpg"
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Hocking Valley Scenic Railway",
     "cbsVisited": "N",
     "cbsMainCategory": "Railroad",
+    "cbsTags": null,
     "latitude": 39.458912,
     "longitude": -82.23372,
     "cbsNotes": "33 E Canal St Nelsonville, OH ",
+    "addressCity": "Nelsonville",
+    "addressState": "OH",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://www.hvsry.org/",
-    "Image": "http://www.hvsry.org/wp-content/uploads/2016/01/HVSRblack-transparent-90x69.png"
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Zanesville and Western Scenic Railroad",
     "cbsVisited": "N",
     "cbsMainCategory": "Railroad",
+    "cbsTags": null,
     "latitude": 39.867771,
     "longitude": -82.207432,
     "cbsNotes": "5700 OH-204 Mt Perry, OH ",
+    "addressCity": "Mt Perry",
+    "addressState": "OH",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://zwsr.org/",
-    "Image": "http://zwsr.org/images/logo.png"
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Mount Hood Railroad",
     "cbsVisited": "N",
     "cbsMainCategory": "Railroad",
+    "cbsTags": null,
     "latitude": 45.710086,
     "longitude": -121.511707,
     "cbsNotes": "110 Mt Hood Railroad Hood River, OR ",
+    "addressCity": "Hood River",
+    "addressState": "OR",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://www.mthoodrr.com/",
-    "Image": "http://www.mthoodrr.com/wp-content/themes/mount-hood/library/img/logo.png"
+    "cbsImage": ""
   },
   {
     "cbsTitle": "New Hope & Ivyland Railroad",
     "cbsVisited": "N",
     "cbsMainCategory": "Railroad",
+    "cbsTags": null,
     "latitude": 40.364337,
     "longitude": -74.95216,
     "cbsNotes": "32 W Bridge St New Hope, PA ",
+    "addressCity": "New Hope",
+    "addressState": "PA",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "https://www.newhoperailroad.com/",
-    "Image": "https://www.newhoperailroad.com/pics/gallery/pg28_lg.jpg"
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Steamtown National Historic Site",
     "cbsVisited": "N",
     "cbsMainCategory": "Railroad",
+    "cbsTags": null,
     "latitude": 41.407274,
     "longitude": -75.6713,
     "cbsNotes": "350 Cliff St Scranton, PA ",
+    "addressCity": "Scranton",
+    "addressState": "PA",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://www.nps.gov/stea/planyourvisit/trainrides.htm",
-    "Image": ""
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Strasburg Railroad",
     "cbsVisited": "N",
     "cbsMainCategory": "Railroad",
+    "cbsTags": null,
     "latitude": 39.983335,
     "longitude": -76.159281,
     "cbsNotes": "301 Gap Rd Ronks, PA ",
+    "addressCity": "Ronks",
+    "addressState": "PA",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://www.strasburgrailroad.com/",
-    "Image": "http://www.strasburgrailroad.com/wp-content/gallery/photo-gallery/train_90_04.jpg"
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Black Hills Central Railroad",
     "cbsVisited": "N",
     "cbsMainCategory": "Railroad",
+    "cbsTags": null,
     "latitude": 43.932787,
     "longitude": -103.573355,
     "cbsNotes": "222 Railroad Ave Hill City, SD ",
+    "addressCity": "Hill City",
+    "addressState": "SD",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://www.1880train.com/",
-    "Image": "http://www.1880train.com/img/gallery/train-smoke_550.jpg"
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Tennessee Valley Railroad ",
     "cbsVisited": "N",
     "cbsMainCategory": "Railroad",
+    "cbsTags": null,
     "latitude": 35.067157,
     "longitude": -85.2061,
     "cbsNotes": "4119 Cromwell Rd Chattanooga, TN ",
+    "addressCity": "Chattanooga",
+    "addressState": "TN",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://www.tvrail.com/",
-    "Image": "http://www.tvrail.com/img/tennessee-valley-railroad-logo.png"
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Golden Spike National Historic Site - Locomotive Operations",
     "cbsVisited": "Y",
     "cbsMainCategory": "Railroad",
+    "cbsTags": null,
     "latitude": 41.623217,
     "longitude": -112.548263,
     "cbsNotes": "6200 North 22300th Street West Brigham City, UT Photos runs only, no rides. ",
+    "addressCity": "Brigham City",
+    "addressState": "UT",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://www.nps.gov/gosp/planyourvisit/locomotiveoperations.htm",
-    "Image": "http://www.nps.gov/gosp/images/Jupiter-in-the-snow-1a.jpg"
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Heber Valley Historic Railroad",
     "cbsVisited": "Y",
     "cbsMainCategory": "Railroad",
+    "cbsTags": null,
     "latitude": 40.502458,
     "longitude": -111.424499,
     "cbsNotes": "450 S 6th W Heber City, UT ",
+    "addressCity": "Heber City",
+    "addressState": "UT",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://hebervalleyrr.org/",
-    "Image": "http://hebervalleyrr.org/wp-content/uploads/2015/03/header.png"
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Green Mountain Railroad",
     "cbsVisited": "N",
     "cbsMainCategory": "Railroad",
+    "cbsTags": null,
     "latitude": 44.471697,
     "longitude": -73.219942,
     "cbsNotes": "One Railway Ln Burlington, VT ",
+    "addressCity": "Burlington",
+    "addressState": "VT",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://www.rails-vt.com/",
-    "Image": "http://storage.googleapis.com/wzukusers/user-16827405/images/562a2b1f87209RCRDNeu/10518310_647655845302943_8086550364992829193_o.jpg"
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Chehalis-Centralia Railroad ",
     "cbsVisited": "N",
     "cbsMainCategory": "Railroad",
+    "cbsTags": null,
     "latitude": 46.652623,
     "longitude": -122.97728,
     "cbsNotes": "1101 SW Sylvenus St Chehalis, WA ",
+    "addressCity": "Chehalis",
+    "addressState": "WA",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://steamtrainride.com/",
-    "Image": "http://steamtrainride.com/wp-content/uploads/2013/02/newbanner_ctown_3.png"
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Mt Rainier Railroad & Logging Museum",
     "cbsVisited": "N",
     "cbsMainCategory": "Railroad",
+    "cbsTags": null,
     "latitude": 46.764204,
     "longitude": -122.193382,
     "cbsNotes": "54124 Mountain Hwy E Elbe, WA ",
+    "addressCity": "Elbe",
+    "addressState": "WA",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://www.mtrainierrailroad.com/",
-    "Image": "https://static.wixstatic.com/media/14db6f_53e39b1bf87241bb9b0eca4d637b0a28.jpg/v1/fill/w_1439,h_444,al_c,q_85,usm_0.66_1.00_0.01/14db6f_53e39b1bf87241bb9b0eca4d637b0a28.jpg"
+    "cbsImage": ""
   },
   {
     "cbsTitle": "CASS Scenic Railroad State Park",
     "cbsVisited": "N",
     "cbsMainCategory": "Railroad",
+    "cbsTags": null,
     "latitude": 38.3971,
     "longitude": -79.914716,
     "cbsNotes": "242 Main St Cass, WV ",
+    "addressCity": "Cass",
+    "addressState": "WV",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://www.cassrailroad.com/",
-    "Image": "http://www.cassrailroad.com/etc/HEADER.jpg"
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Durbin & Greenbrier Valley Railroad",
     "cbsVisited": "N",
     "cbsMainCategory": "Railroad",
+    "cbsTags": null,
     "latitude": 38.559764,
     "longitude": -79.823438,
     "cbsNotes": "4759 Staunton Parkersburg Turnpike Durbin, WV ",
+    "addressCity": "Durbin",
+    "addressState": "WV",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://mountainrailwv.com/",
-    "Image": "http://mountainrailwv.com/wp-content/uploads//IMG_02415_Surreal-Cass1.jpg"
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Potomac Eagle Scenic Railroad",
     "cbsVisited": "N",
     "cbsMainCategory": "Railroad",
+    "cbsTags": null,
     "latitude": 39.360924,
     "longitude": -78.751999,
     "cbsNotes": "149 Eagle Dr Romney, WV ",
+    "addressCity": "Romeny",
+    "addressState": "WV",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://www.potomaceagle.info/",
-    "Image": "http://i2.wp.com/www.potomaceagle.info/wpsite/wp-content/uploads/2016/03/8-trip06.jpg?zoom=1.5&fit=225%2C300"
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Kinzua Sky Walk",
@@ -1363,8 +1477,11 @@
     "latitude": 41.758798,
     "longitude": -78.587399,
     "cbsNotes": "296 Viaduct Road, Mt Jewett, PA 16740 inside Kinzua Bridge State Park",
+    "addressCity": "Mt Jewett",
+    "addressState": "PA",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "https://visitanf.com/kinzua-state-park-sky-walk/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Grand Canyon West Skywalk at Eagle Point",
@@ -1374,8 +1491,11 @@
     "latitude": 36.010698,
     "longitude": -113.811724,
     "cbsNotes": "Hualapai Indian Reservation, Mohave North, AZ",
+    "addressCity": "Mohave North",
+    "addressState": "AZ",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "https://grandcanyonwest.com/skywalk--eagle-point.htm",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #1",
@@ -1385,8 +1505,11 @@
     "latitude": 35.066,
     "longitude": -78.8783,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-02-23. Located at American Legion (AL) Post #202, 834 Ramsey Street Fayetteville, NC 28301",
+    "addressCity": "Fayetteville",
+    "addressState": "NC",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #2",
@@ -1396,8 +1519,11 @@
     "latitude": 32.7338,
     "longitude": -79.9672,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-02-26. Located at Veterans of Foreign Wars (VFW) Post #445, 1639 Camp Road Charleston, SC 29412",
+    "addressCity": "Charleston",
+    "addressState": "SC",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #3",
@@ -1407,8 +1533,11 @@
     "latitude": 32.0411,
     "longitude": -81.1935,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-03-02. Located at Veterans of Foreign Wars (VFW) Post #660, 5115 Ogeechee Road Savannah, GA 31405",
+    "addressCity": "Savannah",
+    "addressState": "GA",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #4",
@@ -1418,8 +1547,11 @@
     "latitude": 30.2799,
     "longitude": -81.3973,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-03-05. Located at Veterans of Foreign Wars (VFW) Post #3270, 915 8th Avenue South Jacksonville, FL 32250",
+    "addressCity": "Jacksonville",
+    "addressState": "FL",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #5",
@@ -1429,8 +1561,11 @@
     "latitude": 30.6719,
     "longitude": -88.101,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-03-10. Located at Veterans of Foreign Wars (VFW) Post #49, 2528 Government Blvd Mobile, AL 36606",
+    "addressCity": "Mobile",
+    "addressState": "AL",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #6",
@@ -1440,8 +1575,11 @@
     "latitude": 30.3811,
     "longitude": -89.09,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-03-12. Located at Veterans of Foreign Wars (VFW) Post #2539, 2518 23rd Avenue Gulfport, MS 39501",
+    "addressCity": "Gulport",
+    "addressState": "MS",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #7",
@@ -1451,8 +1589,11 @@
     "latitude": 29.9546,
     "longitude": -90.202,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-03-15. Located at Veterans of Foreign Wars (VFW) Post #3267, 1133 Hickory Avenue Harahan, LA 70123",
+    "addressCity": "Harahan",
+    "addressState": "LA",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #8",
@@ -1462,8 +1603,11 @@
     "latitude": 32.8303,
     "longitude": -96.7077,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-03-23. Located at Veterans of Foreign Wars (VFW) Post #6796, 9179 Garland Road Dallas, TX 75218",
+    "addressCity": "Dallas",
+    "addressState": "TX",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #9",
@@ -1473,8 +1617,11 @@
     "latitude": 35.12,
     "longitude": -106.646,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-03-27. Located at Veterans of Foreign Wars (VFW) Post #100, 424 Candelaria Road Northwest  Albuquerque, NM 87107",
+    "addressCity": "Albuquerque",
+    "addressState": "NM",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #10",
@@ -1484,8 +1631,11 @@
     "latitude": 33.5743,
     "longitude": -112.0627,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-03-31. Located at Veterans of Foreign Wars (VFW) Post #9400, 804 E Purdue Avenue Phoenix, AZ 85020",
+    "addressCity": "Phoenix",
+    "addressState": "AZ",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #11",
@@ -1495,8 +1645,11 @@
     "latitude": 38.0137,
     "longitude": -121.8116,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-04-04. Located at American Legion (AL) Post #161, 403 West 6th Street Antioch, CA 94509",
+    "addressCity": "Antioch",
+    "addressState": "CA",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #12",
@@ -1506,8 +1659,11 @@
     "latitude": 36.1778,
     "longitude": -115.1384,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-04-09. Located at Veterans of Foreign Wars (VFW) Post #8, 733 Veterans Memorial Drive Las Vegas, NV 89101",
+    "addressCity": "Las Vegas",
+    "addressState": "NV",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #13",
@@ -1517,8 +1673,11 @@
     "latitude": 40.7076,
     "longitude": -111.8538,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-04-13. Located at Veterans of Foreign Wars (VFW) Post #3586, 2920 Highland Drive Salt Lake City, UT 84106",
+    "addressCity": "Salt Lake City",
+    "addressState": "UT",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #14",
@@ -1528,8 +1687,11 @@
     "latitude": 45.4592,
     "longitude": -122.5898,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-04-17. Located at Veterans of Foreign Wars (VFW) Post #4248, 7118 SE Fern Avenue Portland, OR 97206",
+    "addressCity": "Portland",
+    "addressState": "OR",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #15",
@@ -1539,8 +1701,11 @@
     "latitude": 55.3436,
     "longitude": -131.6447,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-04-18. Located at American Legion (AL) Post #3, 631 Park Avenue Ketchikan, AK 99901",
+    "addressCity": "Ketchikan",
+    "addressState": "AK",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #16",
@@ -1550,8 +1715,11 @@
     "latitude": 48.3196,
     "longitude": -122.6481,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-04-20. Located at Veterans of Foreign Wars (VFW) Post #7392, 3037 Goldie Road Oak Harbor, WA 98277",
+    "addressCity": "Oak Harbor",
+    "addressState": "WA",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #17",
@@ -1561,8 +1729,11 @@
     "latitude": 47.7299,
     "longitude": -116.9276,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-04-30. Located at American Legion (AL) Post #143, 1138 E Poleline Avenue Post Falls, ID 83854",
+    "addressCity": "Post Falls",
+    "addressState": "ID",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #18",
@@ -1572,8 +1743,11 @@
     "latitude": 44.529,
     "longitude": -109.0636,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-05-04. Located at Veterans of Foreign Wars (VFW) Post #2673, 808 12th Street Cody, WY 82414",
+    "addressCity": "Cody",
+    "addressState": "WY",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #19",
@@ -1583,8 +1757,11 @@
     "latitude": 45.7697,
     "longitude": -108.5225,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-05-08. Located at Veterans of Foreign Wars (VFW) Post #1634, 4242 State Avenue Billings, MT 59101",
+    "addressCity": "Billings",
+    "addressState": "MT",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #20",
@@ -1594,8 +1771,11 @@
     "latitude": 46.7909,
     "longitude": -100.7731,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-05-11. Located at Veterans of Foreign Wars (VFW) Post #1326, 1235 South 12th Street Bismarck, ND 58501",
+    "addressCity": "Bismarck",
+    "addressState": "ND",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #21",
@@ -1605,8 +1785,11 @@
     "latitude": 43.7674,
     "longitude": -103.5968,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-05-14. Located at Veterans of Foreign Wars (VFW) Post #3442, 721 Mt Rushmore Road Custer, SD 57730",
+    "addressCity": "Custer",
+    "addressState": "SD",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #22",
@@ -1616,8 +1799,11 @@
     "latitude": 44.9495,
     "longitude": -93.2883,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-05-20. Located at Veterans of Foreign Wars (VFW) Post #246, 2916 Lyndale Avenue South Minneapolis, MN 55408",
+    "addressCity": "South Minneapolis",
+    "addressState": "MN",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #23",
@@ -1627,8 +1813,11 @@
     "latitude": 43.8343,
     "longitude": -89.3215,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-05-25. Located at Veterans of Foreign Wars (VFW) Post #7591, 301 Cottage Grove Road Madison, WI 53716",
+    "addressCity": "Madison",
+    "addressState": "WI",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #24",
@@ -1638,8 +1827,11 @@
     "latitude": 41.8422,
     "longitude": -87.8233,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-05-28. Located at Veterans of Foreign Wars (VFW) Post #2378, 2622 Desplaines Avenue North Riverside, IL 60546",
+    "addressCity": "North Riverside",
+    "addressState": "IL",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #25",
@@ -1649,8 +1841,11 @@
     "latitude": 41.5711,
     "longitude": -87.2607,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-06-01. Located at American Legion (AL) Post #100, 1899 Central Avenue Lake Station, IN 46405",
+    "addressCity": "Lake Station",
+    "addressState": "IN",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #26",
@@ -1660,8 +1855,11 @@
     "latitude": 42.2898,
     "longitude": -83.2706,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-06-05. Located at American Legion (AL) Post #364, 3001 South Telegraph Road Dearborn, MI 48124",
+    "addressCity": "Dearborn",
+    "addressState": "MI",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #27",
@@ -1671,8 +1869,11 @@
     "latitude": 43.4922,
     "longitude": -73.7676,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-06-09. Located at Veterans of Foreign Wars (VFW) Post #4821, 3754 Main Street Warrensburg, NY 12885",
+    "addressCity": "Warrensburg",
+    "addressState": "NY",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #28",
@@ -1682,8 +1883,11 @@
     "latitude": 44.4753,
     "longitude": -73.2107,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-06-10. Located at Veterans of Foreign Wars (VFW) Post #782, 176 South Winooski Avenue Burlington, VT 05401",
+    "addressCity": "Burlington",
+    "addressState": "VT",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #29",
@@ -1693,8 +1897,11 @@
     "latitude": 44.0765,
     "longitude": -70.2389,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-06-14. Located at American Legion (AL) Post #31, 426 Washington Street North Auburn, ME 04210",
+    "addressCity": "Auburn",
+    "addressState": "ME",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #30",
@@ -1704,8 +1911,11 @@
     "latitude": 43.2303,
     "longitude": -70.8205,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-06-15. Located at American Legion (AL) Post #47, 551 Foundry Street Rollinsford, NH 03869",
+    "addressCity": "Rollinsford",
+    "addressState": "NH",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #31",
@@ -1715,8 +1925,11 @@
     "latitude": 42.007,
     "longitude": -71.5279,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-06-21. Located at American Legion (AL) Post #85, 870 River Street Woonsocket, RI 02895",
+    "addressCity": "Woonsocket",
+    "addressState": "RI",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #32",
@@ -1726,8 +1939,11 @@
     "latitude": 39.9475,
     "longitude": -74.078,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-06-25. Located at American Legion (AL) Post #351, 1400 Bay Blvd Seaside Heights, NJ 08751",
+    "addressCity": "Seaside Heights",
+    "addressState": "NJ",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #33",
@@ -1737,8 +1953,11 @@
     "latitude": 42.4205,
     "longitude": -70.9992,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-06-27. Located at Veterans of Foreign Wars (VFW) Post #4524, 10 Garofola Street Revere, MA 02151",
+    "addressCity": "Revere",
+    "addressState": "MA",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #34",
@@ -1748,8 +1967,11 @@
     "latitude": 41.1978,
     "longitude": -73.099,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-07-01. Located at Veterans of Foreign Wars (VFW) Post #7788, 422 Naugatuck Avenue Milford, CT 06460",
+    "addressCity": "Milford",
+    "addressState": "CT",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #35",
@@ -1759,8 +1981,11 @@
     "latitude": 40.4293,
     "longitude": -79.9777,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-07-13. Located at Veterans of Foreign Wars (VFW) Post #6675, 1930 Sidney Street Pittsburgh, PA 15203",
+    "addressCity": "Pittsburgh",
+    "addressState": "PA",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #36",
@@ -1770,8 +1995,11 @@
     "latitude": 41.44,
     "longitude": -81.7206,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-07-15. Located at American Legion (AL) Post #469, 4910 Memphis Avenue Cleveland, OH 44144",
+    "addressCity": "Cleveland",
+    "addressState": "OH",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #37",
@@ -1781,8 +2009,11 @@
     "latitude": 41.2059,
     "longitude": -96.1219,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-07-17. Located at Veterans of Foreign Wars (VFW) Post #8334, 5083 S 136th Street Omaha, NE 68137",
+    "addressCity": "Omaha",
+    "addressState": "NE",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #38",
@@ -1792,8 +2023,11 @@
     "latitude": 39.6921,
     "longitude": -104.9873,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-07-20. Located at Veterans of Foreign Wars (VFW) Post #2461, 1350 S Broadway Ave Denver, CO 80210",
+    "addressCity": "Denver",
+    "addressState": "CO",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #39",
@@ -1803,8 +2037,11 @@
     "latitude": 39.0141,
     "longitude": -94.2729,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-07-23. Located at American Legion (AL) Post #499, 499 MO-7 Blue Springs, MO 64014",
+    "addressCity": "Blue Springs",
+    "addressState": "MO",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #40",
@@ -1814,8 +2051,11 @@
     "latitude": 37.6836,
     "longitude": -97.3988,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-07-25. Located at Veterans of Foreign Wars (VFW) Post #3115, 4801 W Douglas Ave Witchita, KS 67209",
+    "addressCity": "Witchita",
+    "addressState": "KS",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #41",
@@ -1825,8 +2065,11 @@
     "latitude": 35.3521,
     "longitude": -96.9315,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-07-27. Located at American Legion (AL) Post #16, 522 W Saratoga  Shawnee, OK 74804",
+    "addressCity": "Shawnee",
+    "addressState": "OK",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #42",
@@ -1836,8 +2079,11 @@
     "latitude": 34.7442,
     "longitude": -92.4181,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-07-30. Located at Veterans of Foreign Wars (VFW) Post #9095, 1121 Gamble Road Little Rock, AR 72211",
+    "addressCity": "Little Rock",
+    "addressState": "AR",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #43",
@@ -1847,8 +2093,11 @@
     "latitude": 42.5202,
     "longitude": -92.4413,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-08-01. Located at Veterans of Foreign Wars (VFW) Post #49, 1934 Irving Street Cedar Falls, IA 50613",
+    "addressCity": "Cedar Falls",
+    "addressState": "IA",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #44",
@@ -1858,8 +2107,11 @@
     "latitude": 36.1235,
     "longitude": -86.9128,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-08-02. Located at Veterans of Foreign Wars (VFW) Post #1970, 7220 Charlotte Pike Nashville, TN 37209",
+    "addressCity": "Nashville",
+    "addressState": "TN",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #45",
@@ -1869,8 +2121,11 @@
     "latitude": 38.065,
     "longitude": -84.5231,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-08-04. Located at Veterans of Foreign Wars (VFW) Post #680, 1494 Leestown Road Lexington, KY 40511",
+    "addressCity": "Lexington",
+    "addressState": "KY",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #46",
@@ -1880,8 +2135,11 @@
     "latitude": 39.4749,
     "longitude": -80.1517,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-08-07. Located at Veterans of Foreign Wars (VFW) Post #629, 802 Fairmont Avenue Fairmont, WV 26554",
+    "addressCity": "Fairmont",
+    "addressState": "WV",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #47",
@@ -1891,8 +2149,11 @@
     "latitude": 39.1473,
     "longitude": -75.5009,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-08-11. Located at American Legion (AL) Post #2, 835 Bay Road Dover, DE 19901",
+    "addressCity": "Dover",
+    "addressState": "DE",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #48",
@@ -1902,8 +2163,11 @@
     "latitude": 38.6348,
     "longitude": -75.8627,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-08-15. Located at American Legion (AL) Post #243, 57 Legion Drive Hurlock, MD 21643",
+    "addressCity": "Hurlock",
+    "addressState": "MD",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #49",
@@ -1913,8 +2177,11 @@
     "latitude": 38.8865,
     "longitude": -77.1024,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-08-20. Located at American Legion (AL) Post #139, 3445 Washington Blvd Arlington, VA 22201",
+    "addressCity": "Arlington",
+    "addressState": "VA",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
   },
   {
     "cbsTitle": "Flags Across America #50",
@@ -1924,7 +2191,24 @@
     "latitude": 21.288748,
     "longitude": -157.832692,
     "cbsNotes": "Painted by Scott LoBaido. Completion or installation on 2015-12-07. Located at American Legion (AL) Post #8, 612 McCully Street Honolulu, HI 96826",
+    "addressCity": "Honolulu",
+    "addressState": "HI",
+    "addressCountry": "USA",
     "cbsReferenceUrl": "http://scottlobaido.com/",
-    "cbsImage": null
+    "cbsImage": ""
+  },
+  {
+    "cbsTitle": "Exit Glacier",
+    "cbsVisited": "Y",
+    "cbsMainCategory": "National Park Service (NPS)",
+    "cbsTags": null,
+    "latitude": 60.188821,
+    "longitude": -149.630376,
+    "cbsNotes": "",
+    "addressCity": "Seward",
+    "addressState": "AK",
+    "addressCountry": "USA",
+    "cbsReferenceUrl": "https://www.nps.gov/kefj/planyourvisit/exit-glacier-area.htm",
+    "cbsImage": "https://photos.smugmug.com/Life-Happens/2017/TEMP-Alaska/2017-06-30/i-ZfHHSQC/0/54002df6/X2/DSCN0524.jpg"
   }
 ]
