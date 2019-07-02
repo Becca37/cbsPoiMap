@@ -52,7 +52,7 @@ HTML5, javascript (v5), CSS
 See also: 
 <ul>
 	<li><a href="ReadMe_CreatingRoutes.md">ReadMe: Creating Routes</a></li>
-	<li><a href="examples/FurkotLinkExamples.html">Notes about Furkot integration</a></li>
+	<li><a href="examples/Furkot_Integration_Examples.html">Notes about Furkot integration</a></li>
 </ul>
 
 <hr>
